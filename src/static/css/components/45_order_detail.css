@@ -1,0 +1,329 @@
+/* Componente utilizado en order_detail.html de seller-pages */
+
+/* =============================== */
+/* ORDER DETAIL PAGE (BEM STYLE)   */
+/* =============================== */
+
+.order-detail__back {
+  margin-top: 60px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 2.4rem;
+  color: var(--black);
+  background: var(--gray-100);
+  padding: 1rem 1.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.order-detail__back:hover {
+  background: var(--gray-200);
+  transform: scale(1.05);
+}
+
+.order-detail {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  margin-top: 80px;
+}
+
+.order-detail__date{
+  margin-top: 4rem;
+}
+
+.order-detail__content {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* ========== PANEL IZQUIERDO ========== */
+.order-detail__main {
+  flex: 2;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.493);
+  padding: 2rem;
+}
+
+.order-detail__header {
+  margin-bottom: 1rem;
+}
+
+.order-detail__title {
+  font-size: var(--fs-md);
+  color: var(--black);
+}
+
+.order-detail__info table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.order-detail__info th {
+  background: var(--gray-100);
+  padding: 8px;
+  text-align: left;
+}
+
+.order-detail__info td {
+  padding: 8px;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.order-detail__total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/* ========== PANEL DERECHO (LISTA DE PEDIDOS) ========== */
+.order-detail__sidebar {
+  flex: 1;
+  display: flex;
+  border-radius: 12px;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-detail__subtitle {
+  color: var(--black);
+  margin-bottom: .5rem;
+}
+
+.order-detail__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Tarjetas individuales */
+.order-card {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.493);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* =============================== */
+/* Botón Ver Factura               */
+/* =============================== */
+
+.order-detail__header {
+  position: relative; /* Necesario para ubicar el botón dentro del header */
+}
+
+.order-detail__invoice-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--primary-600); /* Verde principal */
+  color: var(--white);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.order-detail__invoice-button:hover {
+  background-color: var(--primary-400);
+  transform: translateY(-2px);
+}
+
+.order-detail__invoice-button:active {
+  transform: translateY(0);
+}
+
+
+.order-card__id {
+  font-weight: 700;
+}
+
+.order-card__status {
+  display: inline-block;
+  background-color: var(--primary-200);
+  color: var(--black);
+  border-radius: 10px;
+  padding: 4px 10px;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.order-card__button {
+  align-self: flex-end;
+  background-color: var(--primary-600);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.order-card__button:hover {
+  background-color: var(--primary-400);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .order-detail__content {
+    flex-direction: column;
+  }
+
+  .order-detail__sidebar {
+    width: 100%;
+  }
+  .order-detail__main{
+    margin-top: 8rem;
+  }
+
+  .order-detail__back{
+    margin-top: 16rem;
+  }
+}
+
+/* =============================== */
+/* Modal de factura                */
+/* =============================== */
+
+.invoice-modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  inset: 0; /* top: 0; right: 0; bottom: 0; left: 0 */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.invoice-modal.active {
+  display: flex;
+}
+
+/* Fondo difuminado */
+.invoice-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+/* Contenedor principal */
+.invoice-modal__content {
+  position: relative;
+  background: var(--white);
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  animation: fadeInUp 0.3s ease;
+}
+
+/* Título */
+.invoice-modal__title {
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: var(--fs-md);
+  color: var(--black);
+}
+
+/* Cuerpo */
+.invoice-modal__body p {
+  margin: 6px 0;
+  color: var(--black);
+}
+
+.invoice-modal__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.invoice-modal__table th,
+.invoice-modal__table td {
+  border-bottom: 1px solid var(--gray-100);
+  padding: 6px 8px;
+  text-align: left;
+}
+
+.invoice-modal__table th {
+  background: var(--gray-100);
+}
+
+.invoice-modal__total {
+  text-align: right;
+  margin-top: 10px;
+  color: var(--black);
+  font-weight: bold;
+}
+
+/* Botón cerrar */
+.invoice-modal__close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--black);
+  transition: color 0.2s;
+  font-size: 2rem;
+}
+
+.invoice-modal__close:hover {
+  color: var(--primary-600);
+}
+
+/* Animación */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.order-detail__invoice-button {
+  color: var(--white);
+  border: none;             /* elimina el borde */
+  outline: none;            /* elimina el contorno negro */
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Efecto hover */
+.order-detail__invoice-button:hover {
+  transform: scale(1.03);
+}
+
+/* Estado de foco accesible, sin borde negro */
+.order-detail__invoice-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(72, 239, 128, 0.5);
+}
+

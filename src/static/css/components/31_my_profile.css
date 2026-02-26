@@ -1,0 +1,270 @@
+/* Componente utilizado en my_profile.html (customer-pages) y my_profile.html (seller-pages)
+ */
+
+.body-profile{
+    background-color: var(--gray-50);
+}
+
+.profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  margin-bottom: 8rem;
+}
+
+.profile__card {
+  margin-bottom: 50px;
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--white);
+  padding: 2.4rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: 70vw;
+}
+
+/* Contenedor del avatar */
+.profile__avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  gap: 1.6rem;
+}
+
+/* Círculo del perfil */
+.profile__avatar {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: var(--gray-100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Icono dentro del círculo */
+.profile__avatar i {
+  font-size: 60px;
+  color: var(--gray-500);
+}
+
+/* Lápiz pequeño sobre el borde inferior derecho */
+.profile__edit-avatar-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 10px;
+  background-color: var(--gray-300);
+  border: none;
+  color: var(--white);
+  width: 25px;   /* tamaño compacto */
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+/* Ícono del lápiz dentro del botón */
+.profile__edit-avatar-btn i {
+  font-size: 11px;  /* ajusta el tamaño del ícono */
+  color: white;
+}
+
+.profile__edit-avatar-btn:hover {
+  background-color: var(--primary-500);
+  transform: scale(1.1);
+}
+
+/* Nombre o username */
+.profile__username {
+  font-weight: var(--font-bold);
+}
+
+/* BLOQUE FORMULARIO */
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 2.4rem
+}
+
+.profile__form-group {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.profile__form-group--date {
+  display: flex;
+  gap: 1.6rem;
+}
+
+
+.profile__form-input {
+  flex: 0 0 320px; /* ancho fijo dentro del flex */
+  height: 56px;
+  background-color: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  padding: 1.6rem;
+  border-radius: 6px;
+  color: var(--gray-900);
+  box-sizing: border-box;
+}
+
+.profile__form-input--date {
+  flex: 0 0 210px; /* ancho fijo dentro del flex */
+  height: 56px;
+  background-color: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  padding: 1.6rem;
+  border-radius: 6px;
+  text-align: center;
+  color: var(--gray-900);
+  box-sizing: border-box;
+}
+
+.profile__form-input::placeholder {
+  color: var(--gray-900);
+}
+
+.profile__form-input--date::placeholder {
+  color: var(--gray-900);
+}
+
+.profile__form-input:disabled {
+  opacity: 0.8;
+}
+
+.profile__form-legend {
+  font-size: var(--fs-sm);
+  font-weight: var(--font-bold);
+  color: var(--gray-900);
+  display: block;
+}
+
+.profile__form-btn {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding);
+  margin: var(--btn-margin, 0.5rem auto);
+  margin: auto;
+
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  height: var(--btn-max-height);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+
+.profile__form-btn:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+}
+
+.profile__form-btn:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); /* pequeño feedback */
+}
+
+.profile__form-btn:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px) {
+  .profile{
+    display: flex;
+    flex-direction: column;
+  }
+  .profile__container{
+    display: flex;
+    flex-direction: column;
+  }
+  .profile__card {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    margin-left: 1.6rem;
+    gap:2.4rem;
+    padding: 0.8rem;
+  }
+  .profile__form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile__form-input {
+    flex: 0; /* ocupa todo el ancho disponible */
+    width: 320px;
+  }
+  .profile__form-input--date {
+    flex: 0; /* ocupa todo el ancho disponible */
+    width: 9.6rem;
+  }
+}
+/* alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (min-width: 768px) and (max-width: 1279px) {
+  .profile{
+    display: flex;
+    flex-direction: column;
+  }
+  .profile__container{
+    flex-direction: column;
+  }
+  .profile__card {
+    display: flex;
+    flex-direction: column;
+    width: 94vw;
+    margin-left: 2.4rem;
+    gap:2.4rem
+  }
+  .profile__form{
+    margin: auto;
+  }
+  .profile__form-group {
+    display: flex;
+    flex-direction: row;
+  }
+  .profile__form-input {
+    width: 320px;
+  }
+  .profile__form-input--date {
+    width: 9.6rem;
+  }
+}
+
+/* No se requieren cambios para lg en adelante */
+
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/

@@ -1,0 +1,260 @@
+/* Componente utilizado en banners.html de admin-pages */
+/* =============================== */
+/* Bloque principal: admin-banners */
+/* =============================== */
+
+.admin-banners {
+  background-color: var(--gray-50);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Header */
+.admin-banners__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.admin-banners__title {
+  font-size: var(--fs-md);
+  color: var(--primary-900);
+  font-weight: 600;
+}
+
+.admin-banners__add-btn {
+  background-color: var(--button-add-color);
+  color: var(--white);
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-banners__add-btn:hover {
+  background-color: var(--button-add-color-hover);
+  transform: scale(1.05);
+}
+
+/* =============================== */
+/* Grid y tarjetas                 */
+/* =============================== */
+.admin-banners__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.admin-banners__card {
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-banners__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.admin-banners__image-container {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.admin-banners__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.admin-banners__card:hover .admin-banners__image {
+  transform: scale(1.05);
+}
+
+.admin-banners__info {
+  padding: 1rem 1.2rem 1.5rem;
+}
+
+.admin-banners__name {
+  color: var(--primary-800);
+  margin-bottom: 0.5rem;
+}
+
+.admin-banners__description {
+  color: var(--gray-700);
+  margin-bottom: 1rem;
+}
+
+/* =============================== */
+/* Botones                         */
+/* =============================== */
+.admin-banners__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.admin-banners__btn {
+  border: none;
+  padding: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-banners__btn--edit {
+  background-color: var(--boton-add-color);
+  color: var(--white);
+}
+
+.admin-banners__btn--edit:hover {
+  background-color: var(--boton-add-color-hover);
+}
+
+.admin-banners__btn--delete {
+  background-color: var(--button-add-color);
+  color: var(--white);
+}
+
+.admin-banners__btn--delete:hover {
+  background-color: var(--button-add-color-hover);
+}
+
+/* =============================== */
+/* Popups                          */
+/* =============================== */
+.admin-banners__popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-banners__popup.show {
+  display: flex;
+}
+
+.admin-banners__popup-content {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.admin-banners__popup-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.admin-banners__popup-text {
+  margin-bottom: 1.5rem;
+}
+
+.admin-banners__popup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-banners__popup-icon {
+  font-size: 2rem;
+  color: var(--button-add-color);
+  margin-bottom: 1rem;
+}
+
+.admin-banners__btn--cancel {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: var(--btn-margin, 0.5rem auto);
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0,0,0,0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.admin-banners__btn--cancel:hover {
+  background-color: var(--gray-200);
+}
+
+.admin-banners__btn--accept {
+  background: var(--button-add-color);
+  color: var(--btn-text, var(--white));
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: var(--btn-margin, 0.5rem auto);
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0,0,0,0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.admin-banners__btn--accept:hover {
+  background: var(--button-add-color-hover);
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0,0,0,0.2));
+}
+
+.admin-banners__btn--accept:active {
+  background: var(--button-add-color-hover);
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0,0,0,0.25));
+  transform: scale(0.98);
+}
+
+.admin-banners__btn--accept:disabled {
+  background: var(--button-add-color-hover);
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+

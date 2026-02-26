@@ -1,0 +1,35 @@
+<aside class="sidebar">
+  <div class="sidebar__list">Mi cuenta</div>
+  <ul class="sidebar__menu">
+    <li class="sidebar__option"><a href="/src/templates/customer-pages/my_profile.html">Mi Perfil</a></li>
+    <li class="sidebar__option"><a href="/src/templates/customer-pages/notifications.html">Notificaciones</a></li>
+    <li class="sidebar__option"><a href="/src/templates/customer-pages/historial_orders.html">Historial de pedidos</a></li>
+    <li class="sidebar__option"><a href="/src/templates/customer-pages/start_sales.html">Ventas</a></li>
+    <li class="sidebar__option"><a href="/src/templates/customer-pages/generate_report.html">Generar reporte</a></li>
+    <li class="sidebar__option">
+      <a href="#" class="sidebar__option-logoutBtn">Cerrar sesión</a>
+    </li>
+  </ul>
+</aside>
+
+<!-- Popup Confirmación -->
+<div class="sidebar__popup sidebar__popup--confirm">
+  <div class="sidebar__popup__content">
+    <p class="sidebar__popup__message">¿Estás seguro de cerrar sesión?</p>
+
+    <div class="sidebar__popup__buttons">
+      <button class="sidebar__popup__btn sidebar__popup__btn--cancel">Cancelar</button>
+      <button class="sidebar__popup__btn sidebar__popup__btn--accept">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Popup Éxito -->
+<div class="sidebar__popup sidebar__popup--success">
+  <div class="sidebar__popup__content">
+    <div class="sidebar__popup__icon">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <p class="sidebar__popup__message">Sesión cerrada con éxito.</p>
+  </div>
+</div>

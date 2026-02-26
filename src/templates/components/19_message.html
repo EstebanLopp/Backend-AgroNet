@@ -1,0 +1,41 @@
+<div class="mensaje-form">
+  <h2 class="mensaje-form__title">Mensaje</h2>
+
+  <form id="mensaje-form__form" class="mensaje-form__form">
+
+    <div class="mensaje-form__group">
+      <label for="asunto" class="mensaje-form__label">Asunto</label>
+      <input type="text" name="asunto" class="mensaje-form__input" required>
+    </div>
+
+    <div class="mensaje-form__group">
+      <label for="mensaje" class="mensaje-form__label">Mensaje</label>
+      <textarea name="mensaje" rows="4" class="mensaje-form__textarea" required></textarea>
+    </div>
+
+    <div class="mensaje-form__group">
+      <label class="mensaje-form__radio-label">Preferencia de contacto</label>
+      <div class="mensaje-form__radio-group">
+        <label class="mensaje-form__radio">
+          <input type="radio" name="contacto" value="correo" required> Correo electrónico
+        </label>
+        <label class="mensaje-form__radio">
+          <input type="radio" name="contacto" value="whatsapp"> Whatsapp
+        </label>
+      </div>
+    </div>
+
+    <div class="mensaje-form__button-group">
+      <button type="submit" class="mensaje-form__btn mensaje-form__btn--enviar">
+        Enviar Mensaje
+      </button>
+
+      <button type="button"
+        class="mensaje-form__btn mensaje-form__btn--info"
+        onclick="window.location.href='/contact-info/'">
+        Más información
+      </button>
+    </div>
+
+  </form>
+</div>

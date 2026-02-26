@@ -1,0 +1,198 @@
+/* Componente utilizado en catalog-customer.html (customer-pages), catalog.html (pages-general) 
+y catalog_seller.html (seller-pages) */
+
+.body-catalog{
+  background-color: var(--gray-50);
+}
+
+/* ----------- Contenedor principal y productos ----------- */
+.main-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+} 
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /*  centramos las cards */
+  gap: 20px;
+  max-inline-size: 1300px;  /*  límite de ancho total */
+  margin: 0 auto;     /*  lo centra en la pantalla */
+  padding: 0 20px;    /*  espacio lateral */ 
+  margin-block-end: 80px !important;  /*  se separa del footer */
+}
+
+
+/* ----------- Tarjeta de producto ----------- */
+.product {
+  width: 50px;
+  background-color: var(--white);
+  flex: 1 1 250px;   
+  max-inline-size: 370px;  
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none; 
+  color: inherit;        
+}
+
+.product:hover {
+  transform: scale(1.02);
+}
+
+.product__image {
+  inline-size: 100%;
+  block-size: 200px;
+  object-fit: cover;
+}
+
+.product__info {
+  padding: 1.6rem;
+  display: flex;                  
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.product__details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;                         
+  min-inline-size: 0;                      
+}
+
+.product__price {
+  font-size: var(--fs-sm);
+  /*font-weight: bold; */
+  margin: 5px 0; 
+  color: var(--black); 
+} 
+
+.product__name {
+  /* font-size: var(--fs-xxxxs); */
+  margin: 5px 0;
+  color: var(--black); 
+  font-weight: var(--main-font);
+} 
+
+.product__category {
+  color: var(--secundary-800);
+  /* font-size: var(--fs-xxxxs); */
+  margin-block-end: 5px;
+}  
+ 
+.product__btn-add {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-max-height);
+  min-width: var(--btn-min-width);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+
+.product__btn-add:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+} 
+
+.product__btn-add:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); /* pequeño feedback */
+}
+
+.product__btn-add:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.product__icon-cart {
+  font-size: var(--btn-icon-size);
+  color: var(--white);
+  line-height: 1; /* para evitar que el ícono se desplace verticalmente */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+} 
+
+/* ----------- Responsive ----------- */
+
+/* ===== Móviles pequeños (≤480px) ===== */
+@media (max-width: 640px) {
+
+}
+/* ===== Móviles (≤768px) ===== */
+@media (max-width: 768px) {
+
+}
+
+
+
+
+/* ----------- Responsivo para las cards ----------- */
+@media (max-width: 1200px) {
+  .product {
+    inline-size: 270px; /* un poquito más pequeñas */
+  }
+}
+
+@media (max-width: 992px) {
+  .product {
+    inline-size: 45%; /* se acomodan 2 por fila */
+  }
+}
+
+@media (max-width: 768px) {
+  .product {
+    inline-size: 90%; /* ocupan casi todo el ancho */
+  }
+}
+
+/* ===== Tablets (≤1024px) ===== */
+@media (max-width: 1024px) {
+
+  
+}
+
+
+
+
+
+

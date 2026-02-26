@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Detalle Producto{% endblock %}
+
+{% block body_class %}body-detail{% endblock %}
+
+{% block content %}
+
+
+<section class="product-detail">
+  <div class="product-detail-container" id="product-detail-container"></div>
+  {% include "components/0_product_detail.html" %}
+</section>
+
+<div class="similar-container">
+  {% include "components/26_detail_similar.html" %}
+</div>
+
+<section class="products" id="products-detail">
+   
+</section> 
+
+<div id="opinions-container">
+  {% include "components/24_opinions.html" %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'js/components/25_cards_product.js' %}"></script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

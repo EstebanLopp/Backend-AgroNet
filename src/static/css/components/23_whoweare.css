@@ -1,0 +1,110 @@
+/* Componente utilizado en whoweare.html de pages-general */
+
+.about-us {
+  max-width: 1500px;
+  margin: 100px auto 0 auto;
+  padding: 24px; /* espaciado global en TODOS los lados */
+  box-sizing: border-box;
+}
+
+.about-us__title{
+  font-size: var(--fs-lg);
+  text-align: center;
+  font-weight: var(--font-bold);
+}
+
+
+
+/* Contenedor de dos columnas */
+.about-us__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* para que ambos tengan la misma altura */
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap; /* en móvil se apila */
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Imagen */
+.about-us__image {
+  flex: 1; /* ocupa el mismo espacio que el texto */
+  min-width: 300px;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 22px;
+  margin-top: 1.5rem;
+}
+
+/* Textos */
+.about-us__texts {
+  flex: 1; /* ocupa el mismo espacio que la imagen */
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente el texto con la imagen */
+  padding: 0 1rem;
+  margin-top: 1.5rem;
+}
+
+.about-us__text {
+  margin: 0.5rem 0; /* más compacto */
+  text-align: justify;
+  line-height: 1.5; /* texto más legible y apretado */
+}
+
+/* Card de valores */
+.about-us__values {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem auto; /* deja espacio con el footer */
+  flex-wrap: wrap;
+  border: 1px solid black;
+  border-radius: 22px;
+  padding: 20px;
+  max-width: 900px; /* que no se pegue a los bordes */
+  background: var(--white); /* opcional, si quieres contraste */
+}
+
+.about-us__value {
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+
+
+/* sm - Teléfonos grandes */
+@media (max-width: 640px) {
+  .about-us__title{
+    margin-top: 64px;
+  }
+  .about-us__content,
+  .about-us__texts,
+  .about-us__values {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* md - Tablets */
+@media (max-width: 768px) {
+  .about-us__title{
+    margin-top: 0;
+  }
+  .about-us__content{
+    display: flex;
+    flex-direction: column;
+  }
+  .about-us__texts,
+  .about-us__values {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+

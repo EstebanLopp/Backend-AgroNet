@@ -1,0 +1,20 @@
+{% load static %}
+<!-- Contenedor principal de la tarjeta de producto -->
+<a href="/product/" class="product1">
+
+  <!-- Imagen del producto con su respectiva ruta y texto alternativo-->
+  <img src="{% static 'assets/manzanagala.jpg' %}" alt="Manzanas" class="product1__image">
+
+  <div class="product1__info">
+    <div class="product1__details">
+      <p class="product1__price">$5.000</p>
+      <h3 class="product1__name">Manzana Gala</h3>
+      <p class="product1__category">Fruta</p>
+    </div>
+
+    
+    <button class="product1__btn-add" type="button">
+      <i class="fa-solid fa-cart-shopping product1__icon-cart"></i> Añadir
+    </button>
+  </div>
+</a>

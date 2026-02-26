@@ -1,0 +1,227 @@
+.address-book {
+  background-color: var(--gray-50);
+}
+
+
+/* LISTA */
+.address-book__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+/* CARD */
+.address-book__card {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 6px;
+  padding: 1.6rem;
+  display: flex;
+  align-items: center;
+}
+
+/* OPCIONES */
+.address-book__options {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+.address-book__options-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--gray-700);
+}
+
+.address-book__options-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 28px;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 7px;
+  width: 150px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.address-book__option {
+  width: 100%;
+  padding: 16px;
+  background: none;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  color: var(--gray-900);
+  font-size: var(--fs-xs);
+}
+
+.address-book__option:hover {
+  background: var(--gray-100);
+}
+
+/* INFO */
+.address-book__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.address-book__name {
+  font-weight: var(--font-bold);
+}
+
+.address-book__bottom {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+
+
+/* POPUP */
+.address-book__popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  align-items: center;
+  justify-content: center;
+}
+
+.address-book__popup-content {
+  background: var(--white);
+  padding: 16px;
+  border-radius: 8px;
+  width: 320px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.address-book__popup-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.address-book__popup-btn {
+  padding: 1.6rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: var(--fs-xs);
+}
+
+.address-book__popup-btn--accept{
+  background-color: var(--primary-500);
+  color: var(--white);
+}
+
+.address-book__popup-btn--cancel{
+  background-color: var(--gray-200);
+  color: var(--gray-600);
+}
+
+/* MODAL ÉXITO */
+.address-book__modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  justify-content: center;
+  align-items: center;
+}
+
+.address-book__modal-content {
+  background: var(--white);
+  padding: 25px;
+  border-radius: 10px;
+  width: 330px;
+  text-align: center;
+  position: relative;
+}
+
+.address-book__modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+}
+
+.address-book__modal-icon {
+  font-size: 40px;
+  color: var(--primary-700);
+  margin-bottom: 10px;
+}
+
+.address-book__popup-text{
+  margin: 0;
+}
+
+.myaddress{
+  display: flex;
+  gap: 24rem;
+  background-color: var(--gray-50);
+}
+
+
+/* Breakpoints **************************************************************************************************************************************************************/
+
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .myaddress{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .myaddressbook{
+    width: 96vw;
+  }
+
+  .address-book__list{
+    display: flex;
+    flex-direction: column;
+    padding: 2.4rem;
+  }
+
+  .address-book__card{
+    width: 90vw;
+  }
+}
+/* alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+
+@media (min-width:768px) and (max-width: 1279px){
+  .myaddress{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .myaddressbook{
+    width: 96vw;
+  }
+
+  .address-book__list{
+    display: flex;
+    flex-direction: column;
+    padding: 2.4rem;
+  }
+
+  .address-book__card{
+    width: 93vw;
+  }
+}
+
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/

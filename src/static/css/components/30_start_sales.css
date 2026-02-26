@@ -1,0 +1,117 @@
+/* Componente utilizado en start_sales.html de customer-pages */
+
+/* ================================ */
+/* Header (BEM: header__)           */
+/* ================================ */
+
+.body-start{
+    background-color: var(--gray-50);
+}
+
+.profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 6rem;
+}
+
+.header {
+  margin-top: 109px;
+  background: linear-gradient(to right, var(--primary-300), var(--primary-100));
+  padding: 5px 15px;
+  width: 100%; /*hace que ocupe todo el ancho visible de la ventana */
+  position: relative; /* mantiene su flujo normal */
+  left: 0;
+  right: 0;
+  align-self: stretch; /* no se ajusta al tamaño de los otros hijos */
+}
+
+.header__title {
+  font-size: var(--fs-md);
+}
+
+/* ================================ */
+/* Sección Seller (BEM: seller__)   */
+/* ================================ */
+
+.seller {
+  padding: 40px 350px 80px 350px;
+/* top | right | bottom | left */
+  flex: 1; /* ocupa el espacio restante al lado del menú */
+  text-align: center;
+  background-color: var(--white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.seller__title {
+  color: var(--terciary-950);
+  font-weight: var(--font-bold);
+  font-size: var(--fs-sm);
+  margin-bottom: 15px;
+}
+
+.seller__text {
+  color: var(--gray-900);
+  margin-bottom: 25px;
+}
+
+.seller__button {
+   
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.seller__button:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+}
+
+.seller__button:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); /* pequeño feedback */
+}
+
+.seller__button:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+
+
+

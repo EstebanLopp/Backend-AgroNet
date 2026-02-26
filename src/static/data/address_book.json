@@ -1,0 +1,39 @@
+[
+  {
+    "usuario": "Usuario: @usuario1",
+    "nombre": "Nombre: Carolina Torres",
+    "correo": "Correo electronico: carolinatorres@gmail.com",
+    "telefono": "Telefono: 3102211486"
+  },
+  {
+    "usuario": "Usuario: @usuario2",
+    "nombre": "Nombre: Andrés Gómez",
+    "correo": "Correo electronico: andresgomez@hotmail.com",
+    "telefono": "Telefono: 3129985470"
+  },
+  {
+    "usuario": "Usuario: @usuario3",
+    "nombre": "Nombre: Laura Hernández",
+    "correo": "Correo electronico: laurahdz@gmail.com",
+    "telefono": "Telefono: 3201159987"
+  },
+  {
+    "usuario": "Usuario: @usuario4",
+    "nombre": "Nombre: Santiago Rojas",
+    "correo": "Correo electronico: santi.rojas@gmail.com",
+    "telefono": "Telefono: 3017763345"
+  },
+  {
+    "usuario": "Usuario: @usuario5",
+    "nombre": "Nombre: Juan Alberto",
+    "correo": "Correo electronico: Juan@gmail.com",
+    "telefono": "Telefono: 3017763345"
+  },
+  {
+    "usuario": "Usuario: @usuario6",
+    "nombre": "Nombre: María Fernanda López",
+    "correo": "Correo electronico: mariaf.lopez@gmail.com",
+    "telefono": "Telefono: 3185562231"
+  }
+]
+

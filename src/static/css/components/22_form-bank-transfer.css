@@ -1,0 +1,183 @@
+/* .form-bank-transfer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url("/frontend/public/assets/mountains.jpg") no-repeat center center;
+  background-size: cover;
+  z-index: 1;
+  padding-top: 32px;   
+  padding-bottom: 32px; 
+  position: relative; 
+}
+
+.form-bank-transfer__inner {
+  background: var(--white);
+  border-radius: 22px; 
+  margin-top: 48px; 
+  width: 100%; 
+  max-width: 544px; 
+  padding: 32px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing:border-box
+}
+
+.form-bank-transfer__header {
+  width: 100%;
+  display: block;
+  background: rgba(0,0,0,0.03);
+  border-radius: 12px; 
+  padding: 10px 16px; 
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 16px; 
+  box-sizing: border-box;
+}
+
+.form-bank-transfer__title {
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  color: var(--black);
+  margin: 0;
+}
+
+.form-bank-transfer__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; 
+}
+
+.form-bank-transfer__label {
+  font-weight: 500;
+  margin-bottom: 6px; 
+}
+
+.form-bank-transfer__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-bank-transfer__input {
+  width: 304px; 
+  max-width: 100%; 
+  height: 40px; 
+  padding: 10px; 
+  border: 1px solid var(--gray-300);
+  border-radius: 6px; 
+  background-color: var(--gray-50);
+  box-sizing: border-box;
+}
+
+.bank-transfer__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.bank-transfer__btn {
+  width: 156px; 
+  height: 36px; 
+  background: var(--primary-500);
+  color: var(--white);
+  border: none;
+  border-radius: 6px; 
+  cursor: pointer;
+  font-weight: var(--font-weight-bold);
+  transition: background 0.3s ease;
+}
+
+.bank-transfer__btn:hover {
+  background: #218838;
+}
+
+.form-bank-transfer__back-btn {
+  position:absolute;
+  display: block;
+  top: 96px; 
+  left: 32px; 
+  z-index: 2;
+  align-self: left;
+  margin-left: 32px; 
+  width: 100%;
+  max-width: 156px; 
+  height: 36px; 
+  background: var(--primary-500);
+  border: none;
+  border-radius: 6px; 
+  color: var(--white);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+
+
+
+@media (max-width: 1024px) { 
+  .bank-transfer__inner {
+    width: 90%;
+    height: auto;
+    padding: 24px; 
+  }
+
+  .form-bank-transfer__input {
+    width: 100%;
+    max-width: 360px; 
+  }
+}
+
+
+@media (max-width: 768px) { 
+  .form-bank-transfer {
+    padding-bottom: 80px; 
+  }
+
+  .bank-transfer__inner {
+    padding: 20px; 
+  }
+
+  .form-bank-transfer__back-btn{ 
+    display: none !important;
+  }
+}
+
+
+@media (max-width: 480px) { 
+
+  .form-bank-transfer {
+    margin-top: 56px; 
+  }
+
+  .form-bank-transfer__title {
+    font-size: var(--fs-xxs); 
+    margin-top: 8px; 
+    position: relative;
+    z-index: 2;
+  }
+
+  .form-bank-transfer__inner {
+    width: 80%;
+    max-width: 320px; 
+    padding: 16px; 
+    border-radius: 12px; 
+    margin: 0 auto;
+  }
+
+  .form-bank-transfer__input {
+    width: 100%;
+  }
+
+  .bank-transfer__btn {
+    width: 100%;
+  }
+
+  .form-bank-transfer__back-btn { 
+  display: none !important;
+  }
+} */

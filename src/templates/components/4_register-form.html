@@ -1,0 +1,147 @@
+<form class="register-form">
+
+  <!-- Flecha de retroceso BEM -->
+  <div class="register-form__back">
+    <a href="/login/" class="register-form__back-button">
+      <i class="fa-solid fa-arrow-left register-form__back-icon"></i>
+    </a>
+  </div>
+
+
+  <h2 class="register-form__title">Crear una cuenta</h2>
+  <p class="register-form__subtitle">Fácil y Rápido</p>
+  <hr class="register-form__divider">
+
+  <!-- Paso 1: Datos personales -->
+  <div class="register-form__step register-form__step--active">
+      
+    <p class="register-form__legend">Datos personales</p>
+    <div class="register-form__row">
+      <div class="register-form__field">
+        <label class="register-form__hint">Nombre</label>
+        <input class="register-form__input" type="text" placeholder="Ingresa tu nombre" required>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Apellido</label>
+        <input class="register-form__input" type="text" placeholder="Ingresa tu apellido" required>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Nombre de usuario</label>
+        <input class="register-form__input" type="text" placeholder="Introduce tu nombre de usuario" required>
+      </div>
+    </div>
+
+    <div class="register-form__row">
+      <div class="register-form__field">
+        <label class="register-form__hint">Número de teléfono</label>
+        <input class="register-form__input" type="text" placeholder="Ingrese un número de teléfono" required>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Correo electrónico</label>
+        <input class="register-form__input" type="email" placeholder="Ingrese un correo electrónico" required>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Tipo de Documento</label>
+        <select class="register-form__select"><option>C.C</option></select>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Numero de Documento</label>
+        <input class="register-form__input" type="text" placeholder="Ingrese su numero de documento" required>
+      </div>
+    </div>
+
+    <div class="register-form__actions">
+      <button type="button" class="register-form__button register-form__button--next">Siguiente</button>
+    </div>
+  </div>
+
+  <!-- Paso 2: Nacimiento -->
+  <div class="register-form__step">
+    <h3 class="register-form__legend">Fecha de Nacimiento</h3>
+    <div class="register-form__row">
+      <div class="register-form__field">
+        <label class="register-form__hint">Dia de Nacimiento</label>
+        <select class="register-form__select"><option>1</option></select>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Mes de Nacimiento</label>
+        <select class="register-form__select"><option>2</option></select>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Año de Nacimiento</label>
+        <select class="register-form__select"><option>2000</option></select>
+      </div>
+    </div>
+
+    <div class="register-form__actions">
+      <button type="button" class="register-form__button register-form__button--prev">Atrás</button>
+      <button type="button" class="register-form__button register-form__button--next">Siguiente</button>
+    </div>
+  </div>
+
+
+  <!-- Paso 2: Dirección -->
+  <div class="register-form__step">
+    <h3 class="register-form__legend">Dirección</h3>
+    <div class="register-form__row">
+      <div class="register-form__field">
+        <label class="register-form__hint">Dirección</label>
+        <input class="register-form__input" type="text" placeholder="Dirección" required>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Departamento</label>
+        <select class="register-form__select"><option>Risaralda</option></select>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Municipio</label>
+        <select class="register-form__select"><option>Pereira</option></select>
+      </div>
+    </div>
+
+    <div class="register-form__actions">
+      <button type="button" class="register-form__button register-form__button--prev">Atrás</button>
+      <button type="button" class="register-form__button register-form__button--next">Siguiente</button>
+    </div>
+  </div>
+
+  <!-- Paso 3: Contraseña -->
+  <div class="register-form__step">
+    <h3 class="register-form__legend">Establecer contraseña</h3>
+    <div class="register-form__row">
+      <div class="register-form__field">
+        <label class="register-form__hint">Contraseña</label>
+        <input class="register-form__input" type="password" placeholder="Ingrese una contraseña" required>
+      </div>
+      <div class="register-form__field">
+        <label class="register-form__hint">Repita la contraseña</label>
+        <input class="register-form__input" type="password" placeholder="Repita la contraseña" required>
+      </div>
+    </div>
+
+    <div class="register-form__actions">
+      <button type="button" class="register-form__button register-form__button--prev">Atrás</button>
+      <button class="register-form__button register-form__button--submit" type="submit">Registrar</button>
+    </div>
+  </div>
+
+  <a href="/frontend/public/views/pages-general/login.html" class="register-form__login-link">¿Ya tienes una cuenta?</a>
+</form>
+
+<!-- Modal de éxito -->
+<div class="register-form__success-modal">
+  <div class="register-form__success-modal-content">
+
+    <button class="register-form__success-modal-close" type="button">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="register-form__success-modal-icon">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+
+    <p class="register-form__success-modal-message">
+      Tu cuenta se ha creado con éxito.
+    </p>
+
+  </div>
+</div>

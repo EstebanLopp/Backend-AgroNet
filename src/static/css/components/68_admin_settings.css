@@ -1,0 +1,370 @@
+/* Componente utilizado en settings.html de admin-pages */
+
+/* =============================== */
+/* Componente: admin-settings      */
+/* Metodología: BEM                */
+/* =============================== */
+
+.admin-settings {
+  padding: 20px;
+  background-color: var(--white);
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-settings__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-settings__title {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  color: var(--black);
+}
+
+.admin-settings__subtitle {
+  font-size: var(--fs-sm);
+  color: var(--gray-700);
+}
+
+.admin-settings__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* ---------- Tarjetas ---------- */
+.admin-settings__card {
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.404);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.admin-settings__card-title {
+  font-weight: 600;
+  color: var(--button-view-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- Formulario ---------- */
+.admin-settings__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-settings__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-settings__label {
+  color: var(--black);
+  margin-left: 48px;
+}
+
+.admin-settings__input {
+  width: 350px;
+  height: 56px;
+  padding: 8px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  display: block;      /* Asegura que ocupe toda la línea */
+  margin: 0 auto;      /* Centra horizontalmente */
+}
+
+.admin-settings__input:focus {
+  border-color: var(--black);
+}
+
+/* ---------- Botones ---------- */
+.admin-settings__btn {
+  background-color: var(--button-add-color);
+
+  color: var(--white);
+  padding: 8px 16px;
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.admin-settings__btn:hover {
+  background-color: var(--button-view-hover-color);
+  transform: scale(1.05);
+}
+
+.admin-settings__btn--secure {
+  background-color: var(--primary-600);
+}
+
+.admin-settings__btn--secure:hover {
+  background-color: var(--primary-500);
+}
+
+/* ---------- Switch ---------- */
+.admin-settings__options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-settings__option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--black);
+}
+
+/* Interruptor personalizado */
+.admin-settings__switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.admin-settings__switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.admin-settings__slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--gray-200);
+  border-radius: 24px;
+  transition: 0.4s;
+}
+
+.admin-settings__slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--white);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.admin-settings__switch input:checked + .admin-settings__slider {
+  background-color: var(--button-view-color);
+}
+
+.admin-settings__switch input:checked + .admin-settings__slider::before {
+  transform: translateX(20px);
+}
+
+/* ---------- Responsividad ---------- */
+@media (max-width: 768px) {
+  .admin-settings__title {
+    font-size: 1.5rem;
+  }
+
+  .admin-settings__container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================
+   POPUPS GENERALES LIMPIOS
+============================ */
+.admin-settings__popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Cuando se muestra */
+.admin-settings__popup--show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Contenedor interno */
+.admin-settings__popup-content {
+  position: relative;
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 360px;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  animation: popupFade 0.3s ease-in-out;
+}
+
+@keyframes popupFadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Botón cerrar */
+.admin-settings__popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* Texto */
+.admin-settings__popup-text {
+  margin: 1.5rem 0;
+  color: #333;
+}
+
+/* Botones dentro del popup */
+.admin-settings__popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+
+.admin-settings__popup-btn--cancel {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+
+  padding: 8px 16px;
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.admin-settings__popup-btn--cancel:hover {
+  background-color: var(--gray-200);
+}
+
+
+.admin-settings__popup-btn--accept {
+  background: var(--button-add-color);
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.admin-settings__popup-btn--accept:hover {
+  background: var(--button-add-color-hover);
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+}
+
+.admin-settings__popup-btn--accept:active {
+  background:var(--button-add-color-hover);
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98);
+}
+
+.admin-settings__popup-btn--accept:disabled {
+  background: var(--button-add-color-hover);
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.admin-settings__popup-icon {
+  font-size: 50px;
+  color: var(--button-add-color);
+  margin-bottom: 10px;
+}

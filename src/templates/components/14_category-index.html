@@ -1,0 +1,37 @@
+{% load static %}
+
+<section class="category-index">
+  <div class="category-index__header">
+    <h2 class="category-index__subtitle"><span> Según tus <strong>Gustos</strong></span></h2>
+    <p>¡Compra los productos que más te interesen!</p>
+  </div>
+
+
+  <div class="category-index__grid">
+
+
+    <!-- Tarjeta Animal -->
+    <div class="category-index__item">
+      <img src="{% static 'assets/huevos-transparentes.png' %}" alt="Animal">
+      <button class="category-index__btn">Animal</button>
+    </div>
+
+    <!-- Tarjeta Granos -->
+    <div class="category-index__item">
+      <img src="{% static 'assets/granos-transparentes.png' %}" alt="Granos">
+      <button class="category-index__btn">Granos</button>
+    </div>
+
+    <!-- Tarjeta Verduras -->
+    <div class="category-index__item">
+      <img src="{% static 'assets/tomates-transparentes.png' %}" alt="Verduras">
+      <button class="category-index__btn">Verduras</button>
+    </div>
+
+    <!-- Tarjeta Frutas -->
+    <div class="category-index__item">
+      <img src="{% static 'assets/frutas-transparentes.png' %}" alt="Frutas">
+      <button class="category-index__btn">Frutas</button>
+    </div>
+  </div>
+</section>

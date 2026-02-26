@@ -1,0 +1,186 @@
+/* Componente utilizado en catalog-customer.html (customer-pages), 
+catalog.html (pages-general) y catalog_seller.html (seller-pages) */
+/*
+Este componente CSS gestiona el estilo del encabezado del catálogo de productos, incluyendo listas desplegables para filtros y opciones de búsqueda.
+Componentes principales:
+
+- 3_catalog-header.css: Estilos específicos para el encabezado del catálogo y listas desplegables.
+*/
+
+.catalog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.4rem 2.4rem;
+  margin-top: 5rem;
+  inline-size: 90%;
+  max-inline-size: 1500px;
+  background-color: var(--gray-50);
+  max-width: 100%;
+  width: auto;
+}
+
+.catalog-header__dropdown {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+}
+
+.catalog-header__dropdown__button {
+  background-color: var(--white);
+  border: none;
+  border-radius: 18px;
+  padding: 16px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.6rem;
+  width: 100%;
+  transition: border-color 0.2s;
+  color: var(--gray-500);
+  font-size: var(--fs-xs);
+  box-sizing: border-box; 
+  height: 48px; 
+}
+
+.catalog-header__dropdown__icon {
+  color: var(--gray-500);
+  transition: transform 0.3s;
+}
+
+.catalog-header__dropdown.show .catalog-header__dropdown__icon {
+  transform: rotate(180deg);
+}
+
+.catalog-header__dropdown__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: 8px;
+  padding: 0;
+  list-style: none;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  display: none;
+  z-index: 10;
+}
+
+.catalog-header__dropdown.show .catalog-header__dropdown__list {
+  display: block;
+}
+
+.catalog-header__dropdown__item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+  color: var(--gray-850);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.catalog-header__dropdown__item:last-child {
+  border-bottom: none;
+}
+
+.catalog-header__dropdown__item:hover {
+  background: var(--gray-100);
+}
+
+.catalog-header__dropdown__item--selected::after {
+  content: "✔";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--fs-xxxs);
+}
+
+.catalog-header__title {
+  font-size: var(--fs-md);
+  font-weight: bold;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.catalog-header__divider {
+  border: none;
+  border-block-start: 1px solid var(--gray-100);
+  inline-size: 97%;
+  margin: auto;
+  margin-block-end: 1.5rem;
+}
+
+.catalog-header__filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.catalog-header__search {
+  inline-size: 175px;
+  padding: 16px;
+  border: none;
+  border-radius: 18px;
+  font-size: var(--fs-xs);
+  outline: none;
+  color: var(--gray-900);
+  transition: border-color 0.2s;
+  box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
+  height: 48px; /* Fija la altura para que coincida con el botón */
+}
+
+.catalog-header__search::placeholder {
+  color: var(--gray-500);
+}
+
+/* Responsivo */
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px) {
+  .catalog-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    margin-top: 13.6rem;
+  }
+
+  .catalog-header__filters{
+    display: flex;
+    flex-direction: row;
+    gap: 2.4rem;
+  }
+
+  .catalog-header__title{
+    margin-top: 1.6rem;
+    text-align: center;
+  }
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+@media (min-width: 768px) {
+  /* No se requieren cambios específicos para este breakpoint debido a que el diseño el diseño de esta resolución ya es adecuado  */
+}
+
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (min-width: 1024px) {
+  /* No se requieren cambios específicos para este breakpoint debido a que el diseño el diseño de esta resolución ya es adecuado  */
+}
+
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+@media (min-width: 1280px) {
+  /* No se requieren cambios específicos para este breakpoint debido a que el diseño el diseño de esta resolución ya es adecuado  */
+}
+
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+@media (min-width: 1536px) {
+  /* No se requieren cambios específicos para este breakpoint debido a que el diseño el diseño de esta resolución ya es adecuado  */
+}

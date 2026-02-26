@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block body_class %}body-contact{% endblock %}
+
+{% block content %}
+
+<div class="contact-container">
+{% include "components/18_personal_details.html" %}
+{% include "components/19_message.html" %}
+</div>
+ <div id="modal-contact" class="modal-contact">
+    {% include "components/52_popup_contact.html" %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'js/components/19_message.js' %}" defer></script>
+
+{% endblock %}

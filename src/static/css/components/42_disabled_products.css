@@ -1,0 +1,280 @@
+/* Componente utilizado en disabled_products.html de seller-pages */
+
+.body-disabled {
+  background-color: var(--gray-50);
+}
+
+.myproductsdisabled {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rem;
+  margin-bottom: 16rem;
+}
+
+/* Contenedor principal de productos */
+.disabled-product {
+  flex: 1;
+  padding-right: 30px;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+/* Encabezado */
+.disabled-product__header2 {
+  margin-top: 110px;
+  padding: 2px 15px;
+  width: 100%;
+  background: linear-gradient(to right, var(--primary-300), var(--primary-100));
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative; 
+  left: 0;
+  right: 0;
+}
+
+.disabled-product__header2-title {
+  font-size: var(--fs-md);
+  font-weight: var(--font-bold);
+  text-align: center;
+}
+
+/* Lista y tarjetas */
+.disabled-product__list {
+  display: grid; /* cambia flex por grid */
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columnas exactas */
+  gap: 2.4rem;
+  justify-items: stretch;
+  align-items: start;
+}
+
+.disabled-product__card {
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 6px;
+  padding: 1.6rem;
+  gap: 1.6rem;
+}
+
+.disabled-product__image {
+  width: 220px;
+  height: 175px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+}
+
+.disabled-product__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.disabled-product__name {
+  color: var(--gray-900);
+  font-weight: var(--font-bold);
+  margin: 0;
+}
+
+.disabled-product__price {
+  background-color: var(--primary-100);
+  color: var(--primary-900);
+  padding: 1.6rem; 
+  border-radius: 0.8rem;
+  margin: 0;
+  display: inline-block;
+  width: fit-content; 
+}
+
+.disabled-product__type {
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.disabled-product__btn {
+  align-self: flex-end;
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: 0 auto;
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.disabled-product__btn:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+}
+
+.disabled-product__btn:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); /* pequeño feedback */
+}
+
+.disabled-product__btn:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+/* ================================
+   MODAL - disabled-product (BEM)
+================================ */
+
+.disabled-product__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.45);
+  display: none; /* oculto por defecto */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.disabled-product__modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 320px;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Botón cerrar */
+.disabled-product__modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* Icono */
+.disabled-product__modal-icon {
+  font-size: 4rem;
+  color: var(--primary-500);
+}
+
+
+/* Animación opcional */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* Breakpoints **************************************************************************************************************************************************************/
+
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .myproductsdisabled{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .disabled-product__list{
+    display: flex;
+    flex-direction: column;
+  }
+  .disabled-product__card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .disabled-product-container{
+    margin: auto;
+
+  }
+
+  .disabled-product__header2{
+    margin-top: 0;
+  }
+  .disabled-product{
+    padding-right: 0;
+  }
+  .disabled-product__info{
+    text-align: center;
+  }
+  .disabled-product__price{
+    margin: 0 auto;
+  }
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (min-width: 640px) and (max-width:1024px){
+  .myproductsdisabled{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+
+  .disabled-product__card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .disabled-product-container{
+    margin: auto;
+
+  }
+
+  .disabled-product__header2{
+    margin-top: 0;
+  }
+  .disabled-product{
+    padding-right: 0;
+  }
+  .disabled-product__info{
+    text-align: center;
+  }
+  .disabled-product__price{
+    margin: 0 auto;
+  }
+}
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+@media (min-width: 1280px) and (max-width: 1536px){
+  .myproductsdisabled{
+    display: flex;
+    gap: 0;
+  }
+}

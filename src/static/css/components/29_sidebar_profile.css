@@ -1,0 +1,189 @@
+/* Componente utilizado en generate_report.html (customer-pages), historial_orders.html (customer-pages)
+my_profile.html (customer-pages), notifications.html (customer-pages) y start_sales.html (customer-pages) */
+
+.sidebar {
+  margin-top: 90px;
+  background-color: var(--gray-50);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  margin-left: 2.4rem;
+}
+
+/* Título */
+.sidebar__list {
+  font-weight: var(--font-bold);
+  color: var(--gray-900);
+  margin: 0 0 20px 0px;
+  background: linear-gradient(135deg, var(--white), var(--primary-300));
+  border-radius: 8px;
+  padding: 1.6rem;
+  cursor: pointer;
+  position: relative;
+  width: 26rem;
+}
+
+.sidebar__list::after {
+  content: '▾';
+  position: absolute;
+  right: 1.6rem;
+  transition: transform 0.3s ease;
+}
+
+.sidebar__list--active::after {
+  transform: rotate(180deg);
+}
+
+.sidebar__option {
+  background-color: var(--white);
+  box-shadow: 0 5px 6px rgba(2, 253, 56, 0.315);
+  border-radius: 8px;
+}
+
+/* Lista */
+.sidebar__menu {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  gap: 1.6rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  text-align: justify;
+}
+
+/* Items */
+.sidebar__menu li {
+  margin-bottom: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Enlaces */
+.sidebar__menu a {
+  display: block;
+  padding: 1.6rem;
+  color: var(--gray-900);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent; /* base para que no se mueva al activar */
+}
+
+/* Hover */
+.sidebar__menu a:hover {
+  background-color: var(--primary-200);
+  border-color: var(--primary-200);
+  color: var(--primary-800);
+}
+
+/* Activo */
+.sidebar__menu li.active a {
+  background-color: var(--terciary-100); /* verde claro */
+  border: 2px solid var(--terciary-300);
+  box-shadow: 0 0 8px rgba(0, 128, 0, 0.2);
+  border-radius: 8px;
+  color: var(--terciary-900);
+  font-weight: 600;
+}
+
+.sidebar__menu--visible {
+  max-height: 600px; /* Ajusta según el contenido */
+}
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px) {
+  .sidebar__list {
+    margin-top: 6.4rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 90vw;
+  }
+  .sidebar {
+    margin-left: 0;
+    margin-top: 12rem;
+    padding-right: 0;
+    padding-left: 2.4rem;
+  }
+
+}
+
+/* ====== POPUP GENERAL ====== */
+.sidebar__popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  place-items: center;
+  z-index: 999;
+}
+
+.sidebar__popup--active {
+  display: grid;
+}
+
+/* ====== POPUP CONTENT ====== */
+.sidebar__popup__content {
+  background: #fff;
+  width: 90%;
+  max-width: 320px;
+  padding: 24px 20px;
+  border-radius: 12px;
+  text-align: center;
+  display: grid;
+  gap: 16px;
+  animation: popupFade 0.25s ease-out;
+}
+
+@keyframes popupFade {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ====== TEXTO ====== */
+.sidebar__popup__message {
+  color: var(--gray-700);
+  line-height: 1.4;
+}
+
+/* ====== ICONO ÉXITO ====== */
+.sidebar__popup__icon {
+  font-size: 48px;
+  color: var(--primary-500);
+  margin: 0 auto;
+}
+
+/* ====== BOTONES ====== */
+.sidebar__popup__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.sidebar__popup__btn {
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.sidebar__popup__btn--cancel {
+  background: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.sidebar__popup__btn--accept {
+  background: var(--primary-500);
+  color: var(--white);
+}
+

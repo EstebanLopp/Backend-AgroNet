@@ -1,0 +1,32 @@
+{
+  "similares": [
+    {
+      "id": 1,
+      "nombre": "Naranja",
+      "precio": "$5.500",
+      "categoria": "Fruta",
+      "imagen": "/static/assets/naranja.jpg"
+    },
+    {
+      "id":2,
+      "nombre": "Banano",
+      "precio": "$20.000",
+      "categoria": "Fruta",
+      "imagen": "/static/assets/banano.webp"
+    },
+    {
+      "id":3,
+      "nombre": "Lechuga",
+      "precio": "$2.189",
+      "categoria": "Verdura",
+      "imagen": "/static/assets/lechuga.jpg"
+    },
+    {
+      "id":4,
+      "nombre": "PlátanoVerde",
+      "precio": "$15.000",
+      "categoria": "Fruta",
+      "imagen": "/static/assets/platano.webp"
+    }
+  ]
+}

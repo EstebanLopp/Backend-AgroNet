@@ -1,0 +1,127 @@
+/* Componente utilizado en start_sales.html de customer-pages */
+
+.seller-activation {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+.seller-activation__card{
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white);
+  padding: 2.4rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: 70vw;
+  gap: 2.4rem;
+}
+
+.seller-activation__title {
+  color: var(--terciary-950);
+  font-weight: var(--font-bold);
+  font-size: var(--fs-sm);
+  margin-bottom: 15px;
+}
+
+.seller-activation__text {
+  color: var(--gray-900);
+}
+
+.seller-activation__button {
+   
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+  height: var(--btn-max-height);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.seller-activation__button:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+}
+
+.seller-activation__button:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); /* pequeño feedback */
+}
+
+.seller-activation__button:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px) {
+  .seller-activation{
+    display: flex;
+    flex-direction: column;
+  }
+  .seller-activation__card{
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    margin-left: 2.4rem;
+    gap:2.4rem;
+    padding: 1.6rem;
+  }
+
+  
+}
+/* El siguiente media query abarca los siguientes breakpoints: 
+
+  alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+
+@media (min-width:640px) and (max-width: 1024px) {
+  .seller-activation{
+    display: flex;
+    flex-direction: column;
+  }
+  .seller-activation__card{
+    display: flex;
+    flex-direction: column;
+    width: 94vw;
+    margin-left: 2.4rem;
+    gap:2.4rem
+  }
+
+  
+}
+
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+
+
+

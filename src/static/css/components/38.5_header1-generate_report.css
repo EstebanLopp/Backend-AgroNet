@@ -1,0 +1,63 @@
+.myreport {
+  display: flex;
+  align-items: flex-start;
+  gap: 24rem;
+}
+
+.body-report{
+  background-color: var(--gray-50);
+}
+
+.header1{
+  padding: 5px 15px;
+  background: linear-gradient(to right, var(--primary-300), var(--primary-100));
+  margin-top: 80px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0;
+  overflow: hidden;
+  width: 100%; /*hace que ocupe todo el ancho visible de la ventana */
+  position: relative; /* mantiene su flujo normal */
+  left: 0;
+  right: 0;
+}
+
+
+.header1__title {
+  font-size: var(--fs-md);
+}
+
+/* Breakpoints **************************************************************************************************************************************************************/
+
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .myreport{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+}
+/* alias md: 768px se usa normalmente para tablets*/
+@media (min-width: 768px) and (max-width: 1280px){
+  .myreport{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    @media (min-width: 1280px){
+      flex-direction: row;
+      gap: 2.4rem;
+
+    }
+  }
+}
+
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+
+@media (min-width: 1280px) and (max-width: 1536px) {
+  .myreport{
+    display: flex;
+    gap: 2.4rem;
+  }
+  
+}

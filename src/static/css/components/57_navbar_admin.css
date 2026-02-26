@@ -1,0 +1,134 @@
+/* Componente utilizado en todas las paginas de administrador */
+
+/* ============================= */
+/* Navbar Administrador (BEM)    */
+/* ============================= */
+.admin-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--navbar-background);
+  color: var(--white);
+  padding: 0.8rem 1.5rem;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.admin-navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-navbar__logo-img {
+  width: 40px;
+  height: 40px;
+}
+
+.admin-navbar__title {
+  font-weight: 600;
+}
+
+.admin-navbar__list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-navbar__item {
+  position: relative;
+}
+
+.admin-navbar__link {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.admin-navbar__link:hover,
+.admin-navbar__link--active {
+  color: var(--white);
+  border-bottom: 2px solid var(--white);
+}
+
+.admin-navbar__profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-navbar__profile-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.admin-navbar__profile-name {
+  font-size: var(--fs-xxs);
+  color: var(--white);
+}
+
+/* ============================= */
+/* RESPONSIVIDAD NAVBAR ADMIN   */
+/* ============================= */
+
+.admin-navbar__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ------- Modo responsive ------- */
+@media (max-width: 768px) {
+  .admin-navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+  }
+
+  .admin-navbar__toggle {
+    display: block;
+  }
+
+  .admin-navbar__list {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 250px;
+    background-color: var(--navbar-background);
+    flex-direction: column;
+    align-items: start;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  .admin-navbar__list--active {
+    left: 0;
+  }
+
+  .admin-navbar__item {
+    width: 100%;
+  }
+
+  .admin-navbar__link {
+    width: 100%;
+    display: block;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .admin-navbar__profile {
+    display: none;
+  }
+}
+

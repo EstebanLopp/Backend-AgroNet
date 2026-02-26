@@ -1,0 +1,181 @@
+/* Componente utilizado en contact.html de pages-general */
+
+
+.mensaje-form {
+  background: var(--white);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  border-radius: 22px;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0px 4px 10px var(--gray-600);
+  min-height: 450px;
+  gap: 24px;
+  margin-top: 170px;
+}
+
+.mensaje-form__form{
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.mensaje-form__title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: var(--fs-md);
+}
+
+.mensaje-form__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.mensaje-form__group > .mensaje-form__label {
+  margin-bottom: 5px;
+  color: var(--gray-900);
+  width: 100%;        
+  display: block;     
+  margin: 0 auto 5px; 
+  text-align: left;
+  font-size: var(--fs-xxxs);   
+}
+
+.mensaje-form__textarea {
+  resize: none;            /* No dejar que el usuario cambie el tamaño */
+  width: 100%;             /* Que use el ancho completo del contenedor */
+  max-width: 500px;        /* Límite máximo de ancho */
+  min-height: 80px;        /* ~3 líneas */
+  max-height: 160px;       /* ~5 líneas */
+  padding: 10px;           /* Espaciado interno */
+  box-sizing: border-box;  /* Para que el padding no rompa el tamaño */
+}
+
+.mensaje-form__input,
+.mensaje-form__textarea {
+  padding: 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s ease;
+  background-color: var(--gray-100);
+  width: 100%;
+  min-width: auto;
+  max-width: 720px;
+  box-sizing: border-box;
+  height: 56px;
+  display: block;
+  margin: 0 auto;
+}
+
+.mensaje-form__input:focus,
+.mensaje-form__textarea:focus {
+  border: 1px solid var(--gray-600);
+}
+
+.mensaje-form__radio-group {
+  border: 1px solid var(--gray-300);
+  border-radius: 10px;
+  padding: 16px;
+  background-color: var(--gray-200);
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* separación uniforme entre radios */
+  margin-top: 8px;
+  gap: 16px;
+}
+
+.mensaje-form__radio-label {
+  font-size: var(--fs-xxxs);
+  font-weight: var(--font-bold);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.mensaje-form__button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.mensaje-form__btn {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding-y, 8px) var(--btn-padding-x, 16px); /* 0.5rem → 8px, 1rem → 16px */
+
+  font-size: var(--btn-font-size, 14px); /* 0.875rem → 14px */
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 8px); /* 0.5rem → 8px */
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 8px); /* 0.5rem → 8px */
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.mensaje-form__btn--enviar:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+.mensaje-form__btn--info:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+.mensaje-form__btn:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); /* pequeño feedback */
+}
+
+.mensaje-form__btn:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .mensaje-form{
+    width: 91vw;
+  }
+  .mensaje-form__button-group{
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    margin: 0 auto;
+    width: 180px;
+  }
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+

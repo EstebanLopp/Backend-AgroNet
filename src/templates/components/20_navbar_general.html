@@ -1,0 +1,40 @@
+{% load static %}
+
+<header class="head">
+  <nav class="navbar-general">
+    
+    <div class="navbar__general-brand">
+      <img 
+      src="{% static 'assets/logo-light-transparent.png' %}" 
+      alt="Logo AgroNet" 
+      class="navbar__general-logo "
+      >
+    </div>
+
+    <ul class="navbar__general-list">
+      <li class="navbar__general-item">
+        <a href="{% url 'index' %}" class="navbar__general-link">Inicio</a>
+      </li>
+
+      <li class="navbar__general-item">
+        <a href="{% url 'catalog' %}" class="navbar__general-link">Catálogo</a>
+      </li>
+
+      <li class="navbar__general-item">
+        <a href="{% url 'contact' %}" class="navbar__general-link">Contacto</a>
+      </li>
+
+      <li class="navbar__general-item">
+        <a href="{% url 'cart-general' %}" class="navbar__general-link navbar__general-link--icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+      </li>
+
+      <li class="navbar__general-item">
+        <a href="{% url 'login' %}" class="navbar__general-link navbar__general-link--icon">
+          <i class="fa-solid fa-user"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>

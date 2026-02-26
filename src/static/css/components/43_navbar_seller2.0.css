@@ -1,0 +1,123 @@
+/* Componente utilizado en todas las pantallas de seller-pages */
+
+.navbar-seller {  
+    position: fixed;      
+    top: 0;                    
+    left: 0; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--primary-500);  
+    height: 64px;
+    z-index: 100;
+    padding: 0 24px;
+    font-family: var(--main-font);
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.navbar__seller-item {
+    align-items: center;
+    
+}
+
+
+.navbar__seller-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar__seller-logo {
+  height: 40px;   /* ajusta según el diseño */
+  margin-right: 16px;
+  vertical-align: middle;
+}
+
+.navbar__seller-brandname {
+    color: var(--white);
+    font-weight: var(--font-bold);
+    font-size:var(--fs-xxs);
+    letter-spacing: 0.5px;
+}
+
+.navbar__seller-list {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-right: 2.4rem;
+}
+
+
+.navbar__seller-link {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: var(--fs-xs);
+    opacity: 1;
+}
+
+.navbar__seller-link:hover {
+    background-color: var(--primary-600);
+    border-radius: 8px;
+}
+
+.navbar__seller-link--icon {
+    color: var(--white);
+    padding: 0; 
+    font-size: var(--fs-sm);
+    text-decoration: none;
+}
+
+.navbar__seller-link--icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin: auto;
+}
+
+
+.navbar__seller-item:hover {
+    background-color: var(--primary-600);
+    border-radius: 0.8rem; 
+    display: block;  
+}
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+
+@media (max-width: 640px) {
+    .navbar-seller {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 2.4rem;
+    }
+    .navbar__seller-list {
+        gap: 16px;
+        margin: 2.4rem;
+    }
+}
+
+
+/* alias md: 768px se usa normalmente para tablets*/
+@media (max-width: 768px) {
+    .navbar__seller-list {
+        gap: 2.4rem;
+    }
+}
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (max-width: 1024px) {
+    /* No es necesario hacer cambios específicos para este breakpoint*/
+}
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+@media (max-width: 1280px) {
+    /* No es necesario hacer cambios específicos para este breakpoint*/
+}
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+@media (max-width: 1536px) {
+    /* No es necesario hacer cambios específicos para este breakpoint*/
+}

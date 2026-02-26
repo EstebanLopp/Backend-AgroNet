@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Contacto{% endblock %}
+
+{% block body_class %}body-contact-two{% endblock %}
+
+{% block content %}
+    
+
+<div class="contact-two-container">
+    {% include "components/15_contact-two.html" %}
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap">
+</script>
+
+<script src="{% static 'js/components/15_contact-two.js' %}" defer></script>
+
+{% endblock %}
+
+  
+  
+  
+    
+
+
+
+
+
+    
+
+    
+
+
+
+    
+    
+</body>
+</html>

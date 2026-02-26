@@ -1,0 +1,345 @@
+/* Componente utilizado en new_account.html de pages-general */
+
+/*
+Este comoponente CSS gestiona el estilo del formulario de creación de una nueva cuenta de usuario y modificación de la misma.
+
+Componentes principales:
+- 4_form_new_account.css: Estilos específicos para el formulario de nueva cuenta.
+- 6_edit_profile.css: Estilos específicos para la edición del perfil de usuario.
+*/
+
+.body-new_account {
+  background-color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+
+/* contenedor principal */
+.register {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh; /*  ocupa el 90% del alto de la pantalla */
+}
+
+.register__legend {
+  text-align: left;
+  font-size: var(--fs-sm);
+  margin-bottom: 2.4rem;
+}
+
+.register__title {
+  text-align: center;
+  font-size: var(--fs-md);
+  margin-top: 6.4rem;
+  margin-bottom: 2.4rem;
+}
+
+.register__subtitle {
+  margin-top: 0;
+  margin-bottom: 2.4rem;
+  text-align: center;
+  font-size: var(--fs-sm);
+}
+
+.register__divider {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin-top: 0;
+  margin-bottom: 2.4rem;
+}
+
+.register__form {
+  background: var(--white);
+  padding: 2.4rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Fila de campos */
+.register__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px; 
+  justify-content: auto;
+  margin-bottom: 2.4rem;
+}
+
+/* Campo */
+.register__field {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  width: 320px;
+}
+
+
+/* Estilo para el botón “Atrás” */
+  /* Estilo para el botón “Atrás” */
+.prev-btn {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.prev-btn:hover {
+  background-color: var(--gray-600);
+  color: var(--gray-600); /* cambia si quieres mantener gris */
+}
+
+/* Evita que cambie al hacer clic o enfocar */
+.prev-btn:active,
+.prev-btn:focus {
+  background-color: var(--gray-600);
+  color: var(--gray-600); /* o var(--gray-600) si prefieres mantenerlo igual */
+  outline: none; /* quita el borde azul del navegador */
+}
+
+
+/* ======= ESTILOS DE INPUTS ======= */
+.register__input,
+.register__textarea {
+  height: 56px;
+  padding: 16px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  color: var(--gray-700);
+  line-height: 1.2;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  appearance: none;
+}
+
+/* ======= ESTILOS DE SELECT ======= */
+.register__select {
+  height: 56px;
+  padding: 16px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 8 12 14 18 8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center; /* posición del ícono */
+  background-size: 18px;
+  color: var(--gray-700);
+  line-height: 1.2;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none; 
+  cursor: pointer;
+  transition: border 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.register__select:focus {
+  border: 1.5px solid var(--primary-500);
+  background-color: var(--gray-700);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.10);
+}
+
+/* Estilos del menú desplegable */
+.register__select option {
+  padding: 16px 16px;
+  background: var(--gray-700);
+  color: var(--gray-700);
+}
+
+/* Hover de opción */
+.register__select option:hover {
+  background: var(--primary-50);
+  color: var(--primary-700);
+}
+
+/* Opción seleccionada */
+.register__select option:checked {
+  background: var(--primary-100);
+  color: var(--primary-700);
+}
+/* textarea */
+.register__textarea {
+  min-height: 120px;
+  height: auto;
+  padding: 12px 16px;
+  resize: vertical;
+}
+
+/* Label */
+.register__hint,
+.register__label {
+  display: block;
+  font-size: var(--fs-xxxs);
+  font-weight: var(--font-weight);
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+/* Focus state */
+.register__input:focus,
+.register__select:focus,
+.register__textarea:focus {
+  border: 1.5px solid var(--primary-500);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.10);
+}
+
+/* Placeholder */
+.register__input::placeholder,
+.register__select option {
+  color: var(--gray-500);
+}
+
+/* Supporting text */
+.register__supporting {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+.register__supporting-text {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  margin-top: 4px;
+}
+
+.register__counter {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+.register__supporting-single {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: var(--gray-600);
+}
+
+/* ======= ACCIONES / BOTÓN ======= */
+.register__actions {
+  display: flex;
+  justify-content: center;
+  margin: 2.4rem;
+  gap: 2.4rem;
+}
+
+.register__button {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+  display: inline-flex; /* o simplemente flex */
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+  width: auto;
+  max-width: max-content;
+  margin: 0; /* el centrado se maneja con justify-content del padre */
+}
+
+.register__button:hover,
+.register__button:focus {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+.register__button:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98);
+}
+
+.register__button:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Enlace para iniciar sesión */
+.register__login-link {
+  display: block;
+  margin: 6rem auto 0;
+  color: var(--primary-500);
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: var(--fs-xxs);
+}
+
+.register__login-link:hover,
+.register__login-link:focus {
+  color: var(--primary-600);
+}
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px) {
+  .register__form{
+    padding: 0.8rem;
+  }
+  .register__input,
+  .register__select,
+  .register__field{
+    width: 100%;
+    max-width: 100%;
+    
+  }
+
+}
+/* alias md: 768px se usa normalmente para tablets*/
+@media (min-width: 768px) {
+  .register__row {
+    justify-content: space-between;
+  }
+}
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (min-width: 1024px) {
+  .register__row {
+    margin-left: 13.6rem;
+    margin-right: 13.6rem;
+    margin-bottom: 2.4rem;
+    gap: 2.4rem;
+  }
+}
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+@media (min-width: 1280px) {
+  .register__row {
+    justify-content: normal;
+    margin: auto;
+    margin-top: 2.4rem;
+
+  }
+}
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+@media (min-width: 1536px) {
+  /* No hay estilos específicos para 2xl */
+}

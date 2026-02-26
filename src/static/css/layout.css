@@ -1,0 +1,278 @@
+/* El archivo layout.css se encarga de definir la estructura base de tu aplicación, como el sistema de grid, flexbox, contenedores, espaciados y alineaciones. Su objetivo es organizar los elementos de la página sin afectar su apariencia visual (colores, tipografías, etc.). */
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1rem = 10px */
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Asegura que el body y html ocupen toda la altura de la ventana  para mantener el footer abajo*/
+
+body {
+  font-family: var(--main-font);
+  color: var(--black);
+  padding: 0%;
+  margin: 0%;
+  font-size: var(--fs-xs);
+}
+
+.footer.body{
+  margin-top: 24rem;
+}
+
+
+/* Estilos de los componentes de metodo de pago */
+.double-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+}
+
+/* Estilos de los componentes de contacto */
+.contact-container {
+  min-height: calc(100vh - 60px); /* altura mínima para ocupar toda la pantalla menos el footer */
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 80px 20px 120px;
+  margin-top: 0;
+  align-items: stretch;
+  
+  
+}
+
+
+.contacttwo-container {
+  min-height: calc(100vh - 60px); /* altura mínima para ocupar toda la pantalla menos el footer */
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 80px 20px 120px;
+  margin-top: 0;
+  align-items: stretch;
+  
+  
+}
+
+.contact-seller-container{
+  min-height: calc(100vh - 60px); /* altura mínima para ocupar toda la pantalla menos el footer */
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 80px 20px 120px;
+  margin-top: 0;
+  align-items: stretch;
+}
+
+.contact-container > div {
+  flex: 1 1 350px;                /* Que cada componente ocupe el mismo ancho */
+  min-width: 300px; 
+  display: flex;
+  flex-direction: column;      /* Evita que se encojan demasiado */
+  align-items: stretch;
+}
+
+.contacttwo-container > div {
+  flex: 1 1 350px;                /* Que cada componente ocupe el mismo ancho */
+  min-width: 300px; 
+  display: flex;
+  flex-direction: column;      /* Evita que se encojan demasiado */
+  align-items: stretch;
+}
+
+.contact-seller-container > div {
+  flex: 1 1 350px;                /* Que cada componente ocupe el mismo ancho */
+  min-width: 300px; 
+  display: flex;
+  flex-direction: column;      /* Evita que se encojan demasiado */
+  align-items: stretch;
+}
+
+
+/* Hace que las tarjetas llenen la altura disponible */
+.contact-container > div > .form-personal,
+.contact-container > div > .mensaje-form {
+  flex: 1;
+}
+
+.contacttwo-container > div > .form-personal,
+.contacttwo-container > div > .mensaje-form {
+  flex: 1;
+}
+
+.contact-seller-container > div > .form-personal,
+.contact-seller-container > div > .mensaje-form {
+  flex: 1;
+}
+
+@media (max-width: 639px){
+  .contact-container,
+  .contacttwo-container,
+  .contact-seller-container{
+    padding: 1.5rem 24px; /* agrega espacio de 24px a los lados */
+  }
+}
+
+
+/* sm: ≥640px (teléfonos grandes) */
+@media (min-width: 640px) {
+  .contact-container {
+    padding-top: 100px;
+    padding-bottom: 160px;
+  }
+
+  .contacttwo-container {
+    padding-top: 100px;
+    padding-bottom: 160px;
+  }
+
+ .contact-seller-container {
+    padding-top: 100px;
+    padding-bottom: 160px;
+  }
+
+  .contact-container > div {
+    max-width: 380px;
+  }
+
+  .contacttwo-container > div {
+    max-width: 380px;
+  }
+
+  .contact-seller-container > div {
+    max-width: 380px;
+  }
+}
+
+/* md: ≥768px (tablets) */
+@media (min-width: 768px) {
+  .contact-container {
+    flex-direction: row; /* En tablets ya se ponen lado a lado */
+    justify-content: center;
+    gap: 40px;
+  }
+  .contacttwo-container {
+    flex-direction: row; /* En tablets ya se ponen lado a lado */
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .contact-seller-container {
+    flex-direction: row; /* En tablets ya se ponen lado a lado */
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .contact-container > div {
+    flex: 1 1 350px;
+    max-width: 400px;
+  }
+  .contacttwo-container > div {
+    flex: 1 1 350px;
+    max-width: 400px;
+  }
+
+  .contact-seller-container > div {
+    flex: 1 1 350px;
+    max-width: 400px;
+  }
+}
+
+/* lg: ≥1024px (laptops) */
+@media (min-width: 1024px) {
+  .contact-container {
+    padding: 40px 80px;
+  }
+
+  .contacttwo-container {
+    padding: 40px 80px;
+  }
+
+  .contact-seller-container {
+    padding: 40px 80px;
+  }
+}
+
+/* xl: ≥1280px (desktop) */
+@media (min-width: 1280px) {
+  .contact-container {
+    padding: 40px 120px;
+  }
+
+  .contacttwo-container {
+    padding: 40px 120px;
+  }
+
+  .contact-seller-container {
+    padding: 40px 120px;
+  }
+}
+
+/* 2xl: ≥1536px (pantallas grandes) */
+@media (min-width: 1536px) {
+  .contact-container {
+    padding: 40px 180px;
+    max-width: 1536px;
+    margin: 0 auto; /* centra todo en pantallas muy grandes */
+  }
+
+  .contacttwo-container {
+    padding: 40px 180px;
+    max-width: 1536px;
+    margin: 0 auto; /* centra todo en pantallas muy grandes */
+  }
+
+  .contact-seller-container {
+    padding: 40px 180px;
+    max-width: 1536px;
+    margin: 0 auto; /* centra todo en pantallas muy grandes */
+  }
+}
+
+.body-contact {
+    background-image: url("/static/assets/cafe-cultivos.jpg");
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.body-contact .contact-container,
+.body-register_an_account .contact-container {
+  padding-bottom: 200px; /* espacio para el footer fijo en móviles */
+}
+
+.body-contact .contacttwo-container,
+.body-register_an_account .contacttwo-container {
+  padding-bottom: 200px; /* espacio para el footer fijo en móviles */
+}
+
+
+.body-register-an_account .footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    background: var(--primary-900);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    font-family: var(--fs-xxxxs);
+    min-block-size: 40px;
+    gap: 4rem;
+}
+

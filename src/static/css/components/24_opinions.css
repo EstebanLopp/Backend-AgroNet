@@ -1,0 +1,148 @@
+/* Componente utilizado en product-customer.html (customer-pages), product.html (pages-general)
+y product-seller.html (seller-pages) */
+
+.body-detail {
+  background-color: var(--gray-50);
+}
+
+.detail-opinions__profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--gray-50);
+  padding: 1rem;
+}
+
+.detail-opinions__profile-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--gray-200);
+  border-radius: 50%;
+}
+
+.detail-opinions__profile-name {
+  font-weight: bold;
+  color: var(--gray-900);
+  font-size: var(--fs-sm); 
+}
+
+/* Opiniones */
+.detail-opinions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: var(--fs-sm);
+  padding-top: 20px; 
+  gap: 1.6rem;
+}
+
+.detail-opinions h2 {
+  margin: 0;
+  font-size: var(--fs-md);
+}
+
+.detail-opinions__stars i {
+  margin-top: 15px;
+  margin-right: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: var(--fs-md); /* más visible */
+}
+
+.detail-opinions__text {
+  font-family: var(--main-font);
+  width: 100%; 
+  max-width: 340px; 
+  height: 56px;
+  padding: 16px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid var(--gray-300);
+  resize: none;
+  line-height: 26px; 
+}
+
+.detail-opinions__text::placeholder {
+  color: var(--gray-500);
+}
+
+.detail-opinions__btn-publish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--btn-gap, 6px);
+  padding: var(--btn-padding-y, 8px) var(--btn-padding-x, 24px);
+  font-size: var(--btn-font-size, var(--fs-xxxxs));
+  font-weight: var(--btn-font-weight, bold);
+  color: var(--btn-text, var(--white));
+  background-color: var(--btn-bg, var(--primary-500));
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 12px);
+  cursor: pointer;
+  transition: background 0.2s;
+  margin: 0 auto;
+}
+
+.detail-opinions__btn-publish i,
+.detail-opinions__icon-publish::before {
+  font-size: var(--btn-icon-size, var(--fs-xxxs));
+  color: var(--white);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-opinions__btn-publish:hover {
+  background-color: var(--btn-bg-hover, var(--primary-700));
+}
+
+.detail-opinions__btn-publish:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98);
+}
+
+.detail-opinions__btn-publish:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.detail-opinions__comments {
+  margin-top: 20px;
+  padding: 0 1rem; /* mobile */
+}
+
+.detail-opinions__comment {
+  border-top: 1px solid var(--gray-200);
+  padding: 2.4rem;
+  text-align: left;
+}
+
+
+.detail-opinions__comment-text{
+  padding: 1.6rem;
+  font-size: var(--fs-xs);
+  margin-left: 2.4rem;
+}
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .detail-opinions__comment-text{
+    padding: 0;
+    margin: 8px;
+  }
+
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/

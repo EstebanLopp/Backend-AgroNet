@@ -1,0 +1,509 @@
+/* Componente utilizado en my_products.html de seller-pages */
+
+/* ======== PRODUCTS ======== */
+.my-products__two {
+  background-color: var(--gray-50);
+}
+
+.my-products {
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem;
+  background: var(--gray-50);
+  min-height: 100vh;
+  margin-top: 6rem; /* espacio debajo del navbar */
+  margin-bottom: 2rem;
+  gap: 2.4rem;
+}
+
+.my-products__title {
+  text-align: center;
+  margin-bottom: -1px;
+  font-weight: var(--font-bold);
+}
+
+.my-products__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.my-products__button {
+  display: block;
+  margin: 0 auto;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 1.6rem;
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  font-style: var(--btn-font-normal);
+  text-decoration: none;
+  border: var(--btn-border);
+  border-radius: var(--btn-border-radius);
+  max-height: var(--btn-min-height);
+  min-width: var(--btn-min-width);
+  cursor: pointer;
+  box-shadow: var(--btn-shadow);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  align-content: center;
+}
+
+.my-products__button:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); ;
+}
+
+.my-products__button:active{
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); /* pequeño feedback */
+}
+
+.my-products__button:disabled{
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ======== DROPDOWN ======== */
+.my-products__dropdown {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.my-products__dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6rem;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  padding: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: var(--fs-xs);
+}
+
+.my-products__dropdown-menu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  display: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  min-width: 160px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.my-products__dropdown-menu li {
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.my-products__dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.my-products__dropdown-menu.show {
+  display: block;
+}
+
+.my-products__dropdown-item {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.my-products__dropdown-item:hover {
+  background: var(--gray-50);
+}
+
+.my-products__filter-icon {
+  color: inherit;
+  /* si el ícono dentro del botón necesita color blanco, pon color en el botón en vez de aquí */
+}
+
+/* ======== PRODUCT GRID ======== */
+.my-products__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+}
+
+/* ======== PRODUCT CARD ======== */
+.my-products__card {
+  position: relative;
+  display: flex;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.03);
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 180px;
+  align-items: stretch;
+  padding: 1.6rem;
+}
+
+/* imagen de la card */
+.my-products__card-img {
+  width: 30%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 6px;
+  padding: 0.5rem;
+  display: block;
+  border-radius: 0.8rem;
+}
+
+/* info a la derecha */
+.my-products__card-info {
+  padding: 0.8rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.my-products__card-name {
+  margin: 0;
+  font-size: var(--fs-sm);
+  font-weight: var(--font-bold);
+}
+
+.my-products__card-price {
+  color: var(--gray-900);
+  display: inline-block;
+  margin: 0;
+}
+
+.my-products__card-type{
+  margin: 0;
+}
+
+.my-products__card-type span {
+  color: var(--secundary-600);
+}
+
+.my-products__card-stock{
+  margin: 0;
+}
+
+.my-products__card-stock span {
+  color: var(--gray-700);
+}
+
+/* Menú de opciones en cada tarjeta */
+.my-products__menu-card {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.my-products__menu-card-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--gray-700);
+  font-size: 1.2rem;
+  padding: 6px;
+}
+
+.my-products__menu-card-options {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  display: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  min-width: 140px;
+  z-index: 9999;
+  text-align: center;
+}
+
+.my-products__menu-card-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.my-products__menu-card-item:hover {
+  background: var(--gray-50);
+}
+
+.my-products__menu-card-options.show {
+  display: block;
+}
+
+/* Toggle (checkbox) estilo */
+.my-products__card-toggle {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.my-products__card-toggle input[type="checkbox"] {
+  display: none;
+}
+
+/* switch visual */
+.my-products__card-toggleSwitch {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  background-color: var(--gray-100);
+  border-radius: 20px;
+  cursor: pointer;
+  transition-duration: .2s;
+}
+
+.my-products__card-toggleSwitch::after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  left: 5px;
+  background-color: transparent;
+  border-radius: 50%;
+  transition-duration: .2s;
+  box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.26);
+  border: 5px solid white;
+}
+
+/* Cuando está activado (checkbox:checked + label) */
+input[type="checkbox"]:checked + .my-products__card-toggleSwitch {
+  background-color: var(--primary-400);
+}
+
+input[type="checkbox"]:checked + .my-products__card-toggleSwitch::after {
+  transform: translateX(100%);
+  background-color: white;
+}
+
+/*
+   POPUPS - MY PRODUCTS
+*/
+
+.my-products__popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.55);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.6rem;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+
+.my-products__popup.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.my-products__popup-content {
+  background: var(--white);
+  width: 100%;
+  max-width: 320px;
+  padding:1.6rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  position: relative;
+  animation: popupFade .25s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+@keyframes popupFade {
+  from { transform: scale(.95); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* Botón cerrar */
+.my-products__popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--gray-500);
+}
+
+.my-products__popup-close:hover {
+  color: var(--gray-700);
+}
+
+/* Iconos */
+.my-products__popup-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.my-products__popup-icon--ok {
+  color: var(--success-500, #16a34a); /* verde */
+}
+
+.my-products__popup-icon--warning {
+  color: var(--warning-500, #eab308); /* amarillo */
+}
+
+/* Texto */
+.my-products__popup-message {
+  color: var(--gray-700);
+}
+
+/* Acciones (botones) */
+.my-products__popup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+  margin-top: .8rem;
+}
+
+.my-products__popup-btn {
+  padding: 1.6rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--fs-xs);
+}
+
+.my-products__popup-btn--cancel {
+  background: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.my-products__popup-btn--cancel:hover {
+  background: var(--gray-300);
+  font-size: var(--fs-xs);
+}
+
+.my-products__popup-btn--accept {
+  background: var(--primary-500, #2563eb); /* azul o el primario que uses */
+  color: white;
+}
+
+.my-products__popup-btn--accept:hover {
+  background: var(--primary-600, #1d4ed8);
+  font-size: var(--fs-xs);
+}
+
+
+/* ============================================================
+   POPUP DE DETALLES
+============================================================ */
+
+.my-products__popup-content--details {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding: 1.6rem;
+}
+
+.my-products__popup-title {
+  color: var(--gray-800);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.my-products__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.my-products__details p {
+  color: var(--gray-700);
+}
+
+.my-products__details span {
+  color: var(--gray-900);
+  font-weight: 500;
+}
+
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .my-products{
+    margin-top: 16rem;
+  }
+
+  .my-products__grid{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .my-products__card{
+    display: flex;
+    flex-direction: column;
+  }
+  .my-products__card-img{
+    width: auto;
+    margin: 1.6rem;
+    padding: 0;
+    border-radius: 0.8rem;
+  }
+  .my-products__dropdown-toggle{
+    margin: 0 auto;
+  }
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+@media (max-width: 768px) {
+  .my-products__card{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .my-products__card-img{
+    width: auto;
+    margin: 1.6rem;
+    padding: 0;
+    border-radius: 0.8rem;
+  }
+  
+}
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (max-width: 1024px) {
+  .my-products__card{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .my-products__card-img{
+    width: auto;
+    margin: 1.6rem;
+    padding: 0;
+    border-radius: 0.8rem;
+  }
+  
+}
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/

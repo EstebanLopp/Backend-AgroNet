@@ -1,0 +1,183 @@
+/* Componente utilizado en seller_form.html de customer-pages */
+
+.seller-form {
+  max-width:400px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: var(--main-font);
+  margin-top: 80px;
+}
+
+.seller-form-container{
+  margin-bottom: 16rem;
+}
+
+.seller__form-body {
+  background-image: url("/src/static/assets/cafe-cultivos.jpg");
+  background-size: cover;         /* ajusta la imagen al tamaño de la pantalla */
+  background-repeat: no-repeat;   /* evita que se repita */
+  background-position: center;    /* centra la imagen */
+  height: 100vh;                  /* asegura que cubra toda la ventana */
+}
+
+.seller-form__title {
+  font-size: var(--fs-md);
+  margin-bottom: 10px;
+  color: var(--black);
+  text-align: center;
+}
+
+.seller-form__description {
+  text-align: center;
+  color: var(--gray-400);
+  margin-bottom: 20px;
+}
+
+.seller-form__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+}
+
+.seller-form__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.seller-form__label {
+  font-size: var(--fs-xxxs);
+  font-weight: var(--font-bold);
+  margin-bottom: 6px;
+  color: var(--gray-800);
+}
+
+.seller-form__input {
+  padding: 1.6rem;
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+  height: 56px;
+  width: 320;
+  max-width: 400px;
+  font-size: var(--fs-xs);
+  
+}
+
+.seller-form__input:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.seller-form__textarea {
+  resize: none;
+  font-size: var(--fs-xs);
+  font-family: var(--main-font);
+  height: 56px;
+}
+
+.seller-form__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.seller-form__button {
+  background-color: var(--primary-500);
+  color: var(--white);
+  padding: 1.6rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: var(--font-bold);
+  font-size: var(--fs-xs);
+  transition: background-color 0.3s;
+  border: none;           /* quita el borde */
+  outline: none;          /* quita el contorno al enfocarse */
+  box-shadow: none;       /* elimina sombras internas */
+  cursor: pointer;        /* mantiene el cursor de botón */
+}
+
+.seller-form__button:hover {
+  background-color: var(--primary-400);
+}
+
+.seller-form__checkbox-group {
+  display: flex;
+  flex-direction: column; /* coloca los elementos en columna */
+  gap: 8px; /*  espacio entre cada checkbox */
+  margin-top: 8px;
+}
+
+
+.seller-form__modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.seller-form__modal--visible {
+  display: flex;
+}
+
+.seller-form__modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 320px;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  animation: popup 0.25s ease-out;
+}
+
+@keyframes popup {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.seller-form__modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #666;
+}
+
+.seller-form__modal-icon {
+  font-size: 3.5rem;
+  color: var(--primary-500);
+  margin-bottom: 1rem;
+}
+
+.seller-form__modal-message {
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+
+
+/* Breakpoints ********************************************************************************************************************************************************* */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .seller-form{
+    margin-top: 16.8rem;
+    width: 98vw;
+    padding: 1.6rem;
+  }
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/

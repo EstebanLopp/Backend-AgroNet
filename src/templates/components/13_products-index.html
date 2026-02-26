@@ -1,0 +1,91 @@
+{% load static %}
+
+<!-- Products Index Section -->
+<section class="products-index__section">
+  <div class="products-index__header">
+    <h2 class="products-index__title">Lo más buscado</h2>
+    <a href="/catalog/" class="products-index__more">VER MÁS</a>
+  </div>
+
+  <div class="products-index" onclick="window.location.href='{% url 'product' 1 %}'">
+    <!-- Tarjeta 1 -->
+    <div class="products-index__card" data-id="1">
+      <img src="{% static 'assets/manzanagala.jpg' %}" alt="Manzana Gala" class="products-index__image">
+      <div class="products-index__info">
+        <p class="products-index__category">Frutas</p>
+        <h3 class="products-index__name">Manzana Gala</h3>
+        <p class="products-index__price">$5.000/kg</p>
+      </div>
+    </div>
+
+    <!-- Tarjeta 2 -->
+    <div class="products-index__card" data-id="2">
+      <img src="{% static 'assets/naranja.jpg' %}" alt="Naranja" class="products-index__image">
+      <div class="products-index__info">
+        <p class="products-index__category">Frutas</p>
+        <h3 class="products-index__name">Naranja</h3>
+        <p class="products-index__price">$5.500/kg</p>
+      </div>
+    </div>
+
+    <!-- Tarjeta 3 -->
+    <div class="products-index__card" data-id="3">
+      <img src="{% static 'assets/huevos.jpg' %}" alt="huevos" class="products-index__image">
+      <div class="products-index__info">
+        <p class="products-index__category">Animal</p>
+        <h3 class="products-index__name">Huevos</h3>
+        <p class="products-index__price">$15.000</p>
+      </div>
+    </div>
+
+    <!-- Tarjeta 4 -->
+    <div class="products-index__card" data-id="4">
+      <img src="{% static 'assets/cafe.jpg' %}" alt="cafe" class="products-index__image">
+      <div class="products-index__info">
+        <p class="products-index__category">Granos</p>
+        <h3 class="products-index__name">Cafe</h3>
+        <p class="products-index__price">$31.000/kg</p>
+      </div>
+    </div>
+
+    <!-- Tarjeta 5 -->
+    <div class="products-index__card" data-id="5">
+      <img src="{% static 'assets/papa.jpg' %}" alt="papa" class="products-index__image">
+      <div class="products-index__info">
+        <p class="products-index__category">Verduras</p>
+        <h3 class="products-index__name">Papas</h3>
+        <p class="products-index__price">$3.000/kg</p>
+      </div>
+    </div>
+
+    <!-- Tarjeta 6 -->
+    <div class="products-index__card" data-id="6">
+      <img src="{% static 'assets/banano.webp' %}" alt="banano" class="products-index__image">
+      <div class="products-index__info">
+        <p class="products-index__category">Frutas</p>
+        <h3 class="products-index__name">Banano</h3>
+        <p class="products-index__price">$4.000/kg</p>
+      </div>
+    </div>
+
+    <!-- Tarjeta 7 -->
+    <div class="products-index__card" data-id="7">
+      <img src="{% static 'assets/frijol.jpg' %}" alt="frijol" class="products-index__image">
+      <div class="products-index__info">
+        <p class="products-index__category">Granos</p>
+        <h3 class="products-index__name">Frijol</h3>
+        <p class="products-index__price">$5.000/kg</p>
+      </div>
+    </div>
+
+    <!-- Tarjeta 8 -->
+    <div class="products-index__card" data-id="8">
+      <img src="{% static 'assets/leche.jpg' %}" alt="leche" class="products-index__image">
+      <div class="products-index__info">
+        <p class="products-index__category">Lácteos</p>
+        <h3 class="products-index__name">Leche</h3>
+        <p class="products-index__price">$2.500/Lt</p>
+      </div>
+    </div>
+  </div>
+</section>

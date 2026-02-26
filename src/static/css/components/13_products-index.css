@@ -1,0 +1,176 @@
+/* Componente utilizado en index-customer.html (customer-pages), index.html (pages-general) 
+y index_seller.html (seller-pages) */
+
+.body-index {
+  background-color: var(--white);
+}
+
+/* Products Index Component */
+
+/* Contenedor de tarjetas scroll horizontal */
+.products-index {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;             /* 1.5rem */
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 12px;  /* 0.75rem */
+  scroll-behavior: smooth;
+  max-width: 1600px;     /* 90rem */
+  margin: 32px auto;     /* 2rem */
+  padding: 0 16px;       /* 1rem */
+}
+
+/* ESTE ES EL CONTENEDOR JS NO ES NECESARIO USAR BEM */
+.products-index-seller-container {
+  overflow: hidden;
+
+}
+.products-index__section{
+  overflow: hidden;
+}
+
+/* Cabecera del bloque de productos */
+.products-index__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;   /* 1.5rem */
+}
+
+/* Título del listado ("Lo más buscado") */
+.products-index__title {
+  font-size: var(--fs-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--black);
+  margin: 0;
+}
+
+/* Enlace "ver más" */
+.products-index__more {
+  color: var(--primary-700);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.products-index__more:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Tarjeta individual (base: móvil pequeño) */
+.products-index__card {
+  flex: 0 0 220px;       /* ~13.75rem */
+  max-width: 220px;
+  background-color: var(--primary-200);
+  border-radius: 12px;   /* 0.75rem */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+
+.products-index__card:hover {
+  transform: scale(1.02);
+}
+
+/* Imagen */
+.products-index__image {
+  width: 100%;
+  height: 160px;         /* más baja en móviles */
+  object-fit: cover;
+}
+
+/* Contenido de la tarjeta */
+.products-index__info {
+  padding: 16px;         /* 1rem */
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* Categoría del producto */
+.products-index__category {
+  color: var(--terciary-800);
+  margin: 0;
+}
+
+/* Nombre del producto */
+.products-index__name {
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+}
+
+/* Precio del producto (énfasis) */
+.products-index__price {
+  font-size: var(--fs-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-900);
+  margin: 8px 0 0 0;     /* 0.5rem */
+}
+
+/* -------------------- */
+/* Breakpoints Mobile First */
+/* -------------------- */
+
+@media (max-width: 639px){
+  .products-index{
+    padding: 1.5rem 24px; /* agrega espacio de 24px a los lados */
+  }
+}
+
+/* sm: ≥640px (celulares grandes) */
+@media (min-width: 640px) {
+  .products-index__card {
+    flex: 0 0 240px;
+    max-width: 240px;
+  }
+
+  .products-index__image {
+    height: 180px;
+  }
+}
+
+/* md: ≥768px (tablets) */
+@media (min-width: 768px) {
+  .products-index__card {
+    flex: 0 0 260px;
+    max-width: 260px;
+  }
+
+  .products-index__image {
+    height: 190px;
+  }
+}
+
+/* lg: ≥1024px (tablets grandes / laptops) */
+@media (min-width: 1024px) {
+  .products-index__card {
+    flex: 0 0 300px;   /* 18.75rem */
+    max-width: 300px;
+  }
+
+  .products-index__image {
+    height: 200px;
+  }
+}
+
+/* xl: ≥1280px (laptops grandes / desktops) */
+@media (min-width: 1280px) {
+  .products-index__card {
+    flex: 0 0 320px;
+    max-width: 320px;
+  }
+}
+
+/* 2xl: ≥1536px (desktops grandes) */
+@media (min-width: 1536px) {
+  .products-index__card {
+    flex: 0 0 340px;   /* 21.25rem */
+    max-width: 340px;
+  }
+}

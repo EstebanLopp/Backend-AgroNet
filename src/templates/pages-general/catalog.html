@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}AgroNet - Catálogo{% endblock %}
+
+{% block body_class %}body-catalog{% endblock %}
+
+{% block content %}
+
+<section class="catalog-header">
+    <h2 class="catalog-header__title">¡Explora todos nuestros productos!</h2>
+
+    <div class="catalog-header__filters">
+        <input 
+            type="text" 
+            class="catalog-header__search" 
+            placeholder="Buscar productos" 
+        />
+        <div class="catalog-header-container"></div>
+    </div>
+</section>
+
+<hr class="catalog-header__divider">
+
+<section class="products" id="products-container">
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<!-- Script tarjetas -->
+<script src="{% static 'js/components/10_product-card.js' %}" defer></script>
+
+<!-- Lista desplegable -->
+<script src="{% static 'js/components/3_catalog-header.js' %}" defer></script>
+
+{% endblock %}

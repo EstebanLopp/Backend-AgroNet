@@ -1,0 +1,532 @@
+/* Componente utilizado en new_account.html de pages-general */
+
+/*
+Este comoponente CSS gestiona el estilo del formulario de creación de una nueva cuenta de usuario y modificación de la misma.
+
+Componentes principales:
+- 4_form_new_account.css: Estilos específicos para el formulario de nueva cuenta.
+
+- 6_edit_profile.css: Estilos específicos para la edición del perfil de usuario.
+*/
+
+/* Estilo general del cuerpo de la página */
+
+.body-register_an_account {
+  background-color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para los pasos del formulario */
+
+.register-form__step {
+  display: none;
+}
+
+.register-form__step--active {
+  display: block;
+}
+
+/* Estilos del componente */
+.register-form {
+  max-width: 1100px;
+  margin: 8rem auto 2.4rem auto;
+  min-height: 50vh; /*  ocupa el 90% del alto de la pantalla */
+  background: var(--white);
+  padding: 2.4rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+.register-form__back {
+  margin-top: 50px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.register-form__back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.register-form__back-icon {
+  font-size: 22px;
+  color: #333;
+}
+
+.register-form__legend {
+  text-align: left;
+  font-size: var(--fs-sm);
+  margin-bottom: 2.4rem;
+}
+
+.register-form__title {
+  text-align: center;
+  font-size: var(--fs-md);
+  margin-bottom: 2.4rem;
+}
+
+.register-form__subtitle {
+  margin-top: 0;
+  margin-bottom: 2.4rem;
+  text-align: center;
+  font-size: var(--fs-sm);
+}
+
+.register-form__divider {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin-top: 0;
+  margin-bottom: 2.4rem;
+}
+
+/* Fila de campos */
+.register-form__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px; 
+  justify-content: auto;
+  margin-bottom: 2.4rem;
+}
+
+/* Campo */
+.register-form__field {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  width: 320px;
+}
+
+.register-container{
+  margin-bottom: 16rem;
+}
+
+/* Estilo para el botón “Atrás” */
+  /* Estilo para el botón “Atrás” */
+.register-form__prev-btn {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.register-form__prev-btn:hover {
+  background-color: var(--gray-600);
+  color: var(--gray-600); /* cambia si quieres mantener gris */
+}
+
+/* Evita que cambie al hacer clic o enfocar */
+.register-form__prev-btn:active,
+.register-form__prev-btn:focus {
+  background-color: var(--gray-600);
+  color: var(--gray-600); /* o var(--gray-600) si prefieres mantenerlo igual */
+  outline: none; /* quita el borde azul del navegador */
+}
+
+
+/* ======= ESTILOS DE INPUTS ======= */
+.register-form__input,
+.register-form__textarea {
+  height: 56px;
+  padding: 16px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  color: var(--gray-700);
+  line-height: 1.2;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  appearance: none;
+}
+
+/* ======= ESTILOS DE SELECT ======= */
+.register-form__select {
+  height: 56px;
+  padding: 16px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 8 12 14 18 8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center; /* posición del ícono */
+  background-size: 18px;
+  color: var(--gray-700);
+  line-height: 1.2;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none; 
+  cursor: pointer;
+  transition: border 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.register-form__select:focus {
+  border: 1.5px solid var(--primary-500);
+  background-color: var(--gray-700);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.10);
+}
+
+/* Estilos del menú desplegable */
+.register-form__select option {
+  padding: 16px 16px;
+  background: var(--gray-700);
+  color: var(--gray-700);
+}
+
+/* Hover de opción */
+.register-form__select option:hover {
+  background: var(--primary-50);
+  color: var(--primary-700);
+}
+
+/* Opción seleccionada */
+.register-form__select option:checked {
+  background: var(--primary-100);
+  color: var(--primary-700);
+}
+/* textarea */
+.register-form__textarea {
+  min-height: 120px;
+  height: auto;
+  padding: 12px 16px;
+  resize: vertical;
+}
+
+/* Label */
+.register-form__hint,
+.register-form__label {
+  display: block;
+  font-size: var(--fs-xxxs);
+  font-weight: var(--font-weight);
+  color: var(--gray-900);
+  margin-bottom: 4px;
+}
+
+/* Focus state */
+.register-form__input:focus,
+.register-form__select:focus,
+.register-form__textarea:focus {
+  border: 1.6rem solid var(--primary-500);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.10);
+}
+
+/* Placeholder */
+.register-form__input::placeholder,
+.register-form__select option {
+  color: var(--gray-500);
+}
+
+/* Supporting text */
+.register-form__supporting {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+.register-form__supporting-text {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  margin-top: 4px;
+}
+
+.register-form__counter {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+.register-form__supporting-single {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: var(--gray-600);
+}
+
+/* ======= ACCIONES / BOTÓN ======= */
+.register-form__actions {
+  display: flex;
+  justify-content: center;
+  margin: 2.4rem;
+  gap: 2.4rem;
+}
+
+.register-form__button {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+  min-height: var(--btn-max-height);
+  min-width: var(--btn-min-width, 56px);
+  display: inline-flex; /* o simplemente flex */
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+  width: auto;
+  max-width: max-content;
+  margin: 0; /* el centrado se maneja con justify-content del padre */
+}
+
+.register-form__button:hover,
+.register-form__button:focus {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+.register-form__button:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98);
+}
+
+.register-form__button:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.register-form__button--prev {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+}
+
+.register-form__button--next{
+  background-color: var(--primary-500);
+  color: var(--white)
+}
+
+.register-form__button--submit{
+  background-color: var(--primary-500);
+  color: var(--white);
+}
+
+.register-form__buttton--prev:hover {
+  background-color: var(--gray-200);
+  color: var(--gray-600);
+}
+
+/* Enlace para iniciar sesión */
+.register-form__login-link {
+  display: block;
+  margin: auto 0;
+  color: var(--primary-500);
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: var(--fs-xxs);
+}
+
+.register-form__login-link:hover,
+.register-form__login-link:focus {
+  color: var(--primary-600);
+}
+
+/* ===== Modal de éxito ===== */
+.register-form__success-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s ease;
+  z-index: 1000;
+}
+
+.register-form__success-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.register-form__success-modal-content {
+  background: var(--white);
+  width: 90%;
+  max-width: 320px;
+  padding: 1.6rem;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+}
+
+.register-form__success-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.register-form__success-modal-icon {
+  font-size: 48px;
+  color: var(--primary-500); 
+  margin-bottom: 10px;
+}
+
+.register-form__success-modal-message {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* ===== Popup de confirmación ===== */
+.register-form__confirm-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s ease;
+  z-index: 1000;
+}
+
+.register-form__confirm-popup.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.register-form__confirm-popup-content {
+  background: #fff;
+  width: 90%;
+  max-width: 320px;
+  padding: 24px 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.register-form__confirm-popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.register-form__confirm-popup-btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: var(--fs-xs);
+}
+
+.register-form__confirm-popup-btn--cancel {
+  background-color:var(--gray-200);
+  color: var(--gray-600);
+
+}
+
+.register-form__confirm-popup-btn--accept {
+  background: var(--primary-500);
+  color: var(--white);
+  padding: 1.6rem;
+  min-height: var(--btn-max-height);
+}
+
+
+/* ===== Flecha volver ===== */
+.register-form__back {
+  display: inline-flex;
+  padding: 8px;
+  margin-bottom: 12px;
+  max-height: var(--);
+}
+
+.register-form__back-icon {
+  width: 22px;
+  height: 22px;
+}
+
+
+
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px) {
+  .register-form{
+    margin-top: 18rem;
+    padding: 0.8rem;
+    width: 90vw;
+  }
+  .register-form__input,
+  .register-form__select,
+  .register-form__field{
+    width: 100%;
+    max-width: 100%;
+    }
+    
+  
+  .register-form__login-link{
+    margin-bottom: 1.6rem;
+  }
+  .register-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .register-form__back{
+    margin-top: 16rem;
+  }
+
+  
+  }
+
+
+}
+
+
+/* alias md: 768px se usa normalmente para tablets*/
+@media (min-width: 768px) {
+  .register-form{
+    width: 98vw;
+  }
+  .register-form__row {
+    justify-content: space-between;
+  }
+}
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (min-width: 1024px) {
+  .register-form__row {
+    margin-left: 13.6rem;
+    margin-right: 13.6rem;
+    margin-bottom: 2.4rem;
+    gap: 2.4rem;
+  }
+}
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+@media (min-width: 1280px) {
+  .register-form__row {
+    justify-content: normal;
+    margin: auto;
+    margin-top: 2.4rem;
+
+  }
+}
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+@media (min-width: 1536px) {
+ 
+  /* No hay estilos específicos para 2xl */
+}

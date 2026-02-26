@@ -1,0 +1,59 @@
+<!-- 15_contact-two.html (fragmento que se inyecta en .contact-two) -->
+<section class="contact-two">  
+  <div class="contact-two__panel">
+    <h2 class="contact-two__heading">Información de Contacto</h2>
+
+    <div class="contact-two__content">
+      <!-- Card: contacto -->
+      <div class="contact-two__card contact-two__card--info">
+        <div class="contact-two__card-title">Contacto dirección</div>
+          <ul class="contact-two__list">
+          <li class="contact-two__list-item">
+            <span class="contact-two__icon">📞</span>
+            <span class="contact-two__text">606 7877674</span>
+          </li>
+          <li class="contact-two__list-item">
+            <span class="contact-two__icon">✉️</span>
+            <span class="contact-two__text">agronet@email.com</span>
+          </li>
+          <li class="contact-two__list-item">
+            <span class="contact-two__icon">📍</span>
+            <span class="contact-two__text">Diagonal 27a #42a-114, Dosquebradas </span>
+          </li>
+          <li class="contact-two__list-item">
+            <span class="contact-two__icon">🕒</span>
+            <span class="contact-two__text">Lunes a Viernes, 1:00 P.M - 7:00 P.M</span>
+          </li>
+          </ul>
+        </div>
+
+        <!-- Card: mapa -->
+        <div class="contact-two__card contact-two__card--map">
+          <div class="contact-two__card-title">Ubicación</div>
+          <div class="contact-two__map" role="application" aria-label="Mapa de ubicación">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.6102624512264!2d-75.68356032501984!3d4.836791795138772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3881a4b50bb31d%3A0x9150c2e299ed35b0!2sCDITI%20SENA%20Dosquebradas!5e0!3m2!1ses-419!2sco!4v1756826891124!5m2!1ses-419!2sco" 
+              width="100%" 
+              height="300" 
+              style="border:0; border-radius: 1.375rem;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <!-- botón que abre Google Maps en nueva pestaña -->
+          <button
+            type="button"
+            class="contact-two__open-maps"
+            data-coords="4.836898701426531, -75.68093176016761"
+            aria-label="Abrir en Google Maps">
+            Abrir en Google Maps
+          </button>
+        </div>
+      </div>
+
+      <!-- Botón atrás -->
+      <button  type="button"  class="contact-two__back" onclick="window.location.href='/src/templates/pages-general/contact.html'">Atrás</button>
+
+</section>

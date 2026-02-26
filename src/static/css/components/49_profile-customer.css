@@ -1,0 +1,222 @@
+/* Componente utilizado en customer-profile.html de seller-pages */
+
+
+/* ========================================= */
+/* Client Profile (Modern Visual)            */
+/* ========================================= */
+.client-profile {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  background-color: var(--gray-50);
+  min-height: 80vh;
+  margin-top: 6rem;
+}
+
+.client-profile__card {
+  width: 100%;
+  max-width: 700px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.client-profile__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Banner superior */
+.client-profile__banner {
+  height: 150px;
+  background: linear-gradient(135deg, var(--primary-400), var(--primary-200));
+  position: relative;
+}
+
+.client-profile__avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid var(--white);
+  position: absolute;
+  bottom: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: cover;
+  background: var(--white);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Sección principal */
+.client-profile__main {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.client-profile__name {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: var(--black);
+}
+
+.client-profile__role {
+  color: var(--gray-500);
+  margin: 0 auto;
+}
+
+/* Detalles */
+.client-profile__details {
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.client-profile__subtitle {
+  font-weight: 600;
+  color: var(--primary-700);
+  font-size: var(--fs-sm);
+  margin: 0;
+}
+
+.client-profile__info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.client-profile__info-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--gray-50);
+  padding: 1.6rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s ease;
+}
+
+.client-profile__info-item:hover {
+  background-color: var(--gray-100);
+}
+
+.client-profile__info-item i {
+  color: var(--primary-500);
+  margin-right: 1rem;
+}
+
+.client-profile__label {
+  font-weight: 500;
+  color: var(--gray-800);
+}
+
+.client-profile__value {
+  margin: 0;
+  color: var(--gray-900);
+}
+
+/* Footer */
+.client-profile__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.6rem;
+}
+
+.client-profile__edit-btn {
+  background: var(--primary-500);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 1.6rem;
+  font-size: var(--fs-xs);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  gap: 1.6rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.client-profile__edit-btn:hover {
+  background: var(--primary-600);
+  transform: scale(1.03);
+}
+
+/*  Cuando se haya agregado */
+.client-profile__edit-btn.added {
+  background-color: var(--primary-600); /* más oscuro */
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* Opcional: evitar hover cuando ya está agregado */
+.client-profile__edit-btn.added:hover {
+  background-color: var(--primary-600);
+}
+
+/* --- Modal --- */
+
+.client-profile__modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.55);
+  justify-content: center;
+  align-items: center;
+  padding: 1.6rem;
+  z-index: 9999;
+}
+
+.client-profile__modal--active {
+  display: flex;
+}
+
+.client-profile__modal-content {
+  background: #fff;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.client-profile__modal-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.client-profile__modal-icon {
+  font-size: 4rem;
+  color: #2ecc71;
+}
+
+
+/* Botón editado al agregarse */
+.client-profile__edit-btn--added {
+  background-color: #999 !important;
+  cursor: not-allowed;
+}
+
+
+/* Responsive */
+@media (max-width: 640px) {
+  .client-profile__details {
+    padding: 1.6rem;
+  }
+  .client-profile{
+    margin-top: 16rem;
+  }
+}
+

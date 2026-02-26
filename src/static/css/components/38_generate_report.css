@@ -1,0 +1,347 @@
+/* Componente utilizado en generate_report.html (customer-pages) y generate_report.html (seller-pages) 
+*/
+
+.report{
+  padding: 2.4rem;
+}
+
+.report__generate{
+  display: flex;
+  flex-direction: row;
+  gap: 4.8rem;
+}
+
+.report__camps{
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.report__message{
+  display: flex;
+  flex-direction: column;
+  gap:0.4rem;
+}
+
+.report__group{
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.report__profile {
+  background: var(--white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 850px;
+  margin-top: 110px;
+  margin-bottom: 60px;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: hidden; 
+}
+
+.report__title {
+  font-size: var(--fs-sm);
+}
+
+.report__subtitle {
+  color: var(--secundary-500);
+}
+
+
+.report__divider {
+  margin: 15px 0 25px;
+  border: none;
+  border-top: 1px solid var(--gray-100);
+}
+
+/* === FORM ELEMENTS === */
+.report__form {
+  display: flex;
+  flex-direction: column;
+  gap: 6.4rem;
+}
+
+.report__label {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--fs-xxxs);
+}
+
+.report__textarea {
+  padding: 1.6rem;
+  min-width: none;
+  width: 400px;
+  height: 250px;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: var(--gray-50);
+  font-family: var(--main-font);
+}
+
+.report__label1 {
+  margin-top: -219px !important;
+  display: flex;
+  justify-content: flex-end; /* los elementos se van al borde derecho */
+  margin-right: 39rem;
+}
+
+.report__input,
+.report__select{
+  border: none;
+  border-radius: 6px;
+  padding: 1.6rem;
+  background-color: var(--gray-50);
+  font-size: var(--fs-xxxs);
+  width: 350px;
+  height: 56px;
+}
+
+.report__input:focus,
+.report__select:focus,
+.report__textarea:focus {
+  outline: 1px solid var(--gray-100);
+  background-color: var(--white);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.10);
+}
+
+/* === ACTIONS === */
+
+
+/* === BUTTONS === */
+.report__btn {
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+}
+
+/* Modifiers */
+.report__btn--send {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: block; /* Cambiamos inline-flex a block para que margin funcione */
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.report__btn:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+}
+
+.report__btn:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); /* pequeño feedback */
+}
+
+.report__btn:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ===== POPUP ===== */
+.report__popup {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.report__popup--active {
+  display: flex;
+}
+
+.report__popup-content {
+  background: white;
+  width: 90%;
+  max-width: 320px;
+  padding: 1.6rem;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.report__popup-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.report__popup-btn {
+  padding: 1.6rem;
+  font-size: var(--fs-xs);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.report__popup-btn--cancel {
+  background: #ddd;
+}
+
+.report__popup-btn--accept {
+  background: var(--primary-500);
+  color: white;
+}
+
+/* ===== MODAL ===== */
+.report__modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+}
+
+.report__modal--active {
+  display: flex;
+}
+
+.report__modal-title,
+.report__modal-text{
+  margin: 0;
+}
+
+.report__modal-content {
+  background: white;
+  width: 90%;
+  max-width: 320px;
+  padding: 1.8rem;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.report__modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.report__modal-icon {
+  font-size: 3rem;
+  color: var(--primary-500);
+  margin-bottom: 0.5rem;
+}
+
+/* Breakpoints **************************************************************************************************************************************************************/
+
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .report{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .report__form{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .report__generate{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .report__profile{
+    width: 96vw;
+    margin: auto;
+  }
+
+  .report__select,
+  .report__input{
+    width: auto;
+  }
+
+  .report__textarea{
+    width: auto;
+  }
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+
+@media (min-width: 768px) and (max-width:1279px){
+  .report{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .report__form{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .report__generate{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .report__camps{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    margin: 0 auto;
+    gap: 4rem;
+  }
+
+  .report__profile{
+    width: 96vw;
+    margin: auto;
+  }
+
+  .report__select,
+  .report__input{
+    width: 320px;
+  }
+
+  .report__textarea{
+    width: auto;
+  }
+}
+
+

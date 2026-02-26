@@ -1,0 +1,399 @@
+/* Componente utilizado en historial_orders.html de seller-pages */
+
+.body-orders {
+  background-color: var(--gray-50);
+}
+
+.myorders{
+  display: flex;
+  flex-direction: row;
+  gap: 24rem;
+  margin-bottom: 32rem;
+}
+
+.orders {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  background-color: var(--white);
+  padding: 1.6rem;
+}
+
+.orders__profile{
+  display: flex;
+  flex-direction: column;
+  width: 100rem;
+  margin-bottom: 8rem;
+}
+
+
+/* =============================== */
+/* Listado de pedidos (en columnas) */
+/* =============================== */
+.orders__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /*  exactamente 2 columnas */
+  gap: 2.4rem; /* espacio entre pedidos */
+  width: 100%;
+}
+
+/* =============================== */
+/* Bloque: order                   */
+/* =============================== */
+.orders__article {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: var(--gray-50);
+  padding: 1.6rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 90px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Pequeño efecto hover */
+.orders__article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.orders__article-close {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  border: none;
+  background: none;     /* Quita cualquier fondo */
+  box-shadow: none;     /* Quita la sombra */
+  width: auto;          /* Qita el tamaño cuadrado */
+  height: auto;         /* Quita el tamaño cuadrado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--gray-700);
+  font-size: 1.3rem;    /* Puedes ajustar el tamaño de la X */
+  padding: 0;           /* Quita espacio extra */
+}
+
+
+
+.orders__article-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.orders__article-id {
+  margin: 0.7rem 4rem 0.8rem 0.3rem;
+  font-size: var(--fs-xs);
+  font-weight: bold;
+}
+
+.orders__article-status {
+  display: inline-block;
+  margin: 0.3rem 0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+}
+
+/* Modificadores de estado */
+.orders__article-status--enviado {
+  background-color: var(--primary-200);
+  color: var(--primary-900);
+}
+
+.orders__article-status--pendiente {
+  background-color: var(--terciary-200);
+  color: var(--terciary-900);
+}
+
+/* Botón */
+.orders__article-button {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+  padding: 1.6rem;
+  margin: auto 0;
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.orders__article-button:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+}
+
+.orders__article-button:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98);
+}
+
+.orders__article-button:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ======================
+   MODAL BASE
+====================== */
+.orders__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.55);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.6rem;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+
+.orders__modal--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ======================
+   CONTENIDO DEL MODAL
+====================== */
+.orders__modal-content {
+  background: var(--white);
+  width: 100%;
+  max-width: 320px;
+  padding: 1.6rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  position: relative;
+  animation: ordersModalFade .25s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+@keyframes ordersModalFade {
+  from { transform: scale(.95); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ======================
+   BOTÓN CERRAR
+====================== */
+.orders__modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--gray-500);
+}
+
+.orders__modal-close:hover {
+  color: var(--gray-700);
+}
+
+/* versión success */
+.orders__modal-close--success {
+  font-size: 1.6rem;
+}
+
+/* ======================
+   ICONOS
+====================== */
+.orders__modal-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.orders__modal-icon--ok {
+  color: var(--success-500, #16a34a);
+}
+
+.orders__modal-icon--warning {
+  color: var(--warning-500, #eab308);
+}
+
+/* ======================
+   TEXTO
+====================== */
+.orders__modal-message {
+  color: var(--gray-700);
+}
+
+/* ======================
+   BOTONES DE ACCIÓN
+====================== */
+.orders__modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+  margin-top: .8rem;
+}
+
+.orders__modal-button {
+  padding: 1.6rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--fs-xs);
+}
+
+/* cancelar */
+.orders__modal-button--cancel {
+  background: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.orders__modal-button--cancel:hover {
+  background: var(--gray-300);
+}
+
+/* aceptar */
+.orders__modal-button--accept {
+  background: var(--primary-500, #2563eb);
+  color: white;
+}
+
+.orders__modal-button--accept:hover {
+  background: var(--primary-600, #1d4ed8);
+}
+
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .myorders{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  .orders__list{
+    display: flex;
+    flex-direction: column;
+  }
+  .orders__profile{
+    width: 94vw;
+  }
+  .orders{
+    margin-left: auto;
+    width: 88vw;
+  }
+  .orders__article{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    
+  }
+  .orders__article-button{
+    margin: 0 auto;
+
+  }
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+@media (min-width: 768px) and (max-width:1023px){
+  .myorders{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  .orders__list{
+    display: flex;
+    flex-direction: column;
+  }
+  .orders__profile{
+    width: 94vw;
+  }
+  .orders{
+    margin-left: auto;
+    width: 91vw;
+  }
+  .orders__article{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    
+  }
+  .orders__article-button{
+    margin: 0 auto;
+
+  }
+}
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .myorders{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  .orders__list{
+    display: flex;
+    flex-direction: column;
+  }
+  .orders__profile{
+    width: 94vw;
+  }
+  .orders{
+    margin-left: auto;
+    width: 91vw;
+  }
+  .orders__article{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    
+  }
+  .orders__article-button{
+    margin: 0 auto;
+
+  }
+}
+
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+@media (min-width: 1280px) and (max-width: 1444px){
+  .myorders{
+    display: flex;
+    flex-direction: row;
+    gap: 1.6rem;
+
+  }
+  .orders__profile{
+    width: 850px;
+  }
+  .orders{
+    margin-left: auto;
+    width: 850px;
+  }
+
+}
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/

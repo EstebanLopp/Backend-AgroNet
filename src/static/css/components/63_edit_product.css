@@ -1,0 +1,330 @@
+/* Componente utilizado en edit_product.html de seller-pages */
+
+.edit-product {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 3rem;
+  background: var(--white);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 1rem 4rem;
+  margin: 9rem auto 2rem auto;
+  max-width: 1050px;
+}
+
+.edit-product input:focus,
+.edit-product textarea:focus,
+.edit-product select:focus {
+  outline: none; 
+  border: 1px solid var(--gray-500); 
+  box-shadow: none;
+}
+
+.edit-product__left-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.edit-product__image {
+  border: 1px solid var(--gray-200);
+  height: 270px;
+  background: var(--gray-50);
+  position: relative;       
+  width: 96%;
+  overflow: hidden;         
+  padding: 0;               
+}
+
+.edit-product__image:hover {
+  border-color: var(--gray-800);
+  color: var(--gray-800);
+}
+
+.edit-product__image img {
+  position: absolute;       
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        
+}
+
+.edit-product__field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.edit-product__field--vendor {
+  padding: 1.2rem 0 0 0;
+}
+
+.edit-product__right-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 24px;
+}
+
+.edit-product__field label {
+  font-weight: var(--main-font);
+  color: var(--gray-900);
+}
+
+.edit-product__field input,
+.edit-product__field textarea,
+.edit-product__dropdown-trigger {
+  width: 320px !important;   
+  height: 56px;              
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--gray-200);
+  background-color: var(--gray-50);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.edit-product__field textarea {
+  resize: none;
+  min-height: 150px;
+}
+
+/* Posicionamiento en grid */
+.edit-product__field--name { grid-column: 1; grid-row: 1; }
+.edit-product__field--category { grid-column: 1; grid-row: 2; }
+.edit-product__field--price { grid-column: 1; grid-row: 3; }
+.edit-product__field--worth { grid-column: 1; grid-row: 4; }
+.edit-product__field--description { grid-column: 2; grid-row: 1 / 5; height: 100%; }
+.edit-product__field--description textarea { width: 100%; height: 65%; resize: none; }
+.edit-product__field--unit { grid-column: 2; grid-row: 4; }
+.edit-product__field--weight { grid-column: 2; grid-row: 5; }
+.edit-product__field--stock { grid-column: 1; grid-row: 5; }
+
+.edit-product__select-hidden {
+  display: none;
+}
+
+.edit-product__dropdown-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 266px;
+  user-select: none;
+}
+
+.edit-product__dropdown-trigger {
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  color: var(--gray-600);
+  font-style: var(--btn-font-weight);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.edit-product__dropdown-trigger i {
+  color: var(--gray-500);
+}
+
+.edit-product__dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--gray-50);
+  border-radius: 8px;
+  margin-top: 0.2rem;
+  display: none;
+  flex-direction: column;
+  z-index: 10;
+  text-align: center;
+  width: 320px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.edit-product__dropdown-option:not(:last-child) {
+  border-bottom: 1px solid var(--gray-50);
+}
+
+.edit-product__dropdown-option {
+  height: 40px;
+  line-height: 40px;
+  padding: 0.7rem;
+  cursor: pointer;
+}
+
+.edit-product__dropdown-option:hover {
+  background: var(--gray-50);
+  color: var(--gray-900);
+}
+
+.edit-product__btn-edit {
+  display: block;
+  margin: 2rem auto 4rem auto;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  font-style: var(--btn-font-normal);
+  border: var(--btn-border);
+  border-radius: var(--btn-border-radius);
+  min-height: var(--btn-min-height);
+  min-width: var(--btn-min-width);
+  cursor: pointer;
+  box-shadow: var(--btn-shadow);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edit-product__btn-edit:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+}
+
+.edit-product__btn-edit:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); 
+}
+
+.edit-product__btn-edit:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Modal */
+.edit-product__modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none; 
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.edit-product__modal.show {
+  display: flex; 
+}
+
+.edit-product__modal-content {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 360px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: popupFade 0.3s ease-in-out;
+  position: relative;
+}
+
+@keyframes popupFade {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.edit-product__modal-icon {
+  font-size: 50px;
+  color: var(--primary-500);
+  margin-bottom: 16px;
+}
+
+.edit-product__modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  color: var(--gray-500);
+  font-size: 1.3rem;
+  transition: color 0.3s ease;
+}
+
+.edit-product__modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.edit-product__modal-btn {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.15s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.edit-product__modal-btn:active {
+  transform: scale(0.97);
+}
+
+.edit-product__modal-btn--cancel {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+
+  padding: 8px 16px;
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.edit-product__modal-btn--accept {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}

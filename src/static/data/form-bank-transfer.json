@@ -1,0 +1,54 @@
+{
+  "title": "Formulario de transferencia bancaria",
+  "fields": [
+    {
+      "id": "account",
+      "name": "account",
+      "label": "Número de cuenta",
+      "type": "text",
+      "placeholder": "Ej: 1234567890",
+      "required": true
+    },
+    {
+      "id": "bank",
+      "name": "bank",
+      "label": "Banco de transferencia",
+      "type": "text",
+      "placeholder": "Ej: Bancolombia",
+      "required": true
+    },
+    {
+      "id": "account-type",
+      "name": "account-type",
+      "label": "Tipo de cuenta",
+      "type": "text",
+      "placeholder": "Ahorros / Corriente",
+      "required": true
+    },
+    {
+      "id": "amount",
+      "name": "amount",
+      "label": "Monto a transferir",
+      "type": "number",
+      "placeholder": "Ej: 500000",
+      "required": true
+    },
+    {
+      "id": "recipient-number",
+      "name": "recipient-number",
+      "label": "Número del destinatario",
+      "type": "text",
+      "placeholder": "Ej: 1234567890",
+      "required": true
+    },
+    {
+      "id": "recipient-email",
+      "name": "recipient-email",
+      "label": "Correo del destinatario",
+      "type": "email",
+      "placeholder": "correo@ejemplo.com",
+      "required": true
+    }
+  ],
+  "submitText": "Confirmar"
+}

@@ -1,0 +1,175 @@
+:root{
+    /* primary color */
+    --primary-950: #052E16;
+    --primary-900: #14532D;
+    --primary-800: #166534;
+    --primary-700: #15803D;
+    --primary-600: #16A34A;
+    --primary-500: #22C55E;
+    --primary-400: #4ADE80;
+    --primary-300: #86EFAC;
+    --primary-200: #BBF7D0;
+    --primary-100: #DCFCE7;
+    --primary-50: #F0FDF4;
+
+    /*secundary color*/
+    --secundary-950: #082F49;
+	--secundary-900: #17448E;
+	--secundary-800: #2F589A;
+	--secundary-700: #476CA7;
+	--secundary-600: #5F80B3;
+	--secundary-500: #7794C0;
+	--secundary-400: #8FA7CD;
+	--secundary-300: #A7BBD9;
+	--secundary-200: #BFCFE6;
+	--secundary-100: #D7E3F2;
+	--secundary-50: #EFF6FF;
+   
+    /* terciary color */
+    --terciary-950: #7F1D00;
+    --terciary-900: #C0520C;
+    --terciary-800: #C76425;
+    --terciary-700: #CE773E;
+    --terciary-600: #D58957;
+    --terciary-500: #DC9C70;
+    --terciary-400: #E3AE89;
+    --terciary-300: #EAC1A2;
+    --terciary-200: #F1D3BB;
+    --terciary-100: #F8E5D4;
+    --terciary-50: #FFF7ED;
+
+    /* Basic color*/
+    --white: #fff;
+    --black: #000;
+    --gray-950: #101010;
+    --gray-900: #262626;
+    --gray-800: #3B3B3B;
+    --gray-700: #515151;
+    --gray-600: #676767;
+    --gray-500: #7D7D7D;
+    --gray-400: #929292;
+    --gray-300: #A8A8A8;
+    --gray-200: #BEBEBE;
+    --gray-100: #D4D4D4;
+    --gray-50: #E9E9E9;
+
+    /* Admin colors */
+    --button-add-color: #1d72b8;
+    --button-add-color-hover: #155d91;
+    --navbar-background: #1e1e2f;
+    --button-view-color: #2d9cdb;
+    --button-view-hover-color: #1c82bd;
+    --button-delete-color: #e74c3c;
+    --button-delete-hover-color: #c0392b;
+
+
+	/* Font-family */
+	--main-font: Arial, Inria Sans;
+		
+
+    /* Font-size */
+    --fs-xxxxl: 8.0rem; /* Ultra grande */
+    --fs-xxxl: 6.4rem; /* Súper grande */
+    --fs-xxl: 4.8rem; /* Extra grande */
+    --fs-xl: 4.0rem;  /* Muy grande */
+    --fs-lg: 3.2rem;  /* Grande */
+    --fs-md: 2.4rem;  /* Mediano */
+    --fs-sm: 2.0rem;  /* Pequeño */
+    --fs-xs: 1.6rem;  /* Extra pequeño */
+    --fs-xls: 1.5rem; /* Extra pequeño medio */
+    --fs-xxs: 1.4rem; /* Extra extra pequeño */
+    --fs-xxxs: 1.2rem; /*Mínimo*/
+    --fs-xxxxs: 1.0rem; /* Mínimo pequeño */
+    --fs-xxxxx: 0.8rem; /* Mínimo extra pequeño */
+
+        /* Tipografía */
+    --font-weight: 500;         /* semi-bold */
+    --font-bold: 700;
+    --font-italic: italic;
+    --font-normal: normal;
+
+
+/*******************************************
+ ***************** Botones *****************
+ *******************************************/
+
+/* Colores principales */
+--btn-bg: var(--primary-500);
+--btn-bg-hover: var(--primary-600);
+--btn-bg-disabled: var(--primary-200);
+--btn-text: var(--white);
+--btn-text-disabled: var(--gray-500);
+
+/* Tipografía */
+--btn-font-size: 1.6rem;        /* 16px */
+--btn-font-weight: 500;         /* semi-bold */
+--btn-font-bold: 700;
+--btn-font-italic: italic;
+--btn-font-normal: normal;
+
+/* Espaciados */
+--btn-padding: 1.6rem 1.6rem;   /* 16px */
+--btn-padding-y: 1.6rem;        /* 16px */
+--btn-padding-top: 12px;    
+--btn-padding-bottom: 12px; 
+--btn-padding-x: 1.6rem;        /* 16px */
+--btn-gap: 1.6rem;              /* 16px entre icono y texto */
+--btn-margin: 0.8rem;           /* 8px margen estándar */
+
+/* Bordes */
+--btn-border-radius: 0.8rem;    /* 8px */
+--btn-border-radius-lg: 1.2rem; /* 12px estilo pill */
+--btn-border: none;
+
+/* Sombras */
+--btn-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.15);
+--btn-shadow-hover: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
+
+/* Tamaños mínimos */
+--btn-min-height: 4rem;       /* 40px */
+--btn-max-height: 5.6rem;       /* 56px */
+--btn-min-width: 5.6rem;        /* 56px */
+
+/* ================================
+   Variantes de Tamaño
+   ================================ */
+--btn-sm-padding-y: 0.4rem;     /* 4px */
+--btn-sm-padding-x: 1.2rem;     /* 12px */
+--btn-sm-font-size: 1.2rem;     /* 12px */
+
+--btn-md-padding-y: 0.8rem;     /* 8px */
+--btn-md-padding-x: 1.6rem;     /* 16px */
+--btn-md-font-size: 1.4rem;     /* 14px */
+
+--btn-lg-padding-y: 1.2rem;     /* 12px */
+--btn-lg-padding-x: 2rem;       /* 20px */
+--btn-lg-font-size: 1.6rem;     /* 16px */
+
+/* Espaciado de letras */
+--btn-letter-spacing: 0.02857em; /* valor por defecto de Material Design */
+
+/* Transiciones */
+--btn-transition-duration: 150ms;
+--btn-transition-timing: ease-in-out;
+
+/* Estado presionado */
+--btn-bg-pressed: var(--primary-700);
+--btn-text-pressed: var(--white);
+--btn-shadow-pressed: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25);
+
+/* Estado hover */
+--btn-text-hover: var(--white);
+
+/* Iconos */
+--btn-icon-size: 1.8rem;   /* 18px */
+--icon-button-size: 2.4rem; /* 24px */
+}
+
+
+/* Breakpoints **************************************************************************************************************************************************************/
+
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+/* alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/

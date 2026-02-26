@@ -1,0 +1,144 @@
+/* Este componente se utiliza en todas las pantallas del proyecto */
+/*
+Este componente CSS gestiona el estilo del pie de página (footer) del sitio web.
+Componentes principales:
+- 1_footer.css: Estilos específicos para el pie de página.
+*/
+
+/* ====== Forzar footer full bleed seguro ====== */
+.footer {
+  width: 100vw !important;
+  max-width: none !important;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: var(--primary-600);
+  color: var(--black);
+}
+
+.footer__copyright {
+  width: 100% !important;
+  display: block !important;
+  flex: 0 0 100% !important;
+  box-sizing: border-box;
+  background: var(--gray-900);
+  color: var(--white);
+  font-size: var(--fs-xxxs);
+  font-weight: var(--font-bold);
+  padding: 1.6rem;
+  text-align: center;
+}
+
+
+.footer__icons{
+    display: flex;
+    flex-direction: row;
+    gap: 1.6rem;
+}
+
+
+.footer__net {
+    grid-column: 2;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+
+
+
+.footer__list {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 1.6rem;
+    grid-column: 3;
+    justify-self: end;
+}
+
+.footer__link {
+    display: flex;
+    align-items: center;
+    font-size: var(--fs-xxxs);
+    color: var(--white);
+    text-decoration: none;
+    gap: 2.4rem;
+}
+
+.footer__link img {
+    inline-size: 40px;
+    block-size: 40px;
+    object-fit: contain;
+}
+
+.footer__top {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 1.6rem;
+    gap: 1.6rem;
+}
+
+
+
+
+.footer__contact {
+    display: flex;
+    font-size: var(--fs-xxxs);
+    color: var(--white);
+    text-decoration: none;
+    gap: 1.6rem;
+    transition: opacity 0.2s;
+    color: var(--black);
+    margin: 0 auto;
+
+}
+
+.footer__contact img {
+    inline-size: 16px;
+    block-size: 16px;
+    object-fit: contain;
+}
+.footer__contact:hover {
+    opacity: 0.7;
+}
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+
+/*
+@media (max-width: 640px) {
+    .footer {
+        display: flex;
+        flex-direction: row;
+        gap: 1.6rem;
+        padding: 1.6rem, 1.6rem;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+    }
+}
+
+
+/* alias md: 768px se usa normalmente para tablets*/
+@media (max-width: 768px) {
+    /* No es necesario agregar estilos adicionales para este breakpoint debido a su simplicidad */
+}
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (max-width: 1024px) {
+    /* No es necesario agregar estilos adicionales para este breakpoint debido a su simplicidad*/
+}
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+@media (max-width: 1280px) {
+    /* No es necesario agregar estilos adicionales para este breakpoint debido a su simplicidad */
+}
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+@media (max-width: 1536px) {
+    /* No es necesario agregar estilos adicionales para este breakpoint debido a su simplicidad*/
+}

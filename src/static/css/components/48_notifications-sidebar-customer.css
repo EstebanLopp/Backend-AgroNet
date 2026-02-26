@@ -1,0 +1,123 @@
+/* Componente utilizado en notiications.html de customer-pages */
+
+/* =============================== */
+/* NOTIFICACIONES (BEM)            */
+/* =============================== */
+
+.body-notifications {
+  background-color: var(--gray-50);
+}
+
+
+.my_notifications {
+  display: flex;
+  align-items: flex-start;
+  gap: 5rem; /* igual que .myreport */
+}
+
+/* Contenedor principal */
+.notify-profile {
+  background: var(--white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  width: 900px;
+  height: 100%;
+  max-width: 900px;
+  margin-top: 110px;
+  margin-bottom: 60px;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Cabecera */
+.header1 {
+  padding: 5px 15px;
+  background: linear-gradient(to right, var(--primary-300), var(--primary-100));
+  width: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.header1__title {
+  font-size: var(--fs-md);
+}
+
+/* Contenido */
+.notify {
+  padding: 20px 30px;
+}
+
+.notify__title {
+  font-size: var(--fs-sm);
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+.notify__subtitle {
+  color: var(--secundary-500);
+  margin-left: 5px;
+  margin-top: -5px;
+}
+
+.notify__divider {
+  margin: 15px 0 25px;
+  border: none;
+  border-top: 1px solid var(--gray-100);
+}
+
+/* Ítems */
+.notify__content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.notify__item {
+  background-color: var(--gray-50);
+  border-left: 4px solid var(--primary-400);
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.notify__item:hover {
+  background-color: var(--primary-50);
+  transform: translateY(-2px);
+}
+
+.notify__item--unread {
+  background-color: var(--primary-50);
+  border-left-color: var(--primary-600);
+}
+
+.notify__item-title {
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 5px;
+}
+
+.notify__item-text {
+  font-size: var(--fs-xxs);
+  color: var(--gray-600);
+  margin-bottom: 8px;
+}
+
+.notify__item-date {
+  font-size: var(--fs-xxxs);
+  color: var(--gray-400);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .mynotify {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .notify-profile {
+    margin-top: 60px;
+  }
+}

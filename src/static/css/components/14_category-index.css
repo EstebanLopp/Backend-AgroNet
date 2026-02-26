@@ -1,0 +1,252 @@
+/* Componente utilizado en index-customer.html (customer-pages), index.html (pages-general) 
+y index_seller.html (seller-pages) */
+
+.products-index-section{
+  overflow-x: hidden
+}
+/* ---- Contenedor del componente ---- */
+.category-index {
+  width: 100%;
+  padding: 21px 16px;       /* 1.3rem 1rem */
+  text-align: center;
+  margin: 32px auto;        /* 2rem */
+  max-width: 1640px;        /* 102.5rem */
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* ---- Encabezado a la izquierda ---- */
+.category-index__header {
+  text-align: left;
+  margin-bottom: 30px;      /* 1.9rem */
+}
+
+.category-index__subtitle {
+  font-size: var(--fs-sm);
+}
+
+/* Título dentro del encabezado */
+.category-index__header h2 {
+  font-weight: var(--font-weight-normal);
+  color: var(--secundary-500);
+  margin: 0 0 8px 0;        /* 0.5rem */
+
+  display: flex;
+  align-items: center;
+  gap: 16px;                /* 1rem */
+}
+
+/* Línea horizontal decorativa después del título */
+.category-index__header h2::after {
+  content: "";
+  flex: 1;
+  border-top: 2px solid var(--secundary-200);
+}
+
+/* Subtítulo o descripción bajo el h2 */
+.category-index__header p {
+  color: var(--secundary-500);
+  margin: 5px 0 0 0;        /* 0.3rem */
+}
+
+/* ---- Grid en una sola fila con scroll horizontal ---- */
+.category-index__grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 32px;                /* 2rem */
+  overflow-x: auto;
+  padding-bottom: 16px;     /* 1rem */
+  scrollbar-width: thin;
+  scrollbar-color: var(--secundary-300) var(--secundary-200);
+}
+
+/* Scrollbar en Chrome y navegadores WebKit */
+.category-index__grid::-webkit-scrollbar {
+  height: 8px;
+}
+.category-index__grid::-webkit-scrollbar-thumb {
+  background: var(--secundary-300);
+  border-radius: 4px;
+}
+.category-index__grid::-webkit-scrollbar-track {
+  background: var(--secundary-200);
+  border-radius: 4px;
+}
+
+/* Tarjeta de categoría */
+.category-index__item {
+  background-color: var(--primary-200);
+  border-radius: 6px;
+  width: 256px;             /* 16rem */
+  min-width: 192px;         /* 12rem */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  padding: 1.6rem;
+  gap: 1.6rem;
+}
+
+/* Imagen dentro de la tarjeta */
+.category-index__item img {
+  width: 100%;
+  max-width: 192px;         /* 12rem */
+  height: 176px;            /* 11rem */
+  object-fit: contain;
+}
+
+.category-index__btn {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+  font-weight: var(--btn-font-weight, 500);
+  font-family: var(--main-font);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  padding: var(--btn-padding); 
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 8px); /* 0.5rem */
+
+  min-height: var(--btn-max-height);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow: var(--btn-shadow, 0 2px 6px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+/* Hover */
+.category-index__btn:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Presionado */
+.category-index__btn:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98);
+}
+
+/* Deshabilitado */
+.category-index__btn:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.category-index__item .category__btn {
+  margin-top: 8px;         /* 0.5rem */
+}
+
+/* ---- Ajustes Responsivos ---- */
+
+/* sm: celulares grandes (≥640px) */
+/* Base: móvil pequeño */
+.category-index__grid {
+  justify-content: flex-start;
+  gap: 24px;
+  padding: 0 12px 16px 12px;
+  scroll-padding-left: 12px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.category-index__item {
+  width: 160px;          /* 10rem */
+  min-width: 144px;
+}
+
+.category-index__item img {
+  max-width: 128px;
+  height: 112px;
+}
+
+/* sm: ≥640px */
+@media (min-width: 640px) {
+  .category-index__grid {
+    gap: 20px;
+    padding: 0 16px 16px 16px;
+    scroll-padding-left: 16px;
+  }
+  .category-index__item {
+    width: 192px;        /* 12rem */
+    min-width: 176px;
+  }
+  .category-index__item img {
+    max-width: 160px;
+    height: 144px;
+  }
+}
+
+/* md: ≥768px (iPad mini/air) */
+@media (min-width: 768px) {
+  .category-index__item {
+    width: 224px;        /* 14rem */
+    min-width: 192px;
+  }
+  .category-index__item img {
+    max-width: 176px;
+    height: 160px;
+  }
+}
+
+/* lg: ≥1024px (iPad Pro/laptops) */
+@media (min-width: 1024px) {
+  .category-index__grid {
+    justify-content: center;
+    gap: 24px;
+    scroll-padding-left: 16px;
+  }
+  .category-index__item {
+    width: 240px;        /* 15rem */
+    min-width: 200px;
+  }
+  .category-index__item img {
+    max-width: 184px;
+    height: 168px;
+  }
+}
+
+/* xl: ≥1280px */
+@media (min-width: 1280px) {
+  .category-index__item {
+    justify-content: center;
+    width: 256px;        /* 16rem */
+    min-width: 224px;
+  }
+  .category-index__item img {
+    max-width: 192px;
+    height: 176px;
+  }
+}
+
+/* 2xl: ≥1536px */
+@media (min-width: 1536px) {
+  .category-index__item {
+    width: 272px;        /* 17rem */
+    min-width: 240px;
+  }
+  .category-index__item img {
+    max-width: 208px;
+    height: 184px;
+  }
+}
+

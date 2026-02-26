@@ -1,0 +1,103 @@
+/* Componente utilizado en new_banner.html de admin-pages */
+
+/* =============================== */
+/* Nuevo Banner                    */
+/* =============================== */
+
+.form-datos__input[type="file"] {
+  padding: 8px;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  background-color: var(--white);
+}
+
+.form-datos__input[type="file"]::-webkit-file-upload-button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-datos__input[type="file"]::-webkit-file-upload-button:hover {
+  opacity: .9;
+}
+
+.form-datos__file-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-datos__file-btn {
+  background: var(--primary-600);
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.form-datos__file-btn:hover {
+  background: var(--primary-400);
+}
+
+.form-datos__file-text {
+  font-size: var(--fs-xxxs);
+  color: var(--black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+/* ======= POPUP DE ÉXITO (Banner) ======= */
+#banner_success_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#banner_success_popup.show {
+  display: flex;
+}
+
+#banner_success_popup .popup-content {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: popup-appear 0.3s ease;
+  max-width: 400px;
+  width: 90%;
+}
+
+#banner_success_popup .close-popup {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#banner_success_popup .icon_1_2.ok {
+  color: var(--secundary-700);
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+@keyframes popup-appear {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+

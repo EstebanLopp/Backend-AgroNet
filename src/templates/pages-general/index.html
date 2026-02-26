@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}AgroNet{% endblock %}
+
+{% block body_class %}body-index{% endblock %}
+
+{% block content %}
+    {% include "components/12_banner.html" %}
+    {% include "components/13_products-index.html" %}
+    {% include "components/14_category-index.html" %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/components/12_banner.js' %}" defer></script>
+{% endblock %}

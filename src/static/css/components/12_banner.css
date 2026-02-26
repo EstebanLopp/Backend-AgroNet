@@ -1,0 +1,218 @@
+/* Componente utilizado en index-customer.html (customer-pages), index.html (pages-general) 
+y index_seller.html (seller-pages) */
+
+
+/* Contenido encima */
+.banner__content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--black); /* ajusta según contraste */
+  padding: 0 1rem;
+}
+
+/* Animación para dar un efecto dinámico */
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+
+/* ============================= */
+/* Banner con arco translúcido   */
+/* ============================= */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 390px;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* Arco blanco semitransparente */
+.banner__overlay {
+  position: relative;
+  z-index: 2;
+  background: radial-gradient(circle at right center, rgba(223, 223, 223, 0.726) 55%, rgba(255,255,255,0) 75%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8%;
+}
+
+/* Contenido del texto */
+.banner__content {
+  color: var(--black);
+  max-width: 500px;
+  z-index: 3;
+}
+
+.banner__subtitle {
+  text-transform: uppercase;
+  font-size: var(--fs-sm);
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
+  color: var(--black);
+}
+
+.banner__title {
+  font-size: var(--fs-md);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.banner__description {
+  line-height: 1.6;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+}
+
+/* Info de horario y mapa */
+.banner__info {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.banner__info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.banner__info-icon {
+  font-size: 1.2rem;
+}
+
+.banner__info-title {
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.banner__info-text {
+  font-size: 0.85rem;
+  color: var(--black);
+}
+
+
+/* Flechas */
+.banner__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: var(--black);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.banner__arrow:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.banner__arrow--left {
+  left: 40px;
+}
+
+.banner__arrow--right {
+  right: 40px;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+
+
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px) {
+  
+  .banner__arrow {
+    display: none;
+  }
+  .banner__subtitle{
+    margin-top: 16rem;
+    text-align: right;
+  }
+  .banner__title{
+    text-align: right;
+  }
+  .banner__description {
+    text-align: right;
+    max-width: 20rem;
+    margin-top: 1.6rem;
+  }
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+@media (max-width: 768px) {
+  .banner__arrow {
+    display: none;
+  }
+  .banner__subtitle{
+    text-align: right;
+  }
+  .banner__title{
+    text-align: right;
+  }
+  .banner__description {
+    text-align: right;
+    max-width: 40rem;
+    margin-top: 1.6rem;
+  }
+}
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+@media (max-width: 1024px) {
+  .banner__subtitle,
+  .banner__title,
+  .banner__description {
+    text-align: right;
+  }
+}
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+@media (max-width: 1280px) {
+/* No requiere cambios específicos */
+}
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+@media (max-width: 1536px) {
+/* No requiere cambios específicos */
+}

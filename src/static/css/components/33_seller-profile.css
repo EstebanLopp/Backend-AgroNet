@@ -1,0 +1,245 @@
+/* Componente utilizado en seller_profile_customer.html 
+(customer-pages), seller-profile.html (pages-general)
+y seller_profile.html (seller-pages) */
+
+.seller-profile {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-top:90px;
+}
+
+
+
+.seller-profile__details{
+  display: flex;
+  flex-direction: row;
+  margin:0;
+  padding: 1.6rem;
+  gap: 2.4rem;
+  justify-content: space-around;
+  
+}
+
+/* HEADER */
+.seller-profile__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  border-bottom: 2px solid var(--gray-50);
+  padding-bottom: 20px;
+}
+
+.seller-profile__photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.seller-profile__name {
+  font-size: var(--fs-md);
+  font-weight: var(--font-bold);
+  color: var(--primary-500);
+  margin:0;
+  padding: 2.4rem;
+  text-align: center;
+}
+
+.seller-profile__description,
+.seller-profile__address {
+  margin: 3px 0;
+}
+
+/* SECTIONS */
+.seller-profile__contact,
+.seller-profile__payment {
+  margin: auto;
+}
+
+.seller-profile__products{
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.seller-profile__section-title {
+  color: var(--primary-700);
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--font-bold);
+  margin: 0 ;
+}
+
+/* CONTACT */
+.seller-profile__contact-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+  gap: 1.6rem;
+}
+
+.seller-profile__contact-item {
+  display: flex;
+  margin-bottom: 6px;
+  gap: 1.6rem;
+  color: var(--black);
+}
+
+.seller-profile__whatsapp-btn {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+  min-height: var(--btn-max-height);
+  min-width: var(--btn-min-width, 56px);
+  display: inline-flex; /* o simplemente flex */
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+  width: auto;
+  max-width: max-content;
+  margin: auto; /* el centrado se maneja con justify-content del padre */
+
+}
+
+.seller-profile__whatsapp-btn:hover,
+.seller-profile__whatsapp-btn:focus {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+.seller-profile__whatsapp-btn:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98);
+}
+
+.seller-profile__whatsapp-btn:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+/* PAYMENT */
+.seller-profile__payment-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+  gap: 1.6rem;
+}
+
+.seller-profile__payment-item {
+  margin-bottom: 6px;
+}
+
+.seller-profile__note {
+  display: flex;
+  margin-bottom: 1.6rem;
+  margin-top: 1.6rem;
+  font-size: var(--fs-xxs);
+  text-align: center;
+  color: var(--gray-500);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* PRODUCTS */
+
+
+.seller-profile__product-card {
+  background: var(--gray-50);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.seller-profile__product-card:hover {
+  transform: translateY(-5px);
+}
+
+.seller-profile__product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.seller-profile__product-title {
+  margin: 10px 0 5px 0;
+}
+
+.seller-profile__product-desc {
+  margin-bottom: 10px;
+}
+
+
+/* RESPONSIVE */
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+
+@media (max-width: 640px ) {
+  .seller-profile{
+    margin-top: 16.8rem;
+    width: 88vw;
+  }
+  .seller-profile__details{
+    flex-direction: column;
+    text-align: center;
+  }
+  .seller-profile__section-title{
+    text-align: center;
+  }
+  .seller-profile__description,
+  .seller-profile__address{
+    text-align: justify;
+  }
+
+  
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+@media (min-width: 768px){
+  .seller-profile{
+    width:90vw;
+  }
+
+}
+
+
+/*
+NO SE REQUIERE MÁS AJUSTES EN LOS SIGUIENTES BREAKPOINTS
+*/
+
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/

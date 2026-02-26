@@ -1,0 +1,337 @@
+/* Componente utilizado en contact-two-customer.html (customer-pages), contact-two.html (pages-general) 
+y contact-two_seller.html (seller-pages) */
+
+/* ================================
+   Fondo exclusivo para la interfaz contact-two
+   ================================ */
+.contact-two {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  /* Fondo con imagen + capa blanca semitransparente */
+  background: 
+    url("/src/static/assets/valle-cocora.jpg") no-repeat center center / cover;
+}
+
+
+/* ================================
+   Panel principal (contenedor translúcido centrado)
+   ================================ */
+.contact-two__panel {
+  width: 1570px;                 /* 98.125rem */
+  max-width: calc(100% - 32px);  /* 2rem */
+  min-height: 655px;             /* 40.9375rem */
+  height: auto;
+  margin: 72px auto 32px auto;   /* 4.5rem  auto  2rem auto */
+  padding: 24px;                 /* 1.5rem */
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.65);
+  border-radius: 22px;           /* 1.375rem */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 2.4rem;
+  margin-top: 10rem;
+
+}
+
+/* Encabezado centrado */
+.contact-two__heading {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+
+/* ================================
+   Contenedor de los dos bloques laterales
+   ================================ */
+.contact-two__content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 155px; /* 9.6875rem */
+  flex: 1 1 auto;
+}
+
+
+/* ================================
+   Card base
+   ================================ */
+.contact-two__card {
+  width: 560px;                  /* 35rem */
+  max-width: 100%;
+  min-width: 288px;              /* 18rem */
+  min-height: 460px;             /* 28.75rem */
+  height: auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 22px;           /* 1.375rem */
+  padding: 24px;                 /* 1.5rem */
+  box-sizing: border-box;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 2.4rem;
+}
+
+/* Título interno de cada card */
+.contact-two__card-title {
+  width: 100%;
+  display: block;
+  background: rgba(0,0,0,0.03);
+  border-radius: 12px;           /* 0.75rem */
+  padding: 10px 16px;            /* 0.6rem 1rem */
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 16px;           /* 1rem */
+  box-sizing: border-box;
+  font-size: var(--fs-sm);
+}
+
+
+/* ================================
+   Lista de contacto
+   ================================ */
+.contact-two__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;                     
+  flex: 1 1 auto;
+  justify-content: flex-start;
+}
+
+.contact-two__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;                     
+}
+
+/* Iconos de lista */
+.contact-two__icon {
+  width: 3.2rem;                   
+  height: 3.2rem;                  
+}
+
+
+/* ================================
+   Contenedor responsivo para el mapa
+   ================================ */
+.contact-two__map {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 12px;           /* 0.75rem */
+  overflow: hidden;
+  flex: 0 0 auto;
+  margin-bottom: 16px;           /* 1rem */
+  background: #eee;
+}
+
+/* iframe del mapa ocupa todo el contenedor */
+.contact-two__map iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* ================================
+   Botón Abrir en Google Maps
+   ================================ */
+.contact-two__open-maps {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding-y, 8px) var(--btn-padding-x, 16px);
+  margin: var(--btn-margin, 8px auto);
+
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 8px); /* 0.5rem */
+
+  min-height: var(--btn-max-height);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 8px);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+    
+  width: auto;             
+  max-width: max-content;  
+  margin: 0 auto;        /* 0.5rem auto */
+}
+
+
+.contact-two__open-maps:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+.contact-two__open-maps:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98);
+}
+
+.contact-two__open-maps:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+/* ================================
+   Zona de acciones (botón atrás)
+   ================================ */
+.contact-two__back {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+  font-weight: var(--btn-font-weight, 500);
+  font-family: var(--main-font);
+  font-size: var(--fs-xs);
+
+  padding: var(--btn-padding); 
+  margin: 0;
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 8px); /* 0.5rem */
+
+  min-height: var(--btn-max-height);
+  min-width: var(--btn-min-width, 56px);
+
+  display: flex;
+  align-self: start;
+  align-items: center;
+
+
+
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow: var(--btn-shadow, 0 2px 6px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+
+/* ================================
+   Ajustes responsive
+   ================================ */
+
+/* xs: ≤479px (teléfonos pequeños) */
+@media (max-width: 479px) {
+  .contact-two__content {
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+    align-self: center;
+    margin: 0 auto;
+  }
+
+  .contact-two__panel{
+    margin-top: 20rem;
+  }
+
+  .contact-two__card {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .contact-two__map {
+    height: 180px;
+  }
+
+  .contact-two__open-maps {
+    max-width: 100%;
+  }
+
+  .contact-two__back{
+    align-self: center;
+  }
+
+}
+
+
+/* sm: ≤639px (teléfonos grandes) */
+@media (min-width: 639px) {
+  .contact-two__content {
+    gap: 24px;
+    padding: 1.5rem 24px; /* agrega espacio de 24px a los lados */
+  }
+
+  .contact-two__map {
+    height: 192px;
+  }
+
+  .contact-two__open-maps {
+    max-width: 100%;
+  }
+}
+
+/* md: ≤767px (tablets) */
+@media (min-width: 767px) {
+  .contact-two__panel {
+    padding: 16px;
+    min-height: auto;
+    height: auto;
+  }
+
+  .contact-two__content {
+    flex-direction: column;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .contact-two__card {
+    width: 100%;
+    padding: 16px;
+    min-height: auto;
+  }
+
+  .contact-two__map {
+    height: 220px;
+  }
+  .contact-two__back{
+    align-self: center;
+  }
+}
+
+
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+
+@media (min-width: 1024px){
+  .contact-two__content{
+    flex-direction: row;
+  }
+}
+

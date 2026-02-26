@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "nombre": "Manzana<br>Gala",
+    "precio": "$5.000",
+    "categoria": "Fruta",
+    "imagen": "/static/assets/manzanagala.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "<br>Naranja",
+    "precio": "$5.500",
+    "categoria": "Fruta",
+    "imagen": "/static/assets/naranja.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "<br>Papa - 1 lb",
+    "precio": "$3.000",
+    "categoria": "Verdura",
+    "imagen": "/static/assets/papa.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "<br>Café - 400gr",
+    "precio": "$31.000",
+    "categoria": "Grano",
+    "imagen": "/static/assets/cafe.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "<br>Huevos - docena",
+    "precio": "$12.000",
+    "categoria": "Animal",
+    "imagen": "/static/assets/huevos.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "<br>Banano",
+    "precio": "$4.000",
+    "categoria": "Fruta",
+    "imagen": "/static/assets/banano.webp"
+  },
+  {
+    "id": 7,
+    "nombre": "<br>Lechuga",
+    "precio": "$2.500",
+    "categoria": "Verdura",
+    "imagen": "/static/assets/lechuga.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Platano<br>Verde",
+    "precio": "$2.500",
+    "categoria": "Verdura",
+    "imagen": "/static/assets/platano.webp"
+  },
+  {
+    "id": 9,
+    "nombre": "Cebolla<br>Larga",
+    "precio": "$2.500",
+    "categoria": "Verdura",
+    "imagen": "/static/assets/cebolla_larga.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "<br>Frijol",
+    "precio": "$2.500",
+    "categoria": "Grano",
+    "imagen": "/static/assets/frijol.jpg"
+  },
+  {
+    "id": 11,
+    "nombre": "<br>Leche",
+    "precio": "$2.500",
+    "categoria": "Animal",
+    "imagen": "/static/assets/leche.jpg"
+  },
+  {
+    "id": 12,
+    "nombre": "<br>Queso",
+    "precio": "$3.200",
+    "categoria": "Animal",
+    "imagen": "/static/assets/queso.jpg"
+  }
+]

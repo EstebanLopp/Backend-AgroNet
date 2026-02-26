@@ -1,0 +1,99 @@
+<section class="admin-settings">
+  <header class="admin-settings__header">
+    <h2 class="admin-settings__title">Configuración del sistema</h2>
+    <p class="admin-settings__subtitle">
+      Administra las opciones generales del sistema y tu perfil de administrador.
+    </p>
+  </header>
+
+  <div class="admin-settings__container">
+    <!-- Perfil -->
+    <div class="admin-settings__card">
+      <h3 class="admin-settings__card-title">
+        <i class="fas fa-user-cog"></i> Perfil del Administrador
+      </h3>
+      <form class="admin-settings__form">
+        <div class="admin-settings__form-group">
+          <label for="name" class="admin-settings__label">Nombre</label>
+          <input type="text" id="name" class="admin-settings__input" placeholder="Nombre del administrador" />
+        </div>
+
+        <div class="admin-settings__form-group">
+          <label for="email" class="admin-settings__label">Correo electrónico</label>
+          <input type="email" id="email" class="admin-settings__input" placeholder="admin@agronet.com" />
+        </div>
+
+        <button type="submit" class="admin-settings__btn">
+          <i class="fas fa-save"></i> Guardar cambios
+        </button>
+      </form>
+    </div>
+
+    <!-- Preferencias -->
+    <div class="admin-settings__card">
+      <h3 class="admin-settings__card-title">
+        <i class="fas fa-sliders-h"></i> Preferencias
+      </h3>
+      <div class="admin-settings__options">
+        <div class="admin-settings__option">
+          <span>Tema oscuro</span>
+          <label class="admin-settings__switch">
+            <input type="checkbox" id="dark-mode" />
+            <span class="admin-settings__slider"></span>
+          </label>
+        </div>
+
+        <div class="admin-settings__option">
+          <span>Notificaciones por correo</span>
+          <label class="admin-settings__switch">
+            <input type="checkbox" id="notifications" checked />
+            <span class="admin-settings__slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seguridad -->
+    <div class="admin-settings__card">
+      <h3 class="admin-settings__card-title">
+        <i class="fas fa-lock"></i> Seguridad
+      </h3>
+      <form class="admin-settings__form">
+        <div class="admin-settings__form-group">
+          <label for="password" class="admin-settings__label">Nueva contraseña</label>
+          <input type="password" id="password" class="admin-settings__input" placeholder="********" />
+          <label for="password" class="admin-settings__label">Confirme su contraseña</label>
+          <input type="password" id="password" class="admin-settings__input" placeholder="********" />
+        </div>
+
+        <button type="submit" class="admin-settings__btn admin-settings__btn--secure">
+          <i class="fas fa-key"></i> Actualizar contraseña
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 🟠 Popup de confirmación -->
+<div id="confirm_settings_popup" class="popup">
+  <div class="popup-content">
+    <span class="close-popup"><i class="fa-solid fa-xmark"></i></span>
+    <p>¿Estás seguro de que deseas guardar los cambios?</p>
+    <div class="popup-buttons">
+      <button class="btn cancel">Cancelar</button>
+      <button class="btn accept">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<!-- 🟢 Popup de éxito -->
+<div id="success_settings_popup" class="popup">
+  <div class="popup-content">
+    <span class="close-popup"><i class="fa-solid fa-xmark"></i></span>
+    <div class="icon_1_2 ok">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <p>Los cambios se han guardado correctamente.</p>
+  </div>
+</div>
+

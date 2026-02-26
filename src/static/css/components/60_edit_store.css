@@ -1,0 +1,268 @@
+/* Componente utilizado en edit_store.html de seller-pages */
+
+
+.seller-form-e {
+  max-width:400px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: var(--main-font);
+  margin-top: 80px;
+}
+
+.seller__form-e-body {
+  background-image: url("/src/static/assets/cafe-cultivos.jpg");
+  background-size: cover;         /* ajusta la imagen al tamaño de la pantalla */
+  background-repeat: no-repeat;   /* evita que se repita */
+  background-position: center;    /* centra la imagen */
+  height: 100vh;                  /* asegura que cubra toda la ventana */
+}
+
+.seller-form-e__title {
+  font-size: var(--fs-md);
+  margin-bottom: 10px;
+  color: var(--black);
+  text-align: center;
+}
+
+.seller-form-e__description {
+  text-align: center;
+  color: var(--gray-400);
+  margin-bottom: 20px;
+}
+
+.seller-form-e__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+}
+
+.seller-form-e__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.seller-form-e__label {
+  font-size: var(--fs-xxxs);
+  font-weight: var(--font-bold);
+  margin-bottom: 6px;
+  color: var(--gray-800);
+}
+
+.seller-form-e__input {
+  padding: 1.6rem;
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+  height: 56px;
+  width: 320;
+  max-width: 400px;
+  font-size: var(--fs-xs);
+  
+}
+
+.seller-form-e__input:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.seller-form-e__textarea {
+  resize: none;
+  font-size: var(--fs-xs);
+  font-family: var(--main-font);
+  height: 56px;
+}
+
+.seller-form-e__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.seller-form-e__button {
+  background-color: var(--primary-500);
+  color: var(--white);
+  padding: 1.6rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: var(--font-bold);
+  font-size: var(--fs-xs);
+  transition: background-color 0.3s;
+  border: none;           /* quita el borde */
+  outline: none;          /* quita el contorno al enfocarse */
+  box-shadow: none;       /* elimina sombras internas */
+  cursor: pointer;        /* mantiene el cursor de botón */
+}
+
+.seller-form-e__button:hover {
+  background-color: var(--primary-400);
+}
+
+.seller-form-e__checkbox-group {
+  display: flex;
+  flex-direction: column; /* coloca los elementos en columna */
+  gap: 8px; /*  espacio entre cada checkbox */
+  margin-top: 8px;
+}
+
+/*
+
+ MODAL ***************************************************************************************
+*/
+
+.seller-form-e__modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.seller-form-e__modal.show {
+  display: flex;
+}
+
+.seller-form-e__modal-content {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+}
+
+.seller-form-e__modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+}
+
+.seller-form-e__modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+}
+
+.seller-form-e__modal-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.seller-form-e__modal-btn--cancel {
+  background: var(--gray-200);
+  color: var(--gray-600);
+
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.seller-form-e__modal-btn--cancel:hover {
+  background-color: var(--gray-200);
+}
+
+.seller-form-e__modal-btn--accept {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+
+  padding: var(--btn-padding-y, 0.5rem) var(--btn-padding-x, 1rem);
+  margin: var(--btn-margin, 0.5rem auto);
+
+  font-size: var(--btn-font-size, 0.875rem);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 0.5rem);
+
+  min-height: var(--btn-min-height, 36px);
+  min-width: var(--btn-min-width, 56px);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 0.5rem);
+
+  cursor: pointer;
+  user-select: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.seller-form-e__modal-btn--accept:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2)); 
+}
+
+.seller-form-e__modal-btn--accept:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98); /* pequeño feedback */
+}
+
+.seller-form-e__modal-btn--accept:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.seller-form-e__modal-icon {
+  font-size: 40px;
+  color: var(--primary-600);
+  margin-bottom: 10px;
+}
+
+
+/* Breakpoints ********************************************************************************************************************************************************* */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .seller-form-e{
+    margin-top: 16.8rem;
+    width: 98vw;
+    padding: 1.6rem;
+  }
+}
+
+/* alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/
