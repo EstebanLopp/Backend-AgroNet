@@ -1,52 +1,75 @@
-<form class="register-form">
+<form class="register-form" method="post" action="{% url 'signup' %}">
+  {% csrf_token %}
 
-  <!-- Flecha de retroceso BEM -->
+  <!-- Flecha de retroceso -->
   <div class="register-form__back">
-    <a href="/login/" class="register-form__back-button">
+    <a href="{% url 'login' %}" class="register-form__back-button">
       <i class="fa-solid fa-arrow-left register-form__back-icon"></i>
     </a>
   </div>
 
-
   <h2 class="register-form__title">Crear una cuenta</h2>
   <p class="register-form__subtitle">Fácil y Rápido</p>
   <hr class="register-form__divider">
+  {% if form.errors %}
+    <div class="register-form__errors">
+      {{ form.errors }}
+    </div>
+  {% endif %}
 
-  <!-- Paso 1: Datos personales -->
+  <!-- Errores del form -->
+  {% if form.errors %}
+    <div class="register-form__errors">
+      {{ form.errors }}
+    </div>
+  {% endif %}
+
+  <!-- Paso 1: Datos personales (UI, no se guarda aún) -->
   <div class="register-form__step register-form__step--active">
-      
     <p class="register-form__legend">Datos personales</p>
+
     <div class="register-form__row">
       <div class="register-form__field">
         <label class="register-form__hint">Nombre</label>
-        <input class="register-form__input" type="text" placeholder="Ingresa tu nombre" required>
+        <input class="register-form__input" type="text" placeholder="Ingresa tu nombre">
       </div>
+
       <div class="register-form__field">
         <label class="register-form__hint">Apellido</label>
-        <input class="register-form__input" type="text" placeholder="Ingresa tu apellido" required>
+        <input class="register-form__input" type="text" placeholder="Ingresa tu apellido">
       </div>
+
+      <!-- ✅ Este SÍ se usa por Django -->
       <div class="register-form__field">
         <label class="register-form__hint">Nombre de usuario</label>
-        <input class="register-form__input" type="text" placeholder="Introduce tu nombre de usuario" required>
+        <input class="register-form__input" type="text" name="username"
+               placeholder="Introduce tu nombre de usuario" required
+               value="{{ form.username.value|default_if_none:'' }}">
       </div>
     </div>
 
     <div class="register-form__row">
       <div class="register-form__field">
         <label class="register-form__hint">Número de teléfono</label>
-        <input class="register-form__input" type="text" placeholder="Ingrese un número de teléfono" required>
+        <input class="register-form__input" type="text" placeholder="Ingrese un número de teléfono">
       </div>
+
+      <!-- ✅ Este SÍ se usa por Django -->
       <div class="register-form__field">
         <label class="register-form__hint">Correo electrónico</label>
-        <input class="register-form__input" type="email" placeholder="Ingrese un correo electrónico" required>
+        <input class="register-form__input" type="email" name="email"
+               placeholder="Ingrese un correo electrónico" required
+               value="{{ form.email.value|default_if_none:'' }}">
       </div>
+
       <div class="register-form__field">
         <label class="register-form__hint">Tipo de Documento</label>
         <select class="register-form__select"><option>C.C</option></select>
       </div>
+
       <div class="register-form__field">
         <label class="register-form__hint">Numero de Documento</label>
-        <input class="register-form__input" type="text" placeholder="Ingrese su numero de documento" required>
+        <input class="register-form__input" type="text" placeholder="Ingrese su numero de documento">
       </div>
     </div>
 
@@ -55,7 +78,7 @@
     </div>
   </div>
 
-  <!-- Paso 2: Nacimiento -->
+  <!-- Paso 2: Nacimiento (UI) -->
   <div class="register-form__step">
     <h3 class="register-form__legend">Fecha de Nacimiento</h3>
     <div class="register-form__row">
@@ -79,14 +102,13 @@
     </div>
   </div>
 
-
-  <!-- Paso 2: Dirección -->
+  <!-- Paso 3: Dirección (UI) -->
   <div class="register-form__step">
     <h3 class="register-form__legend">Dirección</h3>
     <div class="register-form__row">
       <div class="register-form__field">
         <label class="register-form__hint">Dirección</label>
-        <input class="register-form__input" type="text" placeholder="Dirección" required>
+        <input class="register-form__input" type="text" placeholder="Dirección">
       </div>
       <div class="register-form__field">
         <label class="register-form__hint">Departamento</label>
@@ -104,17 +126,19 @@
     </div>
   </div>
 
-  <!-- Paso 3: Contraseña -->
+  <!-- Paso 4: Contraseña (✅ estas dos SÍ se usan) -->
   <div class="register-form__step">
     <h3 class="register-form__legend">Establecer contraseña</h3>
     <div class="register-form__row">
       <div class="register-form__field">
         <label class="register-form__hint">Contraseña</label>
-        <input class="register-form__input" type="password" placeholder="Ingrese una contraseña" required>
+        <input class="register-form__input" type="password" name="password1"
+               placeholder="Ingrese una contraseña" required>
       </div>
       <div class="register-form__field">
         <label class="register-form__hint">Repita la contraseña</label>
-        <input class="register-form__input" type="password" placeholder="Repita la contraseña" required>
+        <input class="register-form__input" type="password" name="password2"
+               placeholder="Repita la contraseña" required>
       </div>
     </div>
 
@@ -124,7 +148,7 @@
     </div>
   </div>
 
-  <a href="/frontend/public/views/pages-general/login.html" class="register-form__login-link">¿Ya tienes una cuenta?</a>
+  <a href="{% url 'login' %}" class="register-form__login-link">¿Ya tienes una cuenta?</a>
 </form>
 
 <!-- Modal de éxito -->

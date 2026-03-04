@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}AgroNet - Catálogo{% endblock %}
+{% block body_class %}body-catalog{% endblock %}
+
+{% block content %}
+
+{% include "components/3_catalog-header.html" %}
+
+<section class="products" id="products-container">
+  {% for product in page_obj %}
+  <div class="product1">
+
+    <a href="{% url 'product_detail' product.slug %}" class="product__link">
+      <img src="{% static 'assets/banano.webp' %}" alt="{{ product.name }}" class="product__image">
+    </a>
+
+    <div class="product__info">
+      <div class="product__details">
+        <p class="product__price">${{ product.price }}</p>
+
+        <a href="{% url 'product_detail' product.slug %}" class="product__link">
+          <h3 class="product__name">{{ product.name }}</h3>
+        </a>
+
+        <p class="product__category">{{ product.category.name }}</p>
+      </div>
+
+      <form action="{% url 'cart_add' product.id %}" method="post">
+        {% csrf_token %}
+        <button class="product__btn-add" type="submit" {% if product.stock == 0 %}disabled{% endif %}>
+          <i class="fas fa-shopping-cart product__icon-cart"></i>
+          {% if product.stock == 0 %}Agotado{% else %}Añadir{% endif %}
+        </button>
+      </form>
+    </div>
+
+  </div>
+{% empty %}
+  <p>No hay productos disponibles.</p>
+{% endfor %}
+</section>
+
+<div class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">Anterior</a>
+  {% endif %}
+
+  <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}">Siguiente</a>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+  <!-- OJO: ya NO uses 10_product-card.js porque eso era JSON estático -->
+  <script src="{% static 'js/components/3_catalog-header.js' %}" defer></script>
+{% endblock %}
