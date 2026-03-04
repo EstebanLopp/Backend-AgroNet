@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Carrito{% endblock %}
+
+{% block content %}
+
+<h2>Tu Carrito</h2>
+
+{% if cart|length > 0 %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>
+                <form action="{% url 'cart_update' item.product.id %}" method="post">
+                    {% csrf_token %}
+                    <input 
+                        type="number" 
+                        name="quantity" 
+                        value="{{ item.quantity }}" 
+                        min="1" 
+                        max="{{ item.product.stock }}"
+                    >
+                    <button type="submit">Actualizar</button>
+                </form>
+            </td>
+            <td>${{ item.price }}</td>
+            <td>${{ item.total_price }}</td>
+            <td>
+                <form action="{% url 'cart_remove' item.product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p><strong>Total General: ${{ cart.get_total_price }}</strong></p>
+
+<a href="{% url 'orders:checkout' %}" class="btn">
+    Finalizar compra
+</a>
+
+{% else %}
+    <p>Tu carrito está vacío.</p>
+{% endif %}
+
+{% endblock %}

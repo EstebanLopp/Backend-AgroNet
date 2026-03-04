@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Mis pedidos{% endblock %}
+
+{% block content %}
+<section class="page-general">
+  <div class="container">
+    <h2>Mis pedidos</h2>
+
+    {% if orders %}
+      <ul>
+        {% for order in orders %}
+          <li>
+            <a href="{% url 'orders:order_detail' order.id %}">
+              Pedido #{{ order.id }} - {{ order.created|date:"Y-m-d H:i" }} - Total: ${{ order.get_total_price }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No tienes pedidos aún.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

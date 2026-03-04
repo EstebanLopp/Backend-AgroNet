@@ -9,14 +9,13 @@
     <!-- Info a la derecha -->
     <div class="product-detail__info">
       <div class="product-detail__header">
-        <h2 class="product-detail__title">Manzana Gala</h2>
-        <p class="product-detail__category">Fruta</p>
+        <h2 class="product-detail__title">{{ product.name }}</h2>
+          <p class="product-detail__category">{{ product.category.name }}</p>
       </div>
 
       <div class="product-detail__description-box">
         <p class="product-detail__description">
-          Una manzana fresca y jugosa, ideal para consumir al natural o en preparaciones dulces.
-          Cultivada en Colombia con altos estándares de calidad.
+          {{ product.description }}
         </p>
       </div>
 
@@ -26,7 +25,7 @@
         <ul class="product-detail__info-list">
           <li><strong>Tipo de envio:</strong> Domicilio</li>
           <li><strong>Unidad de peso:</strong> Kilogramo</li>
-          <li><strong>Cantidad disponible:</strong> 150 Kg</li>
+          <li><strong>Cantidad disponible:</strong> {{ product.stock }}</li>
           <li><strong>Peso:</strong> 200gr</li>
           <li><strong>Productor:</strong> Finca El Paraíso</li>
           <li><strong>Entrega estimada:</strong> 24 horas dentro del municipio</li>
@@ -48,10 +47,13 @@
       </footer>
 
       <div class="product-detail__purchase">
-        <p class="product-detail__price">$5.000 Kg</p>
-        <button class="product-detail__button">
-          <i class="fa-solid fa-cart-shopping"></i> Añadir
-        </button>
+        <p class="product-detail__price">${{ product.price }}</p>
+        <form action="{% url 'cart_add' product.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" {% if product.stock == 0 %}disabled{% endif %}>
+            {% if product.stock == 0 %}Sin stock{% else %}Añadir{% endif %}
+          </button>
+        </form>
       </div>
     </div>
   </div>
