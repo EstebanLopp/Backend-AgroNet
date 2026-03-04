@@ -17,6 +17,16 @@
         {% include "components/20_navbar_general.html" %}
     </header>
 
+    {% if messages %}
+    <div class="flash-messages">
+        {% for message in messages %}
+        <div class="flash flash--{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <main>
         {% block content %}
         {% endblock %}
