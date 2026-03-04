@@ -1,0 +1,22 @@
+[
+{
+  "model": "orders.order",
+  "pk": 17,
+  "fields": {
+    "user": 1,
+    "created": "2026-03-04T03:58:15.450Z",
+    "updated": "2026-03-04T03:58:15.450Z",
+    "paid": false
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 25,
+  "fields": {
+    "order": 17,
+    "product": 9,
+    "price": "3800.00",
+    "quantity": 10
+  }
+}
+]

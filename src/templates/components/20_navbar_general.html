@@ -5,9 +5,9 @@
     
     <div class="navbar__general-brand">
       <img 
-      src="{% static 'assets/logo-light-transparent.png' %}" 
-      alt="Logo AgroNet" 
-      class="navbar__general-logo "
+        src="{% static 'assets/logo-light-transparent.png' %}" 
+        alt="Logo AgroNet" 
+        class="navbar__general-logo"
       >
     </div>
 
@@ -17,7 +17,7 @@
       </li>
 
       <li class="navbar__general-item">
-        <a href="{% url 'catalog' %}" class="navbar__general-link">Catálogo</a>
+        <a href="{% url 'product_list' %}" class="navbar__general-link">Catálogo</a>
       </li>
 
       <li class="navbar__general-item">
@@ -25,16 +25,36 @@
       </li>
 
       <li class="navbar__general-item">
-        <a href="{% url 'cart-general' %}" class="navbar__general-link navbar__general-link--icon">
+        <a href="{% url 'cart_detail' %}" class="navbar__general-link navbar__general-link--icon">
           <i class="fa-solid fa-cart-shopping"></i>
+          Carrito ({{ cart|length }})
         </a>
       </li>
 
       <li class="navbar__general-item">
-        <a href="{% url 'login' %}" class="navbar__general-link navbar__general-link--icon">
-          <i class="fa-solid fa-user"></i>
-        </a>
+          {% if user.is_authenticated %}
+              <span class="navbar__general-link">
+                  Hola, {{ user.username }}
+              </span>
+
+              <a href="{% url 'orders:my_orders' %}" class="navbar__general-link">
+                Mis pedidos
+              </a>
+
+              <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="navbar__general-link" 
+                          style="background:none;border:none;cursor:pointer;">
+                      Cerrar sesión
+                  </button>
+              </form>
+          {% else %}
+              <a href="{% url 'login' %}" class="navbar__general-link navbar__general-link--icon">
+                  <i class="fa-solid fa-user"></i>
+              </a>
+          {% endif %}
       </li>
+
     </ul>
   </nav>
 </header>
