@@ -16,11 +16,13 @@
 }
 
 .seller__form-body {
-  background-image: url("/src/static/assets/cafe-cultivos.jpg");
-  background-size: cover;         /* ajusta la imagen al tamaño de la pantalla */
-  background-repeat: no-repeat;   /* evita que se repita */
-  background-position: center;    /* centra la imagen */
-  height: 100vh;                  /* asegura que cubra toda la ventana */
+  background-image: url("/static/assets/cafe-cultivos.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;   /*cambia height por min-height */
+  border: 5px solid red;
+
 }
 
 .seller-form__title {

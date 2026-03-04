@@ -1,34 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vender</title>
-    <link rel="stylesheet" href='/src/static/css/main.css'>
+{% extends "base.html" %}
+{% load static %}
 
 
-    <script src="/src/static/js/components/5_navbar_seller.js"></script>
-    <script src="/src/static/js/components/36_seller_form.js"></script>
-    <script src="/src/static/js/components/1_footer.js"></script>
-    
-</head>
+{% block title %}Resumen de compra{% endblock %}
 
-<body class="seller__form-body">
+{% block body_class %}body-seller_form{% endblock %}
 
-  <header class="head">
-    <div class="navbar-container"></div>
-  </header>
+{% block content %}
+<div class="seller__form-body">
+  {% include "components/36_seller_form.html" %}
+</div>
 
+{% endblock %}
 
-  <div class="seller-form-container"></div>
-
-
-  <footer class="footer">
-    <div class="footer-container"></div>
-  </footer>
-
-
-</body>
-</html>
-
+{% block scripts %}
+{% endblock %}

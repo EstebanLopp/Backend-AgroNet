@@ -1,49 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    
-  <meta charset="UTF-8">
-  <title>AgroNet</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Archivo de estilos -->
-  <link rel="stylesheet" href='/src/static/css/main.css'>
+{% extends "base.html" %}
+{% load static %}
 
 
-<!--Enlaces de los componentes en JavaScript-->
-  <script src="/src/static/js/components/5_navbar_seller.js" defer></script>
-  <script src="/src/static/js/components/12_banner.js" defer></script>
-  <script src="/src/static/js/components/13_products-index.js" defer></script>
-  <script src="/src/static/js/components/14_category-index.js" defer></script>
-  <script src="/src/static/js/components/1_footer.js" defer></script>
-  
-</head>
+{% block title %}AgroNet{% endblock %}
+
+{% block body_class %}body-index-customer{% endblock %}
+
+{% block content %}
+    {% include "components/12_banner.html" %}
+    {% include "components/13_products-index.html" %}
+    {% include "components/14_category-index.html" %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/components/12_banner.js' %}" defer></script>
+{% endblock %}
 
 
-<body class="body-index" >
-    
-    <header class="head">
-        <div class="navbar-container"></div>
-    </header>
-
-    <main>
-        <div class="banner-container"></div>
-    </main>
-
-    <main>
-        <div class="products-index"></div>
-    </main>
-
-    <main>
-        <div class="category-index"></div>
-    </main>
-
-
-    <footer class="footer">
-        <div class="footer-container"></div>
-    </footer>
-
-    
-</body>
-</html>

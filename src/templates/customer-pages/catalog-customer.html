@@ -1,63 +1,38 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgroNet - Catálogo</title>
-    
-    <!-- Archivo de estilos -->
-    <link rel="stylesheet" href="/src/static/css/main.css">
+{% extends "base.html" %}
+{% load static %}
 
+{% block title %}AgroNet - Catálogo{% endblock %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% block body_class %}body-catalog-cutomer{% endblock %}
 
+{% block content %}
 
-    <!-- Scripts navbar -->
-    <script src="/src/static/js/components/5_navbar_seller.js" defer></script>
+<section class="catalog-header">
+    <h2 class="catalog-header__title">¡Explora todos nuestros productos!</h2>
 
-    <!-- Scripts footer -->
-    <script src="/src/static/js/components/1_footer.js" defer></script>
+    <div class="catalog-header__filters">
+        <input 
+            type="text" 
+            class="catalog-header__search" 
+            placeholder="Buscar productos" 
+        />
+        <div class="catalog-header-container"></div>
+    </div>
+</section>
 
-    <!-- Script que insertará las tarjetas -->
-    <script defer src="/src/static/js/components/10_product-card.js"></script>
+<hr class="catalog-header__divider">
 
-    <!-- Lista desplegable -->
-    <script defer src="/src/static/js/components/3_catalog-header.js"></script>
-</head>
-<body class="body-catalog">
+<section class="products" id="products-container">
+</section>
 
-    <!-- Navbar -->
-    <header class="head">
-        <div class="navbar-container"></div>
-    </header>
-    
+{% endblock %}
 
-    <!-- Contenido de la página -->
-    <section class="catalog-header">
-        <h2 class="catalog-header__title">¡Explora todos nuestros productos!</h2>
+{% block scripts %}
 
+<!-- Script tarjetas -->
+<script src="{% static 'js/components/10_product-card.js' %}" defer></script>
 
-        <div class="catalog-header__filters">
-            <input 
-                type="text" 
-                class="catalog-header__search" 
-                placeholder="Buscar productos"> </input>
+<!-- Lista desplegable -->
+<script src="{% static 'js/components/3_catalog-header.js' %}" defer></script>
 
-            <div class="catalog-header-container"></div>
-        </div>
-    </section>
-    <hr class="catalog-header__divider">
-
-        <!-- Contenedor de productos -->
-        <section class="products" id="products-container">
-            <!-- Aquí se insertarán dinámicamente las tarjetas -->
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container"></div>
-    </footer>
-
-</body>
-</html>
+{% endblock %}

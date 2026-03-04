@@ -1,4 +1,31 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}AgroNet{% endblock %}
+
+{% block body_class %}body-edit{% endblock %}
+
+{% block content %}
+    
+<!-- Contenido de la pagina -->
+<div class="register-container">
+    {% include "components/6_edit_profile.html" %}
+</div> 
+
+{% endblock %}    
+
+{% block scripts %}  
+
+<script src="{% static 'js/components/6_edit_profile.js' %}" defer></script>
+
+{% endblock %}
+    
+    
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     
@@ -8,9 +35,8 @@
     <link rel="stylesheet" href='/src/static/css/main.css'>
     
 
-    <!-- Scripts navbar -->
     <script src="/src/static/js/components/5_navbar_seller.js" defer></script>
-    <!-- Scripts footer -->
+
     <script src="/src/static/js/components/1_footer.js" defer></script>
     <script src="/src/static/js/components/6_edit_profile.js" defer></script>
     
@@ -20,18 +46,17 @@
 
 <body class="body-edit">
 
-    <!-- Navbar -->
+
     <header class="head">
         <div class="navbar-container"></div>
     </header>
 
-    <!-- Contenido de la pagina (6_edit_profile) -->
+
     <div class="register-container"></div>
-    
-    <!-- footer -->
+
     <footer class="footer">
         <div class="footer-container"></div>
     </footer>
 
 </body>
-</html>
+</html> -->

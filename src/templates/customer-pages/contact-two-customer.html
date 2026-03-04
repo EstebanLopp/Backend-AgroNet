@@ -1,4 +1,32 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Contacto{% endblock %}
+
+{% block body_class %}body-contact-two-customer{% endblock %}
+
+{% block content %}
+    
+
+<div class="contact-two-container">
+    {% include "components/15_contact-two.html" %}
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap">
+</script>
+
+<script src="{% static 'js/components/15_contact-two.js' %}" defer></script>
+
+{% endblock %}
+
+
+<!-- <!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -6,11 +34,11 @@
   <title>Contacto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Archivo de estilos -->
+
   <link rel="stylesheet" href='/src/static/css/main.css'>
 
 
-    <!--Enlaces de los componentes en JavaScript-->
+
   <script src="/src/static/js/components/5_navbar_seller.js" defer></script>
   <script src="/src/static/js/components/15_contact-two.js" defer></script>
   <script src="/src/static/js/components/1_footer.js" defer></script>
@@ -40,4 +68,4 @@
 
     
 </body>
-</html>
+</html> -->

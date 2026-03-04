@@ -1,4 +1,41 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Mi perfil{% endblock %}
+
+{% block body_class %}body-my_profile{% endblock %}
+
+<body class="body-profile">
+{% block content %}
+<section class="profile">
+        {% include "components/29_sidebar_profile.html" %}
+        {% include "components/31_my_profile.html" %}
+</section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/components/29_sidebar_profile.js' %}" defer></script>
+{% endblock %}
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+</body>
+</html>
+    
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="es">
 <head>
     
@@ -8,10 +45,9 @@
     <link rel="stylesheet" href='/src/static/css/main.css'>
     
 
-    <!-- Scripts navbar -->
     <script src="/src/static/js/components/5_navbar_seller.js" defer></script>
 
-    <!-- Scripts footer -->
+
     <script src="/src/static/js/components/1_footer.js" defer></script>
     <script src="/src/static/js/components/29_sidebar_profile.js" defer></script>
     <script src="/src/static/js/components/31_my_profile.js" defer></script>
@@ -22,22 +58,22 @@
 <body class="body-profile">
 
 
-    <!-- Navbar -->
+
     <header class="head">
         <div class="navbar-container"></div>
     </header>
 
     <section class="profile">
-    <!-- Contenido de la pagina -->
+
         <div class="sidebar-container"></div>
 
         <div class="profile-container"></div>
     </section>   
     
-    <!-- footer -->
+
     <footer class="footer">
         <div class="footer-container"></div>
     </footer>
 
 </body>
-</html>
+</html> -->

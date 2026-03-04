@@ -9,15 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const container = document.querySelector(".checkout-summary-customer");
 
-  if (container) {
-    fetch("/src/templates/components/80_purchase_summary.html")
-      .then(res => res.text())
-      .then(html => {
-        container.innerHTML = html;
-        renderSummary(cartData);
-        initPopups();
-      });
-  }
 
   function renderSummary(data) {
     const vendorsContainer = document.querySelector(".checkout-summary__vendors--js");

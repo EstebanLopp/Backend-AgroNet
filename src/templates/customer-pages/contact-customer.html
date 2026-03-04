@@ -1,4 +1,29 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block body_class %}body-contact-customer{% endblock %}
+
+{% block content %}
+
+<div class="contact-container">
+{% include "components/28_personaldetailstwo.html" %}
+{% include "components/27_message-customer.html" %}
+</div>
+ <div id="modal-contact" class="modal-contact">
+    {% include "components/52_popup_contact.html" %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'js/components/27_message-customer.js' %}" defer></script>
+
+{% endblock %}
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     
@@ -9,9 +34,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
 
-    <!-- Scripts navbar -->
     <script src="/src/static/js/components/5_navbar_seller.js" defer></script>
-    <!-- Scripts footer -->
     <script src="/src/static/js/components/1_footer.js" defer></script>
     <script src="/src/static/js/components/28_personaldetailstwo.js" defer></script>
     <script src="/src/static/js/components/27_message-customer.js" defer></script>
@@ -21,19 +44,19 @@
 </head>
 <body class="body-contact">
 
-    <!-- Navbar -->
+
     <header class="head">
         <div class="navbar-container"></div>
     </header>
 
-    <!-- Contenido de la pagina -->
+
     <div class="contacttwo-container"></div>
         
     
-    <!-- footer -->
+
     <footer class="footer">
         <div class="footer-container"></div>
     </footer>
 
 </body>
-</html>
+</html> -->
