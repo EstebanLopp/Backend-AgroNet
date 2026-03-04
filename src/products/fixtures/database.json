@@ -1,0 +1,202 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Frutas",
+    "slug": "frutas"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Verduras",
+    "slug": "verduras"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Granos",
+    "slug": "granos"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Animal",
+    "slug": "animal"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Tomate Cherry",
+    "slug": "tomate-cherry",
+    "description": "Tomate fresco ideal para ensaladas",
+    "price": "3500.00",
+    "stock": 50,
+    "available": true,
+    "created_at": "2026-03-03T02:44:09.737Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "name": "Mango Tommy",
+    "slug": "mango-tommy",
+    "description": "Mango dulce de excelente calidad",
+    "price": "4200.00",
+    "stock": 30,
+    "available": true,
+    "created_at": "2026-03-03T02:47:02.864Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "name": "Fresa Organica",
+    "slug": "fresa-organica",
+    "description": "Fresas cultivadas sin químicos",
+    "price": "5000.00",
+    "stock": 25,
+    "available": true,
+    "created_at": "2026-03-03T02:50:00.478Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "category": 2,
+    "name": "Lechuga Crespa",
+    "slug": "lechuga-crespa",
+    "description": "Lechuga verde fresca",
+    "price": "2000.00",
+    "stock": 40,
+    "available": true,
+    "created_at": "2026-03-03T02:57:29.540Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "category": 2,
+    "name": "Zanahoria Premium",
+    "slug": "zanahoria-premium",
+    "description": "Zanahoria de la mejor calidad",
+    "price": "1800.00",
+    "stock": 60,
+    "available": true,
+    "created_at": "2026-03-03T02:58:08.399Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "category": 2,
+    "name": "Espinaca Fresca",
+    "slug": "espinaca-fresca",
+    "description": "Espinaca fresca sin quimicos",
+    "price": "2200.00",
+    "stock": 35,
+    "available": true,
+    "created_at": "2026-03-03T02:58:54.697Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "category": 3,
+    "name": "Arroz Blanco",
+    "slug": "arroz-blanco",
+    "description": "Arroz elegido cuidadosamente para mejor calidad",
+    "price": "4500.00",
+    "stock": 99,
+    "available": true,
+    "created_at": "2026-03-03T02:59:36.579Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "category": 3,
+    "name": "Maiz Amarillo",
+    "slug": "maiz-amarillo",
+    "description": "Maíz de los mejores campos de Colombia",
+    "price": "3000.00",
+    "stock": 79,
+    "available": true,
+    "created_at": "2026-03-03T03:00:27.151Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "category": 3,
+    "name": "Lenteja Roja",
+    "slug": "lenteja-roja",
+    "description": "Lentejas saludables con proteína",
+    "price": "3800.00",
+    "stock": 40,
+    "available": true,
+    "created_at": "2026-03-03T03:01:14.441Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "category": 4,
+    "name": "Huevo Campesino",
+    "slug": "huevo-campesino",
+    "description": "Huevos recolectados de las mejores gallinas",
+    "price": "12000.00",
+    "stock": 60,
+    "available": true,
+    "created_at": "2026-03-03T03:02:01.261Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "category": 4,
+    "name": "Leche Entera",
+    "slug": "leche-entera",
+    "description": "Leche recolectada de las mejores vacas",
+    "price": "4000.00",
+    "stock": 0,
+    "available": true,
+    "created_at": "2026-03-03T03:03:21.553Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "category": 4,
+    "name": "Queso Fresco",
+    "slug": "queso-fresco",
+    "description": "Queso echo con la mejor leche",
+    "price": "8500.00",
+    "stock": 43,
+    "available": true,
+    "created_at": "2026-03-03T03:04:26.256Z"
+  }
+}
+]
