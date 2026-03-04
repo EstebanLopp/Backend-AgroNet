@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const inputs = steps[currentStep].querySelectorAll("input, select");
 
       for (let input of inputs) {
+        // Valida solo los campos visibles / del paso actual
         if (!input.checkValidity()) {
           input.reportValidity();
           return;
@@ -49,26 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   );
 
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-
-    const modal = heroElement.querySelector(".register-form__success-modal");
-    const closeBtn = modal.querySelector(".register-form__success-modal-close");
-
-    modal.classList.add("show");
-
-    function closeModal() {
-      modal.classList.remove("show");
-      window.location.href = "/login/";
-    }
-
-    closeBtn.addEventListener("click", closeModal);
-
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
+  // ✅ IMPORTANTE:
+  // Ya NO hacemos preventDefault.
+  // Django recibirá el POST y manejará creación + redirect.
+  form.addEventListener("submit", () => {
+    // Opcional: desactivar el botón para evitar doble click
+    const submitBtn = form.querySelector(".register-form__button--submit");
+    if (submitBtn) submitBtn.disabled = true;
   });
 
 });
