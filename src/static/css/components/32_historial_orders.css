@@ -4,6 +4,24 @@
   background-color: var(--gray-50);
 }
 
+.orders__container{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.orders-page{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.orders-page__container{
+  width: min(1100px, 100%);
+}
+
 .myorders{
   display: flex;
   flex-direction: row;
@@ -397,3 +415,22 @@
 
 }
 /* alias 2xl: 1536px se usa normalmente para desktops grandes*/
+
+/* ===== Fix Mis pedidos (sin sidebar) ===== */
+.body-orders .orders-section{
+  width: 100%;
+}
+
+.body-orders .orders__list{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.4rem;
+}
+
+/* responsive */
+@media (max-width: 1023px){
+  .body-orders .orders__list{
+    grid-template-columns: 1fr;
+  }
+}

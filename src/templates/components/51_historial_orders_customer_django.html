@@ -1,0 +1,33 @@
+<header class="header-section">
+  <h2 class="header-section__title">Historial de pedidos</h2>
+</header>
+
+<section class="orders-section">
+  <div class="orders__list">
+    {% if orders %}
+      {% for order in orders %}
+        <article class="orders__article">
+          <div class="orders__article-info">
+            <h3 class="orders__article-id">Pedido #{{ order.id }}</h3>
+
+            {# No tienes “status” en el modelo, así que lo derivamos de paid #}
+            {% if order.paid %}
+              <span class="orders__article-status orders__article-status--enviado">Confirmado</span>
+            {% else %}
+              <span class="orders__article-status orders__article-status--pendiente">Pendiente</span>
+            {% endif %}
+
+            <small>{{ order.created|date:"Y-m-d H:i" }}</small>
+            <p><strong>Total:</strong> ${{ order.get_total_price }}</p>
+          </div>
+
+          <a href="{% url 'orders:order_detail' order.id %}" class="orders__article-button">
+            Ver más
+          </a>
+        </article>
+      {% endfor %}
+    {% else %}
+      <p>No tienes pedidos aún.</p>
+    {% endif %}
+  </div>
+</section>

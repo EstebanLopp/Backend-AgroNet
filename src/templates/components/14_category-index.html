@@ -6,32 +6,29 @@
     <p>¡Compra los productos que más te interesen!</p>
   </div>
 
-
   <div class="category-index__grid">
+    {% for category in home_categories %}
+      <div
+        class="category-index__item"
+        onclick="window.location.href='{% url 'products_by_category' category.slug %}'"
+        style="cursor:pointer;"
+      >
+        {% with slug=category.slug|lower name=category.name|lower %}
+          {% if "animal" in slug or "animal" in name %}
+            <img src="{% static 'assets/huevos-transparentes.png' %}" alt="{{ category.name }}">
+          {% elif "grano" in slug or "grano" in name %}
+            <img src="{% static 'assets/granos-transparentes.png' %}" alt="{{ category.name }}">
+          {% elif "verdura" in slug or "verdura" in name %}
+            <img src="{% static 'assets/tomates-transparentes.png' %}" alt="{{ category.name }}">
+          {% elif "fruta" in slug or "fruta" in name %}
+            <img src="{% static 'assets/frutas-transparentes.png' %}" alt="{{ category.name }}">
+          {% else %}
+            <img src="{% static 'assets/frutas-transparentes.png' %}" alt="{{ category.name }}">
+          {% endif %}
+        {% endwith %}
 
-
-    <!-- Tarjeta Animal -->
-    <div class="category-index__item">
-      <img src="{% static 'assets/huevos-transparentes.png' %}" alt="Animal">
-      <button class="category-index__btn">Animal</button>
-    </div>
-
-    <!-- Tarjeta Granos -->
-    <div class="category-index__item">
-      <img src="{% static 'assets/granos-transparentes.png' %}" alt="Granos">
-      <button class="category-index__btn">Granos</button>
-    </div>
-
-    <!-- Tarjeta Verduras -->
-    <div class="category-index__item">
-      <img src="{% static 'assets/tomates-transparentes.png' %}" alt="Verduras">
-      <button class="category-index__btn">Verduras</button>
-    </div>
-
-    <!-- Tarjeta Frutas -->
-    <div class="category-index__item">
-      <img src="{% static 'assets/frutas-transparentes.png' %}" alt="Frutas">
-      <button class="category-index__btn">Frutas</button>
-    </div>
+        <button class="category-index__btn" type="button">{{ category.name }}</button>
+      </div>
+    {% endfor %}
   </div>
 </section>

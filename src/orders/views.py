@@ -58,4 +58,17 @@ def order_detail(request, order_id):
         id=order_id,
         user=request.user
     )
-    return render(request, "orders/order_detail.html", {"order": order})
+
+    other_orders = (
+        Order.objects
+        .filter(user=request.user)
+        .exclude(id=order.id)
+        .only("id", "created", "paid")
+        [:3]
+    )
+
+    return render(
+        request,
+        "orders/order_detail.html",
+        {"order": order, "other_orders": other_orders}
+    )

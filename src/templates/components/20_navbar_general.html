@@ -33,27 +33,36 @@
 
       <li class="navbar__general-item">
           {% if user.is_authenticated %}
-              <span class="navbar__general-link">
-                  Hola, {{ user.username }}
-              </span>
+            <details class="navbar__profile">
+              <summary class="navbar__general-link navbar__general-link--icon" style="list-style:none; cursor:pointer;">
+                <i class="fa-solid fa-user"></i>
+                {{ user.username }}
+              </summary>
 
-              <a href="{% url 'orders:my_orders' %}" class="navbar__general-link">
-                Mis pedidos
-              </a>
+              <div class="navbar__profile-menu">
+                <a href="{% url 'customer_dashboard' %}" class="navbar__profile-item">
+                  <i class="fa-solid fa-user-gear"></i> Mi cuenta
+                </a>
 
-              <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                <a href="{% url 'orders:my_orders' %}" class="navbar__profile-item">
+                  <i class="fa-solid fa-receipt"></i> Mis pedidos
+                </a>
+
+                <form action="{% url 'logout' %}" method="post" class="navbar__profile-item" style="margin:0;">
                   {% csrf_token %}
-                  <button type="submit" class="navbar__general-link" 
-                          style="background:none;border:none;cursor:pointer;">
-                      Cerrar sesión
+                  <button type="submit" class="navbar__profile-logout">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
                   </button>
-              </form>
+                </form>
+              </div>
+            </details>
           {% else %}
-              <a href="{% url 'login' %}" class="navbar__general-link navbar__general-link--icon">
-                  <i class="fa-solid fa-user"></i>
-              </a>
+            <a href="{% url 'login' %}" class="navbar__general-link navbar__general-link--icon">
+              <i class="fa-solid fa-user"></i>
+              Iniciar sesión
+            </a>
           {% endif %}
-      </li>
+        </li>
 
     </ul>
   </nav>

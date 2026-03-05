@@ -13,7 +13,11 @@
 <section class="products">
   {% for p in related_products %}
     <a href="{% url 'product_detail' p.slug %}" class="product1">
-      <img src="{% static 'assets/manzanagala.jpg' %}" class="product1__image" alt="{{ p.name }}">
+      {% if p.image %}
+        <img src="{{ p.image.url }}" class="product1__image" alt="{{ p.name }}">
+      {% else %}
+        <img src="{% static 'assets/banano.webp' %}" class="product1__image" alt="{{ p.name }}">
+      {% endif %}
       <div class="product1__info">
         <div class="product1__details">
           <p class="product1__price">${{ p.price }}</p>

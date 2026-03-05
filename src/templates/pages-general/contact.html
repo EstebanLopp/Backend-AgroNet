@@ -3,21 +3,49 @@
 
 {% block title %}Contacto{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/contact.css' %}">
+{% endblock %}
+
 {% block body_class %}body-contact{% endblock %}
 
 {% block content %}
 
 <div class="contact-container">
-{% include "components/18_personal_details.html" %}
-{% include "components/19_message.html" %}
-</div>
- <div id="modal-contact" class="modal-contact">
-    {% include "components/52_popup_contact.html" %}
+
+    {% if form.errors %}
+        <div style="background:#ffe5e5;border:1px solid #ff9a9a;padding:12px;border-radius:10px;margin-bottom:12px;">
+            <strong>Errores:</strong>
+            <pre style="margin:8px 0 0;white-space:pre-wrap;">{{ form.errors }}</pre>
+        </div>
+    {% endif %}
+
+  <form method="post" action="{% url 'contact:contact' %}" novalidate>
+  {% csrf_token %}
+
+  {% if form.honeypot %}
+    <div style="display:none;">{{ form.honeypot }}</div>
+  {% endif %}
+
+  <div class="contact-layout">
+    <div class="contact-layout__left">
+      {% include "components/18_personal_details.html" %}
     </div>
+
+    <div class="contact-layout__right">
+      {% include "components/19_message.html" %}
+    </div>
+  </div>
+</form>
+
+</div>
+
+<div id="modal-contact" class="modal-contact {% if sent %}active{% endif %}">
+  {% include "components/52_popup_contact.html" %}
+</div>
+
 {% endblock %}
 
 {% block scripts %}
-
 <script src="{% static 'js/components/19_message.js' %}" defer></script>
-
 {% endblock %}
