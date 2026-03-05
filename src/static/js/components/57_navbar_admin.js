@@ -10,13 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         navbarContainer.innerHTML = data;
 
-        // Cargar CSS dinámicamente
+        
         const link = document.createElement("link");
         link.rel = "stylesheet";
         link.href = "/src/static/css/components/57_navbar_admin.css";
         document.head.appendChild(link);
 
-        // Esperar un momento para asegurar que el HTML está en el DOM
+        
         setTimeout(() => {
           const toggle = document.querySelector(".admin-navbar__toggle");
           const navList = document.querySelector(".admin-navbar__list");
@@ -24,12 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (!toggle || !navList) return;
 
-          // Mostrar / ocultar menú lateral
+          
           toggle.addEventListener("click", () => {
             navList.classList.toggle("admin-navbar__list--active");
           });
 
-          // Cerrar menú al hacer clic en un enlace
+          
           links.forEach(link => {
             link.addEventListener("click", () => {
               navList.classList.remove("admin-navbar__list--active");

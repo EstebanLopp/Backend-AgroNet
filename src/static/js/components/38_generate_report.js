@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const heroElement = document.querySelector(".report__profile");
 
-  // Si NO existe, nada funciona → por eso falla
+  
   if (!heroElement) {
     console.warn("No se encontró .report__profile, inserta este contenedor en tu HTML");
     return;

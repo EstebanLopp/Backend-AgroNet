@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         container.innerHTML = data;
 
-        // Esperar a que el DOM realmente cargue el HTML insertado
+        
         requestAnimationFrame(() => {
-          initStoreProfileModals(); // SOLO esta función
+          initStoreProfileModals(); 
         });
       })
       .catch(error => console.error("Error loading store profile:", error));
@@ -17,9 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* ==========================================================
-   MÉTODOS DE PAGO - MODALES
-=========================================================== */
+
 
 function initStoreProfileModals() {
   const btnDisable = document.querySelector(".store-profile__button--disable-store");
@@ -33,64 +31,48 @@ function initStoreProfileModals() {
   const btnCloseSuccess = modalSuccess.querySelector(".store-profile__modal-close--success");
   const btnCloseConfirm = modalConfirm.querySelector(".store-profile__modal-close");
 
-  /* -------------------------
-     Abrir modal de confirmación
-  -------------------------- */
+  
   btnDisable.addEventListener("click", () => {
     modalConfirm.classList.add("store-profile__modal--active");
   });
 
-  /* -------------------------
-     Botón cerrar en confirmación (X)
-  -------------------------- */
+  
   btnCloseConfirm.addEventListener("click", () => {
     modalConfirm.classList.remove("store-profile__modal--active");
   });
 
-  /* -------------------------
-     Cancelar confirmación
-  -------------------------- */
+  
   btnCancel.addEventListener("click", () => {
     modalConfirm.classList.remove("store-profile__modal--active");
   });
 
-  /* -------------------------
-     Aceptar → abrir modal de éxito
-  -------------------------- */
+  
   btnAccept.addEventListener("click", () => {
     modalConfirm.classList.remove("store-profile__modal--active");
     modalSuccess.classList.add("store-profile__modal--active");
   });
 
-  /* -------------------------
-     Cerrar modal de éxito
-  -------------------------- */
+  
   btnCloseSuccess.addEventListener("click", () => {
     modalSuccess.classList.remove("store-profile__modal--active");
     window.location.href = "/src/static/customer-pages/start_sales.html"; 
   });
 
-  /* -------------------------
-     Cerrar confirmación al hacer clic fuera
-  -------------------------- */
+  
   modalConfirm.addEventListener("click", (e) => {
     if (e.target === modalConfirm) {
       modalConfirm.classList.remove("store-profile__modal--active");
     }
   });
 
-  /* -------------------------
-     Cerrar éxito al hacer clic fuera
-  -------------------------- */
+  
   modalSuccess.addEventListener("click", (e) => {
     if (e.target === modalSuccess) {
       modalSuccess.classList.remove("store-profile__modal--active");
     }
   });
 
-  /* -------------------------
-     Evitar cierre al hacer clic dentro del contenido
-  -------------------------- */
+  
   modalConfirm.querySelector(".store-profile__modal-content")
     .addEventListener("click", (e) => e.stopPropagation());
 

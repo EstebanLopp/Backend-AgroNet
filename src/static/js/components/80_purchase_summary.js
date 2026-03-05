@@ -1,91 +1,50 @@
+// document.addEventListener("DOMContentLoaded", () => {
+//   const confirmBtn = document.querySelector(".checkout-summary__confirm-btn--js");
+//   const confirmPopup = document.querySelector(".checkout-summary__popup--confirm");
+//   const successPopup = document.querySelector(".checkout-summary__popup--success");
 
-document.addEventListener("DOMContentLoaded", () => {
+//   if (!confirmBtn || !confirmPopup || !successPopup) return;
 
-  const cartData = [
-    { vendor: "AgroJuan", phone: "3001234567", payment: "Nequi: 3001234567", products: [ { name: "Tomates", qty: 2, price: 8000 }, { name: "Papa criolla", qty: 1, price: 5000 } ] },
-    { vendor: "CampoDulce", phone: "3217654321", payment: "Bancolombia: 12345", products: [ { name: "Miel pura", qty: 1, price: 18000 } ] },
-    { vendor: "FruverCampo", phone: "3123647824", payment: "Daviplata: 12345", products: [ { name: "Tomate de arbol", qty: 3, price: 15000 } ] }
-  ];
+//   const closeConfirm = confirmPopup.querySelector(".checkout-summary__popup-close");
+//   const cancelBtn = confirmPopup.querySelector(".checkout-summary__btn--cancel");
+//   const acceptBtn = confirmPopup.querySelector(".checkout-summary__btn--accept");
+//   const confirmContent = confirmPopup.querySelector(".checkout-summary__popup-content");
 
-  const container = document.querySelector(".checkout-summary-customer");
+//   const closeSuccess = successPopup.querySelector(".checkout-summary__popup-close");
+//   const successContent = successPopup.querySelector(".checkout-summary__popup-content");
 
+//   const form = document.getElementById("checkout-confirm-form");
 
-  function renderSummary(data) {
-    const vendorsContainer = document.querySelector(".checkout-summary__vendors--js");
-    const confirmBtn = document.querySelector(".checkout-summary__confirm-btn--js");
+  
+//   confirmBtn.addEventListener("click", () => {
+//     confirmPopup.classList.add("checkout-summary__popup--show");
+//   });
 
-    if (!vendorsContainer || !confirmBtn) return;
+  
+//   [closeConfirm, cancelBtn].forEach(btn => {
+//     if (!btn) return;
+//     btn.addEventListener("click", () => {
+//       confirmPopup.classList.remove("checkout-summary__popup--show");
+//     });
+//   });
 
-    data.forEach(v => {
-      const vendorCard = document.createElement("div");
-      vendorCard.className = "checkout-summary__vendor-card";
+//   confirmPopup.addEventListener("click", e => {
+//     if (e.target === confirmPopup) confirmPopup.classList.remove("checkout-summary__popup--show");
+//   });
 
-      vendorCard.innerHTML = `
-        <h3 class="checkout-summary__vendor-name">${v.vendor}</h3>
-        <ul class="checkout-summary__product-list">
-          ${v.products.map(p => `
-            <li class="checkout-summary__product-item">
-              ${p.qty}x ${p.name} - $${p.price}
-            </li>
-          `).join("")}
-        </ul>
-        <p class="checkout-summary__contact-info"><strong>WhatsApp:</strong> ${v.phone}</p>
-        <p class="checkout-summary__contact-info"><strong>Pago:</strong> ${v.payment}</p>
-      `;
+//   if (confirmContent) confirmContent.addEventListener("click", e => e.stopPropagation());
 
-      vendorsContainer.appendChild(vendorCard);
-    });
+  
+//   acceptBtn.addEventListener("click", () => {
+//     if (!form) return;
+//     form.submit();
+//   });
 
-    confirmBtn.addEventListener("click", () => {
-      document.querySelector(".checkout-summary__popup--confirm").classList.add("checkout-summary__popup--show");
-    });
-  }
-
-  function initPopups() {
-    const confirmPopup = document.querySelector(".checkout-summary__popup--confirm");
-    const successPopup = document.querySelector(".checkout-summary__popup--success");
-
-    if (!confirmPopup || !successPopup) return;
-
-    const closeConfirm = confirmPopup.querySelector(".checkout-summary__popup-close");
-    const cancelBtn = confirmPopup.querySelector(".checkout-summary__btn--cancel");
-    const acceptBtn = confirmPopup.querySelector(".checkout-summary__btn--accept");
-    const confirmContent = confirmPopup.querySelector(".checkout-summary__popup-content");
-    const successContent = successPopup.querySelector(".checkout-summary__popup-content");
-    const closeSuccess = successPopup.querySelector(".checkout-summary__popup-close");
-
-    [closeConfirm, cancelBtn].forEach(btn => {
-      btn.addEventListener("click", () => {
-        confirmPopup.classList.remove("checkout-summary__popup--show");
-      });
-    });
-
-    confirmPopup.addEventListener("click", e => {
-      if (e.target === confirmPopup) confirmPopup.classList.remove("checkout-summary__popup--show");
-    });
-
-    confirmContent.addEventListener("click", e => e.stopPropagation());
-
-    acceptBtn.addEventListener("click", () => {
-      confirmPopup.classList.remove("checkout-summary__popup--show");
-      successPopup.classList.add("checkout-summary__popup--show");
-    });
-
-    closeSuccess.addEventListener("click", () => {
-      successPopup.classList.remove("checkout-summary__popup--show");
-      window.location.href = "/src/templates/seller-pages/historial_orders.html";
-    });
-
-    successPopup.addEventListener("click", e => {
-      if (e.target === successPopup) {
-        successPopup.classList.remove("checkout-summary__popup--show");
-        window.location.href = "/src/templates/seller-pages/historial_orders.html";
-      }
-    });
-
-    successContent.addEventListener("click", e => e.stopPropagation());
-  }
-
-});
-
-
+  
+//   if (closeSuccess) {
+//     closeSuccess.addEventListener("click", () => {
+//       successPopup.classList.remove("checkout-summary__popup--show");
+//     });
+//   }
+//   if (successContent) successContent.addEventListener("click", e => e.stopPropagation());
+// });

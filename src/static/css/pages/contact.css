@@ -1,0 +1,64 @@
+.contact-layout{
+  width: min(980px, 92vw);
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+
+  align-items: stretch; /* clave */
+}
+
+.body-contact .form-personal,
+.body-contact .mensaje-form{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.body-contact .mensaje-form__button-group{
+  margin-top: auto;
+}
+
+/* Para que las dos columnas no se estiren raro */
+.contact-layout > div{
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 992px){
+  .contact-layout{
+    grid-template-columns: 1fr;
+    width: min(560px, 92vw);
+  }
+}
+
+/* Normaliza las dos tarjetas visualmente */
+.body-contact .form-personal,
+.body-contact .mensaje-form{
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  padding: 22px 22px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+  backdrop-filter: blur(10px);
+
+  /* Que no queden súper angostas */
+  min-width: 0;
+}
+
+/* Títulos alineados y consistentes */
+.body-contact .form-personal__title,
+.body-contact .mensaje-form__title{
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Evita inputs gigantes o raros por herencia */
+.body-contact .form-personal__input,
+.body-contact .form-personal__select,
+.body-contact .mensaje-form__input,
+.body-contact .mensaje-form__textarea{
+  width: 100%;
+  box-sizing: border-box;
+}

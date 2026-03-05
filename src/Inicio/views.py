@@ -7,13 +7,27 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-#from .models import Tarea
 from django.views.generic import TemplateView
+from products.models import Product, Category
 
 # Create your views here.
 
 class Inicio(TemplateView):
     template_name = 'pages-general/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        
+        context["home_products"] = (
+            Product.objects.filter(available=True)
+            .order_by("-created_at")[:8]
+        )
+
+        
+        context["home_categories"] = Category.objects.all()[:4]
+
+        return context
 
 class Catalogo(TemplateView):
     template_name = 'pages-general/catalog.html'

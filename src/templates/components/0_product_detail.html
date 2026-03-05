@@ -1,8 +1,14 @@
+{% load static %}
+
 <section class="product-detail">
   <div class="product-detail__body">
     <!-- Imagen a la izquierda -->
     <div class="product-detail__image-container">
-      <img src="/static/assets/manzanagala.jpg" alt="Manzana Gala" class="product-detail__image">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-detail__image">
+      {% else %}
+        <img src="{% static 'assets/banano.webp' %}" alt="{{ product.name }}" class="product-detail__image">
+      {% endif %}
     </div>
 
 

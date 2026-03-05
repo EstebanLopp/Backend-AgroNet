@@ -78,3 +78,13 @@
 @import url('components/69_form_new_user_admin.css');
 @import url('components/74_form_new_banner_admin.css');
 @import url('components/79_purchase_summary_seller.css');
+
+html, body {
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

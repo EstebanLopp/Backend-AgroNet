@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const inputs = steps[currentStep].querySelectorAll("input, select");
 
       for (let input of inputs) {
-        // Valida solo los campos visibles / del paso actual
+    
         if (!input.checkValidity()) {
           input.reportValidity();
           return;
@@ -50,11 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   );
 
-  // ✅ IMPORTANTE:
-  // Ya NO hacemos preventDefault.
-  // Django recibirá el POST y manejará creación + redirect.
+  
   form.addEventListener("submit", () => {
-    // Opcional: desactivar el botón para evitar doble click
     const submitBtn = form.querySelector(".register-form__button--submit");
     if (submitBtn) submitBtn.disabled = true;
   });

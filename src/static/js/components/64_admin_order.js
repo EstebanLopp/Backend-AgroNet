@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const html = await res.text();
     container.innerHTML = html;
 
-    //Elementos principales
+    
     const tableBody = container.querySelector(".admin-orders__body");
     const modal = container.querySelector(".admin-orders__modal");
     const modalBody = modal.querySelector(".admin-orders__modal-body");
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const confirmPopup = container.querySelector(".popup--confirm");
     const successPopup = container.querySelector(".popup--success");
 
-    // Datos de ejemplo
+    
     const orders = [
       { id: 1001, cliente: "Juan Pérez", fecha: "2025-10-25", estado: "Pendiente", total: 45000, pago: "Efectivo", direccion: "Calle 10 #15-30" },
       { id: 1002, cliente: "María Gómez", fecha: "2025-10-20", estado: "Enviado", total: 82000, pago: "Tarjeta", direccion: "Cra 5 #25-10" },
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderOrders(orders);
 
-    // Filtro de búsqueda
+    
     searchInput.addEventListener("input", (e) => {
       const value = e.target.value.toLowerCase();
       const filtered = orders.filter(o =>
@@ -74,14 +74,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       renderOrders(filtered);
     });
 
-    // Acciones de la tabla (ver y eliminar)
+    
     tableBody.addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
       const index = btn.dataset.index;
       const order = orders[index];
 
-      // Ver detalles
+      
       if (btn.classList.contains("admin-orders__btn--view")) {
         modalBody.innerHTML = `
           <p><strong>ID Pedido:</strong> ${order.id}</p>
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         modal.classList.add("popup--show");
       }
 
-      // Eliminar pedido (confirmación)
+      
       if (btn.classList.contains("admin-orders__btn--delete")) {
         confirmPopup.classList.add("popup--show");
 
@@ -110,12 +110,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    // Cerrar modal
+    
     closeModal.addEventListener("click", () => {
       modal.classList.remove("popup--show");
     });
 
-    // Cerrar popups (confirmación y éxito)
+    
     [confirmPopup, successPopup].forEach(popup => {
       popup.addEventListener("click", (e) => {
         const closeBtn = e.target.closest(".popup__close");

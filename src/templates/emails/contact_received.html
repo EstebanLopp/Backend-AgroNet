@@ -1,0 +1,24 @@
+<div style="font-family: Arial, sans-serif; line-height: 1.5;">
+  <h2>¡Recibimos tu mensaje!</h2>
+
+  <p>Hola <b>{{ nombre }}</b>,</p>
+
+  <p>
+    Gracias por contactarnos en <b>AgroNet</b>.
+    Ya recibimos tu solicitud y la revisaremos lo antes posible.
+  </p>
+
+  <hr>
+
+  <p><b>Resumen de tu mensaje</b></p>
+  <p><b>Asunto:</b> {{ asunto }}</p>
+  <p><b>Tipo de solicitud:</b> {{ solicitud_label }}</p>
+  <p><b>Mensaje:</b></p>
+  <p>{{ mensaje|linebreaksbr }}</p>
+
+  <hr>
+
+  <p style="color:#666; font-size: 12px;">
+    Este es un correo automático. Si necesitas agregar información, vuelve a escribirnos desde el formulario de contacto.
+  </p>
+</div>

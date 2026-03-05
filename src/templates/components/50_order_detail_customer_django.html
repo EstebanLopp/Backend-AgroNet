@@ -1,0 +1,136 @@
+<section class="order-detail">
+  <div class="order-detail__content">
+
+    <div class="order-detail__main">
+      <div class="order-detail__header">
+        <h2 class="order-detail__title">AgroNet</h2>
+
+        <p class="order-detail__date">
+          Compra realizada el {{ order.created|date:"d/m/Y" }} a las {{ order.created|date:"H:i" }}
+        </p>
+
+        <p class="order-detail__id">
+          <strong>Comprador:</strong>
+          {% if request.user.get_full_name %}
+            {{ request.user.get_full_name }}
+          {% else %}
+            {{ request.user.username }}
+          {% endif %}
+        </p>
+
+        <p class="order-detail__id"><strong>Pedido</strong> #{{ order.id }}</p>
+
+        <p class="order-detail__status">
+          <strong>Estado:</strong>
+          {% if order.paid %} Confirmado {% else %} Pendiente {% endif %}
+        </p>
+
+        {# Estos campos no existen en tu modelo aún #}
+        <p class="order-detail__status"><strong>Método de pago:</strong> No especificado</p>
+        <p class="order-detail__status"><strong>Método de envío:</strong> No especificado</p>
+        <p class="order-detail__status"><strong>Dirección:</strong> No especificada</p>
+
+        <button class="order-detail__invoice-button order-detail__open-invoice">
+          Ver cotizacion
+        </button>
+      </div>
+
+      <div class="order-detail__info">
+
+        {# VENDEDOR: tu modelo Product no tiene vendedor asociado, así que lo oculto para no mentir #}
+        {# Si luego agregas vendor a Product, lo volvemos a mostrar #}
+
+        <table class="order-detail__table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Productos</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in order.items.all %}
+              <tr>
+                <td>{{ item.product.id }}</td>
+                <td><strong>{{ item.product.name }}</strong></td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.price }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <div class="order-detail__total">
+          <p><strong>TOTAL</strong></p>
+          <p><strong>${{ order.get_total_price }}</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="order-detail__sidebar">
+      <h3 class="order-detail__subtitle">Otros pedidos</h3>
+
+      <div class="order-detail__cards">
+        {% if other_orders %}
+          {% for o in other_orders %}
+            <div class="order-card">
+              <p class="order-card__id">Pedido #{{ o.id }}</p>
+
+              <span class="order-card__status">
+                Estado:
+                {% if o.paid %} Confirmado {% else %} Pendiente {% endif %}
+              </span>
+
+              <a href="{% url 'orders:order_detail' o.id %}" class="order-card__button">Ver más</a>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No hay otros pedidos.</p>
+        {% endif %}
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<div class="order-detail__invoice-modal">
+  <div class="order-detail__invoice-overlay"></div>
+
+  <div class="order-detail__invoice-content">
+    <button class="order-detail__invoice-close">&times;</button>
+
+    <h2 class="order-detail__invoice-title">Ticket de pago #{{ order.id }}</h2>
+
+    <div class="order-detail__invoice-body">
+      <p><strong>Cliente:</strong>
+        {% if request.user.get_full_name %}{{ request.user.get_full_name }}{% else %}{{ request.user.username }}{% endif %}
+      </p>
+
+      <p><strong>Fecha:</strong> {{ order.created|date:"d/m/Y" }}</p>
+
+      <table class="order-detail__invoice-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in order.items.all %}
+            <tr>
+              <td>{{ item.product.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>${{ item.price }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="order-detail__invoice-total">
+        <strong>Total: ${{ order.get_total_price }}</strong>
+      </div>
+    </div>
+  </div>
+</div>

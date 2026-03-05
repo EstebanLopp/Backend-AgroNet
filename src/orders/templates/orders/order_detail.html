@@ -1,36 +1,17 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Detalle pedido{% endblock %}
+{% block body_class %}order-detail__body{% endblock %}
 
 {% block content %}
-<section class="page-general">
-  <div class="container">
-    <h2>Pedido #{{ order.id }}</h2>
-    <p>Fecha: {{ order.created|date:"Y-m-d H:i" }}</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in order.items.all %}
-          <tr>
-            <td>{{ item.product.name }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>${{ item.price }}</td>
-            <td>${{ item.get_cost }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-
-    <p><strong>Total: ${{ order.get_total_price }}</strong></p>
-    <a href="{% url 'orders:my_orders' %}">Volver a mis pedidos</a>
+<main>
+  <div class="order-customer-container">
+    {% include "components/50_order_detail_customer_django.html" %}
   </div>
-</section>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/components/50_order_detail_customer_modal.js' %}" defer></script>
 {% endblock %}

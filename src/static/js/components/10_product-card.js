@@ -2,15 +2,15 @@ document.addEventListener("DOMContentLoaded", async function () {
   const contenedor = document.getElementById("products-container");
 
   try {
-    //  Llamada al archivo JSON con fetch
+    
     const response = await fetch("/static/data/products.json");
     if (!response.ok) {
       throw new Error("Error al cargar los productos");
     }
 
-    const products = await response.json(); // Convertimos a objeto JS
+    const products = await response.json(); 
 
-    // Renderizado de productos
+    
     if (contenedor) {
       products.forEach(prod => {
         const tarjeta = document.createElement("a");

@@ -30,7 +30,7 @@ class MyProducts extends HTMLElement {
       });
   }
 
-  /* =============== RENDERIZAR PRODUCTOS =============== */
+  
   renderProducts(shadow) {
     const products = [
       { name: "Manzana Gala", price: "$20 por kg", type: "fruta", stock: "24kg", image: "/src/static/assets/manzanagala.jpg" },
@@ -83,7 +83,7 @@ class MyProducts extends HTMLElement {
     });
   }
 
-  /* =============== DROPDOWN =============== */
+  
   setupDropdown(shadow) {
     const toggle = shadow.querySelector(".my-products__dropdown-toggle");
     const menu = shadow.querySelector(".my-products__dropdown-menu");
@@ -96,7 +96,7 @@ class MyProducts extends HTMLElement {
     });
   }
 
-  /* =============== MENÚ DE CADA CARD =============== */
+  
   setupMenuCard(shadow) {
     shadow.addEventListener("click", e => {
       const toggleBtn = e.composedPath().find(el => 
@@ -144,9 +144,7 @@ class MyProducts extends HTMLElement {
     });
   }
 
-  /* ============================================================
-                     POPUPS GENERALES
-  ============================================================ */
+  
   setupPopups(shadow) {
     shadow.querySelectorAll(".my-products__popup").forEach(popup => {
       popup.addEventListener("click", e => {
@@ -164,7 +162,7 @@ class MyProducts extends HTMLElement {
       }
     });
 
-    /* Confirmación de deshabilitar */
+    
     const confirmPopup = shadow.querySelector(".my-products__popup--confirm-disable");
     if (confirmPopup) {
       const cancel = confirmPopup.querySelector(".my-products__popup-btn--cancel");
@@ -184,9 +182,7 @@ class MyProducts extends HTMLElement {
     if (popup) popup.classList.add("show");
   }
 
-  /* ============================================================
-                    POPUP DE DETALLES
-  ============================================================ */
+  
   setupDetailsPopup(shadow) {
     const popup = shadow.querySelector(".my-products__popup--details");
 

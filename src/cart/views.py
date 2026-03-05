@@ -13,7 +13,7 @@ def cart_add(request, product_id):
 
     if product.stock < 1:
         messages.error(request, "Este producto está agotado.")
-        return redirect("product_list")  # o redirect a donde estabas
+        return redirect("product_list")  
 
     cart.add(product=product, quantity=1)
     return redirect("cart_detail")
@@ -39,7 +39,7 @@ def cart_update(request, product_id):
     except (TypeError, ValueError):
         return redirect("cart_detail")
 
-    # Validaciones profesionales
+    
     if quantity < 1:
         cart.remove(product)
     elif quantity > product.stock:

@@ -1,29 +1,19 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.querySelector(".container-profile-photo");
+
+  
+  const res = await fetch("/src/templates/components/67_profile_photo.html");
+  const html = await res.text();
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  const template = div.querySelector("#template-profile-photo");
+  container.appendChild(template.content.cloneNode(true));
 
   const grid = document.querySelector(".profile-photo__grid");
 
-  if (!grid) {
-    console.error("No existe .profile-photo__grid");
-    return;
-  }
-
-  let photos = [];
-
-  try {
-
-    // 🔥 Usamos la variable enviada por Django
-    const resJSON = await fetch(profilePhotoURL);
-
-    if (!resJSON.ok) {
-      throw new Error("No se pudo cargar el JSON");
-    }
-
-    photos = await resJSON.json();
-
-  } catch (error) {
-    console.error("Error cargando JSON:", error);
-    return;
-  }
+  
+  const resJSON = await fetch("/src/static/data/profile_photo.json");
+  const photos = await resJSON.json();
 
   photos.forEach((photo) => {
 
@@ -45,4 +35,50 @@ document.addEventListener("DOMContentLoaded", async () => {
     grid.appendChild(card);
   });
 
+  
+  const modal = document.getElementById("profile-photo__modal");
+const closeModal = document.getElementById("profile-photo__close");
+const cancelBtn = document.getElementById("profile-photo__cancel");
+const acceptBtn = document.getElementById("profile-photo__accept");
+const modalText = document.getElementById("profile-photo__text");
+  let selectedPhoto = null;
+
+  
+  grid.addEventListener("click", (e) => {
+    if (e.target.classList.contains("profile-photo__btn")) {
+      const id = e.target.dataset.id;
+      selectedPhoto = photos.find((p) => p.id == id);
+
+      
+      modalText.textContent = `¿Deseas establecer "${selectedPhoto.name}" como tu foto de perfil?`;
+      modal.style.display = "flex";
+    }
+  });
+
+  
+  const close = () => (modal.style.display = "none");
+  closeModal.addEventListener("click", close);
+  cancelBtn.addEventListener("click", close);
+
+  
+  acceptBtn.addEventListener("click", () => {
+    if (selectedPhoto) {
+      
+      document.querySelectorAll(".profile-photo__btn--grid").forEach((btn) => {
+        btn.textContent = "Seleccionar";
+        btn.classList.remove("profile-photo__btn--selected");
+      });
+
+      const selectedBtn = document.querySelector(`.profile-photo__btn--grid[data-id="${selectedPhoto.id}"]`);
+      selectedBtn.textContent = "Seleccionado";
+      selectedBtn.classList.add("profile-photo__btn--selected");
+    }
+
+    close();
+  });
+
+  
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) close();
+  });
 });
