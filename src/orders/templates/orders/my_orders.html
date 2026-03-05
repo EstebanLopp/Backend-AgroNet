@@ -1,25 +1,16 @@
 {% extends "base.html" %}
 
 {% block title %}Mis pedidos{% endblock %}
+{% block body_class %}body-orders{% endblock %}
 
 {% block content %}
-<section class="page-general">
-  <div class="container">
-    <h2>Mis pedidos</h2>
 
-    {% if orders %}
-      <ul>
-        {% for order in orders %}
-          <li>
-            <a href="{% url 'orders:order_detail' order.id %}">
-              Pedido #{{ order.id }} - {{ order.created|date:"Y-m-d H:i" }} - Total: ${{ order.get_total_price }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No tienes pedidos aún.</p>
-    {% endif %}
+<section class="orders-page">
+
+  <div class="orders-page__container">
+    {% include "components/51_historial_orders_customer_django.html" %}
   </div>
+
 </section>
+
 {% endblock %}

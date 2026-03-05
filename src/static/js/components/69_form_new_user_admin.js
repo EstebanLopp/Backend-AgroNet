@@ -7,19 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(component => {
         container.innerHTML = component;
 
-        // Seleccionamos los elementos correctos
+        
         const form = container.querySelector(".form-datos__form");
         const popup = container.querySelector(".popup");
         const closeBtn = container.querySelector(".popup__close");
 
         if (form && popup) {
-          // Mostrar popup al enviar formulario
+          
           form.addEventListener("submit", (e) => {
             e.preventDefault();
-            popup.classList.add("popup--visible"); // Clase para mostrar
+            popup.classList.add("popup--visible"); 
           });
 
-          // Cerrar popup al hacer clic en la X
+          
           if (closeBtn) {
             closeBtn.addEventListener("click", () => {
               popup.classList.remove("popup--visible");
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
           }
 
-          // Cerrar popup al hacer clic fuera del contenido
+          
           popup.addEventListener("click", (e) => {
             if (e.target === popup) {
               popup.classList.remove("popup--visible");

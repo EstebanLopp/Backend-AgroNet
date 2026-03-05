@@ -1,46 +1,48 @@
 <div class="form-personal">
   <h2 class="form-personal__title">Datos personales</h2>
-  <form class="form-personal__form">
-    
-    <div class="form-personal__group">
-      <label for="nombre" class="form-personal__label">
-        <i class="fa-regular fa-user"></i> Nombres Completos
-      </label>
-      <input type="text" name="nombre" class="form-personal__input" required>
-    </div>
 
-    <div class="form-personal__group">
-      <label for="correo" class="form-personal__label">
-        <i class="fa-regular fa-envelope"></i> Correo Electrónico
-      </label>
-      <input type="email" name="correo" class="form-personal__input" required>
-    </div>
+  <div class="form-personal__group">
+    <label for="nombre" class="form-personal__label">
+      <i class="fa-regular fa-user"></i> Nombres Completos
+    </label>
+    <input id="nombre" type="text" name="nombre" class="form-personal__input"
+  value="{{ form.data.nombre|default:'' }}" required>
+  </div>
 
-    <div class="form-personal__group">
-      <label for="identificacion" class="form-personal__label">
-        <i class="fa-regular fa-id-card"></i> Número de Identificación
-      </label>
-      <input type="text" name="identificacion" class="form-personal__input" required>
-    </div>
+  <div class="form-personal__group">
+    <label for="correo" class="form-personal__label">
+      <i class="fa-regular fa-envelope"></i> Correo Electrónico
+    </label>
+    <input id="correo" type="email" name="correo" class="form-personal__input"
+  value="{{ form.data.correo|default:'' }}" required>
+  </div>
 
-    <div class="form-personal__group">
-      <label for="telefono" class="form-personal__label">
-        <i class="fa-solid fa-mobile-screen"></i> Número de Teléfono
-      </label>
-      <input type="tel" name="telefono" class="form-personal__input" required>
-    </div>
+  <div class="form-personal__group">
+    <label for="identificacion" class="form-personal__label">
+      <i class="fa-regular fa-id-card"></i> Número de Identificación
+    </label>
+    <input id="identificacion" type="text" name="identificacion" class="form-personal__input"
+  value="{{ form.data.identificacion|default:'' }}" required>
+  </div>
 
-    <div class="form-personal__group">
-      <label for="solicitud" class="form-personal__label">
-        <i class="fa-solid fa-file-invoice"></i> Tipo de Solicitud
-      </label>
-      <select name="solicitud" class="form-personal__select" required>
-        <option value="">Seleccione una opción</option>
-        <option value="informacion">Consultas sobre productos</option>
-        <option value="queja">Atencion al cliente</option>
-        <option value="reclamo">Quejas o Reclamos</option>
-        <option value="otro">Otro</option>
-      </select>
-    </div>
-  </form>
+  <div class="form-personal__group">
+    <label for="telefono" class="form-personal__label">
+      <i class="fa-solid fa-mobile-screen"></i> Número de Teléfono
+    </label>
+    <input id="telefono" type="tel" name="telefono" class="form-personal__input"
+  value="{{ form.data.telefono|default:'' }}" required>
+  </div>
+
+  <div class="form-personal__group">
+    <label for="solicitud" class="form-personal__label">
+      <i class="fa-solid fa-file-invoice"></i> Tipo de Solicitud
+    </label>
+    <select id="solicitud" name="solicitud" class="form-personal__select" required>
+      <option value="">Seleccione una opción</option>
+      <option value="informacion" {% if form.data.solicitud == "informacion" %}selected{% endif %}>Consultas sobre productos</option>
+      <option value="queja" {% if form.data.solicitud == "queja" %}selected{% endif %}>Atencion al cliente</option>
+      <option value="reclamo" {% if form.data.solicitud == "reclamo" %}selected{% endif %}>Quejas o Reclamos</option>
+      <option value="otro" {% if form.data.solicitud == "otro" %}selected{% endif %}>Otro</option>
+    </select>
+  </div>
 </div>

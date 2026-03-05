@@ -13,7 +13,11 @@
   <div class="product1">
 
     <a href="{% url 'product_detail' product.slug %}" class="product__link">
-      <img src="{% static 'assets/banano.webp' %}" alt="{{ product.name }}" class="product__image">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product__image">
+      {% else %}
+        <img src="{% static 'assets/banano.webp' %}" alt="{{ product.name }}" class="product__image">
+      {% endif %}
     </a>
 
     <div class="product__info">

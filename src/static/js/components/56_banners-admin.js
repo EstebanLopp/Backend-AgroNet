@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const grid = document.querySelector(".admin-banners__grid");
 
-    // Cargar banners desde JSON simulado
+    
     const dataResponse = await fetch("/src/static/data/admin_banners.json");
     if (!dataResponse.ok) throw new Error("No se pudo cargar los banners");
 

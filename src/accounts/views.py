@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.auth import login
 from django.contrib import messages
@@ -16,3 +17,7 @@ def signup(request):
         form = SignUpForm()
 
     return render(request, "pages-general/register_an_account.html", {"form": form})
+
+@login_required
+def customer_dashboard(request):
+    return render(request, "customer-pages/dashboard.html")

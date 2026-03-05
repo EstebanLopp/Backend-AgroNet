@@ -27,13 +27,13 @@ function initializeStoreModals() {
     return;
   }
 
-  // MOSTRAR MODAL DE CONFIRMACIÓN
+  
   form.addEventListener("submit", (e) => {
     e.preventDefault(); 
     confirmModal.classList.add("show");
   });
 
-  // Cerrar confirmación
+  
 
   cancelBtn.addEventListener("click", () => confirmModal.classList.remove("show"));
   closeConfirm.addEventListener("click", () => confirmModal.classList.remove("show"));
@@ -41,13 +41,13 @@ function initializeStoreModals() {
     if (e.target === confirmModal) confirmModal.classList.remove("show");
   });
 
-  // Aceptar → Mostrar modal de éxito
+  
   acceptBtn.addEventListener("click", () => {
     confirmModal.classList.remove("show");
     successModal.classList.add("show");
   });
 
-  // Redirección final
+  
   const redirectURL = "/src/templates/views/seller-pages/profile_store.html";
 
   const closeAndRedirect = () => {

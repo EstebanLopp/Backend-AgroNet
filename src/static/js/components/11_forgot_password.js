@@ -17,7 +17,7 @@ function initRecoverForm(scope) {
 
   const closeBtn = popup.querySelector(".recover-popup__close");
 
-  // Abrir popup
+  
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -26,7 +26,7 @@ function initRecoverForm(scope) {
     }, 200);
   });
 
-  // Cerrar popup
+  
   popup.addEventListener("click", (e) => {
 
     const clickedOverlay = e.target.classList.contains("recover-popup");

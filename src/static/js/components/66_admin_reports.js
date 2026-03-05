@@ -14,11 +14,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const closeModal = modal.querySelector(".admin-reports__btn--close");
     const searchInput = document.querySelector(".admin-reports__search");
 
-    // Popups sin ID — usando clases BEM
+    
     const popupConfirm = document.querySelector(".admin-reports__popup--confirm");
     const popupSuccess = document.querySelector(".admin-reports__popup--success");
 
-    // Datos simulados
+    
     const reports = [
       {
         asunto: "Problema con pedido",
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
     ];
 
-    // Renderizar reportes
+    
     function renderReports(list) {
       tableBody.innerHTML = "";
       list.forEach((r, i) => {
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderReports(reports);
 
-    // Buscar reporte
+    
     searchInput.addEventListener("input", (e) => {
       const value = e.target.value.toLowerCase();
       const filtered = reports.filter(
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       renderReports(filtered);
     });
 
-    // Acciones de tabla
+    
     let indexToDelete = null;
 
     tableBody.addEventListener("click", (e) => {
@@ -123,20 +123,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    // Cerrar modal
+    
     closeModal.addEventListener("click", () => modal.classList.remove("show"));
 
-    // Cerrar popups al hacer clic fuera
+    
     [popupConfirm, popupSuccess].forEach((popup) => {
       popup.addEventListener("click", () => popup.classList.remove("show"));
     });
 
-    // Evitar cierre al hacer clic dentro del contenido
+    
     document.querySelectorAll(".admin-reports__popup-content").forEach((content) => {
       content.addEventListener("click", (e) => e.stopPropagation());
     });
 
-    // Botones de confirmación
+    
     const btnCancel = popupConfirm.querySelector(".admin-reports__popup-btn--cancel");
     const btnAccept = popupConfirm.querySelector(".admin-reports__popup-btn--accept");
 

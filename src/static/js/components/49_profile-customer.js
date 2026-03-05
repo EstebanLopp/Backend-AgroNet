@@ -17,17 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Abrir modal
+      
       addBtn.addEventListener("click", () => {
         modal.classList.add("client-profile__modal--active");
       });
 
-      // Cerrar modal (botón X)
+      
       closeBtn.addEventListener("click", () => {
         cerrarModal();
       });
 
-      // Cerrar si clic en fondo
+      
       modal.addEventListener("click", (e) => {
         if (e.target === modal) cerrarModal();
       });

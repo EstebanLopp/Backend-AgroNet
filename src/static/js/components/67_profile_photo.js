@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector(".container-profile-photo");
 
-  // Cargar el HTML del componente
+  
   const res = await fetch("/src/templates/components/67_profile_photo.html");
   const html = await res.text();
   const div = document.createElement("div");
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const grid = document.querySelector(".profile-photo__grid");
 
-  // Cargar las fotos del JSON
+  
   const resJSON = await fetch("/src/static/data/profile_photo.json");
   const photos = await resJSON.json();
 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     grid.appendChild(card);
   });
 
-  // Referencias al modal
+  
   const modal = document.getElementById("profile-photo__modal");
 const closeModal = document.getElementById("profile-photo__close");
 const cancelBtn = document.getElementById("profile-photo__cancel");
@@ -40,27 +40,27 @@ const acceptBtn = document.getElementById("profile-photo__accept");
 const modalText = document.getElementById("profile-photo__text");
   let selectedPhoto = null;
 
-  // Escuchar clicks en “Seleccionar”
+  
   grid.addEventListener("click", (e) => {
     if (e.target.classList.contains("profile-photo__btn")) {
       const id = e.target.dataset.id;
       selectedPhoto = photos.find((p) => p.id == id);
 
-      // Mostrar modal con el nombre de la foto
+      
       modalText.textContent = `¿Deseas establecer "${selectedPhoto.name}" como tu foto de perfil?`;
       modal.style.display = "flex";
     }
   });
 
-  // Cerrar modal
+  
   const close = () => (modal.style.display = "none");
   closeModal.addEventListener("click", close);
   cancelBtn.addEventListener("click", close);
 
-  // Confirmar selección
+  
   acceptBtn.addEventListener("click", () => {
     if (selectedPhoto) {
-      // Marcar la seleccionada visualmente
+      
       document.querySelectorAll(".profile-photo__btn--grid").forEach((btn) => {
         btn.textContent = "Seleccionar";
         btn.classList.remove("profile-photo__btn--selected");
@@ -74,7 +74,7 @@ const modalText = document.getElementById("profile-photo__text");
     close();
   });
 
-  // Cerrar al hacer clic fuera
+  
   window.addEventListener("click", (e) => {
     if (e.target === modal) close();
   });

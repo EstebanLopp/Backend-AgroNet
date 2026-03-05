@@ -16,25 +16,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
           let currentStep = 0;
 
-          // Buscar popup y modal (pueden ser null si no están en el HTML)
+          
           const popup = heroElement.querySelector(".register-form__confirm-popup");
           const successModal = heroElement.querySelector(".register-form__success-modal");
 
-          // Elementos dentro del popup/modal (declaramos but only attach listeners if exist)
+          
           const btnCancel = popup ? popup.querySelector(".register-form__confirm-popup-btn--cancel") : null;
           const btnAccept = popup ? popup.querySelector(".register-form__confirm-popup-btn--accept") : null;
           const btnCloseSuccess = successModal ? successModal.querySelector(".register-form__success-modal-close") : null;
 
-          // =======================
-          // Paso inicial (usar modificador BEM)
-          // =======================
+          
           steps.forEach((step, i) => {
             step.classList.toggle("register-form__step--active", i === currentStep);
           });
 
-          // =======================
-          // Botones Siguiente
-          // =======================
+          
           nextBtns.forEach(btn => {
             btn.addEventListener("click", () => {
               const inputs = steps[currentStep].querySelectorAll("input, select");
@@ -47,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
               }
 
               if (currentStep < steps.length - 1) {
-                // cambiar clases BEM
+                
                 steps[currentStep].classList.remove("register-form__step--active");
                 currentStep++;
                 steps[currentStep].classList.add("register-form__step--active");
@@ -56,9 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
           });
 
-          // =======================
-          // Botones Atrás
-          // =======================
+          
           prevBtns.forEach(btn => {
             btn.addEventListener("click", () => {
               if (currentStep > 0) {
@@ -70,36 +64,32 @@ document.addEventListener("DOMContentLoaded", function() {
             });
           });
 
-          // =======================
-          // Enviar formulario → Abrir popup (si existe)
-          // =======================
+          
           if (form) {
             form.addEventListener("submit", e => {
               e.preventDefault();
               if (popup) {
                 popup.classList.add("show");
               } else if (successModal) {
-                // si no hay confirm popup, abrir directamente el success (comodidad)
+                
                 successModal.classList.add("show");
               } else {
-                // fallback: redirigir o hacer otra acción
+                
                 window.location.href = "/src/templates/customer-pages/my_profile.html";
               }
             });
           }
 
-          // =======================
-          // Listeners del popup (solo si existe)
-          // =======================
+          
           if (popup) {
-            // Cancelar popup
+            
             if (btnCancel) {
               btnCancel.addEventListener("click", () => {
                 popup.classList.remove("show");
               });
             }
 
-            // Aceptar: cerrar popup y abrir success (si existe)
+            
             if (btnAccept) {
               btnAccept.addEventListener("click", () => {
                 popup.classList.remove("show");
@@ -107,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
               });
             }
 
-            // Cerrar popup haciendo clic en el fondo (no cierra al clicar dentro del contenido)
+            
             popup.addEventListener("click", (e) => {
               if (e.target.classList.contains("register-form__confirm-popup")) {
                 popup.classList.remove("show");
@@ -115,9 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
           }
 
-          // =======================
-          // Listeners del successModal (solo si existe)
-          // =======================
+          
           if (successModal) {
             if (btnCloseSuccess) {
               btnCloseSuccess.addEventListener("click", () => {
@@ -126,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
               });
             }
 
-            // Cerrar modal éxito con clic en el fondo
+            
             successModal.addEventListener("click", (e) => {
               if (e.target.classList.contains("register-form__success-modal")) {
                 successModal.classList.remove("show");

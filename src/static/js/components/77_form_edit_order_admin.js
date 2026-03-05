@@ -18,7 +18,7 @@ function initEditOrderPopups() {
   const successPopup = document.querySelector(".edit_success_popup");
 
   if (!form || !confirmPopup || !successPopup) {
-    console.warn("⚠️ No se encontraron los elementos del formulario o popups.");
+    console.warn("No se encontraron los elementos del formulario o popups.");
     return;
   }
 
@@ -27,38 +27,38 @@ function initEditOrderPopups() {
   const confirmClose = confirmPopup.querySelector(".close-popup");
   const successClose = successPopup.querySelector(".close-popup");
 
-  // Mostrar popup de confirmación al guardar
+  
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     confirmPopup.classList.add("show");
   });
 
-  // Cerrar popup de confirmación
+  
   [confirmCancel, confirmClose].forEach(btn => {
     btn.addEventListener("click", () => confirmPopup.classList.remove("show"));
   });
 
-  // Aceptar confirmación → mostrar popup de éxito
+  
   confirmAccept.addEventListener("click", () => {
     confirmPopup.classList.remove("show");
     successPopup.classList.add("show");
   });
 
-  // Cerrar popup de éxito y redirigir
+  
   function closeSuccessAndRedirect() {
     successPopup.classList.remove("show");
     window.location.href = "/src/templates/admin-pages/orders.html";
   }
 
-  // Cerrar con la X
+  
   successClose.addEventListener("click", closeSuccessAndRedirect);
 
-  // Cerrar al hacer clic fuera
+  
   window.addEventListener("click", (e) => {
     if (e.target === confirmPopup) confirmPopup.classList.remove("show");
     if (e.target === successPopup) closeSuccessAndRedirect();
   });
 
-  // Cerrar al hacer clic dentro
+  
   successPopup.addEventListener("click", closeSuccessAndRedirect);
 }

@@ -20,10 +20,10 @@ function initNewBannerForm() {
 
   if (!form || !inputFile || !btnFile || !fileText || !popupSuccess) return;
 
-  // Botón para abrir el selector de archivos
+  
   btnFile.addEventListener("click", () => inputFile.click());
 
-  // Mostrar nombre del archivo seleccionado
+  
   inputFile.addEventListener("change", () => {
     const fileName = inputFile.files.length
       ? inputFile.files[0].name
@@ -31,7 +31,7 @@ function initNewBannerForm() {
     fileText.textContent = fileName;
   });
 
-  //  Envío del formulario con popup
+  
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -45,7 +45,7 @@ function initNewBannerForm() {
 
       if (!res.ok) throw new Error("Error al guardar el banner");
 
-      // Mostrar popup de éxito
+      
       popupSuccess.classList.add("show");
 
     } catch (error) {
@@ -53,15 +53,15 @@ function initNewBannerForm() {
     }
   });
 
-  // Cerrar popup al hacer clic en el fondo o en la X
+  
   popupSuccess.addEventListener("click", (e) => {
     if (
-      e.target.classList.contains("popup") ||       // clic en el fondo
-      e.target.closest(".popup__close")            // clic en la X
+      e.target.classList.contains("popup") ||       
+      e.target.closest(".popup__close")            
     ) {
       popupSuccess.classList.remove("show");
 
-      // Redirigir después de cerrar el popup
+      
       window.location.href = "/src/templates/admin-pages/banners.html";
     }
   });

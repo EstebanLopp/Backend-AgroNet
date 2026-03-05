@@ -6,6 +6,8 @@
     <form class="login__form" method="post" action="{% url 'login' %}">
       {% csrf_token %}
 
+      <input type="hidden" name="next" value="{{ next }}">
+
       <!-- Mensaje de error si credenciales inválidas -->
       {% if form.errors %}
         <p class="login__error">Usuario o contraseña incorrectos.</p>

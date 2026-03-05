@@ -125,3 +125,92 @@
 @media (max-width: 1536px) {
     /* No es necesario hacer cambios específicos para este breakpoint*/
 }
+
+/* --- Mejoras visuales navbar --- */
+.navbar__general-list {
+  gap: 2rem; /* antes 4rem, demasiado */
+}
+
+.navbar__general-item:hover {
+  background-color: transparent; /* evita mancha gigante en el li */
+  border-radius: 0;
+}
+
+.navbar__general-link {
+  padding: 8px 10px; /* da “hit area” consistente */
+  border-radius: 10px;
+}
+
+.navbar__general-link:hover {
+  background-color: var(--primary-600);
+}
+
+/* --- Dropdown perfil (details/summary) --- */
+.navbar__profile {
+  position: relative;
+}
+
+.navbar__profile summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar__profile summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Oculto por defecto; aparece cuando details está abierto */
+.navbar__profile .navbar__profile-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 12px);
+  min-width: 220px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.18);
+  display: none;
+  z-index: 9999;
+}
+
+.navbar__profile[open] .navbar__profile-menu {
+  display: grid;
+  gap: 6px;
+}
+
+.navbar__profile-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: var(--fs-xs);
+}
+
+.navbar__profile-item:hover {
+  background: rgba(0,0,0,.06);
+}
+
+.navbar__profile-logout {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: var(--fs-xs);
+}
+
+.navbar__profile-logout:hover {
+  background: rgba(0,0,0,.06);
+}

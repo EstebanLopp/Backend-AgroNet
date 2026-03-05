@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const contenedor = document.getElementById("products-detail");
 
   try {
-    // Llamada al archivo JSON
+    
     const response = await fetch("/static/data/cards-product.json");
     if (!response.ok) {
       throw new Error("Error al cargar los productos");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (contenedor) {
 
 
-      // Productos similares
+      
       if (Array.isArray(data.similares)) {
         data.similares.forEach(prod => {
           const tarjeta = document.createElement("a");

@@ -323,3 +323,30 @@ h1, h2, h3, h4, h5, h6 {
   100%{ opacity:0; transform: translateY(10px);}
 }
 
+/* Links con clase btn se ven como botón */
+a.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.checkout-summary__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+main{
+  padding-top: calc(var(--navbar-height) + var(--page-top-padding));
+}

@@ -9,12 +9,12 @@ async function cargarSidebar() {
 
     const html = await res.text();
 
-    // Insertar el sidebar
+    
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = html.trim();
     contenedor.appendChild(tempDiv);
 
-    // Activar comportamientos
+    
     activarSidebarLinks(tempDiv);
     activarSidebarDesplegable(tempDiv);
     activarLogoutPopup(tempDiv); 

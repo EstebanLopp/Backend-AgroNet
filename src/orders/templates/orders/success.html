@@ -1,10 +1,39 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pedido confirmado{% endblock %}
+{% block body_class %}body-checkout{% endblock %}
 
 {% block content %}
-<section class="page-general">
-    <div class="container">
-        <h2>Compra realizada con éxito</h2>
-        <p>Gracias por tu pedido.</p>
+
+<section class="checkout-summary" style="max-width: 900px; margin: 0 auto;">
+  <h2 class="checkout-summary__title">¡Pedido confirmado!</h2>
+
+  <div class="checkout-summary__vendors">
+    <div class="checkout-summary__vendor-card">
+      <div class="checkout-summary__popup-icon checkout-summary__popup-icon--ok" style="margin-bottom: 12px;">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+
+      <p class="checkout-summary__contact-info" style="margin: 0 0 10px 0;">
+        Tu pedido fue registrado correctamente. Este proceso es una <strong>simulación</strong> (sin pagos reales).
+      </p>
+
+      <p class="checkout-summary__contact-info" style="margin: 0 0 16px 0;">
+        Puedes revisar el estado de tu pedido en <strong>Mis pedidos</strong>.
+      </p>
+
+      <div class="checkout-summary__popup-buttons" style="justify-content: flex-start; gap: 12px;">
+        <a class="checkout-summary__btn" href="{% url 'orders:my_orders' %}" style="text-decoration:none;">
+          Ver mis pedidos
+        </a>
+
+        <a class="checkout-summary__btn" href="{% url 'product_list' %}" style="text-decoration:none;">
+          Seguir comprando
+        </a>
+      </div>
     </div>
+  </div>
 </section>
+
 {% endblock %}

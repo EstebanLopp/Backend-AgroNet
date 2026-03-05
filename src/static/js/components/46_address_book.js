@@ -20,7 +20,7 @@ async function loadContacts() {
   const popup = document.querySelector(".address-book__popup");
   const modal = document.querySelector(".address-book__modal");
 
-  // botones del popup/modal
+  
   const btnCancel = popup?.querySelector(".address-book__popup-btn--cancel");
   const btnAccept = popup?.querySelector(".address-book__popup-btn--accept");
   const modalClose = modal?.querySelector(".address-book__modal-close");
@@ -30,9 +30,9 @@ async function loadContacts() {
     return;
   }
 
-  let cardToDelete = null; // <- referencia correcta al elemento DOM a eliminar
+  let cardToDelete = null; 
 
-  // cargar datos
+  
   try {
     const res = await fetch("/src/static/data/address_book.json");
     const data = await res.json();
@@ -54,14 +54,14 @@ async function loadContacts() {
     return;
   }
 
-  // Delegación de eventos en el contenedor
+  
   document.addEventListener("click", (e) => {
     const target = e.target;
 
-    // Abrir/alternar menú de opciones (si se clicó en el botón)
+    
     if (target.classList.contains("address-book__options-btn")) {
       e.stopPropagation();
-      // cerrar todos los menús primero
+      
       document.querySelectorAll(".address-book__options-menu").forEach(m => {
         if (m !== target.nextElementSibling) m.style.display = "none";
       });
@@ -73,7 +73,7 @@ async function loadContacts() {
       return;
     }
 
-    // Si se clicó una opción de visualizar perfil
+    
     if (target.classList.contains("address-book__option--profile")) {
       const card = target.closest(".address-book__card");
       const usuario = card?.querySelector(".address-book__name")?.textContent ?? "";
@@ -81,36 +81,36 @@ async function loadContacts() {
         window.location.href =
           `/src/templates/seller-pages/customer-profile.html?usuario=${encodeURIComponent(usuario)}`;
       }
-      // cerrar menus
+      
       document.querySelectorAll(".address-book__options-menu").forEach(m => m.style.display = "none");
       return;
     }
 
-    // Si se clicó la opción eliminar -> abrir popup y guardar referencia
+    
     if (target.classList.contains("address-book__option--delete")) {
       const card = target.closest(".address-book__card");
       if (card) {
         cardToDelete = card;
         popup.style.display = "flex";
       }
-      // cerrar menus
+      
       document.querySelectorAll(".address-book__options-menu").forEach(m => m.style.display = "none");
       return;
     }
 
-    // Si se clicó fuera de menus, cerrarlos
+    
     if (!target.closest(".address-book__options") ) {
       document.querySelectorAll(".address-book__options-menu").forEach(m => m.style.display = "none");
     }
   });
 
-  // Cancelar eliminación
+  
   btnCancel?.addEventListener("click", () => {
     popup.style.display = "none";
     cardToDelete = null;
   });
 
-  // Aceptar eliminación -> eliminar elemento real
+  
   btnAccept?.addEventListener("click", () => {
     if (cardToDelete && cardToDelete.remove) {
       cardToDelete.remove();
@@ -119,16 +119,16 @@ async function loadContacts() {
     }
     cardToDelete = null;
     popup.style.display = "none";
-    // mostrar modal de éxito
+    
     modal.style.display = "flex";
   });
 
-  // Cerrar modal
+  
   modalClose?.addEventListener("click", () => {
     modal.style.display = "none";
   });
 
-  // Cerrar popup/modal si clicas en el fondo
+  
   popup.addEventListener("click", (e) => {
     if (e.target === popup) {
       popup.style.display = "none";
