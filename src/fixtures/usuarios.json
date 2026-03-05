@@ -1,0 +1,20 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$MHCbq1wn2XuneiVbJw98vS$ptw2elUcNmMoc00xpFM5kbO88eSyUv3LDiT7ZBgEd6U=",
+        "last_login": "2026-03-05T19:43:34.254Z",
+        "is_superuser": true,
+        "username": "esteban",
+        "first_name": "",
+        "last_name": "",
+        "email": "estebanlopez5015@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-03-03T01:48:20.205Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
