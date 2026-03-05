@@ -14,16 +14,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const closeModal = modal ? modal.querySelector(".admin-categories__btn--close") : null;
     const searchInput = container.querySelector(".admin-categories__search");
 
-    // Popups (clases BEM)
+    
     const popupConfirm = container.querySelector(".admin-categories__popup--confirm");
     const popupSuccess = container.querySelector(".admin-categories__popup--success");
     const popupCloseBtns = container.querySelectorAll(".admin-categories__popup-close");
     const popupCancelBtn = popupConfirm ? popupConfirm.querySelector(".admin-categories__popup-btn--cancel") : null;
     const popupAcceptBtn = popupConfirm ? popupConfirm.querySelector(".admin-categories__popup-btn--accept") : null;
 
-    // ===============================
-    // Datos simulados
-    // ===============================
+    
     const categories = [
       { nombre: "Animal", descripcion: "Productos derivados de animales", productos: 8 },
       { nombre: "Granos", descripcion: "Legumbres, cereales y semillas naturales", productos: 12 },
@@ -31,12 +29,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       { nombre: "Frutas", descripcion: "Frutas nacionales y tropicales", productos: 20 },
     ];
 
-    // índice de la categoría que se desea eliminar (se establece al hacer clic en eliminar)
+    
     let pendingDeleteIndex = null;
 
-    // ===============================
-    // Renderizar categorías
-    // ===============================
+    
     function renderCategories(list) {
       tableBody.innerHTML = "";
       list.forEach((cat, i) => {
@@ -67,9 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderCategories(categories);
 
-    // ===============================
-    // Buscar categoría
-    // ===============================
+    
     if (searchInput) {
       searchInput.addEventListener("input", (e) => {
         const value = e.target.value.toLowerCase();
@@ -81,31 +75,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // ===============================
-    // Acciones (ver, editar, eliminar)
-    // ===============================
+    
     tableBody.addEventListener("click", (e) => {
       const btn = e.target.closest("button, a");
       if (!btn) return;
 
       const index = btn.dataset.index;
-      // index puede ser undefined si el click vino de un <a> u otro elemento sin data-index
+      
       const category = (typeof index !== "undefined") ? categories[index] : null;
 
-      // Ver detalles
+      
       if (btn.classList.contains("admin-categories__btn--view") && category && modalBody && modal) {
         modalBody.innerHTML = `
           <p><strong>Nombre:</strong> ${category.nombre}</p>
           <p><strong>Descripción:</strong> ${category.descripcion}</p>
           <p><strong>Cantidad de productos:</strong> ${category.productos}</p>
         `;
-        modal.classList.add("admin-categories__modal--show"); // usa clase para mostrar
+        modal.classList.add("admin-categories__modal--show"); 
       }
 
-      // Editar (si es <a> con data-index)
+      
       if (btn.classList.contains("admin-categories__btn--edit") && category) {
-        // aquí podrías redirigir, pero por ahora mostramos alerta
-        // alert(`Editar categoría: ${category.nombre}`);
+        
       }
 
       // Eliminar -> abrir popup de confirmación
@@ -115,21 +106,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    // ===============================
-    // Cerrar modal (detalle)
-    // ===============================
+    
     if (closeModal && modal) {
       closeModal.addEventListener("click", () => modal.classList.remove("admin-categories__modal--show"));
-      // también cerrar si hacen clic fuera del contenido dentro del modal
+      
       modal.addEventListener("click", (e) => {
         if (e.target === modal) modal.classList.remove("admin-categories__modal--show");
       });
     }
 
-    // ===============================
-    // POPUP: comportamientos
-    // ===============================
-    // Cerrar con cualquier X dentro de los popups
+    
     popupCloseBtns.forEach(btn => {
       btn.addEventListener("click", () => {
         if (popupConfirm) popupConfirm.classList.remove("show");
@@ -137,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
-    // Botón cancelar dentro del confirm popup
+    
     if (popupCancelBtn) {
       popupCancelBtn.addEventListener("click", () => {
         if (popupConfirm) popupConfirm.classList.remove("show");
@@ -145,11 +131,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // Botón aceptar dentro del confirm popup -> eliminar y mostrar éxito
+    
     if (popupAcceptBtn) {
       popupAcceptBtn.addEventListener("click", () => {
         if (pendingDeleteIndex !== null && Number.isInteger(pendingDeleteIndex)) {
-          // elimina del arreglo (simulado)
+          
           categories.splice(pendingDeleteIndex, 1);
           renderCategories(categories);
           pendingDeleteIndex = null;
@@ -159,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // Cerrar popup de éxito al clic en fondo o X
+    
     if (popupSuccess) {
       popupSuccess.addEventListener("click", (e) => {
         if (e.target === popupSuccess || e.target.closest(".admin-categories__popup-close")) {
@@ -168,7 +154,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // Cerrar popupConfirm si hacen clic fuera del contenido
+    
     if (popupConfirm) {
       popupConfirm.addEventListener("click", (e) => {
         if (e.target === popupConfirm) {

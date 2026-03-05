@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(data => {
         contenedor.innerHTML = data;
 
-        // Selección de elementos del modal
+        
         const openBtn = document.querySelector('.order-detail__open-invoice');
         const modal = document.querySelector('.order-detail__invoice-modal');
         const closeBtn = document.querySelector('.order-detail__invoice-close');

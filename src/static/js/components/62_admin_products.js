@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const closeModal = modal.querySelector(".products-admin__btn--close");
     const searchInput = document.querySelector(".products-admin__search");
 
-    // Popups
+    
     const popupConfirm = document.querySelector(".popup--confirm");
     const popupSuccess = document.querySelector(".popup--success");
 

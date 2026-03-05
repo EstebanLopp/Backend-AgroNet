@@ -8,16 +8,14 @@ Componentes principales:
 /* ====== Forzar footer full bleed seguro ====== */
 .footer {
   width: 100vw !important;
-  max-width: none !important;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   background: var(--primary-600);
   color: var(--black);
+  margin-top: auto;
 }
+
 
 .footer__copyright {
   width: 100% !important;

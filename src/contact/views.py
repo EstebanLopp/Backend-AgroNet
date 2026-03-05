@@ -10,9 +10,9 @@ def contact_view(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            obj = form.save()  # <-- guarda y captura el objeto
+            obj = form.save()  
 
-            # Acuse al usuario
+            
             try:
                 send_templated_email(
                     subject="AgroNet: recibimos tu mensaje",
@@ -26,7 +26,7 @@ def contact_view(request):
                     },
                 )
             except Exception:
-                # No rompemos el flujo si el correo falla (lo ideal luego es loguearlo)
+                
                 pass
 
             return redirect("contact:contact_success")

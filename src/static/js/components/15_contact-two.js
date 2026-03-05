@@ -8,9 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* -----------------------
-   Funciones para manejar botones
------------------------ */
+
 function initContactTwoHandlers(scope) {
 
   const openBtn = scope.querySelector(".contact-two__open-maps");

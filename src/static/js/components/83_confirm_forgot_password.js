@@ -20,9 +20,7 @@ function initNewPasswordHandlers(scope) {
   const passwordInput = inputs[0];
   const confirmInput = inputs[1];
 
-  /* -------------------------
-     Toggle visibilidad password
-  ------------------------- */
+  
   toggles.forEach((toggle) => {
 
     toggle.addEventListener("click", () => {
@@ -43,9 +41,7 @@ function initNewPasswordHandlers(scope) {
   });
 
 
-  /* -------------------------
-     Validación formulario
-  ------------------------- */
+  
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -66,9 +62,7 @@ function initNewPasswordHandlers(scope) {
   });
 
 
-  /* -------------------------
-     Cerrar popup
-  ------------------------- */
+  
   popup.addEventListener("click", (e) => {
 
     const clickedOverlay = e.target.classList.contains("popup");
@@ -77,7 +71,7 @@ function initNewPasswordHandlers(scope) {
     if (clickedOverlay || clickedClose) {
       popup.classList.remove("show");
 
-      // Ruta Django real
+      
       window.location.href = "/login/";
     }
 

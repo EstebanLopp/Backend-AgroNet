@@ -10,7 +10,6 @@
   <h2 class="checkout-summary__title">Resumen de tu pedido</h2>
 
   <div class="checkout-summary__vendors checkout-summary__vendors--js">
-    {# Versión simple: 1 “vendor card” con todos los productos (por ahora) #}
     <div class="checkout-summary__vendor-card">
       <h3 class="checkout-summary__vendor-name">Tu pedido</h3>
 
@@ -31,12 +30,10 @@
     </div>
   </div>
 
-  {# Botón abre popup, NO hace submit directo #}
   <button type="button" class="checkout-summary__confirm-btn checkout-summary__confirm-btn--js">
     Confirmar pedido
   </button>
 
-  {# Form real que hace POST para crear el pedido #}
   <form id="checkout-confirm-form" action="{% url 'orders:checkout' %}" method="post" style="display:none;">
     {% csrf_token %}
   </form>

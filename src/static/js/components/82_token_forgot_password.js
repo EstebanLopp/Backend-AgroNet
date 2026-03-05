@@ -15,9 +15,7 @@ function initTokenHandlers(scope) {
   const resendLink = scope.querySelector(".token__resend-link");
   const popup = scope.querySelector(".popup--token-success");
 
-  /* -------------------------
-     Autoenfoque entre inputs
-  ------------------------- */
+  
   inputs.forEach((input, index) => {
 
     input.addEventListener("input", (e) => {
@@ -35,9 +33,7 @@ function initTokenHandlers(scope) {
   });
 
 
-  /* -------------------------
-     Reenviar código
-  ------------------------- */
+  
   if (resendLink && popup) {
     resendLink.addEventListener("click", (e) => {
       e.preventDefault();
@@ -46,9 +42,7 @@ function initTokenHandlers(scope) {
   }
 
 
-  /* -------------------------
-     Cerrar popup
-  ------------------------- */
+  
   if (popup) {
     popup.addEventListener("click", (e) => {
 

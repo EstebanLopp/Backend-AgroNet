@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("product-detail-customer-container");
 
-  //  Ruta corregida según ubicación actual de product.html
+  
   fetch("/src/templates/components/35_product_detail_customer.html")
     .then(response => {
       console.log("Estado del fetch:", response.status, "Ruta usada:", response.url);

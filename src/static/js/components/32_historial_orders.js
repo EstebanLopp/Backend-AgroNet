@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const html = await htmlResponse.text();
     container.insertAdjacentHTML("beforeend", html);
 
-    // Seleccionar por class
+    
     const ordersContainer = document.querySelector(".orders__container");
     const template = document.querySelector(".orders__template");
 

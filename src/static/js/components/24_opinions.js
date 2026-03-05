@@ -7,7 +7,7 @@ function loadAboutUsComponent(containerId) {
     .catch(error => console.error("Error cargando el componente:", error));
 }
 
-// Ejecutar cuando el DOM esté listo
+
 document.addEventListener("DOMContentLoaded", () => {
   loadAboutUsComponent("opinions-container");
 });

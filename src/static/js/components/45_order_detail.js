@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             modal.classList.remove("active");
           });
 
-          // Cerrar al hacer clic fuera
+          
           modal.addEventListener("click", (e) => {
             if (e.target === modal || e.target.classList.contains("invoice-modal__overlay")) {
               modal.classList.remove("active");

@@ -18,13 +18,13 @@ class Inicio(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # 8 productos para "más buscados" (por ahora: más recientes disponibles)
+        
         context["home_products"] = (
             Product.objects.filter(available=True)
             .order_by("-created_at")[:8]
         )
 
-        # 4 categorías visibles en home
+        
         context["home_categories"] = Category.objects.all()[:4]
 
         return context

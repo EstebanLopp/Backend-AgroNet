@@ -13,34 +13,34 @@
   {% for item in cart %}
     <div class="product-cart">
 
-      <!-- Eliminar -->
+      
       <form action="{% url 'cart_remove' item.product.id %}" method="post" style="margin:0;">
         {% csrf_token %}
         <button type="submit" class="product-cart__delete" aria-label="Eliminar">✕</button>
       </form>
 
-      <!-- Imagen -->
+      
       {% if item.product.image %}
         <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="product-cart__img">
       {% else %}
         <img src="{% static 'assets/manzan.jpg' %}" alt="{{ item.product.name }}" class="product-cart__img">
       {% endif %}
 
-      <!-- Nombre -->
+      
       <div class="product-cart__details">
         <p class="producto-cart__details-name">{{ item.product.name }}</p>
       </div>
 
-      <!-- Cajas: cantidad / precio / total -->
+      
       <div class="product-cart__boxes">
 
-            <!-- Cantidad (por ahora: input editable + actualizar) -->
+            
             <div class="product-cart__quantity">
             <label for="cantidad-{{ item.product.id }}">Cantidad</label>
 
             <div class="product-cart__counter">
 
-                <!-- Botón - -->
+                
                 <form action="{% url 'cart_update' item.product.id %}" method="post" style="margin:0;">
                     {% csrf_token %}
                     <input type="hidden" name="quantity" value="{{ item.quantity|add:'-1' }}">
@@ -52,7 +52,7 @@
                     >-</button>
                 </form>
 
-                <!-- Cantidad (readonly para que se vea como el diseño) -->
+                
                 <input
                     type="text"
                     value="{{ item.quantity }}"
@@ -60,7 +60,7 @@
                     class="product-cart__counter-input"
                 >
 
-                <!-- Botón + -->
+                
                 <form action="{% url 'cart_update' item.product.id %}" method="post" style="margin:0;">
                     {% csrf_token %}
                     <input type="hidden" name="quantity" value="{{ item.quantity|add:'1' }}">

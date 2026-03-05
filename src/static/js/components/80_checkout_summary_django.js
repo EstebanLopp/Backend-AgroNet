@@ -15,12 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("checkout-confirm-form");
 
-  // Abre popup confirmación
+  
   confirmBtn.addEventListener("click", () => {
     confirmPopup.classList.add("checkout-summary__popup--show");
   });
 
-  // Cerrar confirmación
+  
   [closeConfirm, cancelBtn].forEach(btn => {
     if (!btn) return;
     btn.addEventListener("click", () => {
@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (confirmContent) confirmContent.addEventListener("click", e => e.stopPropagation());
 
-  // Aceptar: enviar POST real (no mostramos success local, dejamos que Django redirija)
+  
   acceptBtn.addEventListener("click", () => {
     if (!form) return;
     form.submit();
   });
 
-  // Estos handlers quedan por si tu pantalla de éxito reutiliza el popup
+  
   if (closeSuccess) {
     closeSuccess.addEventListener("click", () => {
       successPopup.classList.remove("checkout-summary__popup--show");
