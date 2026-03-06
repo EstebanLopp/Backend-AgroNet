@@ -12,7 +12,7 @@
   {% for product in page_obj %}
   <div class="product1">
 
-    <a href="{% url 'product_detail' product.slug %}" class="product__link">
+    <a href="{% url 'products:product_detail' product.slug %}" class="product__link">
       {% if product.image %}
         <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product__image">
       {% else %}
@@ -24,7 +24,7 @@
       <div class="product__details">
         <p class="product__price">${{ product.price }}</p>
 
-        <a href="{% url 'product_detail' product.slug %}" class="product__link">
+        <a href="{% url 'products:product_detail' product.slug %}" class="product__link">
           <h3 class="product__name">{{ product.name }}</h3>
         </a>
 

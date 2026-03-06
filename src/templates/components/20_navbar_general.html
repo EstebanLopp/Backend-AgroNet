@@ -17,11 +17,11 @@
       </li>
 
       <li class="navbar__general-item">
-        <a href="{% url 'product_list' %}" class="navbar__general-link">Catálogo</a>
+        <a href="{% url 'products:product_list' %}" class="navbar__general-link">Catálogo</a>
       </li>
 
       <li class="navbar__general-item">
-        <a href="{% url 'contact' %}" class="navbar__general-link">Contacto</a>
+        <a href="{% url 'contact:contact' %}" class="navbar__general-link">Contacto</a>
       </li>
 
       <li class="navbar__general-item">
@@ -40,7 +40,7 @@
               </summary>
 
               <div class="navbar__profile-menu">
-                <a href="{% url 'customer_dashboard' %}" class="navbar__profile-item">
+                <a href="{% url 'dashboard' %}" class="navbar__profile-item">
                   <i class="fa-solid fa-user-gear"></i> Mi cuenta
                 </a>
 

@@ -21,25 +21,48 @@
         <p class="order-detail__id"><strong>Pedido</strong> #{{ order.id }}</p>
 
         <p class="order-detail__status">
-          <strong>Estado:</strong>
-          {% if order.paid %} Confirmado {% else %} Pendiente {% endif %}
+          <strong>Estado:</strong> {{ order.get_status_display }}
         </p>
 
-        {# Estos campos no existen en tu modelo aún #}
-        <p class="order-detail__status"><strong>Método de pago:</strong> No especificado</p>
-        <p class="order-detail__status"><strong>Método de envío:</strong> No especificado</p>
-        <p class="order-detail__status"><strong>Dirección:</strong> No especificada</p>
+        <p class="order-detail__status">
+          <strong>Método de pago:</strong>
+          {% if order.payment_method %}
+            {{ order.get_payment_method_display }}
+          {% else %}
+            No especificado
+          {% endif %}
+        </p>
+
+        <p class="order-detail__status">
+          <strong>Método de envío:</strong>
+          {% if order.shipping_method %}
+            {{ order.get_shipping_method_display }}
+          {% else %}
+            No especificado
+          {% endif %}
+        </p>
+
+        <p class="order-detail__status">
+          <strong>Dirección:</strong>
+          {% if order.address %}
+            {{ order.address }}{% if order.city %}, {{ order.city }}{% endif %}
+          {% else %}
+            No especificada
+          {% endif %}
+        </p>
+
+        {% if order.notes %}
+          <p class="order-detail__status">
+            <strong>Notas:</strong> {{ order.notes }}
+          </p>
+        {% endif %}
 
         <button class="order-detail__invoice-button order-detail__open-invoice">
-          Ver cotizacion
+          Ver cotización
         </button>
       </div>
 
       <div class="order-detail__info">
-
-        {# VENDEDOR: tu modelo Product no tiene vendedor asociado, así que lo oculto para no mentir #}
-        {# Si luego agregas vendor a Product, lo volvemos a mostrar #}
-
         <table class="order-detail__table">
           <thead>
             <tr>
@@ -78,8 +101,7 @@
               <p class="order-card__id">Pedido #{{ o.id }}</p>
 
               <span class="order-card__status">
-                Estado:
-                {% if o.paid %} Confirmado {% else %} Pendiente {% endif %}
+                Estado: {{ o.get_status_display }}
               </span>
 
               <a href="{% url 'orders:order_detail' o.id %}" class="order-card__button">Ver más</a>
@@ -103,11 +125,33 @@
     <h2 class="order-detail__invoice-title">Ticket de pago #{{ order.id }}</h2>
 
     <div class="order-detail__invoice-body">
-      <p><strong>Cliente:</strong>
-        {% if request.user.get_full_name %}{{ request.user.get_full_name }}{% else %}{{ request.user.username }}{% endif %}
+      <p>
+        <strong>Cliente:</strong>
+        {% if request.user.get_full_name %}
+          {{ request.user.get_full_name }}
+        {% else %}
+          {{ request.user.username }}
+        {% endif %}
       </p>
 
       <p><strong>Fecha:</strong> {{ order.created|date:"d/m/Y" }}</p>
+
+      <p><strong>Estado:</strong> {{ order.get_status_display }}</p>
+
+      {% if order.payment_method %}
+        <p><strong>Método de pago:</strong> {{ order.get_payment_method_display }}</p>
+      {% endif %}
+
+      {% if order.shipping_method %}
+        <p><strong>Método de envío:</strong> {{ order.get_shipping_method_display }}</p>
+      {% endif %}
+
+      {% if order.address %}
+        <p>
+          <strong>Dirección:</strong>
+          {{ order.address }}{% if order.city %}, {{ order.city }}{% endif %}
+        </p>
+      {% endif %}
 
       <table class="order-detail__invoice-table">
         <thead>

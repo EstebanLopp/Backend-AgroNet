@@ -9,7 +9,7 @@
 
   <div class="products-index">
     {% for product in home_products %}
-      <a href="{% url 'product_detail' product.slug %}" class="products-index__card" data-id="{{ product.id }}">
+      <a href="{% url 'products:product_detail' product.slug %}" class="products-index__card" data-id="{{ product.id }}">
         {% if product.image %}
           <img src="{{ product.image.url }}" alt="{{ product.name }}" class="products-index__image">
         {% else %}
