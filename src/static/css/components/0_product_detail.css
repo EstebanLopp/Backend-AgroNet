@@ -423,3 +423,44 @@ Componentes principales:
     max-width: 1000px;
   }
 }
+
+.product-detail__cart-form{
+    margin-top: 10px;
+}
+
+.product-detail__cart-controls{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.product-detail__add-btn{
+    min-width: 180px;
+    height: 46px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-600);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(122, 157, 84, 0.18);
+}
+
+.product-detail__add-btn:hover{
+    background-color: var(--primary-500);
+    transform: translateY(-1px);
+}
+
+.product-detail__add-btn:active{
+    transform: translateY(0);
+}
+
+.product-detail__add-btn:disabled{
+    background-color: #b7b7b7;
+    cursor: not-allowed;
+    box-shadow: none;
+}

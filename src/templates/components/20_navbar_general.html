@@ -25,7 +25,7 @@
       </li>
 
       <li class="navbar__general-item">
-        <a href="{% url 'cart_detail' %}" class="navbar__general-link navbar__general-link--icon">
+        <a href="{% url 'cart:cart_detail' %}" class="navbar__general-link navbar__general-link--icon">
           <i class="fa-solid fa-cart-shopping"></i>
           Carrito ({{ cart|length }})
         </a>

@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'products',
     'cart',
     'orders',
-    'accounts',
+    "accounts.apps.AccountsConfig",
     'contact',
 ]
 

@@ -6,99 +6,125 @@
 
 {% block content %}
 
-<h2 class="product-cart__title">Carrito de compras</h2>
+<div class="cart-page container">
+  <h2 class="product-cart__title">Carrito de compras</h2>
 
-{% if cart|length > 0 %}
+  {% if cart|length > 0 %}
 
-  {% for item in cart %}
-    <div class="product-cart">
+    <div class="cart-layout">
 
-      
-      <form action="{% url 'cart_remove' item.product.id %}" method="post" style="margin:0;">
-        {% csrf_token %}
-        <button type="submit" class="product-cart__delete" aria-label="Eliminar">✕</button>
-      </form>
+      <div class="cart-layout__products">
+        {% for item in cart %}
+          <div class="product-cart">
 
-      
-      {% if item.product.image %}
-        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="product-cart__img">
-      {% else %}
-        <img src="{% static 'assets/manzan.jpg' %}" alt="{{ item.product.name }}" class="product-cart__img">
-      {% endif %}
+            <form action="{% url 'cart:cart_remove' item.product.id %}" method="post" class="product-cart__delete-form">
+              {% csrf_token %}
+              <button type="submit" class="product-cart__delete" aria-label="Eliminar">✕</button>
+            </form>
 
-      
-      <div class="product-cart__details">
-        <p class="producto-cart__details-name">{{ item.product.name }}</p>
-      </div>
+            {% if item.product.image %}
+              <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="product-cart__img">
+            {% else %}
+              <img src="{% static 'assets/manzan.jpg' %}" alt="{{ item.product.name }}" class="product-cart__img">
+            {% endif %}
 
-      
-      <div class="product-cart__boxes">
+            <div class="product-cart__details">
+              <p class="producto-cart__details-name">{{ item.product.name }}</p>
+            </div>
 
-            
-            <div class="product-cart__quantity">
-            <label for="cantidad-{{ item.product.id }}">Cantidad</label>
+            <div class="product-cart__boxes">
 
-            <div class="product-cart__counter">
+              <div class="product-cart__quantity">
+                <label for="cantidad-{{ item.product.id }}">Cantidad</label>
 
-                
-                <form action="{% url 'cart_update' item.product.id %}" method="post" style="margin:0;">
+                <div class="product-cart__counter">
+
+                  <form action="{% url 'cart:cart_update' item.product.id %}" method="post" style="margin:0;">
                     {% csrf_token %}
                     <input type="hidden" name="quantity" value="{{ item.quantity|add:'-1' }}">
                     <button
-                    type="submit"
-                    class="product-cart__counter-button"
-                    {% if item.quantity <= 1 %}disabled{% endif %}
-                    aria-label="Disminuir"
+                      type="submit"
+                      class="product-cart__counter-button"
+                      {% if item.quantity <= 1 %}disabled{% endif %}
+                      aria-label="Disminuir"
                     >-</button>
-                </form>
+                  </form>
 
-                
-                <input
+                  <input
+                    id="cantidad-{{ item.product.id }}"
                     type="text"
                     value="{{ item.quantity }}"
                     readonly
                     class="product-cart__counter-input"
-                >
+                  >
 
-                
-                <form action="{% url 'cart_update' item.product.id %}" method="post" style="margin:0;">
+                  <form action="{% url 'cart:cart_update' item.product.id %}" method="post" style="margin:0;">
                     {% csrf_token %}
                     <input type="hidden" name="quantity" value="{{ item.quantity|add:'1' }}">
                     <button
-                    type="submit"
-                    class="product-cart__counter-button"
-                    {% if item.quantity >= item.product.stock %}disabled{% endif %}
-                    aria-label="Aumentar"
+                      type="submit"
+                      class="product-cart__counter-button"
+                      {% if item.quantity >= item.product.stock %}disabled{% endif %}
+                      aria-label="Aumentar"
                     >+</button>
-                </form>
+                  </form>
+
+                </div>
+              </div>
+
+              <div class="product-cart__price">
+                <label>Precio Unidad</label>
+                <input type="text" value="${{ item.price }}" readonly class="product-cart__price-input">
+              </div>
+
+              <div class="product-cart__total">
+                <label>Total</label>
+                <input type="text" value="${{ item.total_price }}" readonly class="product-cart__total-input">
+              </div>
 
             </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <aside class="cart-summary">
+        <h3 class="cart-summary__title">Resumen de compra</h3>
+
+        <div class="cart-summary__row">
+          <span>Productos diferentes</span>
+          <span>{{ cart|length }}</span>
         </div>
 
-        <div class="product-cart__price">
-          <label>Precio Unidad</label>
-          <input type="text" value="{{ item.price }}" readonly class="product-cart__price-input">
+        <div class="cart-summary__row">
+          <span>Total general</span>
+          <strong>${{ cart.get_total_price }}</strong>
         </div>
 
-        <div class="product-cart__total">
-          <label>Total</label>
-          <input type="text" value="{{ item.total_price }}" readonly class="product-cart__total-input">
-        </div>
+        <a href="{% url 'orders:checkout' %}" class="cart-summary__checkout-btn">
+          Finalizar compra
+        </a>
+      </aside>
 
+    </div>
+
+  {% else %}
+
+    <div class="empty-cart">
+      <div class="empty-cart__content">
+        <h2 class="empty-cart__title">Tu carrito está vacío</h2>
+        <p class="empty-cart__text">
+          Aún no has agregado productos. Explora el catálogo y encuentra productos frescos para tu compra.
+        </p>
+
+        <div class="empty-cart__actions">
+          <a href="{% url 'products:product_list' %}" class="empty-cart__button">
+            Ir al catálogo
+          </a>
+        </div>
       </div>
     </div>
-  {% endfor %}
 
-  <div class="cart-summary" style="margin-top: 24px;">
-    <p><strong>Total General: ${{ cart.get_total_price }}</strong></p>
-
-    <a href="{% url 'orders:checkout' %}" class="btn">
-      Finalizar compra
-    </a>
-  </div>
-
-{% else %}
-  <p>Tu carrito está vacío.</p>
-{% endif %}
+  {% endif %}
+</div>
 
 {% endblock %}
