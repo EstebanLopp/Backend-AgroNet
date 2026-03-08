@@ -35,7 +35,7 @@
     <!-- (Opcional) Si luego hacemos reset de contraseña, lo conectamos -->
     {# <a href="{% url 'password_reset' %}" class="login__forgot">¿Olvidaste tu contraseña?</a> #}
 
-    <a href="#" class="login__forgot">¿Olvidaste tu contraseña?</a>
+    <a href="{% url 'accounts:password_reset' %}">¿Olvidaste tu contraseña?</a>
 
     <hr class="login__divider">
 
