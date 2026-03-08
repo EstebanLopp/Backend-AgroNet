@@ -299,3 +299,117 @@
     box-shadow: 0 0 0 3px rgba(122, 157, 84, 0.15);
 }
 
+.checkout-page{
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.checkout-page__header{
+    margin-bottom: 28px;
+}
+
+.checkout-page__header h2{
+    font-size: 32px;
+    font-weight: 700;
+    color: #2f3b1f;
+    margin-bottom: 8px;
+}
+
+.checkout-page__header p{
+    color: #6b7280;
+    margin: 0;
+}
+
+.checkout-layout{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.checkout-form-card,
+.checkout-summary-card{
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-form-card h3,
+.checkout-summary-card h3{
+    font-size: 24px;
+    font-weight: 700;
+    color: #2f3b1f;
+    margin-bottom: 20px;
+}
+
+.checkout-form textarea,
+.checkout-form input,
+.checkout-form select{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    padding: 12px 14px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
+    background: #ffffff;
+}
+
+.checkout-form textarea:focus,
+.checkout-form input:focus,
+.checkout-form select:focus{
+    border-color: #7a9d54;
+    box-shadow: 0 0 0 3px rgba(122, 157, 84, 0.15);
+}
+
+.checkout-form__actions{
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.checkout-summary-list{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.checkout-summary-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ececec;
+}
+
+.checkout-summary-item small{
+    display: block;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+.checkout-summary-total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+@media (max-width: 991px){
+    .checkout-layout{
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-form__actions{
+        flex-direction: column;
+    }
+
+    .checkout-form__actions .account-btn{
+        width: 100%;
+    }
+}

@@ -4,7 +4,9 @@ from django.db import transaction
 from django.contrib import messages
 
 from cart.cart import Cart
+from .forms import CheckoutForm
 from .models import Order, OrderItem
+
 
 
 @login_required
@@ -13,48 +15,68 @@ def checkout(request):
 
     if len(cart) == 0:
         messages.warning(request, "Tu carrito está vacío.")
-        return redirect('cart_detail')
+        return redirect("cart:cart_detail")
 
     if request.method == "POST":
-        with transaction.atomic():
-            order = Order.objects.create(
-                user=request.user,
-                paid=True,
-                status="confirmed",
-                payment_method="nequi",
-                shipping_method="standard",
-                address="Dirección pendiente",
-                city="Cali",
-                notes="Pedido generado desde simulación de compra",
-            )
+        form = CheckoutForm(request.POST)
 
-            for item in cart:
-                product = item['product']
+        if form.is_valid():
+            with transaction.atomic():
+                order = form.save(commit=False)
+                order.user = request.user
+                order.paid = True
+                order.status = "confirmed"
 
-                # Validación de stock
-                if item['quantity'] > product.stock:
-                    messages.error(
-                        request,
-                        f"No hay suficiente stock para {product.name}. Disponible: {product.stock}."
+                for item in cart:
+                    product = item["product"]
+
+                    if not product.available:
+                        messages.error(
+                            request,
+                            f'El producto "{product.name}" ya no está disponible.'
+                        )
+                        return redirect("cart:cart_detail")
+
+                    if item["quantity"] > product.stock:
+                        messages.error(
+                            request,
+                            f'No hay suficiente stock para "{product.name}".'
+                        )
+                        return redirect("cart:cart_detail")
+
+                order.save()
+
+                for item in cart:
+                    product = item["product"]
+
+                    OrderItem.objects.create(
+                        order=order,
+                        product=product,
+                        price=item["price"],
+                        quantity=item["quantity"]
                     )
-                    return redirect('cart_detail')
 
-                OrderItem.objects.create(
-                    order=order,
-                    product=product,
-                    price=item['price'],
-                    quantity=item['quantity']
-                )
+                    product.stock -= item["quantity"]
+                    product.save()
 
-                product.stock -= item['quantity']
-                product.save()
+                cart.clear()
 
-            cart.clear()
+                messages.success(request, "Tu pedido fue creado correctamente.")
+                return redirect("orders:order_success")
 
-        messages.success(request, "Pedido realizado con éxito.")
-        return redirect('orders:order_success')
+    else:
+        initial_data = {}
 
-    return render(request, 'orders/checkout.html', {'cart': cart})
+        if hasattr(request.user, "customer_profile"):
+            profile = request.user.customer_profile
+            if profile.address:
+                initial_data["address"] = profile.address
+            if profile.city:
+                initial_data["city"] = profile.city
+
+        form = CheckoutForm(initial=initial_data)
+
+    return render(request, "orders/checkout.html", {"form": form, "cart": cart})
 
 
 @login_required

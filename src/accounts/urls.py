@@ -4,6 +4,8 @@ from . import views
 from .views import customer_dashboard
 from .views import edit_profile
 
+app_name = "accounts"
+
 urlpatterns = [
     path("signup/", signup, name="signup"),
     path("cuenta/", views.customer_dashboard, name="customer_dashboard"),
