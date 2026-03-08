@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from datetime import date
 
 from .models import CustomerProfile
 
@@ -157,3 +158,9 @@ class CustomerProfileForm(forms.ModelForm):
             raise forms.ValidationError("La ciudad debe tener al menos 2 caracteres.")
 
         return city
+    
+    def clean_birth_date(self):
+        birth_date = self.cleaned_data.get("birth_date")
+        if birth_date and birth_date > date.today():
+            raise forms.ValidationError("La fecha de nacimiento no puede ser futura.")
+        return birth_date

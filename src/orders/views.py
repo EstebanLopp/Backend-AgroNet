@@ -63,6 +63,8 @@ def checkout(request):
 
                 messages.success(request, "Tu pedido fue creado correctamente.")
                 return redirect("orders:order_success")
+        else:
+            messages.error(request, "No se pudo procesar el pedido. Revisa la información ingresada.")
 
     else:
         initial_data = {}

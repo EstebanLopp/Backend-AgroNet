@@ -17,7 +17,7 @@
         class="login__input"
         type="text"
         name="username"
-        placeholder="Correo electrónico, teléfono o usuario"
+        placeholder="Usuario"
         required
       >
 
@@ -39,7 +39,7 @@
 
     <hr class="login__divider">
 
-    <a href="{% url 'signup' %}">
+    <a href="{% url 'accounts:signup' %}">
       <button class="login__button login__button--secondary" type="button">
         Crear cuenta nueva
       </button>

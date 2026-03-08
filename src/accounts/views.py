@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from orders.models import Order
+from django.contrib import messages
 
 from .forms import SignUpForm, UserProfileForm, CustomerProfileForm
 
@@ -13,7 +14,8 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("index")
+            messages.success(request, "Tu cuenta fue creada correctamente. Completa tu perfil para continuar.")
+            return redirect("accounts:dashboard")
     else:
         form = SignUpForm()
 
@@ -50,10 +52,15 @@ def edit_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect("dashboard")
+            messages.success(request, "Tu perfil fue actualizado correctamente.")
+            return redirect("accounts:dashboard")
+        else:
+            messages.error(request, "No se pudo actualizar el perfil. Revisa los campos marcados.")
+            
     else:
         user_form = UserProfileForm(instance=request.user)
         profile_form = CustomerProfileForm(instance=profile)
+        
 
     context = {
         "user_form": user_form,
