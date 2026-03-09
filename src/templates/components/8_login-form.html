@@ -32,10 +32,9 @@
       <button class="login__button" type="submit">Iniciar sesión</button>
     </form>
 
-    <!-- (Opcional) Si luego hacemos reset de contraseña, lo conectamos -->
-    {# <a href="{% url 'password_reset' %}" class="login__forgot">¿Olvidaste tu contraseña?</a> #}
-
-    <a href="{% url 'accounts:password_reset' %}">¿Olvidaste tu contraseña?</a>
+    <a href="{% url 'accounts:password_reset' %}" class="auth-forgot-link">
+      ¿Olvidaste tu contraseña?
+    </a>
 
     <hr class="login__divider">
 

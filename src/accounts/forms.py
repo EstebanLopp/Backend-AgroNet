@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import PasswordResetForm
 from datetime import date
 
 from .models import CustomerProfile
@@ -164,3 +165,10 @@ class CustomerProfileForm(forms.ModelForm):
         if birth_date and birth_date > date.today():
             raise forms.ValidationError("La fecha de nacimiento no puede ser futura.")
         return birth_date
+    
+class CustomPasswordResetForm(PasswordResetForm):
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if not User.objects.filter(email=email).exists():
+            raise forms.ValidationError("No existe una cuenta registrada con ese correo.")
+        return email

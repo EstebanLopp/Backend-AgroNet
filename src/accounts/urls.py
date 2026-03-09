@@ -2,6 +2,7 @@ from django.urls import path
 from .views import signup
 from . import views
 from .views import customer_dashboard
+from .forms import CustomPasswordResetForm
 from .views import edit_profile
 from django.contrib.auth import views as auth_views
 
@@ -14,6 +15,7 @@ urlpatterns = [
     path(
     "password-reset/",
     auth_views.PasswordResetView.as_view(
+        form_class=CustomPasswordResetForm,
         template_name="registration/password_reset_form.html",
         email_template_name="registration/password_reset_email.html",
         subject_template_name="registration/password_reset_subject.txt",
