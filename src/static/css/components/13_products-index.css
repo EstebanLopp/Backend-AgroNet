@@ -174,3 +174,52 @@ y index_seller.html (seller-pages) */
     max-width: 340px;
   }
 }
+
+.catalog-pagination{
+    margin: 40px 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.catalog-pagination__pages{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.catalog-pagination__btn,
+.catalog-pagination__number{
+    min-width: 42px;
+    height: 42px;
+    padding: 0 14px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+    background-color: var(--white);
+    color: var(--primary-600);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.catalog-pagination__btn:hover,
+.catalog-pagination__number:hover{
+    background-color: #f3f8ee;
+    border-color: #7a9d54;
+    color: var(--primary-500);
+    transform: translateY(-1px);
+}
+
+.catalog-pagination__number--active{
+    background-color: var(--primary-500);
+    border-color: var(--primary-500);
+    color: var(--white);
+    pointer-events: none;
+}

@@ -6,6 +6,7 @@
 
 
 /* Components */
+
 @import url('components/0_product_detail.css');
 @import url('components/1_footer.css');
 /*@import url('components/2_form.css'); - DELETED */
@@ -87,4 +88,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+main{
+    margin-top:70px;
 }

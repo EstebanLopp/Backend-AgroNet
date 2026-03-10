@@ -54,11 +54,19 @@
 
       <div class="product-detail__purchase">
         <p class="product-detail__price">${{ product.price }}</p>
-        <form action="{% url 'cart_add' product.id %}" method="post">
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="post" class="product-detail__cart-form">
           {% csrf_token %}
-          <button type="submit" {% if product.stock == 0 %}disabled{% endif %}>
-            {% if product.stock == 0 %}Sin stock{% else %}Añadir{% endif %}
-          </button>
+
+          <div class="product-detail__cart-controls">
+            <button
+              type="submit"
+              class="product-detail__add-btn"
+              {% if product.stock == 0 %}disabled{% endif %}
+            >
+              {% if product.stock == 0 %}Sin stock{% else %}Añadir al carrito{% endif %}
+            </button>
+          </div>
         </form>
       </div>
     </div>

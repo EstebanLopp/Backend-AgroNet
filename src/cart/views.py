@@ -11,12 +11,27 @@ def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
 
-    if product.stock < 1:
-        messages.error(request, "Este producto está agotado.")
-        return redirect("product_list")  
+    if not product.available:
+        messages.error(request, "Este producto no está disponible en este momento.")
+        return redirect("products:product_detail", slug=product.slug)
+
+    if product.stock <= 0:
+        messages.error(request, "Este producto no tiene stock disponible.")
+        return redirect("products:product_detail", slug=product.slug)
+
+    current_quantity = 0
+    product_id_str = str(product.id)
+
+    if product_id_str in cart.cart:
+        current_quantity = cart.cart[product_id_str]["quantity"]
+
+    if current_quantity >= product.stock:
+        messages.warning(request, "Ya agregaste la cantidad máxima disponible para este producto.")
+        return redirect("cart:cart_detail")
 
     cart.add(product=product, quantity=1)
-    return redirect("cart_detail")
+    messages.success(request, "Producto agregado al carrito.")
+    return redirect("cart:cart_detail")
 
 def cart_detail(request):
     cart = Cart(request)
@@ -27,7 +42,8 @@ def cart_remove(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
-    return redirect("cart_detail")
+    messages.info(request, "Producto eliminado del carrito.")
+    return redirect("cart:cart_detail")
 
 @require_POST
 def cart_update(request, product_id):
@@ -35,16 +51,29 @@ def cart_update(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
     try:
-        quantity = int(request.POST.get("quantity"))
+        quantity = int(request.POST.get("quantity", 1))
     except (TypeError, ValueError):
-        return redirect("cart_detail")
+        messages.error(request, "La cantidad enviada no es válida.")
+        return redirect("cart:cart_detail")
 
-    
+    if not product.available:
+        cart.remove(product)
+        messages.error(request, "El producto ya no está disponible y fue retirado del carrito.")
+        return redirect("cart:cart_detail")
+
+    if product.stock <= 0:
+        cart.remove(product)
+        messages.error(request, "El producto ya no tiene stock y fue retirado del carrito.")
+        return redirect("cart:cart_detail")
+
     if quantity < 1:
         cart.remove(product)
-    elif quantity > product.stock:
-        cart.update(product, product.stock)
-    else:
-        cart.update(product, quantity)
+        messages.info(request, "El producto fue eliminado del carrito.")
+        return redirect("cart:cart_detail")
 
-    return redirect("cart_detail")
+    if quantity > product.stock:
+        quantity = product.stock
+        messages.warning(request, f"Solo hay {product.stock} unidades disponibles.")
+
+    cart.add(product=product, quantity=quantity, override_quantity=True)
+    return redirect("cart:cart_detail")

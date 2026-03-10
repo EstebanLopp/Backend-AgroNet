@@ -12,7 +12,7 @@
 
 <section class="products">
   {% for p in related_products %}
-    <a href="{% url 'product_detail' p.slug %}" class="product1">
+    <a href="{% url 'products:product_detail' p.slug %}" class="product1">
       {% if p.image %}
         <img src="{{ p.image.url }}" class="product1__image" alt="{{ p.name }}">
       {% else %}
@@ -24,8 +24,20 @@
           <h3 class="product1__name">{{ p.name }}</h3>
           <p class="product1__category">{{ p.category.name }}</p>
         </div>
-      </div>
-    </a>
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+        {% csrf_token %}
+        <button class="product__btn-add" type="submit" {% if product.stock == 0 %}disabled{% endif %}>
+          <i class="fas fa-shopping-cart product__icon-cart"></i>
+          {% if product.stock == 0 %}Agotado{% else %}Añadir{% endif %}
+        </button>
+      </form>
+    </div>
+
+  </div>
+  </a>
+  {% empty %}
+    <p>No hay productos disponibles.</p>
   {% endfor %}
 </section>
 
