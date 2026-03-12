@@ -47,5 +47,37 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'js/components/19_message.js' %}" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("modal-contact");
+    if (!modal) return;
+
+    const closeBtn = modal.querySelector(".close1");
+    const acceptBtn = modal.querySelector(".modal-contact__btn");
+
+    function closeModal() {
+        modal.classList.remove("active");
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener("click", closeModal);
+    }
+
+    if (acceptBtn) {
+        acceptBtn.addEventListener("click", closeModal);
+    }
+
+    modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+            closeModal();
+        }
+    });
+});
+</script>
 {% endblock %}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container profile-page">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="profile-card">
+                <h3>Editar perfil</h3>
+
+                <form method="post" class="profile-form">
+                    {% csrf_token %}
+
+                    <h4 class="profile-section-title">Datos de la cuenta</h4>
+
+                    <div class="form-group">
+                        <label for="{{ user_form.first_name.id_for_label }}">Nombre</label>
+                        {{ user_form.first_name }}
+                        {% if user_form.first_name.errors %}
+                            <small class="text-danger">{{ user_form.first_name.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ user_form.last_name.id_for_label }}">Apellido</label>
+                        {{ user_form.last_name }}
+                        {% if user_form.last_name.errors %}
+                            <small class="text-danger">{{ user_form.last_name.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ user_form.email.id_for_label }}">Email</label>
+                        {{ user_form.email }}
+                        {% if user_form.email.errors %}
+                            <small class="text-danger">{{ user_form.email.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+
+                    <h4 class="profile-section-title">Datos personales</h4>
+
+                    <div class="form-group">
+                        <label for="{{ profile_form.phone.id_for_label }}">Teléfono</label>
+                        {{ profile_form.phone }}
+                        {% if profile_form.phone.errors %}
+                            <small class="text-danger">{{ profile_form.phone.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ profile_form.document_type.id_for_label }}">Tipo de documento</label>
+                        {{ profile_form.document_type }}
+                        {% if profile_form.document_type.errors %}
+                            <small class="text-danger">{{ profile_form.document_type.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ profile_form.document_number.id_for_label }}">Número de documento</label>
+                        {{ profile_form.document_number }}
+                        {% if profile_form.document_number.errors %}
+                            <small class="text-danger">{{ profile_form.document_number.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ profile_form.birth_date.id_for_label }}">Fecha de nacimiento</label>
+                        {{ profile_form.birth_date }}
+                        {% if profile_form.birth_date.errors %}
+                            <small class="text-danger">{{ profile_form.birth_date.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ profile_form.address.id_for_label }}">Dirección</label>
+                        {{ profile_form.address }}
+                        {% if profile_form.address.errors %}
+                            <small class="text-danger">{{ profile_form.address.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ profile_form.city.id_for_label }}">Ciudad</label>
+                        {{ profile_form.city }}
+                        {% if profile_form.city.errors %}
+                            <small class="text-danger">{{ profile_form.city.errors.0 }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="profile-form__actions">
+                        <button type="submit" class="account-btn account-btn--primary">
+                            Guardar cambios
+                        </button>
+
+                        <a href="{% url 'accounts:dashboard' %}" class="account-btn account-btn--secondary">
+                            Volver a mi cuenta
+                        </a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

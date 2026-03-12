@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="seller-dashboard">
+
+<h1>Mi tienda</h1>
+
+<div class="seller-store-info">
+
+<h2>{{ store.name }}</h2>
+
+<p>{{ store.description }}</p>
+
+<p><strong>Ciudad:</strong> {{ store.city }}</p>
+
+<p><strong>Teléfono:</strong> {{ store.phone }}</p>
+
+</div>
+
+<div class="seller-actions">
+
+<a href="#" class="account-btn account-btn--primary">
+    Publicar producto
+</a>
+
+<a href="#" class="account-btn account-btn--secondary">
+    Ver productos
+</a>
+
+<a href="#" class="account-btn account-btn--secondary">
+    Ver ventas
+</a>
+
+</div>
+
+</section>
+
+{% endblock %}

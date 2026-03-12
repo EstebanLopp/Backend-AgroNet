@@ -1,3 +1,21 @@
 from django.contrib import admin
+from .models import CustomerProfile, SellerProfile, Store
 
-# Register your models here.
+
+@admin.register(CustomerProfile)
+class CustomerProfileAdmin(admin.ModelAdmin):
+    list_display = ("user", "phone", "document_type", "document_number", "city")
+    search_fields = ("user__username", "user__email", "document_number", "phone", "city")
+
+@admin.register(SellerProfile)
+class SellerProfileAdmin(admin.ModelAdmin):
+    list_display = ("user", "is_active", "created_at")
+    search_fields = ("user__username", "user__email")
+    list_filter = ("is_active", "created_at")
+
+
+@admin.register(Store)
+class StoreAdmin(admin.ModelAdmin):
+    list_display = ("name", "seller", "phone", "city", "created_at")
+    search_fields = ("name", "seller__user__username", "seller__user__email", "phone", "city")
+    list_filter = ("city", "created_at")

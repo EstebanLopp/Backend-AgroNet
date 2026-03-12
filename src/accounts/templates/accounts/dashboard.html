@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container account-page">
+
+    <div class="account-header">
+        <h2>Mi cuenta</h2>
+        <p>Bienvenido <strong>{{ user.username }}</strong></p>
+    </div>
+
+    <div class="account-summary">
+        <div class="account-card">
+            <h6>Total pedidos</h6>
+            <h3>{{ total_orders }}</h3>
+        </div>
+
+        <div class="account-card">
+            <h6>Total gastado</h6>
+            <h3>${{ total_spent }}</h3>
+        </div>
+
+        <div class="account-card">
+            <h6>Último pedido</h6>
+            {% if last_order %}
+                <h3>#{{ last_order.id }}</h3>
+            {% else %}
+                <h3>---</h3>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="account-orders">
+        <h4>Últimos pedidos</h4>
+
+        {% if last_orders %}
+            {% for order in last_orders %}
+                <div class="account-order-row">
+                    <div class="account-order-info">
+                        <strong>Pedido #{{ order.id }}</strong>
+                        <small>{{ order.created }}</small>
+                    </div>
+
+                    <div class="account-order-actions">
+                        <span class="account-badge">
+                            {{ order.get_status_display }}
+                        </span>
+
+                        <a href="{% url 'orders:order_detail' order.id %}" class="account-btn account-btn--secondary account-btn--small">
+                            Ver detalle
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No tienes pedidos todavía.</p>
+        {% endif %}
+    </div>
+
+    <div class="account-actions">
+        <a href="{% url 'orders:my_orders' %}" class="account-btn account-btn--primary">
+            Ver todos mis pedidos
+        </a>
+
+        <a href="{% url 'accounts:edit_profile' %}" class="account-btn account-btn--secondary">
+            Editar perfil
+        </a>
+
+        {% if has_store %}
+        <a href="{% url 'accounts:seller_dashboard' %}" class="account-btn account-btn--seller">
+            Administrar mi tienda
+        </a>
+        {% else %}
+        <a href="{% url 'accounts:create_store' %}" class="account-btn account-btn--seller">
+            Crear tienda
+        </a>
+        {% endif %}
+
+        <a href="{% url 'products:product_list' %}" class="account-btn account-btn--dark">
+            Seguir comprando
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

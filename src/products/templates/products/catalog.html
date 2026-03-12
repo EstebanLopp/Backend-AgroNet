@@ -12,7 +12,7 @@
   {% for product in page_obj %}
   <div class="product1">
 
-    <a href="{% url 'product_detail' product.slug %}" class="product__link">
+    <a href="{% url 'products:product_detail' product.slug %}" class="product__link">
       {% if product.image %}
         <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product__image">
       {% else %}
@@ -24,14 +24,14 @@
       <div class="product__details">
         <p class="product__price">${{ product.price }}</p>
 
-        <a href="{% url 'product_detail' product.slug %}" class="product__link">
+        <a href="{% url 'products:product_detail' product.slug %}" class="product__link">
           <h3 class="product__name">{{ product.name }}</h3>
         </a>
 
         <p class="product__category">{{ product.category.name }}</p>
       </div>
 
-      <form action="{% url 'cart_add' product.id %}" method="post">
+      <form action="{% url 'cart:cart_add' product.id %}" method="post">
         {% csrf_token %}
         <button class="product__btn-add" type="submit" {% if product.stock == 0 %}disabled{% endif %}>
           <i class="fas fa-shopping-cart product__icon-cart"></i>
@@ -46,21 +46,28 @@
 {% endfor %}
 </section>
 
-<div class="pagination">
-  {% if page_obj.has_previous %}
-    <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">Anterior</a>
-  {% endif %}
+<div class="catalog-pagination">
+    {% if page_obj.has_previous %}
+        <a class="catalog-pagination__btn" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% endif %}
 
-  <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+    <div class="catalog-pagination__pages">
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <span class="catalog-pagination__number catalog-pagination__number--active">{{ num }}</span>
+            {% else %}
+                <a class="catalog-pagination__number" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
 
-  {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}">Siguiente</a>
-  {% endif %}
+    {% if page_obj.has_next %}
+        <a class="catalog-pagination__btn" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    {% endif %}
 </div>
 
 {% endblock %}
 
 {% block scripts %}
-  <!-- OJO: ya NO uses 10_product-card.js porque eso era JSON estático -->
   <script src="{% static 'js/components/3_catalog-header.js' %}" defer></script>
 {% endblock %}

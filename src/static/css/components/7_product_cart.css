@@ -39,10 +39,8 @@
   box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
   border: 1px solid var(--gray-300);
   margin-block-end: 24px;
-  width: 70%;
   border-radius: 12px;
   gap: 24px;
-  margin-left: 16rem;
 }
 
 .product-cart__boxes{
@@ -188,4 +186,98 @@
     margin: 0;
     margin-bottom: 2.4rem;
   }
+}
+
+.cart-page{
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.cart-layout{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 28px;
+    align-items: start;
+    margin-top: 25px;
+}
+
+.cart-layout__products{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-cart{
+    width: 100%;
+    margin-left: 0;
+    position: relative;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.product-cart__delete-form{
+    margin: 0;
+}
+
+.cart-summary{
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 120px;
+}
+
+.cart-summary__title{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black);
+}
+
+.cart-summary__row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #ececec;
+    color: var(--black);
+}
+
+.cart-summary__row:last-of-type{
+    margin-bottom: 22px;
+}
+
+.cart-summary__checkout-btn{
+    width: 100%;
+    height: 48px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: var(--primary-600);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(122, 157, 84, 0.18);
+}
+
+.cart-summary__checkout-btn:hover{
+    background-color: var(--primary-500);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 991px){
+    .cart-layout{
+        grid-template-columns: 1fr;
+    }
+
+    .cart-summary{
+        position: static;
+        top: auto;
+    }
 }

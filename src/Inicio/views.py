@@ -1,12 +1,3 @@
-from django.shortcuts import render, redirect
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from products.models import Product, Category
 
@@ -29,14 +20,6 @@ class Inicio(TemplateView):
 
         return context
 
-class Catalogo(TemplateView):
-    template_name = 'pages-general/catalog.html'
-
-class Contacto(TemplateView):
-    template_name = 'pages-general/contact.html'
-
-class Producto(TemplateView):
-    template_name = 'pages-general/product.html'
 
 class Perfilven(TemplateView):
     template_name = 'pages-general/seller-profile.html'
@@ -46,12 +29,6 @@ class QuienesSomos(TemplateView):
 
 class Carrito(TemplateView):
     template_name = 'pages-general/cart-general.html'
-
-class InicioSesion(TemplateView):
-    template_name = 'pages-general/login.html'
-
-class CrearCuenta(TemplateView):
-    template_name = 'pages-general/register_an_account.html'
 
 class ContactoDos(TemplateView):
     template_name = 'pages-general/contact-two.html'

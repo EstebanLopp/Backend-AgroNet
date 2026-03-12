@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'products',
     'cart',
     'orders',
-    'accounts',
+    "accounts.apps.AccountsConfig",
     'contact',
 ]
 
@@ -121,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-co'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
@@ -140,6 +140,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-DEFAULT_FROM_EMAIL = "AgroNet <no-reply@agronet.local>"
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+DEFAULT_FROM_EMAIL = "no-reply@agronet.com"
 

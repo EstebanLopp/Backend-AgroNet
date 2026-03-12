@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="store-create">
+  <div class="store-create__wrapper">
+    <div class="store-create__card">
+      <div class="store-create__header">
+        <h1 class="store-create__title">Crear tienda</h1>
+        <p class="store-create__subtitle">
+          Completa la información para activar tu cuenta como vendedor en AgroNet.
+        </p>
+      </div>
+
+      <form method="post" class="store-create__form">
+        {% csrf_token %}
+
+        {% for field in form %}
+          <div class="store-create__field">
+            <label for="{{ field.id_for_label }}" class="store-create__label">
+              {{ field.label }}
+            </label>
+
+            {{ field }}
+
+            {% if field.help_text %}
+              <small class="store-create__help">{{ field.help_text }}</small>
+            {% endif %}
+
+            {% if field.errors %}
+              <div class="store-create__error">
+                {{ field.errors }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+
+        <div class="store-create__actions">
+          <button type="submit" class="store-create__btn store-create__btn--primary">
+            Crear tienda
+          </button>
+
+          <a href="{% url 'accounts:dashboard' %}" class="store-create__btn store-create__btn--secondary">
+            Volver a mi cuenta
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
