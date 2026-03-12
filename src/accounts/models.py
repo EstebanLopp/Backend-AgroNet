@@ -44,3 +44,33 @@ class CustomerProfile(models.Model):
 
     def __str__(self):
         return f"Perfil de {self.user.username}"
+
+
+class SellerProfile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name="seller_profile"
+    )
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Vendedor: {self.user.username}"
+
+
+class Store(models.Model):
+    seller = models.OneToOneField(
+        SellerProfile,
+        on_delete=models.CASCADE,
+        related_name="store"
+    )
+    name = models.CharField(max_length=150)
+    description = models.TextField(blank=True)
+    phone = models.CharField(max_length=20)
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

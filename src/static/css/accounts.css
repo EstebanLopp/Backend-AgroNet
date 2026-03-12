@@ -170,6 +170,18 @@
     font-size: 14px;
 }
 
+.account-btn--seller {
+    background-color: #16a34a;
+    color: #fff;
+    border: none;
+    text-decoration: none;
+}
+
+.account-btn--seller:hover {
+    background-color: #15803d;
+    color: #fff;
+}
+
 /* PROFILE */
 
 .profile-page{
@@ -552,4 +564,165 @@
 .auth-forgot-link:hover {
   color: #15803d;
   text-decoration: underline;
+}
+
+
+
+/*CREAR TIENDA*/
+
+.store-create {
+    padding: 3rem 1rem;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.store-create__wrapper {
+    width: 100%;
+    max-width: 760px;
+}
+
+.store-create__card {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    border: 1px solid #e5e7eb;
+}
+
+.store-create__header {
+    margin-bottom: 1.75rem;
+    text-align: center;
+}
+
+.store-create__title {
+    margin: 0 0 0.5rem;
+    font-size: var(--fs-xls);
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.store-create__subtitle {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #6b7280;
+}
+
+.store-create__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.store-create__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.store-create__label {
+    font-size: var(--fs-xls);
+    font-weight: 600;
+    color: #374151;
+}
+
+.store-create__field input,
+.store-create__field textarea,
+.store-create__field select {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.85rem;
+    font-size: var(--fs-xls);
+    color: #111827;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.store-create__field textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.store-create__field input:focus,
+.store-create__field textarea:focus,
+.store-create__field select:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+.store-create__help {
+    font-size: var(--fs-xls);
+    color: #6b7280;
+}
+
+.store-create__error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border-radius: 0.75rem;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.88rem;
+}
+
+.store-create__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.store-create__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    padding: 0.95rem 1.2rem;
+    border-radius: 0.9rem;
+    font-weight: 600;
+    font-size: var(--fs-xls);
+    text-decoration: none;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.store-create__btn--primary {
+    background: #16a34a;
+    color: #ffffff;
+    border: none;
+}
+
+.store-create__btn--primary:hover {
+    background: #15803d;
+}
+
+.store-create__btn--secondary {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.store-create__btn--secondary:hover {
+    background: #e5e7eb;
+}
+
+@media (max-width: 640px) {
+    .store-create__card {
+        padding: 1.5rem;
+    }
+
+    .store-create__title {
+        font-size: 1.6rem;
+    }
+
+    .store-create__actions {
+        flex-direction: column;
+    }
+
+    .store-create__btn {
+        width: 100%;
+    }
 }

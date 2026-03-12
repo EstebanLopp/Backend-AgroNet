@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import PasswordResetForm
 from datetime import date
 
-from .models import CustomerProfile
+from .models import CustomerProfile, Store
 
 
 class SignUpForm(UserCreationForm):
@@ -172,3 +172,16 @@ class CustomPasswordResetForm(PasswordResetForm):
         if not User.objects.filter(email=email).exists():
             raise forms.ValidationError("No existe una cuenta registrada con ese correo.")
         return email
+
+
+class StoreForm(forms.ModelForm):
+    class Meta:
+        model = Store
+        fields = ["name", "description", "phone", "address", "city"]
+        labels = {
+            "name": "Nombre de la tienda",
+            "description": "Descripción",
+            "phone": "Teléfono",
+            "address": "Dirección",
+            "city": "Ciudad",
+        }

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Inicio, Perfilven, QuienesSomos, Carrito, ContactoDos, OlvidasteContraseña, TokenOlvidasteContraseña, ConfirmaContraseña
+from .views import Inicio, Perfilven, QuienesSomos, Carrito, ContactoDos, OlvidasteContraseña, TokenOlvidasteContraseña, ConfirmaContraseña, CrearTienda
 
 
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
     path('forgot-password/', OlvidasteContraseña.as_view(), name='forgot-password'),
     path('token-forgot-password/', TokenOlvidasteContraseña.as_view(), name='token-forgot-password'),
     path('confirm-password/', ConfirmaContraseña.as_view(), name='confirm-password'),
+    path('crear-tienda/', CrearTienda.as_view(), name='create_store'),
 ]

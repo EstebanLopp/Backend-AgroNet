@@ -66,6 +66,16 @@
             Editar perfil
         </a>
 
+        {% if has_store %}
+        <a href="{% url 'accounts:seller_dashboard' %}" class="account-btn account-btn--seller">
+            Administrar mi tienda
+        </a>
+        {% else %}
+        <a href="{% url 'accounts:create_store' %}" class="account-btn account-btn--seller">
+            Crear tienda
+        </a>
+        {% endif %}
+
         <a href="{% url 'products:product_list' %}" class="account-btn account-btn--dark">
             Seguir comprando
         </a>

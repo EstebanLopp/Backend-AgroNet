@@ -42,6 +42,39 @@ class TokenOlvidasteContraseña(TemplateView):
 class ConfirmaContraseña(TemplateView):
     template_name = 'pages-general/confirm_forgot_password.html'
 
+class InicioComprador(TemplateView):
+    template_name = 'customer-pages/index-customer.html'
+
+class CatalogoComprador(TemplateView):
+    template_name = 'customer-pages/catalog-customer.html'
+
+class CarritoComprador(TemplateView):
+    template_name = 'customer-pages/cart-customer.html'
+
+class PerfilComprador(TemplateView):
+    template_name = 'customer-pages/my_profile.html'
+
+class EditarCuenta(TemplateView):
+    template_name = 'customer-pages/edit_account.html'
+
+class ContactoComprador(TemplateView):
+    template_name = 'customer-pages/contact-customer.html'
+
+class ProductoComprador(TemplateView):
+    template_name = 'customer-pages/product-customer.html'
+
+class ContactoDosComprador(TemplateView):
+    template_name = 'customer-pages/contact-two-customer.html'
+
+class FotoPerfil(TemplateView):
+    template_name = 'customer-pages/profile_photo.html'
+
+class ResumenCompra(TemplateView):
+    template_name = 'customer-pages/purchase_summary.html'
+
+class CrearTienda(TemplateView):
+    template_name = 'customer-pages/seller_form.html'
+
 
 
 

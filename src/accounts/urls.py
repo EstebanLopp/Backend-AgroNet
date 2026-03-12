@@ -12,6 +12,8 @@ urlpatterns = [
     path("signup/", signup, name="signup"),
     path("cuenta/", customer_dashboard, name="dashboard"),
     path("perfil/", edit_profile, name="edit_profile"),
+    path("crear-tienda/", views.create_store, name="create_store"),
+    path("mi-tienda/", views.seller_dashboard, name="seller_dashboard"),
     path(
     "password-reset/",
     auth_views.PasswordResetView.as_view(
