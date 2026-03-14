@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="seller-product-detail">
+    <div class="detail-header">
+        <h1>{{ product.name }}</h1>
+        <div>
+            <a href="{% url 'products:update_product' product.id %}">Editar</a>
+            <a href="{% url 'products:my_products' %}">Volver</a>
+        </div>
+    </div>
+
+    <div class="detail-layout">
+        <div class="detail-image">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+                <p>Sin imagen</p>
+            {% endif %}
+        </div>
+
+        <div class="detail-info">
+            <p><strong>Categoría:</strong> {{ product.category.name }}</p>
+            <p><strong>Descripción:</strong> {{ product.description }}</p>
+            <p><strong>Precio:</strong> ${{ product.price }}</p>
+            <p><strong>Unidad de venta:</strong> {{ product.get_unit_display }}</p>
+            <p><strong>Cantidad disponible:</strong> {{ product.stock }}</p>
+            <p><strong>Estado:</strong> {{ product.get_status_display }}</p>
+            <p><strong>Disponible:</strong>
+                {% if product.available %}
+                    Sí
+                {% else %}
+                    No
+                {% endif %}
+            </p>
+            <p><strong>Tipo de envío:</strong> {{ product.get_shipping_type_display }}</p>
+            <p><strong>Unidad de peso:</strong> {{ product.get_weight_unit_display }}</p>
+            <p><strong>Peso:</strong> {{ product.weight }}</p>
+            <p><strong>Productor:</strong> {{ product.store.name }}</p>
+            <p><strong>Entrega estimada:</strong> {{ product.delivery_time }}</p>
+            <p><strong>Tipo de pago:</strong> {{ product.get_payment_type_display }}</p>
+            <p><strong>Fecha de creación:</strong> {{ product.created_at|date:"d/m/Y H:i" }}</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

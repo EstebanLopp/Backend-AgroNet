@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="body-form-created-product">
+    <form method="POST" enctype="multipart/form-data" class="form-created-product" id="product-form">
+        {% csrf_token %}
+
+        <div class="form-created-product__left-side">
+            <div class="form-created-product__group form-created-product__group--image">
+                <label for="{{ form.image.id_for_label }}">Imagen del producto</label>
+                <div class="form-created-product__image-box">
+                    {{ form.image }}
+                </div>
+                {{ form.image.errors }}
+            </div>
+
+            <div class="form-created-product__group form-created-product__group--available">
+                <label for="{{ form.available.id_for_label }}">Disponible</label>
+                {{ form.available }}
+                {{ form.available.errors }}
+            </div>
+        </div>
+
+        <div class="form-created-product__right-side">
+            <div class="form-created-product__group form-created-product__group--name">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {{ form.name.errors }}
+            </div>
+
+            <div class="form-created-product__group form-created-product__group--category">
+                {{ form.category.label_tag }}
+                {{ form.category }}
+                {{ form.category.errors }}
+            </div>
+
+            <div class="form-created-product__group form-created-product__group--price">
+                {{ form.price.label_tag }}
+                {{ form.price }}
+                {{ form.price.errors }}
+            </div>
+
+            <div class="form-created-product__group form-created-product__group--worth">
+                {{ form.shipping_type.label_tag }}
+                {{ form.shipping_type }}
+                {{ form.shipping_type.errors }}
+            </div>
+
+            <div class="form-created-product__group form-created-product__group--description">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+                {{ form.description.errors }}
+            </div>
+
+            <div class="form-created-product__group form-created-product__group--unit">
+                {{ form.unit.label_tag }}
+                {{ form.unit }}
+                {{ form.unit.errors }}
+            </div>
+
+            <div class="form-created-product__group form-created-product__group--weight">
+                {{ form.weight.label_tag }}
+                {{ form.weight }}
+                {{ form.weight.errors }}
+            </div>
+
+            <div class="form-created-product__group form-created-product__group--stock">
+                {{ form.stock.label_tag }}
+                {{ form.stock }}
+                {{ form.stock.errors }}
+            </div>
+
+            <div class="form-created-product__group">
+                {{ form.weight_unit.label_tag }}
+                {{ form.weight_unit }}
+                {{ form.weight_unit.errors }}
+            </div>
+
+            <div class="form-created-product__group">
+                {{ form.delivery_time.label_tag }}
+                {{ form.delivery_time }}
+                {{ form.delivery_time.errors }}
+            </div>
+
+            <div class="form-created-product__group">
+                {{ form.payment_type.label_tag }}
+                {{ form.payment_type }}
+                {{ form.payment_type.errors }}
+            </div>
+
+            <div class="form-created-product__group">
+                {{ form.status.label_tag }}
+                {{ form.status }}
+                {{ form.status.errors }}
+            </div>
+        </div>
+    </form>
+
+    <div class="form-created-product__actions">
+        <button type="submit" form="product-form" class="form-created-product__btn-publish-product">
+            Editar producto
+        </button>
+        <a href="{% url 'products:my_products' %}" class="form-created-product__back-link">Volver</a>
+    </div>
+</section>
+{% endblock %}
