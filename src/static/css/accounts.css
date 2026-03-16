@@ -726,3 +726,132 @@
         width: 100%;
     }
 }
+
+
+.seller-dashboard {
+    padding: 1rem 1rem 3rem;
+}
+
+.seller-dashboard__wrapper {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.seller-dashboard__hero {
+    position: relative;
+    margin-bottom: 5rem;
+}
+
+.seller-dashboard__cover {
+    width: 100%;
+    height: 215px;
+    object-fit: cover;
+    border-radius: 1.2rem;
+    display: block;
+}
+
+.seller-dashboard__profile {
+    position: absolute;
+    left: 3rem;
+    bottom: -3.7rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.seller-dashboard__avatar {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #22c55e;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.seller-dashboard__store-title {
+    margin: 0;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.seller-store-info {
+    margin-top: 1rem;
+}
+
+.seller-store-info__label {
+    margin: 0 0 .55rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.seller-store-info__box {
+    background: #ececec;
+    border-radius: 1rem;
+    padding: 1.2rem 1.1rem;
+    margin-bottom: 1rem;
+    color: #111827;
+    min-height: 28px;
+}
+
+.seller-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.2rem;
+}
+
+.seller-btn {
+    min-width: 170px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .seller-dashboard__cover {
+        height: 170px;
+    }
+
+    .seller-dashboard__profile {
+        left: 1.2rem;
+        bottom: -3.2rem;
+        gap: .8rem;
+    }
+
+    .seller-dashboard__avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .seller-dashboard__store-title {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .seller-dashboard__profile {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .seller-dashboard__store-title {
+        color: #111827;
+        text-shadow: none;
+        margin-top: .2rem;
+    }
+
+    .seller-dashboard__hero {
+        margin-bottom: 6.5rem;
+    }
+
+    .seller-actions {
+        flex-direction: column;
+    }
+
+    .seller-btn {
+        width: 100%;
+    }
+}

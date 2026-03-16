@@ -175,9 +175,11 @@ class CustomPasswordResetForm(PasswordResetForm):
 
 
 class StoreForm(forms.ModelForm):
+
     class Meta:
         model = Store
         fields = ["name", "description", "phone", "address", "city"]
+
         labels = {
             "name": "Nombre de la tienda",
             "description": "Descripción",
@@ -185,3 +187,40 @@ class StoreForm(forms.ModelForm):
             "address": "Dirección",
             "city": "Ciudad",
         }
+
+    def clean_name(self):
+        name = self.cleaned_data["name"]
+
+        if len(name) < 3:
+            raise forms.ValidationError(
+                "El nombre de la tienda debe tener al menos 3 caracteres."
+            )
+
+        return name
+
+
+    def clean_phone(self):
+        phone = self.cleaned_data["phone"]
+
+        if not phone.isdigit():
+            raise forms.ValidationError(
+                "El teléfono solo debe contener números."
+            )
+
+        if len(phone) < 7:
+            raise forms.ValidationError(
+                "El número de teléfono no es válido."
+            )
+
+        return phone
+
+
+    def clean_address(self):
+        address = self.cleaned_data["address"]
+
+        if len(address) < 5:
+            raise forms.ValidationError(
+                "La dirección es demasiado corta."
+            )
+
+        return address

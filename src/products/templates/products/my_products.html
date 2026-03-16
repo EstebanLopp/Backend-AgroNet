@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="my-products__two">
+    <section class="my-products">
+        <h1 class="my-products__title">Mis productos registrados</h1>
+
+        <div class="my-products__actions">
+            <a href="{% url 'products:create_product' %}" class="my-products__button">
+                Registrar producto
+            </a>
+        </div>
+
+        <div class="my-products__dropdown">
+            <button type="button" class="my-products__dropdown-toggle" id="productsFilterToggle">
+                {% if current_status == "published" %}
+                    Publicados
+                {% elif current_status == "disabled" %}
+                    Deshabilitados
+                {% else %}
+                    Todos
+                {% endif %}
+                <i class="fa-solid fa-chevron-down my-products__filter-icon"></i>
+            </button>
+
+            <ul class="my-products__dropdown-menu" id="productsFilterMenu">
+                <li class="my-products__dropdown-item">
+                    <a href="{% url 'products:my_products' %}?status=all"
+                    class="{% if current_status == 'all' %}is-active{% endif %}">
+                        Todos
+                    </a>
+                </li>
+
+                <li class="my-products__dropdown-item">
+                    <a href="{% url 'products:my_products' %}?status=published"
+                    class="{% if current_status == 'published' %}is-active{% endif %}">
+                        Publicados
+                    </a>
+                </li>
+
+                <li class="my-products__dropdown-item">
+                    <a href="{% url 'products:my_products' %}?status=disabled"
+                    class="{% if current_status == 'disabled' %}is-active{% endif %}">
+                        Deshabilitados
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        {% if products %}
+            <div class="my-products__grid">
+                {% for product in products %}
+                    <article class="my-products__card">
+                        <div class="my-products__menu-card">
+                            <button type="button" class="my-products__menu-card-toggle">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+
+                            <ul class="my-products__menu-card-options">
+                                <li class="my-products__menu-card-item">
+                                    <button type="button" class="my-products__detail-btn" data-modal="modal-{{ product.id }}">
+                                        Ver detalles
+                                    </button>
+                                </li>
+                                <li class="my-products__menu-card-item">
+                                    <a href="{% url 'products:update_product' product.id %}">Editar</a>
+                                </li>
+                                <li class="my-products__menu-card-item">
+                                    <a href="{% url 'products:toggle_product_status' product.id %}">
+                                        {% if product.available %}
+                                            Deshabilitar
+                                        {% else %}
+                                            Habilitar
+                                        {% endif %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product-detail-modal" id="modal-{{ product.id }}">
+                            <div class="product-detail-modal__overlay"></div>
+
+                            <div class="product-detail-modal__content">
+                                <button type="button" class="product-detail-modal__close" data-close="modal-{{ product.id }}">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+
+                                <div class="product-detail-modal__header">
+                                    <h2>{{ product.name }}</h2>
+                                </div>
+
+                                <div class="product-detail-modal__body">
+                                    <div class="product-detail-modal__image">
+                                        {% if product.image %}
+                                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        {% else %}
+                                            <div class="product-detail-modal__image--empty">Sin imagen</div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="product-detail-modal__info">
+                                        <p><strong>Categoría:</strong> {{ product.category.name }}</p>
+                                        <p><strong>Descripción:</strong> {{ product.description }}</p>
+                                        <p><strong>Precio:</strong> ${{ product.price }}</p>
+                                        <p><strong>Unidad de venta:</strong> {{ product.get_unit_display }}</p>
+                                        <p><strong>Stock:</strong> {{ product.stock }}</p>
+                                        <p><strong>Estado:</strong> {{ product.get_status_display }}</p>
+                                        <p><strong>Tipo de envío:</strong> {{ product.get_shipping_type_display }}</p>
+                                        <p><strong>Unidad de peso:</strong> {{ product.get_weight_unit_display }}</p>
+                                        <p><strong>Peso:</strong> {{ product.weight }}</p>
+                                        <p><strong>Productor:</strong> {{ product.store.name }}</p>
+                                        <p><strong>Entrega estimada:</strong> {{ product.get_delivery_time_display }}</p>
+                                        <p><strong>Tipo de pago:</strong> {{ product.get_payment_type_display }}</p>
+                                        <p><strong>Fecha de creación:</strong> {{ product.created_at|date:"d/m/Y H:i" }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="my-products__card-img">
+                        {% else %}
+                            <div class="my-products__card-img my-products__card-img--empty">
+                                Sin imagen
+                            </div>
+                        {% endif %}
+
+                        <div class="my-products__card-info">
+                            <div>
+                                <h3 class="my-products__card-name">{{ product.name }}</h3>
+                                <p class="my-products__card-price">
+                                    ${{ product.price }} / {{ product.get_unit_display }}
+                                </p>
+                            </div>
+
+                            <div>
+                                <p class="my-products__card-type">
+                                    Categoría: <span>{{ product.category.name }}</span>
+                                </p>
+                                <p class="my-products__card-stock">
+                                    Stock: <span>{{ product.stock }}</span>
+                                </p>
+                                <p class="my-products__card-status">
+                                Estado:
+
+                                {% if product.status == "published" %}
+                                <span class="badge badge--published">Publicado</span>
+
+                                {% else %}
+                                <span class="badge badge--disabled">Deshabilitado</span>
+
+                                {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="my-products__empty">No tienes productos registrados todavía.</p>
+        {% endif %}
+    </section>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterToggle = document.getElementById("productsFilterToggle");
+        const filterMenu = document.getElementById("productsFilterMenu");
+
+        if (filterToggle && filterMenu) {
+            filterToggle.addEventListener("click", function (e) {
+                e.stopPropagation();
+                filterMenu.classList.toggle("show");
+            });
+        }
+
+        const cardMenus = document.querySelectorAll(".my-products__menu-card");
+
+        cardMenus.forEach((menuCard) => {
+            const toggle = menuCard.querySelector(".my-products__menu-card-toggle");
+            const options = menuCard.querySelector(".my-products__menu-card-options");
+
+            if (toggle && options) {
+                toggle.addEventListener("click", function (e) {
+                    e.stopPropagation();
+
+                    document.querySelectorAll(".my-products__menu-card-options").forEach((menu) => {
+                        if (menu !== options) {
+                            menu.classList.remove("show");
+                        }
+                    });
+
+                    options.classList.toggle("show");
+                });
+            }
+        });
+
+        const detailButtons = document.querySelectorAll(".my-products__detail-btn");
+        const closeButtons = document.querySelectorAll(".product-detail-modal__close");
+        const overlays = document.querySelectorAll(".product-detail-modal__overlay");
+        const modals = document.querySelectorAll(".product-detail-modal");
+
+        detailButtons.forEach((button) => {
+            button.addEventListener("click", function (e) {
+                e.stopPropagation();
+
+                const modalId = this.dataset.modal;
+                const modal = document.getElementById(modalId);
+
+                document.querySelectorAll(".my-products__menu-card-options").forEach((menu) => {
+                    menu.classList.remove("show");
+                });
+
+                if (modal) {
+                    modal.classList.add("show");
+                    document.body.style.overflow = "hidden";
+                }
+            });
+        });
+
+        closeButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                const modalId = this.dataset.close;
+                const modal = document.getElementById(modalId);
+
+                if (modal) {
+                    modal.classList.remove("show");
+                    document.body.style.overflow = "";
+                }
+            });
+        });
+
+        overlays.forEach((overlay) => {
+            overlay.addEventListener("click", function () {
+                const modal = this.closest(".product-detail-modal");
+
+                if (modal) {
+                    modal.classList.remove("show");
+                    document.body.style.overflow = "";
+                }
+            });
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+                modals.forEach((modal) => modal.classList.remove("show"));
+                document.body.style.overflow = "";
+            }
+        });
+
+        document.addEventListener("click", function () {
+            document.querySelectorAll(".my-products__menu-card-options").forEach((menu) => {
+                menu.classList.remove("show");
+            });
+
+            if (filterMenu) {
+                filterMenu.classList.remove("show");
+            }
+        });
+    });
+</script>
+{% endblock %}
