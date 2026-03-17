@@ -50,6 +50,22 @@
       <a href="{% url 'products:my_products' %}" class="account-btn account-btn--primary seller-btn">
         Ver mis productos
       </a>
+      <a href="{% url 'accounts:edit_store' %}" class="account-btn account-btn--primary seller-btn">
+        Editar tienda
+      </a>
+      <form method="post" action="{% url 'accounts:toggle_store_status' %}">
+        {% csrf_token %}
+
+        {% if store.is_active %}
+          <button class="account-btn account-btn--danger seller-btn">
+            Deshabilitar tienda
+          </button>
+        {% else %}
+          <button class="account-btn account-btn--primary seller-btn">
+            Habilitar tienda
+          </button>
+        {% endif %}
+      </form>
     </div>
 
   </div>

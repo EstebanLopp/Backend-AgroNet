@@ -3,6 +3,7 @@ y product_seller.html (seller-pages) */
 
 /* ----------- Contenedor principal y productos ----------- */
 .products {
+  margin-top: 20rem !important;
   margin-bottom: 1px;
   display: flex;
   flex-wrap: wrap;
@@ -16,6 +17,7 @@ y product_seller.html (seller-pages) */
 
 /* ----------- Tarjeta de producto ----------- */
 .product1 {
+  margin-top: 20rem !important;
   background-color: var(--white);
   flex: 1 1 100%;
   border-radius: 5px;

@@ -12,7 +12,12 @@ from accounts.models import SellerProfile
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
+    products = Product.objects.filter(
+        available=True,
+        status="published",
+        store__is_active=True
+    )
+    
 
     query = request.GET.get("q")
 
@@ -42,7 +47,13 @@ def product_list(request, category_slug=None):
     return render(request, "products/catalog.html", context)
 
 def product_detail(request, slug):
-    product = get_object_or_404(Product, slug=slug, available=True)
+    product = get_object_or_404(
+    Product,
+    slug=slug,
+    available=True,
+    status="published",
+    store__is_active=True
+)
 
     related_products = Product.objects.filter(
         category=product.category,
