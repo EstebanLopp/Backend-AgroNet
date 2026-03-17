@@ -12,6 +12,7 @@ urlpatterns = [
     path("signup/", signup, name="signup"),
     path("cuenta/", customer_dashboard, name="dashboard"),
     path("perfil/", edit_profile, name="edit_profile"),
+    path("eliminar-cuenta/", views.delete_account, name="delete_account"),
     path("crear-tienda/", views.create_store, name="create_store"),
     path("mi-tienda/", views.seller_dashboard, name="seller_dashboard"),
     path(

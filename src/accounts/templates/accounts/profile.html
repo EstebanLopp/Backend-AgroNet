@@ -99,6 +99,22 @@
                     </div>
                 </form>
 
+                <hr>
+
+                <div class="profile-delete-zone">
+                    <h3 class="profile-delete-zone__title">Zona peligrosa</h3>
+                    <p class="profile-delete-zone__text">
+                        Si eliminas tu cuenta, tu acceso será desactivado y cerrarás sesión inmediatamente.
+                    </p>
+
+                    <form method="post" action="{% url 'accounts:delete_account' %}" onsubmit="return confirm('¿Estás seguro de eliminar tu cuenta? Esta acción desactivará tu cuenta.');">
+                        {% csrf_token %}
+                        <button type="submit" class="account-btn account-btn--danger">
+                            Eliminar mi cuenta
+                        </button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
