@@ -136,3 +136,59 @@ def public_store_detail(request, pk):
         "products": products,
     }
     return render(request, "accounts/public_store_detail.html", context)
+
+
+@login_required
+def edit_store(request):
+    seller_profile = SellerProfile.objects.filter(user=request.user).first()
+
+    if not seller_profile or not hasattr(seller_profile, "store"):
+        messages.error(request, "Primero debes crear una tienda.")
+        return redirect("accounts:create_store")
+
+    store = seller_profile.store
+
+    if request.method == "POST":
+        form = StoreForm(request.POST, instance=store)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Los datos de tu tienda fueron actualizados correctamente.")
+            return redirect("accounts:seller_dashboard")
+        else:
+            messages.error(request, "No se pudo actualizar la tienda. Revisa los campos del formulario.")
+    else:
+        form = StoreForm(instance=store)
+
+    context = {
+        "form": form,
+        "store": store,
+    }
+
+    return render(request, "accounts/edit_store.html", context)
+
+
+@login_required
+def toggle_store_status(request):
+    seller_profile = SellerProfile.objects.filter(user=request.user).first()
+
+    if not seller_profile:
+        messages.error(request, "No tienes perfil de vendedor.")
+        return redirect("accounts:seller_dashboard")
+
+    store = getattr(seller_profile, "store", None)
+
+    if not store:
+        messages.error(request, "No tienes una tienda registrada.")
+        return redirect("accounts:create_store")
+
+    store.is_active = not store.is_active
+    store.save()
+
+    if store.is_active:
+        messages.success(request, "Tu tienda ha sido habilitada.")
+    else:
+        messages.success(request, "Tu tienda ha sido deshabilitada.")
+
+    return redirect("accounts:seller_dashboard")
+

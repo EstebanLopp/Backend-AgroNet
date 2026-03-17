@@ -16,13 +16,9 @@
 }
 
 .seller__form-body {
-  background-image: url("/static/assets/cafe-cultivos.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 100vh;   /*cambia height por min-height */
-  border: 5px solid red;
-
+  min-height: 100vh;
+  background: url("/static/assets/banner_1.jpg") center center / cover no-repeat !important;
+  border: 4px solid red;
 }
 
 .seller-form__title {

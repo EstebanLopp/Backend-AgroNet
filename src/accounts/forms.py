@@ -178,18 +178,24 @@ class StoreForm(forms.ModelForm):
 
     class Meta:
         model = Store
-        fields = ["name", "description", "phone", "address", "city"]
+        fields = ["name", "description", "phone", "address"]
 
         labels = {
             "name": "Nombre de la tienda",
             "description": "Descripción",
             "phone": "Teléfono",
             "address": "Dirección",
-            "city": "Ciudad",
+        }
+
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "seller-form-e__input"}),
+            "description": forms.Textarea(attrs={"class": "seller-form-e__input seller-form-e__textarea", "rows": 3}),
+            "phone": forms.TextInput(attrs={"class": "seller-form-e__input"}),
+            "address": forms.TextInput(attrs={"class": "seller-form-e__input"}),
         }
 
     def clean_name(self):
-        name = self.cleaned_data["name"]
+        name = self.cleaned_data["name"].strip()
 
         if len(name) < 3:
             raise forms.ValidationError(
@@ -198,9 +204,8 @@ class StoreForm(forms.ModelForm):
 
         return name
 
-
     def clean_phone(self):
-        phone = self.cleaned_data["phone"]
+        phone = self.cleaned_data["phone"].strip()
 
         if not phone.isdigit():
             raise forms.ValidationError(
@@ -214,9 +219,8 @@ class StoreForm(forms.ModelForm):
 
         return phone
 
-
     def clean_address(self):
-        address = self.cleaned_data["address"]
+        address = self.cleaned_data["address"].strip()
 
         if len(address) < 5:
             raise forms.ValidationError(
@@ -224,3 +228,7 @@ class StoreForm(forms.ModelForm):
             )
 
         return address
+
+    def clean_description(self):
+        description = self.cleaned_data["description"].strip()
+        return description

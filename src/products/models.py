@@ -125,6 +125,14 @@ class Product(models.Model):
     class Meta:
         ordering = ["-created_at"]
 
+    @property
+    def is_visible(self):
+        return (
+            self.available
+            and self.status == "published"
+            and self.store.is_active
+        )
+
     def save(self, *args, **kwargs):
         if not self.slug:
             base_slug = slugify(self.name)
