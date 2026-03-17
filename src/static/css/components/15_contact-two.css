@@ -12,7 +12,7 @@ y contact-two_seller.html (seller-pages) */
 
   /* Fondo con imagen + capa blanca semitransparente */
   background: 
-    url("/src/static/assets/valle-cocora.jpg") no-repeat center center / cover;
+    url("/static/assets/valle-cocora.jpg") no-repeat center center / cover;
 }
 
 
