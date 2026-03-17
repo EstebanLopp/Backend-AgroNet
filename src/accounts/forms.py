@@ -168,9 +168,11 @@ class CustomerProfileForm(forms.ModelForm):
     
 class CustomPasswordResetForm(PasswordResetForm):
     def clean_email(self):
-        email = self.cleaned_data.get("email")
-        if not User.objects.filter(email=email).exists():
+        email = self.cleaned_data.get("email", "").strip().lower()
+
+        if not User.objects.filter(email__iexact=email, is_active=True).exists():
             raise forms.ValidationError("No existe una cuenta registrada con ese correo.")
+
         return email
 
 
