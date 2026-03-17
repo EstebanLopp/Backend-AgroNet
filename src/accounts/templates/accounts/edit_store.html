@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="seller__form-e-body">
+  <div class="seller-form-e">
+    <h1 class="seller-form-e__title">Editar tienda</h1>
+    <p class="seller-form-e__description">
+      Actualiza la información principal de tu tienda.
+    </p>
+
+    <form method="post" class="seller-form-e__form">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="seller-form-e__group">
+          <label for="{{ field.id_for_label }}" class="seller-form-e__label">
+            {{ field.label }}
+          </label>
+
+          {{ field }}
+
+          {% if field.help_text %}
+            <small>{{ field.help_text }}</small>
+          {% endif %}
+
+          {% if field.errors %}
+            <div class="store-create__error">
+              {{ field.errors }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <div class="seller-form-e__actions">
+        <button type="submit" class="seller-form-e__button">
+          Guardar cambios
+        </button>
+      </div>
+
+      <div class="seller-form-e__actions">
+        <a href="{% url 'accounts:seller_dashboard' %}" class="seller-form-e__button">
+          Volver
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

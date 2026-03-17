@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="seller-profile">
+
+  <div class="seller-profile__header">
+    <img src="{% static 'assets/valle-cocora.jpg' %}" alt="Foto del vendedor" class="seller-profile__photo">
+
+    <div class="seller-profile__info">
+      <h2 class="seller-profile__name">{{ store.name }}</h2>
+      <h3 class="seller-profile__section-title">Información</h3>
+
+      <p class="seller-profile__description">
+        {{ store.description }}
+      </p>
+
+      <p class="seller-profile__address">
+        {{ store.city }} - {{ store.address }}
+      </p>
+    </div>
+  </div>
+
+  <div class="seller-profile__details">
+
+    <div class="seller-profile__contact">
+      <h3 class="seller-profile__section-title">Contacto</h3>
+      <ul class="seller-profile__contact-list">
+        <li class="seller-profile__contact-item">
+          📞 <span class="seller-profile__phone">{{ store.phone }}</span>
+        </li>
+
+        <li class="seller-profile__contact-item">
+          📧
+          <span class="seller-profile__email">
+            {{ store.seller.user.email }}
+          </span>
+        </li>
+
+        <li class="seller-profile__contact-item">
+          📍 <span class="seller-profile__location">{{ store.city }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="seller-profile__payment">
+      <h3 class="seller-profile__section-title">Métodos de pago</h3>
+      <ul class="seller-profile__payment-list">
+        <li class="seller-profile__payment-item">Pago contra entrega</li>
+        <li class="seller-profile__payment-item">Transferencia</li>
+        <li class="seller-profile__payment-item">Consignación</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="seller-profile__note">
+    ⚠️ AgroNet no gestiona pagos directamente. Contacta y paga al vendedor bajo tu responsabilidad.
+  </div>
+</div>
+
+<div class="seller-profile__products">
+  <h3 class="seller-profile__section-title">Productos de la tienda</h3>
+
+  <div class="products">
+    {% for product in products %}
+      <a href="{% url 'products:product_detail' product.slug %}" class="product1">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" class="product1__image" alt="{{ product.name }}">
+        {% else %}
+          <img src="{% static 'assets/banano.webp' %}" class="product1__image" alt="{{ product.name }}">
+        {% endif %}
+
+        <div class="product1__info">
+          <div class="product1__details">
+            <p class="product1__price">${{ product.price }}</p>
+            <h3 class="product1__name">{{ product.name }}</h3>
+            <p class="product1__category">{{ product.category.name }}</p>
+          </div>
+        </div>
+      </a>
+    {% empty %}
+      <p>Esta tienda todavía no tiene productos publicados.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
