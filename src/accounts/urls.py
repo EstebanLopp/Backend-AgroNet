@@ -5,6 +5,7 @@ from .views import customer_dashboard
 from .forms import CustomPasswordResetForm
 from .views import edit_profile
 from django.contrib.auth import views as auth_views
+from .views import public_store_detail
 
 app_name = "accounts"
 
@@ -13,6 +14,7 @@ urlpatterns = [
     path("cuenta/", customer_dashboard, name="dashboard"),
     path("perfil/", edit_profile, name="edit_profile"),
     path("crear-tienda/", views.create_store, name="create_store"),
+    path("tienda/<int:pk>/", public_store_detail, name="public_store_detail"),
     path("mi-tienda/", views.seller_dashboard, name="seller_dashboard"),
     path(
     "password-reset/",

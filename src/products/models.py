@@ -20,7 +20,6 @@ class Product(models.Model):
         ("kg", "Kilogramo"),
         ("und", "Unidad"),
         ("lb", "Libra"),
-        ("atado", "Atado"),
     ]
 
     STATUS_CHOICES = [
@@ -35,8 +34,7 @@ class Product(models.Model):
 
     WEIGHT_UNIT_CHOICES = [
         ("kg", "Kilogramo"),
-        ("gr", "Gramo"),
-        ("lb", "Libra"),
+
     ]
 
     PAYMENT_CHOICES = [
@@ -97,8 +95,8 @@ class Product(models.Model):
     weight = models.DecimalField(
         max_digits=8,
         decimal_places=2,
-        null=True,
-        blank=True
+        null=False,
+        blank=False
     )
 
     producer = models.CharField(

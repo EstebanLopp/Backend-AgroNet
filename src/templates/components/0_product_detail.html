@@ -2,7 +2,6 @@
 
 <section class="product-detail">
   <div class="product-detail__body">
-    <!-- Imagen a la izquierda -->
     <div class="product-detail__image-container">
       {% if product.image %}
         <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-detail__image">
@@ -11,12 +10,10 @@
       {% endif %}
     </div>
 
-
-    <!-- Info a la derecha -->
     <div class="product-detail__info">
       <div class="product-detail__header">
         <h2 class="product-detail__title">{{ product.name }}</h2>
-          <p class="product-detail__category">{{ product.category.name }}</p>
+        <p class="product-detail__category">{{ product.category.name }}</p>
       </div>
 
       <div class="product-detail__description-box">
@@ -25,46 +22,94 @@
         </p>
       </div>
 
-      <!-- Nuevo bloque de detalles del producto -->
       <div class="product-detail__extra-info">
-        <h3 class="product-detail__subtitle">Detalles del Producto</h3>
+        <h3 class="product-detail__subtitle">Detalles del producto</h3>
         <ul class="product-detail__info-list">
-          <li><strong>Tipo de envio:</strong> Domicilio</li>
-          <li><strong>Unidad de peso:</strong> Kilogramo</li>
-          <li><strong>Cantidad disponible:</strong> {{ product.stock }}</li>
-          <li><strong>Peso:</strong> 200gr</li>
-          <li><strong>Productor:</strong> Finca El Paraíso</li>
-          <li><strong>Entrega estimada:</strong> 24 horas dentro del municipio</li>
-          <li><strong>Tipo de pago:</strong> Consignación, pago contra entrega</li>
+          <li>
+            <strong>Tipo de envío:</strong>
+            {{ product.get_shipping_type_display }}
+          </li>
 
+          <li>
+            <strong>Unidad de peso:</strong>
+            {{ product.get_weight_unit_display }}
+          </li>
+
+          <li>
+            <strong>Cantidad disponible:</strong>
+            {{ product.stock }}
+          </li>
+
+          <li>
+            <strong>Peso unitario:</strong>
+            {% if product.weight %}
+              {{ product.weight }} {{ product.get_weight_unit_display }}
+            {% else %}
+              No especificado
+            {% endif %}
+          </li>
+
+          <li>
+            <strong>Productor:</strong>
+            {{ product.store.name }}
+          </li>
+
+          <li>
+            <strong>Entrega estimada:</strong>
+            {{ product.get_delivery_time_display }}
+          </li>
+
+          <li>
+            <strong>Tipo de pago:</strong>
+            {{ product.get_payment_type_display }}
+          </li>
+
+          <li>
+            <strong>Estado:</strong>
+            {% if product.status == "published" %}
+              Publicado
+            {% else %}
+              Deshabilitado
+            {% endif %}
+          </li>
+
+          <li>
+            <strong>Unidad de venta:</strong>
+            {{ product.get_unit_display }}
+          </li>
         </ul>
       </div>
 
-
-      <!-- Footer movido aquí -->
       <footer class="product-detail__footer">
         <div class="product-detail__profile">
           <div class="product-detail__avatar"></div>
-          <a href="/seller-profile/">
-          <span class="product-detail__username">Perfil Usuario</span>
+          <a href="{% url 'accounts:public_store_detail' product.store.id %}">
+              <span class="product-detail__username">{{ product.store.name }}</span>
           </a>
         </div>
-        <span class="product-detail__date">Producto publicado el 3 de Septiembre del 2025</span>
+        <span class="product-detail__date">
+          Producto publicado el {{ product.created_at|date:"d \\d\\e F \\d\\e Y" }}
+        </span>
       </footer>
 
       <div class="product-detail__purchase">
-        <p class="product-detail__price">${{ product.price }}</p>
+        <p class="product-detail__price">
+          ${{ product.price }} / {{ product.get_unit_display }}
+        </p>
 
         <form action="{% url 'cart:cart_add' product.id %}" method="post" class="product-detail__cart-form">
           {% csrf_token %}
-
           <div class="product-detail__cart-controls">
             <button
               type="submit"
               class="product-detail__add-btn"
               {% if product.stock == 0 %}disabled{% endif %}
             >
-              {% if product.stock == 0 %}Sin stock{% else %}Añadir al carrito{% endif %}
+              {% if product.stock == 0 %}
+                Sin stock
+              {% else %}
+                Añadir al carrito
+              {% endif %}
             </button>
           </div>
         </form>
@@ -73,5 +118,4 @@
   </div>
 
   <hr class="product-detail__divider">
-
 </section>

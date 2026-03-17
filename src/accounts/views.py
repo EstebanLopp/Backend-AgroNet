@@ -7,6 +7,10 @@ from django.contrib import messages
 
 from .forms import SignUpForm, UserProfileForm, CustomerProfileForm, StoreForm
 
+from django.shortcuts import render, get_object_or_404
+from accounts.models import Store
+from products.models import Product
+
 
 def signup(request):
     if request.method == "POST":
@@ -118,3 +122,17 @@ def seller_dashboard(request):
     }
 
     return render(request, "accounts/seller_dashboard.html", context)
+
+def public_store_detail(request, pk):
+    store = get_object_or_404(Store, pk=pk)
+
+    products = Product.objects.filter(
+        store=store,
+        status="published"
+    ).select_related("category")
+
+    context = {
+        "store": store,
+        "products": products,
+    }
+    return render(request, "accounts/public_store_detail.html", context)
