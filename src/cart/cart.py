@@ -14,6 +14,15 @@ class Cart:
     def add(self, product, quantity=1, override_quantity=False):
         product_id = str(product.id)
 
+        # Validación de disponibilidad efectiva
+        if (
+            not product.available
+            or product.status != "published"
+            or not product.store.is_active
+            or product.stock <= 0
+        ):
+            return
+
         if product_id not in self.cart:
             self.cart[product_id] = {
                 "quantity": 0,
@@ -60,12 +69,17 @@ class Cart:
             product_id = str(product.id)
             valid_product_ids.add(product_id)
 
-            if not product.available or product.stock <= 0:
+            if (
+                not product.available
+                or product.status != "published"
+                or not product.store.is_active
+                or product.stock <= 0
+            ):
                 if product_id in self.cart:
                     del self.cart[product_id]
                     changed = True
                 continue
-
+                
             if cart[product_id]["quantity"] > product.stock:
                 cart[product_id]["quantity"] = product.stock
                 self.cart[product_id]["quantity"] = product.stock
