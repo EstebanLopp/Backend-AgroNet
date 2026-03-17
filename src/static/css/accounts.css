@@ -855,3 +855,31 @@
         width: 100%;
     }
 }
+
+.profile-delete-zone {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+
+.profile-delete-zone__title {
+    color: #b02a37;
+    margin-bottom: 0.5rem;
+}
+
+.profile-delete-zone__text {
+    margin-bottom: 1rem;
+}
+
+.account-btn--danger {
+    background-color: #b02a37;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.account-btn--danger:hover {
+    opacity: 0.9;
+}

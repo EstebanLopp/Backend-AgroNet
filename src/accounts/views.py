@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from orders.models import Order
 from .models import CustomerProfile, SellerProfile
 from django.contrib import messages
+from django.utils import timezone
 
 from .forms import SignUpForm, UserProfileForm, CustomerProfileForm, StoreForm
 
@@ -80,6 +81,48 @@ def edit_profile(request):
     }
 
     return render(request, "accounts/profile.html", context)
+
+@login_required
+def delete_account(request):
+    if request.method != "POST":
+        messages.error(request, "Método no permitido.")
+        return redirect("accounts:profile")
+
+    user = request.user
+
+    if user.is_staff or user.is_superuser:
+        messages.error(request, "No puedes eliminar esta cuenta desde esta opción.")
+        return redirect("accounts:profile")
+
+    if not CustomerProfile.objects.filter(user=user).exists():
+        messages.error(request, "Solo los clientes pueden usar esta opción.")
+        return redirect("accounts:profile")
+
+    timestamp = timezone.now().strftime("%Y%m%d%H%M%S")
+    original_id = user.id
+
+    user.username = f"deleted_user_{original_id}_{timestamp}"
+
+    if user.email:
+        user.email = f"deleted_{original_id}_{timestamp}@deleted.local"
+
+    user.first_name = ""
+    user.last_name = ""
+    user.is_active = False
+    user.save()
+
+    CustomerProfile.objects.filter(user=user).update(
+        phone="",
+        document_type="",
+        document_number="",
+        birth_date=None,
+        address="",
+        city="",
+    )
+
+    logout(request)
+    messages.success(request, "Tu cuenta fue eliminada correctamente.")
+    return redirect("index")
 
 
 @login_required
