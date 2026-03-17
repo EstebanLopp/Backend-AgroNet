@@ -11,7 +11,7 @@ class Inicio(TemplateView):
 
         
         context["home_products"] = (
-            Product.objects.filter(available=True)
+            Product.objects.filter(available=True, status="published", store__is_active=True)
             .order_by("-created_at")[:8]
         )
 
