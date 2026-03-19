@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle del pedido recibido{% endblock %}
+
+{% block content %}
+<div class="container" style="padding: 40px 20px;">
+    <div class="account-header">
+        <h2>Detalle del pedido recibido</h2>
+        <p>
+            Pedido <strong>#{{ order.id }}</strong> —
+            Tienda: <strong>{{ store.name }}</strong>
+        </p>
+    </div>
+
+    <div class="account-order-row" style="display:block; margin-bottom: 24px; padding: 20px; border: 1px solid #ddd; border-radius: 12px;">
+        <h4>Información del comprador</h4>
+        <p><strong>Usuario:</strong> {{ customer.username }}</p>
+        <p><strong>Ciudad:</strong> {{ order.city }}</p>
+        <p><strong>Dirección:</strong> {{ order.address }}</p>
+        <p><strong>Método de pago:</strong> {{ order.get_payment_method_display }}</p>
+        <p><strong>Método de envío:</strong> {{ order.get_shipping_method_display }}</p>
+        <p><strong>Estado general:</strong> {{ order.get_status_display }}</p>
+        <p><strong>Notas:</strong> {{ order.notes|default:"Sin notas." }}</p>
+    </div>
+
+    <div class="account-order-row" style="display:block; margin-bottom: 24px; padding: 20px; border: 1px solid #ddd; border-radius: 12px;">
+        <h4>Productos de tu tienda en este pedido</h4>
+
+        {% if items %}
+            <ul>
+                {% for item in items %}
+                    <li style="margin-bottom: 10px;">
+                        <strong>{{ item.product.name }}</strong><br>
+                        Precio unitario: ${{ item.price }}<br>
+                        Cantidad: {{ item.quantity }}<br>
+                        Subtotal: ${{ item.get_cost }}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <hr>
+            <p><strong>Total de productos:</strong> {{ total_products }}</p>
+            <p><strong>Total para tu tienda:</strong> ${{ subtotal }}</p>
+        {% else %}
+            <p>No hay productos de tu tienda en este pedido.</p>
+        {% endif %}
+    </div>
+
+    {% if other_notifications %}
+        <div class="account-order-row" style="display:block; margin-bottom: 24px; padding: 20px; border: 1px solid #ddd; border-radius: 12px;">
+            <h4>Otros pedidos recibidos</h4>
+
+            <ul>
+                {% for item in other_notifications %}
+                    <li>
+                        <a href="{% url 'orders:seller_notification_detail' item.id %}">
+                            Pedido #{{ item.order.id }} - {{ item.order.user.username }}
+                        </a>
+                        {% if not item.is_read %}
+                            <strong>(Nuevo)</strong>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <div class="account-actions">
+        <a href="{% url 'orders:seller_notifications' %}" class="account-btn account-btn--primary">
+            Volver al centro de notificaciones
+        </a>
+    </div>
+</div>
+{% endblock %}

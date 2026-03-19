@@ -3,10 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.contrib import messages
 
+from accounts.models import SellerProfile
 from cart.cart import Cart
 from .forms import CheckoutForm
-from .models import Order, OrderItem
-
+from .models import Order, OrderItem, SellerNotification
 
 
 @login_required
@@ -46,6 +46,8 @@ def checkout(request):
 
                 order.save()
 
+                touched_store_ids = set()
+
                 for item in cart:
                     product = item["product"]
 
@@ -56,8 +58,16 @@ def checkout(request):
                         quantity=item["quantity"]
                     )
 
+                    touched_store_ids.add(product.store_id)
+
                     product.stock -= item["quantity"]
                     product.save()
+
+                for store_id in touched_store_ids:
+                    SellerNotification.objects.get_or_create(
+                        store_id=store_id,
+                        order=order
+                    )
 
                 cart.clear()
 
@@ -83,7 +93,7 @@ def checkout(request):
 
 @login_required
 def order_success(request):
-    return render(request, 'orders/success.html')
+    return render(request, "orders/success.html")
 
 
 @login_required
@@ -129,3 +139,127 @@ def order_detail(request, order_id):
             "other_orders": other_orders,
         }
     )
+
+
+@login_required
+def seller_notifications(request):
+    seller_profile = SellerProfile.objects.filter(user=request.user).first()
+
+    if not seller_profile or not hasattr(seller_profile, "store"):
+        messages.error(request, "Primero debes crear una tienda.")
+        return redirect("accounts:create_store")
+
+    store = seller_profile.store
+
+    notifications = (
+        SellerNotification.objects
+        .filter(store=store)
+        .select_related("order", "order__user", "store")
+        .order_by("-created_at")
+    )
+
+    notification_cards = []
+
+    for notification in notifications:
+        store_items = (
+            notification.order.items
+            .filter(product__store=store)
+            .select_related("product")
+        )
+
+        subtotal = sum(item.get_cost() for item in store_items)
+        total_products = sum(item.quantity for item in store_items)
+
+        notification_cards.append({
+            "notification": notification,
+            "order": notification.order,
+            "customer": notification.order.user,
+            "items": store_items,
+            "subtotal": subtotal,
+            "total_products": total_products,
+        })
+
+    context = {
+        "store": store,
+        "notification_cards": notification_cards,
+    }
+
+    return render(request, "orders/seller_notifications.html", context)
+
+
+@login_required
+def seller_notification_detail(request, notification_id):
+    seller_profile = SellerProfile.objects.filter(user=request.user).first()
+
+    if not seller_profile or not hasattr(seller_profile, "store"):
+        messages.error(request, "Primero debes crear una tienda.")
+        return redirect("accounts:create_store")
+
+    store = seller_profile.store
+
+    notification = get_object_or_404(
+        SellerNotification.objects.select_related("order", "order__user", "store"),
+        id=notification_id,
+        store=store
+    )
+
+    if not notification.is_read:
+        notification.is_read = True
+        notification.save(update_fields=["is_read"])
+
+    store_items = (
+        notification.order.items
+        .filter(product__store=store)
+        .select_related("product")
+    )
+
+    subtotal = sum(item.get_cost() for item in store_items)
+    total_products = sum(item.quantity for item in store_items)
+
+    other_notifications = (
+        SellerNotification.objects
+        .filter(store=store)
+        .exclude(id=notification.id)
+        .select_related("order", "order__user")
+        .order_by("-created_at")[:5]
+    )
+
+    context = {
+        "store": store,
+        "notification": notification,
+        "order": notification.order,
+        "customer": notification.order.user,
+        "items": store_items,
+        "subtotal": subtotal,
+        "total_products": total_products,
+        "other_notifications": other_notifications,
+    }
+
+    return render(request, "orders/seller_notification_detail.html", context)
+
+
+@login_required
+def mark_notification_as_read(request, notification_id):
+    if request.method != "POST":
+        return redirect("orders:seller_notifications")
+
+    seller_profile = SellerProfile.objects.filter(user=request.user).first()
+
+    if not seller_profile or not hasattr(seller_profile, "store"):
+        messages.error(request, "Primero debes crear una tienda.")
+        return redirect("accounts:create_store")
+
+    store = seller_profile.store
+
+    notification = get_object_or_404(
+        SellerNotification,
+        id=notification_id,
+        store=store
+    )
+
+    if not notification.is_read:
+        notification.is_read = True
+        notification.save(update_fields=["is_read"])
+
+    messages.success(request, "La notificación fue marcada como leída.")
+    return redirect("orders:seller_notifications")
