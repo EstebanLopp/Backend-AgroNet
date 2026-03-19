@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from products.models import Product
+from accounts.models import Store
+
 
 
 class Order(models.Model):
@@ -91,5 +93,35 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+
+#----------------------------------------------------
+
+
+class SellerNotification(models.Model):
+    store = models.ForeignKey(
+        Store,
+        on_delete=models.CASCADE,
+        related_name="notifications"
+    )
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name="seller_notifications"
+    )
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["store", "order"],
+                name="unique_seller_notification_per_order"
+            )
+        ]
+
+    def __str__(self):
+        return f"Notificación tienda {self.store.name} - pedido #{self.order.id}"
     
     

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Centro de notificaciones{% endblock %}
+
+{% block content %}
+<div class="container" style="padding: 40px 20px;">
+    <div class="account-header">
+        <h2>Centro de notificaciones</h2>
+        <p>Tienda: <strong>{{ store.name }}</strong></p>
+    </div>
+
+    {% if notification_cards %}
+        {% for card in notification_cards %}
+            <div class="account-order-row" style="display:block; margin-bottom: 24px; padding: 20px; border: 1px solid #ddd; border-radius: 12px;">
+                <div class="account-order-info" style="margin-bottom: 12px;">
+                    <strong>Pedido #{{ card.order.id }}</strong><br>
+                    <small>Cliente: {{ card.customer.username }}</small><br>
+                    <small>Fecha: {{ card.notification.created_at|date:"d/m/Y H:i" }}</small><br>
+
+                    {% if card.notification.is_read %}
+                        <span class="account-badge">Leído</span>
+                    {% else %}
+                        <span class="account-badge" style="background:#198754; color:white;">Nuevo</span>
+                    {% endif %}
+                </div>
+
+                <div style="margin: 16px 0;">
+                    <strong>Productos de tu tienda:</strong>
+                    <ul style="margin-top: 8px;">
+                        {% for item in card.items %}
+                            <li>
+                                {{ item.product.name }} — Cantidad: {{ item.quantity }} — Subtotal: ${{ item.get_cost }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <strong>Total de productos:</strong> {{ card.total_products }}<br>
+                    <strong>Total de esta venta:</strong> ${{ card.subtotal }}<br>
+                    <strong>Estado general del pedido:</strong> {{ card.order.get_status_display }}
+                </div>
+
+                <div class="account-order-actions">
+                    <a href="{% url 'orders:seller_notification_detail' card.notification.id %}" class="account-btn account-btn--secondary account-btn--small">
+                        Ver detalle
+                    </a>
+
+                    {% if not card.notification.is_read %}
+                        <form method="post" action="{% url 'orders:mark_notification_as_read' card.notification.id %}" style="display:inline-block;">
+                            {% csrf_token %}
+                            <button type="submit" class="account-btn account-btn--primary account-btn--small">
+                                Marcar como leída
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No tienes pedidos recibidos todavía.</p>
+    {% endif %}
+</div>
+{% endblock %}

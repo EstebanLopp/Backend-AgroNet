@@ -46,13 +46,29 @@
       </div>
     </div>
 
+    <div class="seller-store-info" style="margin-top: 24px;">
+      <h3 class="seller-store-info__label">Resumen de pedidos</h3>
+      <div class="seller-store-info__box">
+        Notificaciones sin leer: <strong>{{ unread_notifications_count }}</strong>
+      </div>
+    </div>
+
     <div class="seller-actions">
+      <a href="{% url 'orders:seller_notifications' %}" class="account-btn account-btn--primary seller-btn">
+        Centro de notificaciones
+        {% if unread_notifications_count > 0 %}
+          ({{ unread_notifications_count }})
+        {% endif %}
+      </a>
+
       <a href="{% url 'products:my_products' %}" class="account-btn account-btn--primary seller-btn">
         Ver mis productos
       </a>
+
       <a href="{% url 'accounts:edit_store' %}" class="account-btn account-btn--primary seller-btn">
         Editar tienda
       </a>
+
       <form method="post" action="{% url 'accounts:toggle_store_status' %}">
         {% csrf_token %}
 
@@ -68,8 +84,27 @@
       </form>
     </div>
 
+    {% if recent_notifications %}
+      <div class="seller-store-info" style="margin-top: 24px;">
+        <h3 class="seller-store-info__label">Últimos pedidos recibidos</h3>
+
+        {% for notification in recent_notifications %}
+          <div class="seller-store-info__box" style="margin-bottom: 12px;">
+            <strong>Pedido #{{ notification.order.id }}</strong><br>
+            Cliente: {{ notification.order.user.username }}<br>
+            Fecha: {{ notification.created_at|date:"d/m/Y H:i" }}<br>
+            Estado:
+            {% if notification.is_read %}
+              Leído
+            {% else %}
+              Nuevo
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
   </div>
 </section>
 
 {% endblock %}
-

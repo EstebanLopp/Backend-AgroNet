@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from orders.models import Order
+from orders.models import Order, SellerNotification
 from .models import CustomerProfile, SellerProfile
 from django.contrib import messages
 from django.utils import timezone
@@ -151,7 +151,6 @@ def create_store(request):
 
 @login_required
 def seller_dashboard(request):
-
     seller_profile = SellerProfile.objects.filter(user=request.user).first()
 
     if not seller_profile or not hasattr(seller_profile, "store"):
@@ -160,8 +159,17 @@ def seller_dashboard(request):
 
     store = seller_profile.store
 
+    unread_notifications_count = store.notifications.filter(is_read=False).count()
+    recent_notifications = (
+        store.notifications
+        .select_related("order", "order__user")
+        .order_by("-created_at")[:5]
+    )
+
     context = {
-        "store": store
+        "store": store,
+        "unread_notifications_count": unread_notifications_count,
+        "recent_notifications": recent_notifications,
     }
 
     return render(request, "accounts/seller_dashboard.html", context)
