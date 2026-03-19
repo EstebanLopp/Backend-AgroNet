@@ -180,13 +180,14 @@ class StoreForm(forms.ModelForm):
 
     class Meta:
         model = Store
-        fields = ["name", "description", "phone", "address"]
+        fields = ["name", "description", "phone", "address", "city"]
 
         labels = {
             "name": "Nombre de la tienda",
             "description": "Descripción",
             "phone": "Teléfono",
             "address": "Dirección",
+            "city": "Ciudad"
         }
 
         widgets = {
@@ -194,6 +195,7 @@ class StoreForm(forms.ModelForm):
             "description": forms.Textarea(attrs={"class": "seller-form-e__input seller-form-e__textarea", "rows": 3}),
             "phone": forms.TextInput(attrs={"class": "seller-form-e__input"}),
             "address": forms.TextInput(attrs={"class": "seller-form-e__input"}),
+            "city": forms.TextInput(attrs={"class": "seller-form-e__input"}),
         }
 
     def clean_name(self):
@@ -234,3 +236,13 @@ class StoreForm(forms.ModelForm):
     def clean_description(self):
         description = self.cleaned_data["description"].strip()
         return description
+
+    def clean_city(self):
+        city = self.cleaned_data["city"].strip()
+
+        if len(city) < 3:
+            raise forms.ValidationError(
+                "La ciudad debe tener al menos 3 caracteres."
+            )
+
+        return city
