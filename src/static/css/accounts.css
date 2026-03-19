@@ -12,11 +12,13 @@
     font-weight: 700;
     color: var(--black);
     margin-bottom: 8px;
+    padding-left: 20px;
 }
 
 .account-header p{
     color: #6b7280;
     font-size: 16px;
+    padding-left: 20px;
 }
 
 .account-summary{
