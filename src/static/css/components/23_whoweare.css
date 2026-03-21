@@ -2,7 +2,7 @@
 
 .about-us {
   max-width: 1500px;
-  margin: 100px auto 0 auto;
+  margin: 2px auto 0 auto;
   padding: 24px; /* espaciado global en TODOS los lados */
   box-sizing: border-box;
 }
@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: stretch; /* para que ambos tengan la misma altura */
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
   flex-wrap: wrap; /* en móvil se apila */
   padding: 0 1.5rem;
   box-sizing: border-box;
@@ -106,5 +106,73 @@
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+
+/* =========================
+   EQUIPO (IMAGEN GRUPAL)
+========================= */
+
+.about-us__team {
+  margin-top: 4rem;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.about-us__team-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--black);
+}
+
+/* Imagen grupal */
+.about-us__team-image {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 22px;
+  margin: 0 auto 2rem auto;
+  display: block;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Texto del equipo */
+.about-us__team-description {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: justify;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.about-us__team-description p {
+  margin-bottom: 1rem;
+}
+
+/* Lista de integrantes */
+.about-us__team-list {
+  margin-top: 1.5rem;
+}
+
+.about-us__team-member {
+  margin-bottom: 1rem;
+}
+
+.about-us__team-member strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--black);
+}
+
+/* Nota de exintegrantes */
+.about-us__team-note {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px dashed #9ca3af;
+  border-radius: 16px;
+  background: #f9fafb;
+  font-size: 1.2rem;
+  color: #4b5563;
+  margin-bottom: 3rem;
 }
 
