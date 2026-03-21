@@ -18,8 +18,6 @@ class Category(models.Model):
 class Product(models.Model):
     UNIT_CHOICES = [
         ("kg", "Kilogramo"),
-        ("und", "Unidad"),
-        ("lb", "Libra"),
     ]
 
     STATUS_CHOICES = [
@@ -34,7 +32,8 @@ class Product(models.Model):
 
     WEIGHT_UNIT_CHOICES = [
         ("kg", "Kilogramo"),
-
+        ("g", "Gramo"),
+        ("lb", "Libra"),
     ]
 
     PAYMENT_CHOICES = [
