@@ -84,10 +84,10 @@ class ProductForm(forms.ModelForm):
             )
         return producer
 
-def clean_image(self):
-    image = self.cleaned_data.get("image")
+    def clean_image(self):
+        image = self.cleaned_data.get("image")
 
-    if not image:
-        raise forms.ValidationError("Debes subir una imagen del producto.")
+        if not image:
+            raise forms.ValidationError("Debes subir una imagen del producto.")
 
-    return image
+        return image

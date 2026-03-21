@@ -67,6 +67,10 @@
 
 	/* Font-family */
 	--main-font: Arial, Inria Sans;
+
+    /* Global layout heights */
+    --govbar-height: 40px;
+    --navbar-height: 64px;
 		
 
     /* Font-size */
