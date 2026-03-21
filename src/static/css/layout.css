@@ -348,5 +348,6 @@ a.btn {
 }
 
 main{
-  padding-top: calc(var(--navbar-height) + var(--page-top-padding));
+  margin-top: calc(var(--govbar-height) + var(--navbar-height));
+  padding-top: 0;
 }
