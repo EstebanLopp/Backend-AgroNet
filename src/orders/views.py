@@ -61,6 +61,12 @@ def checkout(request):
                     touched_store_ids.add(product.store_id)
 
                     product.stock -= item["quantity"]
+
+                    if product.stock <= 0:
+                        product.stock = 0
+                        product.status = "disabled"
+                        product.available = False
+
                     product.save()
 
                 for store_id in touched_store_ids:

@@ -57,7 +57,9 @@ def product_detail(request, slug):
 
     related_products = Product.objects.filter(
         category=product.category,
-        available=True
+        available=True,
+        status="published",
+        store__is_active=True
     ).exclude(id=product.id)[:6]
 
     context = {

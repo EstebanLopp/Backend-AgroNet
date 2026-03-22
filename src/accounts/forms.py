@@ -162,8 +162,22 @@ class CustomerProfileForm(forms.ModelForm):
     
     def clean_birth_date(self):
         birth_date = self.cleaned_data.get("birth_date")
-        if birth_date and birth_date > date.today():
+
+        if not birth_date:
+            return birth_date
+
+        today = date.today()
+
+        if birth_date > today:
             raise forms.ValidationError("La fecha de nacimiento no puede ser futura.")
+
+        age = today.year - birth_date.year
+        if (today.month, today.day) < (birth_date.month, birth_date.day):
+            age -= 1
+
+        if age < 18:
+            raise forms.ValidationError("Debes ser mayor de edad para registrarte.")
+
         return birth_date
     
 class CustomPasswordResetForm(PasswordResetForm):
