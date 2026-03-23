@@ -1,3 +1,17 @@
+# Este archivo implementa la lógica del carrito de compras utilizando sesiones de Django.
+# Permite agregar, eliminar, iterar y calcular productos sin necesidad de guardarlos en la base de datos.
+
+# Almacena el carrito en la sesión del usuario
+# Permite agregar y eliminar productos
+# Valida disponibilidad real de productos
+# Calcula totales
+# Mantiene consistencia entre carrito y base de datos
+
+# Este archivo implementa la lógica del carrito de compras usando sesiones en Django. 
+# Permite agregar, eliminar y calcular productos sin usar la base de datos directamente. 
+# Incluye validaciones en tiempo real para asegurar que los productos sean válidos, tengan stock 
+# disponible y pertenezcan a tiendas activas, garantizando consistencia en la información.
+
 from decimal import Decimal
 
 

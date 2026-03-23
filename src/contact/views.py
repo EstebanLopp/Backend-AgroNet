@@ -1,3 +1,16 @@
+# Este archivo contiene la lógica del sistema de contacto.
+# Se encarga de procesar el formulario, guardar los mensajes y gestionar el envío de correos de confirmación.
+
+# Muestra el formulario de contacto
+# Valida y guarda mensajes
+# Envía correo de confirmación al usuario
+# Maneja vistas de éxito e información adicional
+
+# Este archivo maneja la lógica del formulario de contacto. Permite recibir, validar y almacenar 
+# mensajes de los usuarios, además de enviar un correo de confirmación utilizando plantillas HTML. 
+# Está diseñado siguiendo buenas prácticas como separación de responsabilidades, manejo de errores y
+# control de métodos HTTP, lo que garantiza una experiencia de usuario fluida y segura.
+
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods

@@ -1,3 +1,6 @@
+# Este archivo configura cómo se visualizan y administran los modelos en el panel de administración de Django (/admin).
+# Permite que el administrador del sistema gestione clientes, vendedores y tiendas de forma eficiente.
+
 from django.contrib import admin
 from .models import CustomerProfile, SellerProfile, Store
 

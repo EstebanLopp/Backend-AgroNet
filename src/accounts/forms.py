@@ -1,3 +1,19 @@
+# Este archivo define todos los formularios del sistema relacionados con:
+
+# Registro de usuarios
+# Edición de perfil
+# Perfil de cliente
+# Recuperación de contraseña
+# Creación/edición de tienda
+
+# Centraliza la validación de datos antes de guardarlos en la base de datos.
+
+# Extiende formularios de Django (UserCreationForm, ModelForm, PasswordResetForm)
+# Valida datos ingresados por el usuario
+# Normaliza información (ej: emails en minúsculas, eliminación de espacios)
+# Controla reglas de negocio (edad mínima, unicidad de email, etc.)
+
+
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm

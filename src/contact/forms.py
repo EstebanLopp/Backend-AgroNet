@@ -1,3 +1,15 @@
+# Este archivo define el formulario de contacto que permite a los usuarios enviar mensajes al sistema.
+# Se encarga de validar los datos antes de almacenarlos en el modelo ContactMessage.
+
+# Crea un formulario basado en modelo (ModelForm)
+# Valida los datos ingresados por el usuario
+# Implementa protección contra spam
+# Normaliza datos (ej: correo en minúsculas, eliminación de espacios)
+
+# Este archivo define el formulario de contacto del sistema. Utiliza un ModelForm para validar y 
+# guardar los datos en la base de datos. Incluye validaciones personalizadas para cada campo y una 
+# protección contra spam mediante un honeypot, lo que mejora la seguridad y calidad de los datos ingresados.
+
 from django import forms
 from .models import ContactMessage
 

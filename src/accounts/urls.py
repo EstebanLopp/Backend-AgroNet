@@ -1,3 +1,16 @@
+# Este archivo define las rutas (URLs) de la aplicación accounts.
+# Conecta las URLs con las vistas que manejan la lógica del sistema.
+
+# Define endpoints para funcionalidades de usuario y vendedor
+# Conecta vistas personalizadas y vistas internas de Django
+# Organiza la navegación del sistema de cuentas
+# Maneja el flujo completo de recuperación de contraseña
+
+# Este archivo define las rutas de la aplicación accounts. Conecta las URLs con las vistas
+# que manejan la lógica del sistema, incluyendo registro, gestión de perfil, manejo de tiendas y
+# recuperación de contraseña. También utiliza vistas internas de Django para implementar funcionalidades
+# seguras como el restablecimiento de contraseña, asegurando una experiencia de usuario fluida y segura.
+
 from django.urls import path
 from .views import signup
 from . import views
