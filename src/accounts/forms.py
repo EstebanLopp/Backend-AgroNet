@@ -1,3 +1,19 @@
+# Este archivo define todos los formularios del sistema relacionados con:
+
+# Registro de usuarios
+# Edición de perfil
+# Perfil de cliente
+# Recuperación de contraseña
+# Creación/edición de tienda
+
+# Centraliza la validación de datos antes de guardarlos en la base de datos.
+
+# Extiende formularios de Django (UserCreationForm, ModelForm, PasswordResetForm)
+# Valida datos ingresados por el usuario
+# Normaliza información (ej: emails en minúsculas, eliminación de espacios)
+# Controla reglas de negocio (edad mínima, unicidad de email, etc.)
+
+
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -162,8 +178,22 @@ class CustomerProfileForm(forms.ModelForm):
     
     def clean_birth_date(self):
         birth_date = self.cleaned_data.get("birth_date")
-        if birth_date and birth_date > date.today():
+
+        if not birth_date:
+            return birth_date
+
+        today = date.today()
+
+        if birth_date > today:
             raise forms.ValidationError("La fecha de nacimiento no puede ser futura.")
+
+        age = today.year - birth_date.year
+        if (today.month, today.day) < (birth_date.month, birth_date.day):
+            age -= 1
+
+        if age < 18:
+            raise forms.ValidationError("Debes ser mayor de edad para registrarte.")
+
         return birth_date
     
 class CustomPasswordResetForm(PasswordResetForm):

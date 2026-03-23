@@ -1,3 +1,16 @@
+# Este archivo implementa un servicio reutilizable para el envío de correos electrónicos usando
+# plantillas dinámicas. Centraliza la lógica de envío de emails en el sistema.
+
+# Genera correos a partir de templates HTML y opcionalmente texto plano
+# Inserta datos dinámicos en las plantillas
+# Envía correos usando el sistema de Django
+# Permite reutilizar esta funcionalidad en diferentes módulos
+
+# Este archivo define un servicio para enviar correos electrónicos usando plantillas dinámicas. 
+# Permite separar la lógica de envío del resto del sistema, facilitando la reutilización y el mantenimiento.
+# Utiliza EmailMultiAlternatives para enviar correos en formato HTML y texto, y obtiene la configuración 
+# desde settings para mayor flexibilidad.
+
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string

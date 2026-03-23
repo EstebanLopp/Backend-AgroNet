@@ -1,3 +1,17 @@
+# Este archivo define el modelo ContactMessage, que representa los mensajes enviados por los
+# usuarios a través del formulario de contacto.
+
+# Define la estructura de la tabla en la base de datos
+# Almacena información del usuario y su mensaje
+# Clasifica el tipo de solicitud
+# Permite gestionar el estado del mensaje (leído/no leído)
+
+# Este archivo define el modelo ContactMessage, que almacena los mensajes enviados por los usuarios. 
+# Incluye información personal, contenido del mensaje, tipo de solicitud y preferencia de contacto. 
+# También incorpora campos de control como fecha de creación y estado de lectura, y un campo honeypot 
+# para prevenir spam. Este modelo es fundamental para gestionar las comunicaciones entrantes desde el
+# formulario de contacto.
+
 from django.db import models
 
 class ContactMessage(models.Model):

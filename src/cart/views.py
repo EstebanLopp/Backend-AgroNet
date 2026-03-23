@@ -1,3 +1,18 @@
+# Este archivo contiene la lógica de las vistas del carrito de compras.
+# Se encarga de recibir las acciones del usuario desde el frontend y ejecutar 
+# operaciones sobre el carrito usando la clase Cart.
+
+# Agrega productos al carrito
+# Muestra el detalle del carrito
+# Elimina productos
+# Actualiza cantidades
+# Valida disponibilidad y stock antes de modificar el carrito
+
+# Este archivo maneja las vistas del carrito de compras. Recibe las acciones del usuario y 
+# valida condiciones como disponibilidad, stock y cantidad antes de modificar el carrito. 
+# Además, utiliza mensajes para informar el resultado de cada acción y restringe las operaciones 
+# sensibles al método POST, siguiendo buenas prácticas de desarrollo web
+
 from django.shortcuts import get_object_or_404, redirect
 from products.models import Product
 from django.shortcuts import render

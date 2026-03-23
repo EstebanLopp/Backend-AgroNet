@@ -1,3 +1,21 @@
+# Este archivo define la estructura de la base de datos para la aplicación accounts.
+# Aquí se modelan las entidades principales del sistema:
+
+# Perfil de cliente
+# Perfil de vendedor
+# Tienda
+
+# Extiende el modelo User de Django con información adicional
+# Define relaciones entre usuarios, vendedores y tiendas
+# Establece los campos que se almacenan en la base de datos
+# Define cómo se representan los datos en el sistema (__str__)
+
+# Este archivo define los modelos del sistema. Extiende el modelo User para crear perfiles 
+# de cliente y vendedor, y establece una relación uno a uno entre vendedor y tienda. También define 
+# los campos que se almacenan en la base de datos y utiliza relaciones para estructurar correctamente 
+# la información. Esto permite organizar los datos de forma clara y mantener integridad en el sistema.
+
+
 from django.db import models
 from django.contrib.auth.models import User
 

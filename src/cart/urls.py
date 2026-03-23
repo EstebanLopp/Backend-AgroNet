@@ -1,3 +1,14 @@
+# Este archivo define las rutas del sistema relacionadas con el carrito de compras.
+# Conecta las URLs con las vistas que manejan las operaciones del carrito.
+
+# Define endpoints para ver, agregar, eliminar y actualizar productos en el carrito
+# Maneja parámetros dinámicos (ID del producto)
+# Organiza las rutas bajo el namespace cart
+
+# Este archivo define las rutas del carrito de compras. Permite visualizar, agregar, eliminar 
+# y actualizar productos mediante URLs dinámicas que incluyen el ID del producto. Está organizado con 
+# un namespace y separado de la lógica, lo que mejora la estructura del sistema y facilita su mantenimiento.
+
 from django.urls import path
 from . import views
 

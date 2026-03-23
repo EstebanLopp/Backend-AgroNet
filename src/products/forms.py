@@ -76,14 +76,6 @@ class ProductForm(forms.ModelForm):
             )
         return weight
 
-    def clean_producer(self):
-        producer = self.cleaned_data["producer"].strip()
-        if len(producer) < 3:
-            raise forms.ValidationError(
-                "El nombre del productor o finca debe tener al menos 3 caracteres."
-            )
-        return producer
-
     def clean_image(self):
         image = self.cleaned_data.get("image")
 

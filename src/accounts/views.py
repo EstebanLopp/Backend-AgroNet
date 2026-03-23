@@ -1,3 +1,20 @@
+# Este archivo contiene la lógica principal del sistema para la gestión de usuarios, perfiles y tiendas.
+# Aquí se conectan los formularios, modelos y templates.
+
+# Maneja el registro de usuarios
+# Controla el dashboard del cliente
+# Permite editar perfil
+# Gestiona eliminación de cuenta
+# Administra la creación y gestión de tiendas
+# Controla el panel del vendedor
+# Muestra tiendas públicamente
+
+# Este archivo contiene la lógica principal del sistema. Maneja el registro de usuarios, 
+# edición de perfil, gestión de cuentas y administración de tiendas. Implementa buenas prácticas 
+# como validación de formularios, protección de rutas, eliminación lógica de usuarios y optimización 
+# de consultas. Es el punto donde se conectan los modelos, formularios y templates para responder a las 
+# solicitudes del usuario.
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
