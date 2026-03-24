@@ -1,3 +1,11 @@
+# Este archivo configura el panel de administración para gestionar pedidos (Order), productos dentro de pedidos (OrderItem) y notificaciones a vendedores (SellerNotification).
+
+# Registra modelos del sistema de pedidos en el admin, Permite visualizar pedidos y sus productos asociados, Facilita la gestión de notificaciones para vendedores, Mejora la administración mediante filtros, búsqueda y relaciones.
+
+#Este archivo configura el panel de administración para gestionar pedidos, productos dentro de pedidos y notificaciones a vendedores. Utiliza un TabularInline para mostrar los productos asociados a cada pedido, lo que facilita su gestión. También implementa filtros, búsqueda y uso de relaciones para mejorar la administración de la información.
+
+
+
 from django.contrib import admin
 from .models import Order, OrderItem, SellerNotification
 

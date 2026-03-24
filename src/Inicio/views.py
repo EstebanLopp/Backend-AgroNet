@@ -1,25 +1,33 @@
-from django.views.generic import TemplateView
-from products.models import Product, Category
+# Este archivo define las vistas de tipo presentación del sistema (frontend) .Se encarga de renderizar templates y, en algunos casos, enviar datos desde la base de datos hacia la interfaz.
+
+# Define vistas basadas en clases (TemplateView), Renderiza páginas estáticas y dinámicas, carga productos y categorías para la página principal, organiza vistas para diferentes tipos de usuario (general y comprador).
+
+# Este archivo define las vistas del módulo inicio utilizando TemplateView. La mayoría de las vistas son estáticas y se encargan de renderizar templates, mientras que la vista principal carga datos dinámicos como productos y categorías desde la base de datos. Esto permite separar la lógica de presentación del resto del sistema.
+
+from django.views.generic import TemplateView # ->renderiza templates sin logica compleja
+from products.models import Product, Category # ->modelos usados en la pagina principal
 
 # Create your views here.
 
 class Inicio(TemplateView):
     template_name = 'pages-general/index.html'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs): # -> Extiende el contexto del template, Agrega datos dinámicos desde la base de datos
         context = super().get_context_data(**kwargs)
 
-        
+        #Solo productos:disponibles, publicados, de tiendas activas,Ordenados por más recientes, Limita a 8 productos        
         context["home_products"] = (
             Product.objects.filter(available=True, status="published", store__is_active=True)
             .order_by("-created_at")[:8]
         )
 
-        
+        #Muestra categorías principales (limita a 4)
         context["home_categories"] = Category.objects.all()[:4]
 
         return context
 
+
+#Estas vistas solo renderizan templates, sin lógica adicional
 
 class Perfilven(TemplateView):
     template_name = 'pages-general/seller-profile.html'
@@ -77,9 +85,3 @@ class CrearTienda(TemplateView):
 
 
 
-
-
-
-
-
-    

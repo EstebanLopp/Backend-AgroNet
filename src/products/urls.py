@@ -1,13 +1,12 @@
+#Este archivo define las rutas del módulo de productos. Conecta las URLs con las vistas que permiten listar, ver, crear, editar y gestionar productos.
+
+#Define el catálogo público de productos, Permite ver detalle de productos, Gestiona el panel de vendedor, Permite filtrar productos por categoría
+
+#Este archivo define las rutas del módulo de productos. Incluye el catálogo público, el detalle de productos, el panel de gestión para vendedores y el filtrado por categorías. Utiliza slugs para URLs amigables y separa claramente las funcionalidades entre usuarios y vendedores.
+
+
 from django.urls import path
-from .views import (
-    product_list,
-    product_detail,
-    my_products,
-    create_product,
-    update_product,
-    toggle_product_status,
-    seller_product_detail,
-)
+from .views import (product_list, product_detail, my_products, create_product,update_product, toggle_product_status, seller_product_detail,)
 
 app_name = "products"
 

@@ -1,4 +1,12 @@
+# Este archivo define las rutas principales del sistema relacionadas con páginas generales (vistas públicas).Actúa como punto de entrada para varias vistas informativas y de navegación.
+
+# sirve para definir rutas para páginas generales del sistema, Usa vistas basadas en clases y Maneja la navegación principal del usuario
+
+# Este archivo define las rutas principales del sistema, utiliza vistas basadas en clases para organizar la lógica de presentación y permite gestionar la navegación del usuario entre secciones como inicio, información, carrito y recuperación de contraseña.
+
+
 from django.urls import path
+#Importa vistas basadas en clases, cada vista representa una página del sistema
 from .views import Inicio, Perfilven, QuienesSomos, Carrito, ContactoDos, OlvidasteContraseña, TokenOlvidasteContraseña, ConfirmaContraseña, CrearTienda
 
 
