@@ -1,7 +1,15 @@
+#Este archivo define el formulario para la creación y edición de productos en el sistema. Permite que los vendedores registren productos con validaciones adecuadas.
+
+#Crea un formulario basado en el modelo Product, Valida los datos antes de guardar productos, Controla reglas de negocio (precio, stock, peso, etc.),Define etiquetas para mejorar la interfaz
+
+
+#Este archivo define el formulario para crear y editar productos. Utiliza un ModelForm para validar y guardar la información, asegurando que los datos cumplan reglas como precio positivo, stock válido y obligatoriedad de imagen. Esto garantiza que los productos registrados sean consistentes y aptos para el sistema de ventas.
+
+
 from django import forms
 from .models import Product
 
-
+#Está conectado directamente al modelo Product y permite crear o editar productos desde formularios
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product

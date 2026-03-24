@@ -1,3 +1,9 @@
+# Este archivo define las rutas del sistema de pedidos. Conecta las URLs con las vistas que manejan el proceso de compra, gestión de pedidos y notificaciones a vendedores.
+
+#Define el flujo de checkout (compra), Permite al usuario ver sus pedidos,Maneja el detalle de pedidos individuales, Gestiona notificaciones para vendedores.
+
+#Este archivo define las rutas del sistema de pedidos. Maneja el flujo de compra desde el checkout hasta la confirmación, permite a los usuarios consultar sus pedidos y a los vendedores gestionar notificaciones relacionadas con ventas. Utiliza rutas dinámicas para acceder a pedidos y notificaciones específicas.
+
 from django.urls import path
 from . import views
 
