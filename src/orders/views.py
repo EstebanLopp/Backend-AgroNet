@@ -207,7 +207,7 @@ def seller_notifications(request):
 
 
 #muestra detalle completo de una notificación, obtiene solo los items de esa tienda dentro del pedido
-marca la notificación como leída automáticamente
+#marca la notificación como leída automáticamente
 @login_required
 def seller_notification_detail(request, notification_id):
     seller_profile = SellerProfile.objects.filter(user=request.user).first()
