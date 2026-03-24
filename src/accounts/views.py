@@ -145,11 +145,19 @@ def delete_account(request):
 @login_required
 def create_store(request):
     seller_profile, _ = SellerProfile.objects.get_or_create(user=request.user)
+    customer_profile, _ = CustomerProfile.objects.get_or_create(user=request.user)
 
     if hasattr(seller_profile, "store"):
         messages.info(request, "Ya tienes una tienda registrada.")
         return redirect("accounts:dashboard")
 
+    if not customer_profile.document_type or not customer_profile.document_number:
+        messages.error(
+            request,
+            "Debes completar tu tipo y número de documento en tu perfil antes de crear una tienda."
+        )
+        return redirect("accounts:edit_profile")
+        
     if request.method == "POST":
         form = StoreForm(request.POST)
         if form.is_valid():
