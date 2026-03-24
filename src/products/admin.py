@@ -4,7 +4,7 @@
 
 #Este archivo configura el panel de administración para gestionar categorías y productos. Permite visualizar información clave, filtrar y buscar productos, y utiliza slugs para generar URLs amigables automáticamente, facilitando la administración del catálogo del sistema.
 
-evita que el admin lo escriba manualmente
+#evita que el admin lo escriba manualmente
 from django.contrib import admin
 from .models import Category, Product
 
