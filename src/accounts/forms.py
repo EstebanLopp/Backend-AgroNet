@@ -300,7 +300,6 @@ class StoreForm(forms.ModelForm):
                 "La ciudad debe tener al menos 3 caracteres."
             )
 
-        # ❌ No permitir números
         if re.search(r'\d', city):
             raise forms.ValidationError(
                 "La ciudad no puede contener números."
