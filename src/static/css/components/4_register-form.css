@@ -30,8 +30,8 @@ Componentes principales:
 
 /* Estilos del componente */
 .register-form {
-  max-width: 1100px;
-  margin: 8rem auto 2.4rem auto;
+  max-width: 380px;
+  margin: 0.8rem auto 2.4rem auto;
   min-height: 50vh; /*  ocupa el 90% del alto de la pantalla */
   background: var(--white);
   padding: 2.4rem;
@@ -111,6 +111,13 @@ Componentes principales:
   color: var(--gray-600);
   border: none;
   transition: background-color 0.3s ease;
+  margin: auto 0;
+}
+
+.register-form__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .register-form__prev-btn:hover {

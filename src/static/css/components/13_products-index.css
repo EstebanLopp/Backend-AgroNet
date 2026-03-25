@@ -43,7 +43,7 @@ y index_seller.html (seller-pages) */
   font-size: var(--fs-sm);
   font-weight: var(--font-weight-bold);
   color: var(--black);
-  margin: 0;
+  margin: 2.4rem;
 }
 
 /* Enlace "ver más" */
@@ -51,6 +51,7 @@ y index_seller.html (seller-pages) */
   color: var(--primary-700);
   font-weight: var(--font-weight-medium);
   text-decoration: none;
+  margin: 2.4rem;
 }
 
 .products-index__more:hover {

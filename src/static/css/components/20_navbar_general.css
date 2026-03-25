@@ -68,7 +68,6 @@
 .navbar__general-link--icon {
     color: var(--white);
     padding: 0; 
-    font-size: var(--fs-sm);
     text-decoration: none;
 }
 

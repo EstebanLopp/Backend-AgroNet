@@ -244,6 +244,7 @@
   text-align: center;
   margin: 0;
   font-weight: var(--font-bold);
+  margin: 0.8rem;
   color: var(--gray-900);
 }
 
