@@ -354,7 +354,7 @@
     grid-template-columns: 2fr 1fr;
     gap: 28px;
     align-items: start;
-    width: 1400px;
+    width: 85%;
 }
 
 .checkout-form-card{
