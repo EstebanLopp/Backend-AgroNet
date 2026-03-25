@@ -19,6 +19,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import PasswordResetForm
 from datetime import date
+import re
+
 
 from .models import CustomerProfile, Store
 
@@ -229,24 +231,32 @@ class StoreForm(forms.ModelForm):
         }
 
     def clean_name(self):
-        name = self.cleaned_data["name"].strip()
+        name = self.cleaned_data.get("name", "").strip()
+
+        if not name:
+            raise forms.ValidationError("El nombre de la tienda es obligatorio.")
 
         if len(name) < 3:
             raise forms.ValidationError(
                 "El nombre de la tienda debe tener al menos 3 caracteres."
             )
 
-        return name
+        return name.title()
 
     def clean_phone(self):
-        phone = self.cleaned_data["phone"].strip()
+        phone = self.cleaned_data.get("phone", "").strip()
 
-        if not phone.isdigit():
+        if not phone:
+            raise forms.ValidationError("El teléfono es obligatorio.")
+
+        if not re.match(r'^[0-9+\-\s]+$', phone):
             raise forms.ValidationError(
-                "El teléfono solo debe contener números."
+                "El teléfono solo puede contener números, espacios, + o -."
             )
 
-        if len(phone) < 7:
+        phone_digits = re.sub(r'\D', '', phone)
+
+        if len(phone_digits) < 7:
             raise forms.ValidationError(
                 "El número de teléfono no es válido."
             )
@@ -254,7 +264,10 @@ class StoreForm(forms.ModelForm):
         return phone
 
     def clean_address(self):
-        address = self.cleaned_data["address"].strip()
+        address = self.cleaned_data.get("address", "").strip()
+
+        if not address:
+            raise forms.ValidationError("La dirección es obligatoria.")
 
         if len(address) < 5:
             raise forms.ValidationError(
@@ -264,15 +277,32 @@ class StoreForm(forms.ModelForm):
         return address
 
     def clean_description(self):
-        description = self.cleaned_data["description"].strip()
+        description = self.cleaned_data.get("description", "").strip()
+
+        if not description:
+            raise forms.ValidationError("La descripción es obligatoria.")
+
+        if len(description) < 10:
+            raise forms.ValidationError(
+                "La descripción debe tener al menos 10 caracteres."
+            )
+
         return description
 
     def clean_city(self):
-        city = self.cleaned_data["city"].strip()
+        city = self.cleaned_data.get("city", "").strip()
+
+        if not city:
+            raise forms.ValidationError("La ciudad es obligatoria.")
 
         if len(city) < 3:
             raise forms.ValidationError(
                 "La ciudad debe tener al menos 3 caracteres."
             )
 
-        return city
+        if re.search(r'\d', city):
+            raise forms.ValidationError(
+                "La ciudad no puede contener números."
+            )
+
+        return city.title()
