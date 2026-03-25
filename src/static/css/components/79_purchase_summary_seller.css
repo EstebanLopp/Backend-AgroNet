@@ -6,13 +6,12 @@
 
 .checkout-summary {
   max-width: 800px;
-  margin: 40px auto;
+  margin: 40px;
   padding: 20px;
   background-color: var(--white);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.438);
   font-family: sans-serif;
-  margin-top: 100px;
 }
 
 .checkout-summary__title { font-size: var(--fs-md); font-weight: 700; margin-bottom: 20px; }

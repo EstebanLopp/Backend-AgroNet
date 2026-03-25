@@ -70,11 +70,12 @@
 
 .account-order-row{
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     gap: 18px;
     padding: 16px 0;
     border-bottom: 1px solid #ececec;
+    max-width: 600px;
 }
 
 .account-order-row:last-child{
@@ -596,6 +597,10 @@
 .store-create__wrapper {
     width: 100%;
     max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .store-create__card {
@@ -604,6 +609,7 @@
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
     padding: 2rem;
     border: 1px solid #e5e7eb;
+    max-width: 400px;
 }
 
 .store-create__header {
@@ -613,14 +619,14 @@
 
 .store-create__title {
     margin: 0 0 0.5rem;
-    font-size: var(--fs-xls);
+    font-size: 24px;
     font-weight: 700;
     color: #1f2937;
 }
 
 .store-create__subtitle {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.4rem;
     line-height: 1.6;
     color: #6b7280;
 }
@@ -638,7 +644,7 @@
 }
 
 .store-create__label {
-    font-size: var(--fs-xls);
+    font-size: 1.4rem;
     font-weight: 600;
     color: #374151;
 }
@@ -685,9 +691,11 @@
 
 .store-create__actions {
     display: flex;
-    gap: 1rem;
+    gap: 1.6rem;
     flex-wrap: wrap;
     margin-top: 0.5rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .store-create__btn {
