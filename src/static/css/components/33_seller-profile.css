@@ -65,6 +65,7 @@ y seller_profile.html (seller-pages) */
 
 .seller-profile__products{
   display: flex;
+  flex-direction: column;
   width: 100%;
   margin: 0 auto;
   justify-content: center;
@@ -76,7 +77,7 @@ y seller_profile.html (seller-pages) */
   padding-bottom: 1.6rem;
   font-size: var(--fs-sm);
   font-weight: var(--font-bold);
-  margin: 0 ;
+  margin: 16px;
 }
 
 /* CONTACT */
