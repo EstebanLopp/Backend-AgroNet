@@ -53,52 +53,75 @@
 
 <!-- Equipo -->
 <section class="about-us__team">
-  <h2 class="about-us__team-title">Nuestro equipo de trabajo</h2>
+  <h2 class="about-us__title">Nuestro equipo de trabajo</h2>
+  <div class="about-us__team-container">
+    <!-- Imagen grupal -->
+    {% load static %}
+    <img src="{% static 'assets/quienessomos.jpeg' %}"
+    alt="Equipo AgroNet" 
+    class="about-us__team-image">
 
-  <!-- Imagen grupal -->
-  {% load static %}
-  <img src="{% static 'assets/quienessomos.jpeg' %}"
-  alt="Equipo AgroNet" 
-  class="about-us__team-image">
+    <!-- Descripción -->
+    <div class="about-us__team-description">
+      
+      <p class="about-us__text">
+        Somos un equipo de estudiantes comprometidos con el desarrollo tecnológico y 
+        la innovación en el sector agrícola. Trabajamos de manera colaborativa, 
+        cada uno aportando desde nuestras fortalezas y habilidades para crear soluciones 
+        digitales que faciliten la comercialización de productos agricolas de manera funcional
+        y eficiente.
+      </p>
 
-  <!-- Descripción -->
-  <div class="about-us__team-description">
-    
-    <p>
-      Nuestro equipo está conformado por estudiantes comprometidos con el desarrollo
-      tecnológico y la innovación en el sector agrícola, cada uno aportando desde su
-      rol para construir una solución funcional, eficiente y centrada en el usuario.
-    </p>
+      <div class="about-us__team-list">
 
-    <div class="about-us__team-list">
+        <div class="about-us__team-member">
+          <strong>Esteban López Pérez</strong>
+          <p class="about-us__text">
+          Soy quien guía al equipo y ayuda a mantener el enfoque del proyecto en cada etapa. 
+          Me encargo de organizar el trabajo, apoyar en la toma de decisiones técnicas y 
+          desarrollar la lógica del sistema. Busco que todo funcione de manera ordenada, 
+          eficiente y alineada con los objetivos del proyecto.
+          </p>
+        </div>
 
-      <div class="about-us__team-member">
-        <strong>Esteban López Pérez</strong>
-        Scrum Master, Líder Técnico y Desarrollador Backend. Encargado de guiar al equipo,
-        organizar el trabajo y desarrollar la lógica del sistema, asegurando un funcionamiento
-        ordenado y eficiente.
+        <div class="about-us__team-member">
+          <strong>León Sebastián Ruiz Pulgarín</strong>
+          <p class="about-us__text">
+          Participo en el análisis del sistema y en asegurar su calidad a través de pruebas constantes. 
+          Me encargo de identificar errores, proponer mejoras y apoyar en la documentación y diseño del 
+          sistema. Además, contribuyo en el desarrollo frontend, buscando que las interfaces sean claras,
+          funcionales y fáciles de usar.
+          </p>
+        </div>
+
+        <div class="about-us__team-member">
+          <p class="about-us__text">
+          <strong>Jasmin Liseth Vera Parra</strong>
+          Formo parte del desarrollo del sistema tanto en frontend como en backend, apoyando en la implementación 
+          de funcionalidades según las necesidades del proyecto. Me adapto a diferentes tareas dentro del equipo 
+          para contribuir al avance general y fortalecer el desarrollo del sistema.
+          </p>
+        </div>
+
       </div>
-
-      <div class="about-us__team-member">
-        <strong>León Sebastián Ruiz Pulgarín</strong>
-        QA Tester y Diseñador de Requerimientos. Responsable de validar el correcto
-        funcionamiento del sistema, identificar errores y participar en la documentación
-        y definición de requerimientos.
-      </div>
-
-      <div class="about-us__team-member">
-        <strong>Jasmin Liseth Vera Parra</strong>
-        Desarrolladora Frontend y Diseñadora de Requerimientos. Encargada de la interfaz
-        visual del sistema, asegurando una experiencia de usuario clara, intuitiva y funcional.
-      </div>
-
-    </div>
-
-    <div class="about-us__team-note">
-      El equipo estuvo conformado inicialmente por cinco integrantes. Santiago López
-      y Tatiana Gómez hicieron parte del proyecto en sus primeras etapas, pero se retiraron
-      por motivos personales.
     </div>
 
   </div>
+
+  <div class="about-us__team-note">
+    <h3 class="about-us__subtitle">Agradecimiento especial</h3>
+    <p class="about-us__text">
+    Este proyecto tambien fue posible gracias al aporte de otros integrantes que hicieron parte del equipo en las primeras etapas.
+    Santiango López y Tatiana Gómez contribuyeron en la fase inicial del proyecto, aportando ideas, sugerencias y trabajo en el 
+    desarrollo de la aplicación. Gracias a su colaboración, el proyecto pudo avanzar y evolucionar hasta convertirse en la solución 
+    que es hoy.
+    <br>
+    Valoramos enormemente su contribución y el impacto positivo que tuvieron en el desarrollo del proyecto.
+    Como antiguos compañeros y amigos, les agradecemos por su apoyo y dedicación, y reconocemos que su participación fue fundamental para el éxito del proyecto.
+    <br><br>
+    Les deseamos lo mejor en sus proyectos de vida y esperamos que sigan alcanzando grandes logros en el futuro.
+    </p>
+    <p class="about-us__att">-Atentamente y con cariño el equipo de AgroNet</p>
+  </div>
+
 </section>

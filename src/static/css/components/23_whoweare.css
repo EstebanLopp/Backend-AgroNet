@@ -119,12 +119,7 @@
   padding: 0 1.5rem;
 }
 
-.about-us__team-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: var(--black);
-}
+
 
 /* Imagen grupal */
 .about-us__team-image {
@@ -160,19 +155,39 @@
 
 .about-us__team-member strong {
   display: block;
-  font-size: 1.05rem;
   color: var(--black);
 }
 
 /* Nota de exintegrantes */
 .about-us__team-note {
-  margin-top: 2rem;
-  padding: 1rem;
+  margin-left: 18rem;
+  margin-right: 18rem;
+  padding: 1.6rem;
   border: 1px dashed #9ca3af;
   border-radius: 16px;
   background: #f9fafb;
-  font-size: 1.2rem;
   color: #4b5563;
   margin-bottom: 3rem;
+}
+
+.about-us__subtitle {
+  font-weight: var(--font-bold);
+  font-size: 2.4rem;
+}
+
+.about-us__att{
+  font-size: 1.2rem;
+  text-align: right;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.about-us__team-container{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; /* para que ambos tengan la misma altura */
+  gap: 2rem;
+  margin:1.6rem;
+  box-sizing: border-box;
 }
 

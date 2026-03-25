@@ -11,7 +11,7 @@
     font-size: 32px;
     font-weight: 700;
     color: var(--black);
-    margin-bottom: 8px;
+    margin: 8px;
     padding-left: 20px;
 }
 
@@ -19,13 +19,14 @@
     color: #6b7280;
     font-size: 16px;
     padding-left: 20px;
+    margin: 8px;
 }
 
 .account-summary{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    margin-bottom: 36px;
+    margin: 3.6rem;
 }
 
 .account-card{
@@ -56,6 +57,7 @@
     background: #ffffff;
     border-radius: 16px;
     padding: 28px;
+    margin: 3.6rem;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
@@ -77,6 +79,7 @@
 
 .account-order-row:last-child{
     border-bottom: none;
+    max-width: 600px;
 }
 
 .account-order-info strong{
@@ -110,8 +113,10 @@
 }
 
 .account-actions{
-    margin-top: 28px;
+    margin: 2.4rem;
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
 }
@@ -192,10 +197,16 @@
 }
 
 .profile-card{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: #ffffff;
     border-radius: 16px;
     padding: 32px;
+    margin: 0 auto;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    max-width: 480px;
 }
 
 .profile-card h3{
@@ -207,6 +218,7 @@
 
 .profile-form .form-group{
     margin-bottom: 18px;
+    max-width: 360px;
 }
 
 .profile-form label{
@@ -326,12 +338,13 @@
     font-size: 32px;
     font-weight: 700;
     color: #2f3b1f;
-    margin-bottom: 8px;
+    margin: 16px;
+
 }
 
 .checkout-page__header p{
     color: #6b7280;
-    margin: 0;
+    margin-left: 16px;
 }
 
 .checkout-layout{
@@ -738,6 +751,9 @@
     width: 100%;
     max-width: 1250px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
 }
 
 .seller-dashboard__hero {
@@ -786,7 +802,7 @@
 
 .seller-store-info__label {
     margin: 0 0 .55rem;
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: #111827;
 }
@@ -805,6 +821,8 @@
     gap: 1rem;
     flex-wrap: wrap;
     margin-top: 1.2rem;
+    justify-content: center;
+
 }
 
 .seller-btn {
@@ -862,6 +880,10 @@
     margin-top: 2rem;
     padding-top: 1rem;
     border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .profile-delete-zone__title {
@@ -870,7 +892,7 @@
 }
 
 .profile-delete-zone__text {
-    margin-bottom: 1rem;
+    margin: 1.6rem;
 }
 
 .account-btn--danger {
@@ -880,6 +902,7 @@
     padding: 0.75rem 1rem;
     border-radius: 8px;
     cursor: pointer;
+
 }
 
 .account-btn--danger:hover {
