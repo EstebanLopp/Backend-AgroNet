@@ -15,7 +15,9 @@
                     <h4 class="profile-section-title">Datos de la cuenta</h4>
 
                     <div class="form-group">
-                        <label for="{{ user_form.first_name.id_for_label }}">Nombre</label>
+                        <label for="{{ user_form.first_name.id_for_label }}">
+                            Nombre{% if user_form.first_name.field.required %} <span class="required-asterisk">*</span>{% endif %}
+                        </label>
                         {{ user_form.first_name }}
                         {% if user_form.first_name.errors %}
                             <small class="text-danger">{{ user_form.first_name.errors.0 }}</small>
@@ -23,7 +25,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ user_form.last_name.id_for_label }}">Apellido</label>
+                        <label for="{{ user_form.last_name.id_for_label }}">
+                            Apellido{% if user_form.last_name.field.required %} <span class="required-asterisk">*</span>{% endif %}
+                        </label>
                         {{ user_form.last_name }}
                         {% if user_form.last_name.errors %}
                             <small class="text-danger">{{ user_form.last_name.errors.0 }}</small>
@@ -31,7 +35,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ user_form.email.id_for_label }}">Email</label>
+                        <label for="{{ user_form.email.id_for_label }}">
+                            Email{% if user_form.email.field.required %} <span class="required-asterisk">*</span>{% endif %}
+                        </label>
                         {{ user_form.email }}
                         {% if user_form.email.errors %}
                             <small class="text-danger">{{ user_form.email.errors.0 }}</small>
@@ -41,7 +47,9 @@
                     <h4 class="profile-section-title">Datos personales</h4>
 
                     <div class="form-group">
-                        <label for="{{ profile_form.phone.id_for_label }}">Teléfono</label>
+                        <label for="{{ profile_form.phone.id_for_label }}">
+                            Teléfono{% if profile_form.phone.field.required %} <span class="required-asterisk">*</span>{% endif %}
+                        </label>
                         {{ profile_form.phone }}
                         {% if profile_form.phone.errors %}
                             <small class="text-danger">{{ profile_form.phone.errors.0 }}</small>
@@ -49,7 +57,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ profile_form.document_type.id_for_label }}">Tipo de documento</label>
+                        <label for="{{ profile_form.document_type.id_for_label }}">
+                            Tipo de documento{% if profile_form.document_type.field.required %} <span class="required-asterisk">*</span>{% endif %}
+                        </label>
                         {{ profile_form.document_type }}
                         {% if profile_form.document_type.errors %}
                             <small class="text-danger">{{ profile_form.document_type.errors.0 }}</small>
@@ -57,7 +67,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ profile_form.document_number.id_for_label }}">Número de documento</label>
+                        <label for="{{ profile_form.document_number.id_for_label }}">
+                            Número de documento{% if profile_form.document_number.field.required %} <span class="required-asterisk">*</span>{% endif %}
+                        </label>
                         {{ profile_form.document_number }}
                         {% if profile_form.document_number.errors %}
                             <small class="text-danger">{{ profile_form.document_number.errors.0 }}</small>
@@ -65,7 +77,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ profile_form.birth_date.id_for_label }}">Fecha de nacimiento</label>
+                        <label for="{{ profile_form.birth_date.id_for_label }}">
+                            Fecha de nacimiento{% if profile_form.birth_date.field.required %} <span class="required-asterisk">*</span>{% endif %}
+                        </label>
                         {{ profile_form.birth_date }}
                         {% if profile_form.birth_date.errors %}
                             <small class="text-danger">{{ profile_form.birth_date.errors.0 }}</small>
@@ -73,7 +87,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ profile_form.address.id_for_label }}">Dirección</label>
+                        <label for="{{ profile_form.address.id_for_label }}">
+                            Dirección{% if profile_form.address.field.required %} <span class="required-asterisk">*</span>{% endif %}
+                        </label>
                         {{ profile_form.address }}
                         {% if profile_form.address.errors %}
                             <small class="text-danger">{{ profile_form.address.errors.0 }}</small>
@@ -81,18 +97,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ profile_form.city.id_for_label }}">Ciudad</label>
+                        <label for="{{ profile_form.city.id_for_label }}">
+                            Ciudad{% if profile_form.city.field.required %} <span class="required-asterisk">*</span>{% endif %}
+                        </label>
                         {{ profile_form.city }}
                         {% if profile_form.city.errors %}
                             <small class="text-danger">{{ profile_form.city.errors.0 }}</small>
                         {% endif %}
                     </div>
-
                     <div class="profile-form__actions">
                         <button type="submit" class="account-btn account-btn--primary"></button>
                             Guardar cambios
                         </button>
-
                         <a href="{% url 'accounts:dashboard' %}" class="account-btn account-btn--secondary">
                             Volver a mi cuenta
                         </a>
