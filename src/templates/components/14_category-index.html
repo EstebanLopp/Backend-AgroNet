@@ -8,11 +8,7 @@
 
   <div class="category-index__grid">
     {% for category in home_categories %}
-      <div
-        class="category-index__item"
-        onclick="window.location.href='{% url 'products:products_by_category' category.slug %}'"
-        style="cursor:pointer;"
-      >
+      <div class="category-index__item"onclick="window.location.href='{% url 'products:products_by_category' category.slug %}'"style="cursor:pointer;">
         {% with slug=category.slug|lower name=category.name|lower %}
           {% if "animal" in slug or "animal" in name %}
             <img src="{% static 'assets/huevos-transparentes.png' %}" alt="{{ category.name }}">

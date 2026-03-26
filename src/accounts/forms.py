@@ -121,6 +121,12 @@ class UserProfileForm(forms.ModelForm):
 
 class CustomerProfileForm(forms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.required = True
+
     class Meta:
         model = CustomerProfile
         fields = [

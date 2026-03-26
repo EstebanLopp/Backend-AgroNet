@@ -1,41 +1,92 @@
-<div class="mensaje-form">
-  <h2 class="mensaje-form__title">Mensaje</h2>
+<div class="contact-wrapper">
+  <div class="contact-container">
+    <div class="form-personal">
+      <h2 class="form-personal__title">Datos personales</h2>
 
-  <div class="mensaje-form__group">
-    <label for="asunto" class="mensaje-form__label">Asunto</label>
-    <input id="asunto" type="text" name="asunto" class="mensaje-form__input"
-  value="{{ form.data.asunto|default:'' }}" required>
-  </div>
+      <div class="form-personal__group">
+        <label for="nombre" class="form-personal__label">
+          <i class="fa-regular fa-user"></i> Nombres Completos
+        </label>
+        <input id="nombre" type="text" name="nombre" class="form-personal__input"
+      value="{{ form.data.nombre|default:'' }}" required>
+      </div>
 
-  <div class="mensaje-form__group">
-    <label for="mensaje" class="mensaje-form__label">Mensaje</label>
-    <textarea id="mensaje" name="mensaje" rows="4" class="mensaje-form__textarea" required>{{ form.data.mensaje|default:'' }}</textarea>
-  </div>
+      <div class="form-personal__group">
+        <label for="correo" class="form-personal__label">
+          <i class="fa-regular fa-envelope"></i> Correo Electrónico
+        </label>
+        <input id="correo" type="email" name="correo" class="form-personal__input"
+      value="{{ form.data.correo|default:'' }}" required>
+      </div>
 
-  <div class="mensaje-form__group">
-    <label class="mensaje-form__radio-label">Preferencia de contacto</label>
-    <div class="mensaje-form__radio-group">
-      <label class="mensaje-form__radio">
-        <input type="radio" name="contacto" value="correo" required
-  {% if form.data.contacto == "correo" or not form.data.contacto %}checked{% endif %}> Correo electrónico
-      </label>
-      <label class="mensaje-form__radio">
-        <input type="radio" name="contacto" value="whatsapp"
-  {% if form.data.contacto == "whatsapp" %}checked{% endif %}> Whatsapp
-      </label>
+      <div class="form-personal__group">
+        <label for="identificacion" class="form-personal__label">
+          <i class="fa-regular fa-id-card"></i> Número de Identificación
+        </label>
+        <input id="identificacion" type="text" name="identificacion" class="form-personal__input"
+      value="{{ form.data.identificacion|default:'' }}" required>
+      </div>
+
+      <div class="form-personal__group">
+        <label for="telefono" class="form-personal__label">
+          <i class="fa-solid fa-mobile-screen"></i> Número de Teléfono
+        </label>
+        <input id="telefono" type="tel" name="telefono" class="form-personal__input"
+      value="{{ form.data.telefono|default:'' }}" required>
+      </div>
+
+      <div class="form-personal__group">
+        <label for="solicitud" class="form-personal__label">
+          <i class="fa-solid fa-file-invoice"></i> Tipo de Solicitud
+        </label>
+        <select id="solicitud" name="solicitud" class="form-personal__select" required>
+          <option value="">Seleccione una opción</option>
+          <option value="informacion" {% if form.data.solicitud == "informacion" %}selected{% endif %}>Consultas sobre productos</option>
+          <option value="queja" {% if form.data.solicitud == "queja" %}selected{% endif %}>Atencion al cliente</option>
+          <option value="reclamo" {% if form.data.solicitud == "reclamo" %}selected{% endif %}>Quejas o Reclamos</option>
+          <option value="otro" {% if form.data.solicitud == "otro" %}selected{% endif %}>Otro</option>
+        </select>
+      </div>
     </div>
-  </div>
 
-  <div class="mensaje-form__button-group">
-    <button type="submit" class="mensaje-form__btn mensaje-form__btn--enviar">
-      Enviar Mensaje
-    </button>
+    <div class="mensaje-form">
+      <h2 class="mensaje-form__title">Mensaje</h2>
 
-    <button
-      type="button"
-      class="mensaje-form__btn mensaje-form__btn--info"
-      onclick="window.location.href='{% url 'contact:contact_info' %}'">
-      Más información
-    </button>
-  </div>
+      <div class="mensaje-form__group">
+        <label for="asunto" class="mensaje-form__label">Asunto</label>
+        <input id="asunto" type="text" name="asunto" class="mensaje-form__input"
+      value="{{ form.data.asunto|default:'' }}" required>
+      </div>
+
+      <div class="mensaje-form__group">
+        <label for="mensaje" class="mensaje-form__label">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="4" class="mensaje-form__textarea" required>{{ form.data.mensaje|default:'' }}</textarea>
+      </div>
+
+      <div class="mensaje-form__group">
+        <label class="mensaje-form__radio-label">Preferencia de contacto</label>
+        <div class="mensaje-form__radio-group">
+          <label class="mensaje-form__radio">
+            <input type="radio" name="contacto" value="correo" required
+      {% if form.data.contacto == "correo" or not form.data.contacto %}checked{% endif %}> Correo electrónico
+          </label>
+          <label class="mensaje-form__radio">
+            <input type="radio" name="contacto" value="whatsapp"
+      {% if form.data.contacto == "whatsapp" %}checked{% endif %}> Whatsapp
+          </label>
+        </div>
+      </div>
+
+      <div class="mensaje-form__button-group">
+        <button type="submit" class="mensaje-form__btn mensaje-form__btn--enviar">
+          Enviar Mensaje
+        </button>
+
+        <button
+          type="button"class="mensaje-form__btn mensaje-form__btn--info"onclick="window.location.href='{% url 'contact:contact_info' %}'">
+          Más información
+        </button>
+      </div>
+    </div>
+  </div> 
 </div>
