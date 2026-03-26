@@ -333,6 +333,7 @@
 
 .checkout-page__header{
     margin-bottom: 28px;
+    text-align: center;
 }
 
 .checkout-page__header h2{
@@ -353,9 +354,24 @@
     grid-template-columns: 2fr 1fr;
     gap: 28px;
     align-items: start;
+    width: 85%;
 }
 
-.checkout-form-card,
+.checkout-form-card{
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    width: 420px;
+    gap: 1.6rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-first{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .checkout-summary-card{
     background: #ffffff;
     border-radius: 16px;
@@ -369,6 +385,12 @@
     font-weight: 700;
     color: #2f3b1f;
     margin-bottom: 20px;
+}
+
+.checkout-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
 }
 
 .checkout-form textarea,

@@ -1,259 +1,371 @@
-/* Componente utilizado en order-detail-customer.html de customer-pages */
-
-/* =============================== */
-/* ORDER DETAIL PAGE (BEM STYLE)   */
-/* =============================== */
-
 .order-detail {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
   padding: 2rem;
-  box-sizing: border-box;
-  margin-top: 80px;
-}
-
-.order-detail__content {
-  display: flex;
-  gap: 2rem;
-  max-width: 1200px;
-  width: 100%;
-  margin-bottom: 16rem;
-}
-
-/* ========== PANEL IZQUIERDO ========== */
-.order-detail__main {
-  flex: 2;
-  background: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.493);
-  padding: 1.6rem;
-}
-
-.order-detail__header {
-  margin-bottom: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .order-detail__title {
-  font-size: var(--fs-md);
-  color: var(--black);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--primary-500);
+  margin-bottom: 1.5rem;
 }
 
-.order-detail__info table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+.order-detail__card {
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
 }
 
-.order-detail__info th {
-  background: var(--gray-100);
-  padding: 8px;
-  text-align: left;
-}
-
-.order-detail__info td {
-  padding: 8px;
-  border-bottom: 1px solid var(--gray-100);
-}
-
-.order-detail__total {
+.order-detail__header {
   display: flex;
-  justify-content: space-between;
-  margin-right: 8rem;
-  margin-left: 0.8rem;
-}
-
-/* ========== PANEL DERECHO (LISTA DE PEDIDOS) ========== */
-.order-detail__sidebar {
-  flex: 1;
-  display: flex;
-  border-radius: 12px;
   flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.order-detail__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
 
-.order-detail__subtitle {
-  color: var(--black);
-  margin-bottom: .5rem;
-  font-size: var(--fs-sm);
-}
-
-.order-detail__cards {
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-}
-
-/* Tarjetas individuales */
-.order-card {
-  background-color: var(--white);
+.order-detail__meta-item {
+  background-color: var(--gray-100);
+  padding: 1rem;
   border-radius: 10px;
-  padding: 1.6rem;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.493);
+}
+
+.order-detail__meta-label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--gray-500);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.order-detail__meta-value {
+  font-size: var(--fs-sm);
+  color: var(--gray-900);
+  word-break: break-word;
+}
+
+.order-detail__status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+}
+
+.order-detail__status--pending {
+  background-color: #fff7ed;
+  color: #c2410c;
+}
+
+.order-detail__status--confirmed {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.order-detail__status--shipped {
+  background-color: #ecfeff;
+  color: #0f766e;
+}
+
+.order-detail__status--delivered {
+  background-color: #ecfdf5;
+  color: #15803d;
+}
+
+.order-detail__status--cancelled {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+.order-detail__invoice-actions {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2.4rem;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
-/* =============================== */
-/* Botón Ver Factura               */
-/* =============================== */
-
-.order-detail__header {
-  position: relative; /* Necesario para ubicar el botón dentro del header */
-}
-
-.order-detail__invoice-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: var(--primary-500); /* Verde principal */
+.order-detail__invoice-button,
+.order-detail__invoice-button--download {
+  background-color: var(--primary-500);
   color: var(--white);
-  padding: 1.6rem;
+  padding: 0.85rem 1.2rem;
   border-radius: 8px;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
   font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-height: 42px;
 }
 
-.order-detail__invoice-title{
-  font-size: var(--fs-md);
-  font-weight: var(--font-bold);
-  margin: 0;
-}
-
-.order-detail__invoice-button:hover {
+.order-detail__invoice-button:hover,
+.order-detail__invoice-button--download:hover {
   background-color: var(--primary-400);
   transform: translateY(-2px);
 }
 
-.order-detail__invoice-button:active {
+.order-detail__invoice-button:active,
+.order-detail__invoice-button--download:active {
   transform: translateY(0);
 }
 
-
-.order-card__id {
-  font-weight: 700;
+.order-detail__section-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--gray-900);
+  margin-bottom: 1rem;
 }
 
-.order-card__status {
-  display: inline-block;
-  background-color: var(--primary-200);
-  color: var(--black);
+.order-detail__items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.order-detail__item {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+}
+
+.order-detail__item-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
   border-radius: 10px;
-  font-size: var(--fs-xs);
-  padding: 1.6rem;
-
+  background-color: var(--gray-100);
 }
 
-.order-card__button {
-  position: absolute;
-  background-color: var(--primary-500); /* Verde principal */
-  color: var(--white);
-  padding: 1.6rem;
-  border-radius: 8px;
+.order-detail__item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.order-detail__item-name {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--gray-900);
+}
+
+.order-detail__item-description {
+  font-size: var(--fs-sm);
+  color: var(--gray-600);
+}
+
+.order-detail__item-meta {
+  font-size: var(--fs-sm);
+  color: var(--gray-700);
+}
+
+.order-detail__item-subtotal {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--primary-500);
+  text-align: right;
+}
+
+.order-detail__summary {
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.order-detail__summary-box {
+  width: 100%;
+  max-width: 320px;
+  background-color: var(--gray-100);
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+
+.order-detail__summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+  font-size: var(--fs-sm);
+  color: var(--gray-800);
+}
+
+.order-detail__summary-row:last-child {
+  margin-bottom: 0;
+}
+
+.order-detail__summary-row--total {
+  border-top: 1px solid var(--gray-300);
+  padding-top: 0.8rem;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--gray-900);
+}
+
+.order-detail__back {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  font-size: var(--fs-xs);
+  color: var(--primary-500);
+  font-weight: var(--fw-semibold);
 }
 
-.order-card__button:hover {
-  background-color: var(--primary-400);
+.order-detail__back:hover {
+  text-decoration: underline;
 }
 
-/* RESPONSIVE */
-@media (max-width: 640px) {
-  .order-detail__content {
-    flex-direction: column;
-    margin-top: 6.4rem;
-  }
-
-  .order-detail__sidebar {
-    width: 100%;
-  }
-
-  .order-detail__info th {
-    background: var(--gray-100);
-    padding: 0.8rem;
-  }
-
-  .order-detail__total{
-    margin-right: 0.8rem;
-  }
-  .order-detail__cards{
-    display: flex;
-    gap: 2.4rem;
-  }
-}
-
-/* ========================= */
-/*      MODAL FACTURA        */
-/* ========================= */
+/* MODAL */
 .order-detail__invoice-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
-  display: flex;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s ease;
-  z-index: 2000;
+  padding: 1.5rem;
+  z-index: 3000;
 }
 
-.order-detail__invoice-modal.active {
-  opacity: 1;
-  visibility: visible;
+.order-detail__invoice-modal.is-active {
+  display: flex;
 }
 
 .order-detail__invoice-content {
-  background: #ffffff;
-  width: 90%;
-  max-width: 340px;
-  padding: 1.6rem;
-  border-radius: 10px;
+  background-color: var(--white);
+  width: 100%;
+  max-width: 700px;
+  border-radius: 16px;
+  padding: 2rem;
   position: relative;
-  text-align: center;
-  animation: popup-zoom 0.25s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-@keyframes popup-zoom {
-  from { transform: scale(0.9); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-
-/* Botón cerrar */
 .order-detail__invoice-close {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 1.8rem;
+  top: 14px;
+  right: 16px;
   background: transparent;
   border: none;
+  font-size: 2rem;
+  line-height: 1;
   cursor: pointer;
+  color: var(--gray-600);
 }
 
-/* Tabla */
+.order-detail__invoice-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--gray-900);
+  margin-bottom: 1.5rem;
+}
+
+.order-detail__invoice-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.order-detail__invoice-info-item {
+  background-color: var(--gray-100);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
 .order-detail__invoice-table {
   width: 100%;
-  margin-top: 1rem;
   border-collapse: collapse;
+  margin-bottom: 1.5rem;
 }
 
-.order-detail__invoice-table th{
-  padding: 16px;
-  background-color: var(--gray-100);
-
-}
+.order-detail__invoice-table th,
 .order-detail__invoice-table td {
-  border-bottom: 1px solid #ddd;
-  padding: 16px;
+  padding: 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: var(--fs-sm);
+}
+
+.order-detail__invoice-table th {
+  font-weight: var(--fw-bold);
+  color: var(--gray-800);
 }
 
 .order-detail__invoice-total {
-  margin-top: 1rem;
-  font-size: var(--fs-xs);
+  display: flex;
+  justify-content: flex-end;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--primary-500);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .order-detail {
+    padding: 1rem;
+  }
+
+  .order-detail__card {
+    padding: 1.2rem;
+  }
+
+  .order-detail__item {
+    grid-template-columns: 1fr;
+  }
+
+  .order-detail__item-image {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+  }
+
+  .order-detail__item-subtotal {
+    text-align: left;
+  }
+
+  .order-detail__invoice-actions {
+    justify-content: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .order-detail__invoice-button,
+  .order-detail__invoice-button--download {
+    width: 100%;
+  }
+
+  .order-detail__summary {
+    justify-content: stretch;
+  }
+
+  .order-detail__summary-box {
+    max-width: 100%;
+  }
 }
