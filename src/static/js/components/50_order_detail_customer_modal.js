@@ -1,24 +1,35 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const openBtn = document.querySelector(".order-detail__open-invoice");
+document.addEventListener("DOMContentLoaded", function () {
+  const openButton = document.querySelector(".order-detail__open-invoice");
   const modal = document.querySelector(".order-detail__invoice-modal");
-  const closeBtn = document.querySelector(".order-detail__invoice-close");
-  const overlay = document.querySelector(".order-detail__invoice-overlay");
+  const closeButton = document.querySelector(".order-detail__invoice-close");
 
-  if (!openBtn || !modal) return;
+  if (!openButton || !modal) return;
 
   function openModal() {
-    modal.classList.add("active");
+    modal.classList.add("is-active");
+    document.body.style.overflow = "hidden";
   }
 
   function closeModal() {
-    modal.classList.remove("active");
+    modal.classList.remove("is-active");
+    document.body.style.overflow = "";
   }
 
-  openBtn.addEventListener("click", openModal);
-  closeBtn?.addEventListener("click", closeModal);
-  overlay?.addEventListener("click", closeModal);
+  openButton.addEventListener("click", openModal);
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
+  if (closeButton) {
+    closeButton.addEventListener("click", closeModal);
+  }
+
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && modal.classList.contains("is-active")) {
+      closeModal();
+    }
   });
 });

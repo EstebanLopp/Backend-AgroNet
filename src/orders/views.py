@@ -14,6 +14,11 @@ from cart.cart import Cart #->conecta carrito con el pedido
 from .forms import CheckoutForm
 from .models import Order, OrderItem, SellerNotification
 
+from django.http import HttpResponse
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import mm
+
 
 #Toma los productos del carrito y los convierte en un pedido formal.
 @login_required
@@ -158,6 +163,97 @@ def order_detail(request, order_id):
             "other_orders": other_orders,
         }
     )
+
+@login_required
+def download_order_receipt_pdf(request, order_id):
+    order = get_object_or_404(
+        Order.objects.prefetch_related("items__product"),
+        id=order_id,
+        user=request.user
+    )
+
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = f'attachment; filename="comprobante_pedido_{order.id}.pdf"'
+
+    pdf = canvas.Canvas(response, pagesize=A4)
+    width, height = A4
+
+    y = height - 30 * mm
+
+    pdf.setTitle(f"Comprobante Pedido #{order.id}")
+
+    pdf.setFont("Helvetica-Bold", 16)
+    pdf.drawString(20 * mm, y, "AgroNet")
+    y -= 10 * mm
+
+    pdf.setFont("Helvetica", 10)
+    pdf.drawString(20 * mm, y, f"Comprobante de compra - Pedido #{order.id}")
+    y -= 7 * mm
+
+    customer_name = request.user.get_full_name() or request.user.username
+    pdf.drawString(20 * mm, y, f"Cliente: {customer_name}")
+    y -= 6 * mm
+
+    pdf.drawString(20 * mm, y, f"Fecha: {order.created.strftime('%d/%m/%Y %H:%M')}")
+    y -= 6 * mm
+
+    pdf.drawString(20 * mm, y, f"Estado: {order.get_status_display()}")
+    y -= 6 * mm
+
+    payment_method = order.get_payment_method_display() if order.payment_method else "No especificado"
+    pdf.drawString(20 * mm, y, f"Método de pago: {payment_method}")
+    y -= 6 * mm
+
+    shipping_method = order.get_shipping_method_display() if order.shipping_method else "No especificado"
+    pdf.drawString(20 * mm, y, f"Método de envío: {shipping_method}")
+    y -= 6 * mm
+
+    address = f"{order.address}, {order.city}" if order.address else "No especificada"
+    pdf.drawString(20 * mm, y, f"Dirección: {address}")
+    y -= 12 * mm
+
+    pdf.setFont("Helvetica-Bold", 10)
+    pdf.drawString(20 * mm, y, "Producto")
+    pdf.drawString(105 * mm, y, "Cant.")
+    pdf.drawString(125 * mm, y, "Precio")
+    pdf.drawString(160 * mm, y, "Subtotal")
+    y -= 5 * mm
+
+    pdf.line(20 * mm, y, 190 * mm, y)
+    y -= 8 * mm
+
+    pdf.setFont("Helvetica", 10)
+
+    for item in order.items.all():
+        if y < 25 * mm:
+            pdf.showPage()
+            y = height - 30 * mm
+            pdf.setFont("Helvetica", 10)
+
+        product_name = item.product.name[:40]
+        pdf.drawString(20 * mm, y, product_name)
+        pdf.drawString(105 * mm, y, str(item.quantity))
+        pdf.drawString(125 * mm, y, f"${item.price}")
+        pdf.drawString(160 * mm, y, f"${item.get_cost()}")
+        y -= 7 * mm
+
+    y -= 5 * mm
+    pdf.line(20 * mm, y, 190 * mm, y)
+    y -= 10 * mm
+
+    pdf.setFont("Helvetica-Bold", 11)
+    pdf.drawString(140 * mm, y, f"Total: ${order.get_total_price()}")
+
+    y -= 12 * mm
+    pdf.setFont("Helvetica", 9)
+    pdf.drawString(
+        20 * mm,
+        y,
+        "Documento generado por AgroNet como comprobante interno de compra."
+    )
+
+    pdf.save()
+    return response
 
 #verifica si el usuario tiene perfil de vendedor y tienda, obtiene notificaciones de esa tienda, construye tarjetas informativas para mostrar en la interfaz
 @login_required

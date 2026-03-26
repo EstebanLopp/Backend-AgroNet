@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -81,6 +82,58 @@
         </a>
     </div>
 
+    <hr>
+
+                <div class="profile-delete-zone">
+                    <h3 class="profile-delete-zone__title">Zona peligrosa</h3>
+                    <p class="profile-delete-zone__text">
+                        Si eliminas tu cuenta, tu acceso será desactivado y cerrarás sesión inmediatamente.
+                    </p>
+
+                    <form method="post" action="{% url 'accounts:delete_account' %}" id="delete-account-form">
+                        {% csrf_token %}
+                        <button type="button" class="account-btn account-btn--danger" id="open-delete-account-modal">
+                            Eliminar mi cuenta
+                        </button>
+                    </form>
+
+                    <div class="account-delete-modal" id="account-delete-modal" aria-hidden="true">
+                        <div class="account-delete-modal__overlay"></div>
+
+                        <div class="account-delete-modal__content" role="dialog" aria-modal="true" aria-labelledby="account-delete-modal-title">
+                            <button type="button" class="account-delete-modal__close" id="close-delete-account-modal" aria-label="Cerrar">
+                                &times;
+                            </button>
+
+                            <h3 class="account-delete-modal__title" id="account-delete-modal-title">
+                                Confirmar eliminación de cuenta
+                            </h3>
+
+                            <p class="account-delete-modal__text">
+                                ¿Estás seguro de eliminar tu cuenta?
+                            </p>
+
+                            <p class="account-delete-modal__text">
+                                Esta acción desactivará tu acceso, cerrará tu sesión inmediatamente y no se podrá revertir desde la plataforma.
+                            </p>
+
+                            <div class="account-delete-modal__actions">
+                                <button type="button" class="account-delete-modal__btn account-delete-modal__btn--secondary" id="cancel-delete-account-modal">
+                                    Cancelar
+                                </button>
+
+                                <button type="button" class="account-delete-modal__btn account-delete-modal__btn--danger" id="confirm-delete-account-modal">
+                                    Sí, eliminar cuenta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/components/account_delete_modal.js' %}" defer></script>
 {% endblock %}
