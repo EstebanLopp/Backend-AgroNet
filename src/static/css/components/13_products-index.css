@@ -64,9 +64,10 @@ y index_seller.html (seller-pages) */
 .products-index__card {
   flex: 0 0 220px;       /* ~13.75rem */
   max-width: 220px;
-  background-color: var(--primary-200);
+  background-color: var(--primary-50);
   border-radius: 12px;   /* 0.75rem */
-  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  border: 1px solid var(--gray-200);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   overflow: hidden;
   transition: transform 0.3s;
   display: flex;
@@ -104,6 +105,7 @@ y index_seller.html (seller-pages) */
 .products-index__name {
   font-weight: var(--font-weight-medium);
   margin: 0;
+  color: black;
 }
 
 /* Precio del producto (énfasis) */

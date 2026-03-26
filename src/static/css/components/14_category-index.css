@@ -77,7 +77,7 @@ y index_seller.html (seller-pages) */
 
 /* Tarjeta de categoría */
 .category-index__item {
-  background-color: var(--primary-200);
+  background-color: var(--primary-50);
   border-radius: 6px;
   width: 256px;             /* 16rem */
   min-width: 192px;         /* 12rem */
