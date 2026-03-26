@@ -27,4 +27,9 @@ urlpatterns = [
         views.mark_notification_as_read,
         name="mark_notification_as_read"
     ),
+    path(
+        "mis-pedidos/<int:order_id>/comprobante-pdf/",
+        views.download_order_receipt_pdf,
+        name="download_order_receipt_pdf"
+    ),
 ]

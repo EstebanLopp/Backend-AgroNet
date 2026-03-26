@@ -10,6 +10,7 @@
 /* Components */
 
 @import url('components/0_product_detail.css');
+@import url('components/account_delete_modal.css');
 @import url('components/1_footer.css');
 /*@import url('components/2_form.css'); - DELETED */
 @import url('components/3_catalog-header.css');
