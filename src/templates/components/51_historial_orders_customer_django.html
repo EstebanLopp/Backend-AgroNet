@@ -10,17 +10,9 @@
           <div class="orders__article-info">
             <h3 class="orders__article-id">Pedido #{{ order.id }}</h3>
 
-            {% if order.status == "confirmed" %}
-              <span class="orders__article-status orders__article-status--enviado">Confirmado</span>
-            {% elif order.status == "pending" %}
-              <span class="orders__article-status orders__article-status--pendiente">Pendiente</span>
-            {% elif order.status == "shipped" %}
-              <span class="orders__article-status orders__article-status--enviado">Enviado</span>
-            {% elif order.status == "delivered" %}
-              <span class="orders__article-status orders__article-status--enviado">Entregado</span>
-            {% else %}
-              <span class="orders__article-status orders__article-status--pendiente">Cancelado</span>
-            {% endif %}
+            <span class="orders__article-status order-status-badge order-status-badge--{{ order.status_badge_class }}">
+              {{ order.get_status_display }}
+            </span>
 
             <small>{{ order.created|date:"Y-m-d H:i" }}</small>
             <p><strong>Total:</strong> ${{ order.get_total_price }}</p>

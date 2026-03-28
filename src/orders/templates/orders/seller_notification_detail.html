@@ -38,11 +38,21 @@
                 </div>
                 <div class="seller-notification-detail__fact">
                     <span class="seller-notification-detail__fact-label">Estado general</span>
-                    <strong class="seller-notification-detail__fact-value">{{ order.get_status_display }}</strong>
+                    <span class="order-status-badge order-status-badge--{{ order.status_badge_class }}">{{ order.get_status_display }}</span>
                 </div>
                 <div class="seller-notification-detail__fact seller-notification-detail__fact--full">
                     <span class="seller-notification-detail__fact-label">Notas</span>
                     <strong class="seller-notification-detail__fact-value">{{ order.notes|default:"Sin notas." }}</strong>
+                </div>
+                <div class="seller-notification-detail__fact seller-notification-detail__fact--full seller-notification-detail__fact--status-form">
+                    <span class="seller-notification-detail__fact-label">Actualizar estado del pedido</span>
+                    <form method="post" class="seller-notification-detail__status-form">
+                        {% csrf_token %}
+                        {{ status_form.status }}
+                        <button type="submit" class="account-btn account-btn--primary account-btn--small seller-notification-detail__status-submit">
+                            Guardar estado
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
