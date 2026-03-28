@@ -13,6 +13,8 @@
         class="seller-dashboard__cover"
       >
 
+      <div class="seller-dashboard__hero-overlay"></div>
+
       <div class="seller-dashboard__profile">
         <img
           src="{% static 'assets/logo_Admin.png' %}"
@@ -20,88 +22,142 @@
           class="seller-dashboard__avatar"
         >
 
-        <h1 class="seller-dashboard__store-title">{{ store.name }}</h1>
+        <div class="seller-dashboard__identity">
+          <span class="seller-dashboard__eyebrow">Panel del vendedor</span>
+          <h1 class="seller-dashboard__store-title">{{ store.name }}</h1>
+          <div class="seller-dashboard__status-row">
+            <span class="account-badge seller-dashboard__status {% if store.is_active %}seller-dashboard__status--active{% else %}seller-dashboard__status--inactive{% endif %}">
+              {% if store.is_active %}Tienda activa{% else %}Tienda deshabilitada{% endif %}
+            </span>
+            <span class="seller-dashboard__meta-chip">Notificaciones sin leer: {{ unread_notifications_count }}</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="seller-store-info">
-      <h3 class="seller-store-info__label">Descripción</h3>
-      <div class="seller-store-info__box">
-        {{ store.description|default:"Descripción de la tienda..." }}
-      </div>
+    <div class="seller-dashboard__content">
+      <section class="seller-dashboard__card seller-dashboard__card--info">
+        <div class="seller-dashboard__card-header">
+          <h2 class="seller-dashboard__card-title">Información de la tienda</h2>
+          <p class="seller-dashboard__card-subtitle">Datos principales para administrar tu espacio comercial.</p>
+        </div>
 
-      <h3 class="seller-store-info__label">Dirección</h3>
-      <div class="seller-store-info__box">
-        {{ store.address|default:"Dirección de la tienda..." }}
-      </div>
+        <div class="seller-dashboard__info-grid">
+          <div class="seller-store-info">
+            <h3 class="seller-store-info__label">Descripción</h3>
+            <div class="seller-store-info__box">
+              {{ store.description|default:"Descripción de la tienda..." }}
+            </div>
+          </div>
 
-      <h3 class="seller-store-info__label">Ciudad</h3>
-      <div class="seller-store-info__box">
-        {{ store.city|default:"Ciudad..." }}
-      </div>
+          <div class="seller-store-info">
+            <h3 class="seller-store-info__label">Dirección</h3>
+            <div class="seller-store-info__box">
+              {{ store.address|default:"Dirección de la tienda..." }}
+            </div>
+          </div>
 
-      <h3 class="seller-store-info__label">Teléfono</h3>
-      <div class="seller-store-info__box">
-        {{ store.phone|default:"Teléfono..." }}
-      </div>
-    </div>
+          <div class="seller-store-info">
+            <h3 class="seller-store-info__label">Ciudad</h3>
+            <div class="seller-store-info__box">
+              {{ store.city|default:"Ciudad..." }}
+            </div>
+          </div>
 
-    <div class="seller-store-info" style="margin-top: 24px;">
-      <h3 class="seller-store-info__label">Resumen de pedidos</h3>
-      <div class="seller-store-info__box">
-        Notificaciones sin leer: <strong>{{ unread_notifications_count }}</strong>
-      </div>
-    </div>
+          <div class="seller-store-info">
+            <h3 class="seller-store-info__label">Teléfono</h3>
+            <div class="seller-store-info__box">
+              {{ store.phone|default:"Teléfono..." }}
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <div class="seller-actions">
-      <a href="{% url 'orders:seller_notifications' %}" class="account-btn account-btn--primary seller-btn">
-        Centro de notificaciones
-        {% if unread_notifications_count > 0 %}
-          ({{ unread_notifications_count }})
-        {% endif %}
-      </a>
+      <aside class="seller-dashboard__sidebar">
+        <section class="seller-dashboard__card seller-dashboard__card--summary">
+          <div class="seller-dashboard__card-header">
+            <h2 class="seller-dashboard__card-title">Resumen de pedidos</h2>
+            <p class="seller-dashboard__card-subtitle">Visión rápida del estado operativo de tu tienda.</p>
+          </div>
 
-      <a href="{% url 'products:my_products' %}" class="account-btn account-btn--primary seller-btn">
-        Ver mis productos
-      </a>
+          <div class="seller-dashboard__summary-metric">
+            <span class="seller-dashboard__summary-label">Notificaciones sin leer</span>
+            <strong class="seller-dashboard__summary-value">{{ unread_notifications_count }}</strong>
+          </div>
 
-      <a href="{% url 'accounts:edit_store' %}" class="account-btn account-btn--primary seller-btn">
-        Editar tienda
-      </a>
+          <div class="seller-dashboard__summary-note">
+            Revisa tus pedidos recientes y mantén la atención de clientes al día.
+          </div>
+        </section>
 
-      <form method="post" action="{% url 'accounts:toggle_store_status' %}">
-        {% csrf_token %}
+        <section class="seller-dashboard__card seller-dashboard__card--actions">
+          <div class="seller-dashboard__card-header">
+            <h2 class="seller-dashboard__card-title">Acciones rápidas</h2>
+          </div>
 
-        {% if store.is_active %}
-          <button class="account-btn account-btn--danger seller-btn">
-            Deshabilitar tienda
-          </button>
-        {% else %}
-          <button class="account-btn account-btn--primary seller-btn">
-            Habilitar tienda
-          </button>
-        {% endif %}
-      </form>
+          <div class="seller-actions">
+            <a href="{% url 'orders:seller_notifications' %}" class="account-btn account-btn--primary seller-btn">
+              Centro de notificaciones
+              {% if unread_notifications_count > 0 %}
+                ({{ unread_notifications_count }})
+              {% endif %}
+            </a>
+
+            <a href="{% url 'products:my_products' %}" class="account-btn account-btn--secondary seller-btn">
+              Ver mis productos
+            </a>
+
+            <a href="{% url 'accounts:edit_store' %}" class="account-btn account-btn--secondary seller-btn">
+              Editar tienda
+            </a>
+
+            <form method="post" action="{% url 'accounts:toggle_store_status' %}" class="seller-dashboard__toggle-form">
+              {% csrf_token %}
+
+              {% if store.is_active %}
+                <button class="account-btn account-btn--danger seller-btn">
+                  Deshabilitar tienda
+                </button>
+              {% else %}
+                <button class="account-btn account-btn--primary seller-btn">
+                  Habilitar tienda
+                </button>
+              {% endif %}
+            </form>
+          </div>
+        </section>
+      </aside>
     </div>
 
     {% if recent_notifications %}
-      <div class="seller-store-info" style="margin-top: 24px;">
-        <h3 class="seller-store-info__label">Últimos pedidos recibidos</h3>
+      <section class="seller-dashboard__card seller-dashboard__card--recent">
+        <div class="seller-dashboard__card-header">
+          <h2 class="seller-dashboard__card-title">Últimos pedidos recibidos</h2>
+          <p class="seller-dashboard__card-subtitle">Actividad reciente vinculada a tus ventas.</p>
+        </div>
 
-        {% for notification in recent_notifications %}
-          <div class="seller-store-info__box" style="margin-bottom: 12px;">
-            <strong>Pedido #{{ notification.order.id }}</strong><br>
-            Cliente: {{ notification.order.user.username }}<br>
-            Fecha: {{ notification.created_at|date:"d/m/Y H:i" }}<br>
-            Estado:
-            {% if notification.is_read %}
-              Leído
-            {% else %}
-              Nuevo
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
+        <div class="seller-dashboard__notifications">
+          {% for notification in recent_notifications %}
+            <div class="seller-dashboard__notification">
+              <div class="seller-dashboard__notification-main">
+                <strong class="seller-dashboard__notification-order">Pedido #{{ notification.order.id }}</strong>
+                <span class="seller-dashboard__notification-meta">Cliente: {{ notification.order.user.username }}</span>
+                <span class="seller-dashboard__notification-meta">Fecha: {{ notification.created_at|date:"d/m/Y H:i" }}</span>
+              </div>
+
+              <div class="seller-dashboard__notification-side">
+                <span class="account-badge seller-dashboard__status {% if notification.is_read %}seller-dashboard__status--read{% else %}seller-dashboard__status--new{% endif %}">
+                  {% if notification.is_read %}
+                    Leído
+                  {% else %}
+                    Nuevo
+                  {% endif %}
+                </span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
     {% endif %}
 
   </div>
