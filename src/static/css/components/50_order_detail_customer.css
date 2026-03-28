@@ -64,6 +64,18 @@
   font-weight: var(--fw-semibold);
   margin: 0;
 }
+
+.order-detail__status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.order-detail__status-row strong {
+  color: var(--gray-900);
+}
+
 .order-detail__id {
   margin: 0;
 }

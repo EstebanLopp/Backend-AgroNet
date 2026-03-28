@@ -51,3 +51,12 @@ class CheckoutForm(forms.ModelForm):
     def clean_notes(self):
         notes = self.cleaned_data.get("notes", "").strip()
         return notes
+
+
+class OrderStatusUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ["status"]
+        widgets = {
+            "status": forms.Select(attrs={"class": "seller-notification-detail__status-select"}),
+        }

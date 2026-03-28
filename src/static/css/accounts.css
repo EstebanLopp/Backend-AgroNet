@@ -118,6 +118,48 @@
     font-weight: 700;
 }
 
+.order-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    width: fit-content;
+}
+
+.order-status-badge--pending {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.order-status-badge--confirmed {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.order-status-badge--prepared {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.order-status-badge--shipped {
+    background: #ecfeff;
+    color: #0f766e;
+}
+
+.order-status-badge--delivered {
+    background: #ecfdf5;
+    color: #15803d;
+}
+
+.order-status-badge--cancelled {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
 .seller-notifications {
     padding: 40px 20px;
 }
@@ -343,6 +385,38 @@
 .seller-notification-detail__summary-value {
     color: var(--gray-900);
     font-size: 16px;
+}
+
+.seller-notification-detail__fact--status-form {
+    gap: 10px;
+}
+
+.seller-notification-detail__status-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.seller-notification-detail__status-select {
+    min-width: 220px;
+    min-height: 44px;
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    border: 1px solid #d8e2cf;
+    background: #ffffff;
+    color: var(--gray-900);
+    font: inherit;
+}
+
+.seller-notification-detail__status-select:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(122, 157, 84, 0.15);
+}
+
+.seller-notification-detail__status-submit {
+    min-width: 160px;
 }
 
 .seller-notification-detail__items {
@@ -599,6 +673,16 @@
     .seller-notification-detail__related-item {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .seller-notification-detail__status-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .seller-notification-detail__status-select,
+    .seller-notification-detail__status-submit {
+        width: 100%;
     }
 
     .seller-notifications__summary {

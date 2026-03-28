@@ -49,7 +49,7 @@
                     </div>
                     <div class="seller-notifications__summary-item">
                         <span class="seller-notifications__summary-label">Estado general</span>
-                        <strong class="seller-notifications__summary-value">{{ card.order.get_status_display }}</strong>
+                        <span class="order-status-badge order-status-badge--{{ card.order.status_badge_class }}">{{ card.order.get_status_display }}</span>
                     </div>
                 </div>
 
