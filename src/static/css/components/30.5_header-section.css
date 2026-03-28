@@ -9,8 +9,7 @@
 }
 
 .header-section {
-  margin-top: 11rem;
-  background: linear-gradient(to right, var(--primary-300), var(--primary-100));
+  margin-top: 2.4rem;
   padding: 1.6rem;
   width: auto; /*hace que ocupe todo el ancho visible de la ventana */
   position: relative; /* mantiene su flujo normal */
@@ -19,7 +18,7 @@
 }
 
 .header-section__title {
-  font-size: var(--fs-md);
+  font-size: 3.2rem;
   font-weight: var(--font-bold);
 }
 
