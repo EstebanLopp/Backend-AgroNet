@@ -97,7 +97,7 @@ y index_seller.html (seller-pages) */
 
 /* Categoría del producto */
 .products-index__category {
-  color: var(--terciary-800);
+  color: var(--primary-900);
   margin: 0;
 }
 
