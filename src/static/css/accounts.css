@@ -59,7 +59,7 @@
     padding: 28px;
     margin: 3.6rem auto;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    width: 31vw;
+    width: 42vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,7 +85,7 @@
 
 .account-order-row:last-child{
     border-bottom: none;
-    max-width: 600px;
+    max-width: none;
 }
 
 .account-order-info strong{
