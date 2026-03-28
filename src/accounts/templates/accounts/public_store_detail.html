@@ -2,60 +2,96 @@
 {% load static %}
 
 {% block content %}
-<div class="seller-profile">
+<section class="seller-profile-page">
+<div class="seller-dashboard">
+  <div class="seller-dashboard__wrapper">
 
-  <div class="seller-profile__header">
-    <img src="{% static 'assets/logo_Admin.png' %}" alt="Foto del vendedor" class="seller-profile__photo">
+    <div class="seller-dashboard__hero">
+      <img
+        src="{% static 'assets/valle-cocora.jpg' %}"
+        alt="Portada de la tienda"
+        class="seller-dashboard__cover"
+      >
 
-    <div class="seller-profile__info">
-      <h2 class="seller-profile__name">{{ store.name }}</h2>
-      <h3 class="seller-profile__section-title">Información</h3>
+      <div class="seller-dashboard__hero-overlay"></div>
 
-      <p class="seller-profile__description">
-        {{ store.description }}
-      </p>
+      <div class="seller-dashboard__profile">
+        <img
+          src="{% static 'assets/logo_Admin.png' %}"
+          alt="Logo de la tienda"
+          class="seller-dashboard__avatar"
+        >
 
-      <p class="seller-profile__address">
-        {{ store.city }} - {{ store.address }}
-      </p>
-    </div>
-  </div>
-
-  <div class="seller-profile__details">
-
-    <div class="seller-profile__contact">
-      <h3 class="seller-profile__section-title">Contacto</h3>
-      <ul class="seller-profile__contact-list">
-        <li class="seller-profile__contact-item">
-          📞 <span class="seller-profile__phone">{{ store.phone }}</span>
-        </li>
-
-        <li class="seller-profile__contact-item">
-          📧
-          <span class="seller-profile__email">
-            {{ store.seller.user.email }}
-          </span>
-        </li>
-
-        <li class="seller-profile__contact-item">
-          📍 <span class="seller-profile__location">{{ store.city }}</span>
-        </li>
-      </ul>
+        <div class="seller-dashboard__identity">
+          <span class="seller-dashboard__eyebrow">Tienda verificada en AgroNet</span>
+          <h1 class="seller-dashboard__store-title">{{ store.name }}</h1>
+          <div class="seller-dashboard__status-row">
+            <span class="seller-dashboard__meta-chip">{{ store.city|default:"Ciudad no disponible" }}</span>
+            <span class="seller-dashboard__meta-chip">{{ store.address|default:"Dirección no disponible" }}</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="seller-profile__payment">
-      <h3 class="seller-profile__section-title">Métodos de pago</h3>
-      <ul class="seller-profile__payment-list">
-        <li class="seller-profile__payment-item">Pago contra entrega</li>
-        <li class="seller-profile__payment-item">Transferencia</li>
-        <li class="seller-profile__payment-item">Consignación</li>
-      </ul>
+    <div class="seller-dashboard__content">
+      <section class="seller-dashboard__card seller-dashboard__card--info">
+        <div class="seller-dashboard__card-header">
+          <h2 class="seller-dashboard__card-title">Información de la tienda</h2>
+          <p class="seller-dashboard__card-subtitle">Conoce la información de la tienda, sus canales de contacto y los productos disponibles.</p>
+        </div>
+
+        <div class="seller-dashboard__info-grid">
+          <div class="seller-store-info">
+            <h3 class="seller-store-info__label">Descripción</h3>
+            <div class="seller-store-info__box">
+              {{ store.description|default:"Esta tienda todavía no ha agregado una descripción." }}
+            </div>
+          </div>
+
+          <div class="seller-store-info">
+            <h3 class="seller-store-info__label">Ubicación</h3>
+            <div class="seller-store-info__box">
+              {{ store.city|default:"Ciudad no disponible" }} - {{ store.address|default:"Dirección no disponible" }}
+            </div>
+          </div>
+        </div>
+
+        <div class="seller-profile__note">
+          <i class="fa-solid fa-triangle-exclamation seller-profile__note-icon" aria-hidden="true"></i>
+          <span> AgroNet no gestiona pagos directamente. Contacta y paga al vendedor bajo tu responsabilidad.</span>
+        </div>
+      </section>
+
+      <aside class="seller-dashboard__sidebar">
+        <section class="seller-dashboard__card seller-dashboard__card--summary">
+          <div class="seller-dashboard__card-header">
+            <h2 class="seller-dashboard__card-title">Contacto</h2>
+          </div>
+
+          <div class="seller-dashboard__summary-metric">
+            <span class="seller-dashboard__summary-label">Teléfono</span>
+            <strong class="seller-dashboard__summary-value">{{ store.phone|default:"No disponible" }}</strong>
+          </div>
+
+          <div class="seller-dashboard__summary-note">
+            <strong>Correo:</strong> {{ store.seller.user.email|default:"No disponible" }}<br>
+            <strong>Ubicación:</strong> {{ store.city|default:"No disponible" }}
+          </div>
+        </section>
+
+        <section class="seller-dashboard__card seller-dashboard__card--actions">
+          <div class="seller-dashboard__card-header">
+            <h2 class="seller-dashboard__card-title">Métodos de pago</h2>
+          </div>
+
+          <div class="seller-actions">
+            <span class="account-btn account-btn--secondary seller-btn">Pago contra entrega</span>
+            <span class="account-btn account-btn--secondary seller-btn">Transferencia</span>
+            <span class="account-btn account-btn--secondary seller-btn">Consignación</span>
+          </div>
+        </section>
+      </aside>
     </div>
-
-  </div>
-
-  <div class="seller-profile__note">
-    ⚠️ AgroNet no gestiona pagos directamente. Contacta y paga al vendedor bajo tu responsabilidad.
   </div>
 </div>
 
@@ -84,4 +120,5 @@
     {% endfor %}
   </div>
 </div>
+</section>
 {% endblock %}
