@@ -74,7 +74,7 @@ y catalog_seller.html (seller-pages) */
   font-size: var(--fs-sm);
   /*font-weight: bold; */
   margin: 5px 0; 
-  color: var(--black); 
+  color: var(--primary-900); 
 } 
 
 .product__name {
@@ -85,7 +85,7 @@ y catalog_seller.html (seller-pages) */
 } 
 
 .product__category {
-  color: var(--secundary-800);
+  color: var(--primary-900);
   /* font-size: var(--fs-xxxxs); */
   margin-block-end: 5px;
 }  

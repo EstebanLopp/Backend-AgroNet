@@ -59,7 +59,7 @@ y product_seller.html (seller-pages) */
 .product1__price {
   font-size: var(--fs-sm);
   margin: 5px 0;
-  color: var(--black);
+  color: var(--primary-900);
 }
 
 .product1__name {
@@ -69,7 +69,7 @@ y product_seller.html (seller-pages) */
 }
 
 .product1__category {
-  color: var(--secundary-800);
+  color: var(--primary-900);
   margin-block-end: 5px;
 }
 

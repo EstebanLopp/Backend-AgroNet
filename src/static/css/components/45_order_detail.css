@@ -38,9 +38,7 @@
   margin-top: 80px;
 }
 
-.order-detail__date{
-  margin-top: 4rem;
-}
+
 
 .order-detail__content {
   display: flex;
@@ -162,17 +160,17 @@
   color: var(--black);
   border-radius: 10px;
   padding: 4px 10px;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   margin-top: 0.5rem;
 }
 
 .order-card__button {
   align-self: flex-end;
-  background-color: var(--primary-600);
+  background-color: var(--primary-500);
   color: var(--white);
   border: none;
   border-radius: 8px;
-  padding: 0.5rem 1rem;
+  padding: 1.6rem;
   margin-top: 1rem;
   font-weight: 500;
   cursor: pointer;
