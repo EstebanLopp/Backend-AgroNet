@@ -96,22 +96,21 @@
 }
 
 
-
 .orders__article-info {
   display: flex;
   flex-direction: column;
+  gap:0.8rem;
 }
 
 .orders__article-id {
   margin: 0.7rem 4rem 0.8rem 0.3rem;
-  font-size: var(--fs-xs);
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .orders__article-status {
   display: inline-block;
   margin: 0.3rem 0;
-  padding: 0.2rem 0.6rem;
   border-radius: 10px;
 }
 

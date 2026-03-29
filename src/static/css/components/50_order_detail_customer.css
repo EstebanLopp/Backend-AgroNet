@@ -21,7 +21,7 @@
 .order-detail__header {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.6rem;
   margin-bottom: 2rem;
 }
 
@@ -62,7 +62,24 @@
   border-radius: 999px;
   font-size: var(--fs-xs);
   font-weight: var(--fw-semibold);
+  margin: 0;
 }
+
+.order-detail__status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.order-detail__status-row strong {
+  color: var(--gray-900);
+}
+
+.order-detail__id {
+  margin: 0;
+}
+
 
 .order-detail__status--pending {
   background-color: #fff7ed;
@@ -102,7 +119,7 @@
 .order-detail__invoice-button--download {
   background-color: var(--primary-500);
   color: var(--white);
-  padding: 0.85rem 1.2rem;
+  padding: 1.6rem;
   border-radius: 8px;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;

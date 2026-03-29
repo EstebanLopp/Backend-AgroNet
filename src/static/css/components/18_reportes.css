@@ -1,0 +1,203 @@
+/* Componente utilizado en contact.html */
+.form-personal {
+  background-color: var(--white);
+  backdrop-filter: blur(8px);
+  padding: 24px;
+  border-radius: 22px;
+  width: 100%;
+  max-width: 920px;
+  margin: 170px auto 20px;
+  box-shadow: 0px 4px 10px var(--gray-600);
+  min-height: 450px;
+  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  box-sizing: border-box;
+}
+
+.form-personal__title {
+  text-align: center;
+  margin: 0;
+  font-size: var(--fs-md);
+  grid-column: 1 / -1;
+}
+
+.form-personal__section {
+  width: 100%;
+  min-width: 0;
+  background-color: var(--white);
+  border-radius: 18px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.form-personal__section-title {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: var(--fs-sm);
+}
+
+.form-personal__group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 24px;
+}
+
+.form-personal__label {
+  text-align: left;
+  margin-bottom: 6px;
+  width: 100%;
+  font-size: var(--fs-xxxs);
+}
+
+.form-personal__input,
+.form-personal__select,
+.form-personal__textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s ease;
+  background-color: var(--gray-100);
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  display: block;
+}
+
+.form-personal__input,
+.form-personal__select {
+  height: 56px;
+}
+
+.form-personal__select {
+  background-color: var(--gray-100);
+}
+
+.form-personal__textarea {
+  resize: vertical;
+  min-height: 140px;
+  max-height: 240px;
+}
+
+/* Focus */
+.form-personal__input:focus,
+.form-personal__select:focus,
+.form-personal__textarea:focus {
+  border: 1px solid var(--gray-600);
+}
+
+.form-personal__radio-label {
+  font-size: var(--fs-xxxs);
+  font-weight: var(--font-bold);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-personal__radio-group {
+  border: 1px solid var(--gray-300);
+  border-radius: 10px;
+  padding: 16px;
+  background-color: var(--gray-200);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.form-personal__radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-personal__button-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.form-personal__btn {
+  background: var(--btn-bg, var(--primary-500));
+  color: var(--btn-text, var(--white));
+  padding: var(--btn-padding-y, 8px) var(--btn-padding-x, 16px);
+  font-size: var(--btn-font-size, 14px);
+  font-weight: var(--btn-font-weight, 500);
+  letter-spacing: var(--btn-letter-spacing, 0.02857em);
+  border: var(--btn-border, none);
+  border-radius: var(--btn-border-radius, 8px);
+  min-height: var(--btn-min-height, 36px);
+  min-width: 180px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, 8px);
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  box-shadow: var(--btn-shadow, 0 1px 3px rgba(0, 0, 0, 0.15));
+  transition:
+    background var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    box-shadow var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out),
+    transform var(--btn-transition-duration, 150ms) var(--btn-transition-timing, ease-in-out);
+}
+
+.form-personal__btn:hover {
+  background: var(--btn-bg-hover, var(--primary-600));
+  color: var(--btn-text-hover, var(--white));
+  box-shadow: var(--btn-shadow-hover, 0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+.form-personal__btn:active {
+  background: var(--btn-bg-pressed, var(--primary-700));
+  color: var(--btn-text-pressed, var(--white));
+  box-shadow: var(--btn-shadow-pressed, 0 2px 4px rgba(0, 0, 0, 0.25));
+  transform: scale(0.98);
+}
+
+.form-personal__btn:disabled {
+  background: var(--btn-bg-disabled, var(--primary-200));
+  color: var(--btn-text-disabled, var(--gray-500));
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Breakpoints */
+/* alias sm: 640px se usa normalmente para celulares grandes*/
+@media (max-width: 640px){
+  .form-personal{
+    width: 90vw;
+    padding: 0.8rem;
+    margin-top: 120px;
+  }
+
+  .form-personal__button-group {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .form-personal__btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .form-personal {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+  }
+}
+
+
+/* alias md: 768px se usa normalmente para tablets*/
+/* alias lg: 1024px se usa normalmente para tablets grandes y laptops*/
+/* alias xl: 1280px se usa normalmente para laptops grandes y desktops*/
+/* alias 2xl: 1536px se usa normalmente para desktops grandes*/

@@ -11,7 +11,7 @@ from django.contrib import messages #->informa al usuario lo que ocurrio
 
 from accounts.models import SellerProfile
 from cart.cart import Cart #->conecta carrito con el pedido
-from .forms import CheckoutForm
+from .forms import CheckoutForm, OrderStatusUpdateForm
 from .models import Order, OrderItem, SellerNotification
 
 from django.http import HttpResponse
@@ -36,11 +36,10 @@ def checkout(request):
         if form.is_valid():
             #Garantiza que todo el proceso se haga completo o no se haga nada:si falla la creación de items,si falla actualización de stock,si falla alguna parte crítica entonces la operación se revierte y no quedan datos inconsistentes.
             with transaction.atomic():
-                #crea el pedido sin guardarlo aún, lo asocia al usuario autenticado, marca el pedido como pagado, establece estado inicial en confirmado
+                #crea el pedido sin guardarlo aún, lo asocia al usuario autenticado, marca el pedido como pagado y usa el estado inicial por defecto del modelo
                 order = form.save(commit=False)
                 order.user = request.user
                 order.paid = True
-                order.status = "confirmed"
 
                 #valida que el producto siga disponible, que haya stock suficiente
                 for item in cart:
@@ -320,6 +319,28 @@ def seller_notification_detail(request, notification_id):
         store=store
     )
 
+    if request.method == "POST":
+        previous_status = notification.order.status
+        status_form = OrderStatusUpdateForm(request.POST, instance=notification.order)
+
+        if status_form.is_valid():
+            order = status_form.save()
+
+            if not notification.is_read:
+                notification.is_read = True
+                notification.save(update_fields=["is_read"])
+
+            if order.status != previous_status:
+                messages.success(request, "El estado del pedido ha sido actualizado con exito.")
+            else:
+                messages.info(request, "El pedido ya tenía ese estado.")
+
+            return redirect("orders:seller_notification_detail", notification_id=notification.id)
+
+        messages.error(request, "No se pudo actualizar el estado del pedido.")
+    else:
+        status_form = OrderStatusUpdateForm(instance=notification.order)
+
     #cambia solo el campo necesario
     if not notification.is_read:
         notification.is_read = True
@@ -352,6 +373,7 @@ def seller_notification_detail(request, notification_id):
         "subtotal": subtotal,
         "total_products": total_products,
         "other_notifications": other_notifications,
+        "status_form": status_form,
     }
 
     return render(request, "orders/seller_notification_detail.html", context)

@@ -20,9 +20,10 @@
 
         <p class="order-detail__id"><strong>Pedido</strong> #{{ order.id }}</p>
 
-        <p class="order-detail__status">
-          <strong>Estado:</strong> {{ order.get_status_display }}
-        </p>
+        <div class="order-detail__status-row">
+          <strong>Estado:</strong>
+          <span class="order-status-badge order-status-badge--{{ order.status_badge_class }}">{{ order.get_status_display }}</span>
+        </div>
 
         <p class="order-detail__status">
           <strong>Método de pago:</strong>
@@ -106,8 +107,8 @@
             <div class="order-card">
               <p class="order-card__id">Pedido #{{ o.id }}</p>
 
-              <span class="order-card__status">
-                Estado: {{ o.get_status_display }}
+              <span class="order-card__status order-status-badge order-status-badge--{{ o.status_badge_class }}">
+                {{ o.get_status_display }}
               </span>
 
               <a href="{% url 'orders:order_detail' o.id %}" class="order-card__button">Ver más</a>

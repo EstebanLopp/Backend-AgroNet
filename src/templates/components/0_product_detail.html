@@ -105,6 +105,7 @@
               class="product-detail__add-btn"
               {% if product.stock == 0 %}disabled{% endif %}
             >
+              <i class="fas fa-shopping-cart product-detail__icon-cart" aria-hidden="true"></i>
               {% if product.stock == 0 %}
                 Sin stock
               {% else %}

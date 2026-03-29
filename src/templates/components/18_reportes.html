@@ -1,0 +1,94 @@
+<div class="form-personal">
+  <h2 class="form-personal__title">Contacto y reportes</h2>
+
+  <div class="form-personal__section">
+    <h3 class="form-personal__section-title">Datos personales</h3>
+
+    <div class="form-personal__group">
+      <label for="nombre" class="form-personal__label">
+        <i class="fa-regular fa-user"></i> Nombres Completos
+      </label>
+      <input id="nombre" type="text" name="nombre" class="form-personal__input"
+    value="{{ form.data.nombre|default:'' }}" required>
+    </div>
+
+    <div class="form-personal__group">
+      <label for="correo" class="form-personal__label">
+        <i class="fa-regular fa-envelope"></i> Correo Electrónico
+      </label>
+      <input id="correo" type="email" name="correo" class="form-personal__input"
+    value="{{ form.data.correo|default:'' }}" required>
+    </div>
+
+    <div class="form-personal__group">
+      <label for="identificacion" class="form-personal__label">
+        <i class="fa-regular fa-id-card"></i> Número de Identificación
+      </label>
+      <input id="identificacion" type="text" name="identificacion" class="form-personal__input"
+    value="{{ form.data.identificacion|default:'' }}" required>
+    </div>
+
+    <div class="form-personal__group">
+      <label for="telefono" class="form-personal__label">
+        <i class="fa-solid fa-mobile-screen"></i> Número de Teléfono
+      </label>
+      <input id="telefono" type="tel" name="telefono" class="form-personal__input"
+    value="{{ form.data.telefono|default:'' }}" required>
+    </div>
+
+    <div class="form-personal__group">
+      <label for="solicitud" class="form-personal__label">
+        <i class="fa-solid fa-file-invoice"></i> Tipo de Solicitud
+      </label>
+      <select id="solicitud" name="solicitud" class="form-personal__select" required>
+        <option value="">Seleccione una opción</option>
+        <option value="informacion" {% if form.data.solicitud == "informacion" %}selected{% endif %}>Consultas sobre productos</option>
+        <option value="queja" {% if form.data.solicitud == "queja" %}selected{% endif %}>Atencion al cliente</option>
+        <option value="reclamo" {% if form.data.solicitud == "reclamo" %}selected{% endif %}>Quejas o Reclamos</option>
+        <option value="otro" {% if form.data.solicitud == "otro" %}selected{% endif %}>Otro</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-personal__section">
+    <h3 class="form-personal__section-title">Mensaje</h3>
+
+    <div class="form-personal__group">
+      <label for="asunto" class="form-personal__label">Asunto</label>
+      <input id="asunto" type="text" name="asunto" class="form-personal__input"
+    value="{{ form.data.asunto|default:'' }}" required>
+    </div>
+
+    <div class="form-personal__group">
+      <label for="mensaje" class="form-personal__label">Mensaje</label>
+      <textarea id="mensaje" name="mensaje" rows="4" class="form-personal__textarea" required>{{ form.data.mensaje|default:'' }}</textarea>
+    </div>
+
+    <div class="form-personal__group">
+      <label class="form-personal__radio-label">Preferencia de contacto</label>
+      <div class="form-personal__radio-group">
+        <label class="form-personal__radio">
+          <input type="radio" name="contacto" value="correo" required
+    {% if form.data.contacto == "correo" or not form.data.contacto %}checked{% endif %}> Correo electrónico
+        </label>
+        <label class="form-personal__radio">
+          <input type="radio" name="contacto" value="whatsapp"
+    {% if form.data.contacto == "whatsapp" %}checked{% endif %}> Whatsapp
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-personal__button-group">
+    <button type="submit" class="form-personal__btn form-personal__btn--enviar">
+      Enviar Mensaje
+    </button>
+
+    <a
+      href="{% url 'contact:contact_info' %}"
+      class="form-personal__btn form-personal__btn--info"
+    >
+      Más información
+    </a>
+  </div>
+</div>
