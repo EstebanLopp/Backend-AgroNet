@@ -47,15 +47,31 @@ class SignUpForm(UserCreationForm):
 
     def clean_first_name(self):
         first_name = self.cleaned_data["first_name"].strip()
+
+        if not first_name:
+            raise forms.ValidationError("El nombre es obligatorio.")
+
         if len(first_name) < 2:
             raise forms.ValidationError("El nombre debe tener al menos 2 caracteres.")
-        return first_name
+
+        if not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+", first_name):
+            raise forms.ValidationError("El nombre solo puede contener letras y espacios.")
+
+        return " ".join(first_name.split()).title()
 
     def clean_last_name(self):
         last_name = self.cleaned_data["last_name"].strip()
+
+        if not last_name:
+            raise forms.ValidationError("El apellido es obligatorio.")
+
         if len(last_name) < 2:
             raise forms.ValidationError("El apellido debe tener al menos 2 caracteres.")
-        return last_name
+
+        if not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+", last_name):
+            raise forms.ValidationError("El apellido solo puede contener letras y espacios.")
+
+        return " ".join(last_name.split()).title()
 
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
@@ -102,15 +118,31 @@ class UserProfileForm(forms.ModelForm):
 
     def clean_first_name(self):
         first_name = self.cleaned_data["first_name"].strip()
+
+        if not first_name:
+            raise forms.ValidationError("El nombre es obligatorio.")
+
         if len(first_name) < 2:
             raise forms.ValidationError("El nombre debe tener al menos 2 caracteres.")
-        return first_name
+
+        if not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+", first_name):
+            raise forms.ValidationError("El nombre solo puede contener letras y espacios.")
+
+        return " ".join(first_name.split()).title()
 
     def clean_last_name(self):
         last_name = self.cleaned_data["last_name"].strip()
+
+        if not last_name:
+            raise forms.ValidationError("El apellido es obligatorio.")
+
         if len(last_name) < 2:
             raise forms.ValidationError("El apellido debe tener al menos 2 caracteres.")
-        return last_name
+
+        if not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+", last_name):
+            raise forms.ValidationError("El apellido solo puede contener letras y espacios.")
+
+        return " ".join(last_name.split()).title()
 
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
