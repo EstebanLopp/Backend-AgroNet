@@ -71,6 +71,9 @@ class SignUpForm(UserCreationForm):
         if len(username) < 4:
             raise forms.ValidationError("El nombre de usuario debe tener al menos 4 caracteres.")
 
+        if User.objects.filter(username__iexact=username).exists():
+            raise forms.ValidationError("Este nombre de usuario ya está en uso.")
+
         return username
 
     def save(self, commit=True):
@@ -175,14 +178,18 @@ class CustomerProfileForm(forms.ModelForm):
             raise forms.ValidationError("La dirección debe tener al menos 5 caracteres.")
 
         return address
-
+    
     def clean_city(self):
         city = self.cleaned_data["city"].strip()
 
-        if city and len(city) < 2:
+        if len(city) < 2:
             raise forms.ValidationError("La ciudad debe tener al menos 2 caracteres.")
 
-        return city
+        if re.search(r'\d', city):
+            raise forms.ValidationError("La ciudad no puede contener números.")
+
+        return city.title()
+
     
     def clean_birth_date(self):
         birth_date = self.cleaned_data.get("birth_date")
