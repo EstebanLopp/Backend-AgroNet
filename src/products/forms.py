@@ -46,10 +46,17 @@ class ProductForm(forms.ModelForm):
 
     def clean_name(self):
         name = self.cleaned_data["name"].strip()
+
         if len(name) < 3:
             raise forms.ValidationError(
                 "El nombre del producto debe tener al menos 3 caracteres."
             )
+
+        if not any(char.isalpha() for char in name):
+            raise forms.ValidationError(
+                "El nombre del producto debe contener texto válido."
+            )
+
         return name
 
     def clean_price(self):
@@ -70,10 +77,17 @@ class ProductForm(forms.ModelForm):
 
     def clean_description(self):
         description = self.cleaned_data["description"].strip()
+
         if len(description) < 10:
             raise forms.ValidationError(
                 "La descripción debe tener al menos 10 caracteres."
             )
+
+        if not any(char.isalpha() for char in description):
+            raise forms.ValidationError(
+                "La descripción debe contener texto válido."
+            )
+
         return description
 
     def clean_weight(self):
@@ -87,7 +101,10 @@ class ProductForm(forms.ModelForm):
     def clean_image(self):
         image = self.cleaned_data.get("image")
 
-        if not image:
+        if not image and not self.instance.pk:
             raise forms.ValidationError("Debes subir una imagen del producto.")
+
+        if not image and self.instance.pk and self.instance.image:
+            return self.instance.image
 
         return image

@@ -47,15 +47,31 @@ class SignUpForm(UserCreationForm):
 
     def clean_first_name(self):
         first_name = self.cleaned_data["first_name"].strip()
+
+        if not first_name:
+            raise forms.ValidationError("El nombre es obligatorio.")
+
         if len(first_name) < 2:
             raise forms.ValidationError("El nombre debe tener al menos 2 caracteres.")
-        return first_name
+
+        if not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+", first_name):
+            raise forms.ValidationError("El nombre solo puede contener letras y espacios.")
+
+        return " ".join(first_name.split()).title()
 
     def clean_last_name(self):
         last_name = self.cleaned_data["last_name"].strip()
+
+        if not last_name:
+            raise forms.ValidationError("El apellido es obligatorio.")
+
         if len(last_name) < 2:
             raise forms.ValidationError("El apellido debe tener al menos 2 caracteres.")
-        return last_name
+
+        if not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+", last_name):
+            raise forms.ValidationError("El apellido solo puede contener letras y espacios.")
+
+        return " ".join(last_name.split()).title()
 
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
@@ -70,6 +86,9 @@ class SignUpForm(UserCreationForm):
 
         if len(username) < 4:
             raise forms.ValidationError("El nombre de usuario debe tener al menos 4 caracteres.")
+
+        if User.objects.filter(username__iexact=username).exists():
+            raise forms.ValidationError("Este nombre de usuario ya está en uso.")
 
         return username
 
@@ -99,15 +118,31 @@ class UserProfileForm(forms.ModelForm):
 
     def clean_first_name(self):
         first_name = self.cleaned_data["first_name"].strip()
+
+        if not first_name:
+            raise forms.ValidationError("El nombre es obligatorio.")
+
         if len(first_name) < 2:
             raise forms.ValidationError("El nombre debe tener al menos 2 caracteres.")
-        return first_name
+
+        if not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+", first_name):
+            raise forms.ValidationError("El nombre solo puede contener letras y espacios.")
+
+        return " ".join(first_name.split()).title()
 
     def clean_last_name(self):
         last_name = self.cleaned_data["last_name"].strip()
+
+        if not last_name:
+            raise forms.ValidationError("El apellido es obligatorio.")
+
         if len(last_name) < 2:
             raise forms.ValidationError("El apellido debe tener al menos 2 caracteres.")
-        return last_name
+
+        if not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+", last_name):
+            raise forms.ValidationError("El apellido solo puede contener letras y espacios.")
+
+        return " ".join(last_name.split()).title()
 
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
@@ -175,14 +210,18 @@ class CustomerProfileForm(forms.ModelForm):
             raise forms.ValidationError("La dirección debe tener al menos 5 caracteres.")
 
         return address
-
+    
     def clean_city(self):
         city = self.cleaned_data["city"].strip()
 
-        if city and len(city) < 2:
+        if len(city) < 2:
             raise forms.ValidationError("La ciudad debe tener al menos 2 caracteres.")
 
-        return city
+        if re.search(r'\d', city):
+            raise forms.ValidationError("La ciudad no puede contener números.")
+
+        return city.title()
+
     
     def clean_birth_date(self):
         birth_date = self.cleaned_data.get("birth_date")

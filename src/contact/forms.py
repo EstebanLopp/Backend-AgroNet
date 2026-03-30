@@ -24,6 +24,8 @@ class ContactForm(forms.ModelForm):
             "identificacion",
             "correo",
             "telefono",
+            "solicitud",
+            "contacto",
             "asunto",
             "mensaje",
         ]
@@ -34,6 +36,8 @@ class ContactForm(forms.ModelForm):
             "telefono": forms.TextInput(attrs={"class": "form-control"}),
             "asunto": forms.TextInput(attrs={"class": "form-control"}),
             "mensaje": forms.Textarea(attrs={"class": "form-control", "rows": 5}),
+            "solicitud": forms.Select(attrs={"class": "contact-form__input"}),
+            "contacto": forms.Select(attrs={"class": "contact-form__input"}),
         }
 
     def clean_honeypot(self):
@@ -95,3 +99,15 @@ class ContactForm(forms.ModelForm):
             raise forms.ValidationError("El mensaje debe tener al menos 10 caracteres.")
 
         return mensaje
+    
+    def clean_solicitud(self):
+        solicitud = self.cleaned_data.get("solicitud")
+        if not solicitud:
+            raise forms.ValidationError("Debes seleccionar un motivo de la solicitud.")
+        return solicitud
+
+    def clean_contacto(self):
+        contacto = self.cleaned_data.get("contacto")
+        if not contacto:
+            raise forms.ValidationError("Debes seleccionar una preferencia de contacto.")
+        return contacto

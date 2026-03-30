@@ -22,7 +22,8 @@ def product_list(request, category_slug=None):
     products = Product.objects.filter(
         available=True,
         status="published",
-        store__is_active=True
+        store__is_active=True,
+        stock__gt=0
     )
     
     #obtiene texto de búsqueda enviado por URL
@@ -63,7 +64,8 @@ def product_detail(request, slug):
     slug=slug,
     available=True,
     status="published",
-    store__is_active=True
+    store__is_active=True,
+    stock__gt=0
 )
 
     #muestra productos de la misma categoría, excluye el actual y limita a 6
@@ -71,7 +73,8 @@ def product_detail(request, slug):
         category=product.category,
         available=True,
         status="published",
-        store__is_active=True
+        store__is_active=True,
+        stock__gt=0
     ).exclude(id=product.id)[:6]
 
     context = {
@@ -171,7 +174,11 @@ def update_product(request, pk):
             product = form.save(commit=False)
 
             #mantiene consistencia entre estado y disponibilidad
-            if product.status == "published":
+            if product.stock <= 0:
+                product.stock = 0
+                product.status = "disabled"
+                product.available = False
+            elif product.status == "published":
                 product.available = True
             else:
                 product.available = False
@@ -196,18 +203,29 @@ def update_product(request, pk):
 def toggle_product_status(request, pk):
     store = get_seller_store(request.user)
 
+    if not store:
+        messages.error(request, "Primero debes registrar tu tienda.")
+        return redirect("accounts:create_store")
+
     product = get_object_or_404(Product, pk=pk, store=store)
 
-    #si está deshabilitado, lo publica, si está publicado, lo deshabilita
     if product.status == "disabled":
+        if product.stock <= 0:
+            messages.error(
+                request,
+                "No puedes publicar un producto sin stock. Debes actualizar las existencias primero."
+            )
+            return redirect("products:my_products")
+
         product.status = "published"
         product.available = True
+        messages.success(request, "Producto habilitado correctamente.")
     else:
         product.status = "disabled"
         product.available = False
+        messages.success(request, "Producto deshabilitado correctamente.")
 
     product.save()
-
     return redirect("products:my_products")
 
 
