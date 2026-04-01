@@ -44,7 +44,6 @@ def contact_view(request):
 
             return redirect("contact:contact_success")
 
-        messages.error(request, "Revisa el formulario: hay errores.")
     else:
         form = ContactForm()
 
