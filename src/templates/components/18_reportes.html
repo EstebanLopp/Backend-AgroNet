@@ -9,7 +9,10 @@
         <i class="fa-regular fa-user"></i> Nombres Completos
       </label>
       <input id="nombre" type="text" name="nombre" class="form-personal__input"
-    value="{{ form.data.nombre|default:'' }}" required>
+        value="{{ form.data.nombre|default:'' }}" required>
+      {% if form.nombre.errors %}
+        <small class="text-danger">{{ form.nombre.errors.0 }}</small>
+      {% endif %}
     </div>
 
     <div class="form-personal__group">
@@ -17,7 +20,10 @@
         <i class="fa-regular fa-envelope"></i> Correo Electrónico
       </label>
       <input id="correo" type="email" name="correo" class="form-personal__input"
-    value="{{ form.data.correo|default:'' }}" required>
+        value="{{ form.data.correo|default:'' }}" required>
+      {% if form.correo.errors %}
+        <small class="text-danger">{{ form.correo.errors.0 }}</small>
+      {% endif %}
     </div>
 
     <div class="form-personal__group">
@@ -25,7 +31,10 @@
         <i class="fa-regular fa-id-card"></i> Número de Identificación
       </label>
       <input id="identificacion" type="text" name="identificacion" class="form-personal__input"
-    value="{{ form.data.identificacion|default:'' }}" required>
+        value="{{ form.data.identificacion|default:'' }}" required>
+      {% if form.identificacion.errors %}
+        <small class="text-danger">{{ form.identificacion.errors.0 }}</small>
+      {% endif %}
     </div>
 
     <div class="form-personal__group">
@@ -33,7 +42,10 @@
         <i class="fa-solid fa-mobile-screen"></i> Número de Teléfono
       </label>
       <input id="telefono" type="tel" name="telefono" class="form-personal__input"
-    value="{{ form.data.telefono|default:'' }}" required>
+        value="{{ form.data.telefono|default:'' }}" required>
+      {% if form.telefono.errors %}
+        <small class="text-danger">{{ form.telefono.errors.0 }}</small>
+      {% endif %}
     </div>
 
     <div class="form-personal__group">
@@ -47,6 +59,9 @@
         <option value="reclamo" {% if form.data.solicitud == "reclamo" %}selected{% endif %}>Quejas o Reclamos</option>
         <option value="otro" {% if form.data.solicitud == "otro" %}selected{% endif %}>Otro</option>
       </select>
+      {% if form.solicitud.errors %}
+        <small class="text-danger">{{ form.solicitud.errors.0 }}</small>
+      {% endif %}
     </div>
   </div>
 
@@ -56,12 +71,18 @@
     <div class="form-personal__group">
       <label for="asunto" class="form-personal__label">Asunto</label>
       <input id="asunto" type="text" name="asunto" class="form-personal__input"
-    value="{{ form.data.asunto|default:'' }}" required>
+        value="{{ form.data.asunto|default:'' }}" required>
+      {% if form.asunto.errors %}
+        <small class="text-danger">{{ form.asunto.errors.0 }}</small>
+      {% endif %}
     </div>
 
     <div class="form-personal__group">
       <label for="mensaje" class="form-personal__label">Mensaje</label>
       <textarea id="mensaje" name="mensaje" rows="4" class="form-personal__textarea" required>{{ form.data.mensaje|default:'' }}</textarea>
+      {% if form.mensaje.errors %}
+        <small class="text-danger">{{ form.mensaje.errors.0 }}</small>
+      {% endif %}
     </div>
 
     <div class="form-personal__group">
@@ -69,13 +90,18 @@
       <div class="form-personal__radio-group">
         <label class="form-personal__radio">
           <input type="radio" name="contacto" value="correo" required
-    {% if form.data.contacto == "correo" or not form.data.contacto %}checked{% endif %}> Correo electrónico
+            {% if form.data.contacto == "correo" or not form.data.contacto %}checked{% endif %}>
+          Correo electrónico
         </label>
         <label class="form-personal__radio">
           <input type="radio" name="contacto" value="whatsapp"
-    {% if form.data.contacto == "whatsapp" %}checked{% endif %}> Whatsapp
+            {% if form.data.contacto == "whatsapp" %}checked{% endif %}>
+          Whatsapp
         </label>
       </div>
+      {% if form.contacto.errors %}
+        <small class="text-danger">{{ form.contacto.errors.0 }}</small>
+      {% endif %}
     </div>
   </div>
 
@@ -84,10 +110,7 @@
       Enviar Mensaje
     </button>
 
-    <a
-      href="{% url 'contact:contact_info' %}"
-      class="form-personal__btn form-personal__btn--info"
-    >
+    <a href="{% url 'contact:contact_info' %}" class="form-personal__btn form-personal__btn--info">
       Más información
     </a>
   </div>
