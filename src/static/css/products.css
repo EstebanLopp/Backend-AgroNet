@@ -10,6 +10,7 @@
   font-size: 32px;
   font-weight: 700;
   line-height: 1.2;
+  text-align: center;
 }
 
 .form-created-product {
@@ -124,7 +125,7 @@
 
 .form-created-product__image-box input[type="file"] {
   width: 100%;
-  max-width: 240px;
+  max-width: 150px;
   min-height: auto;
   padding: 0;
   border: 0;

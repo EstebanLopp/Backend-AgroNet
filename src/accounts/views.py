@@ -103,17 +103,17 @@ def edit_profile(request):
 def delete_account(request):
     if request.method != "POST":
         messages.error(request, "Método no permitido.")
-        return redirect("accounts:profile")
+        return redirect("accounts:dashboard")
 
     user = request.user
 
     if user.is_staff or user.is_superuser:
         messages.error(request, "No puedes eliminar esta cuenta desde esta opción.")
-        return redirect("accounts:profile")
+        return redirect("accounts:dashboard")
 
     if not CustomerProfile.objects.filter(user=user).exists():
         messages.error(request, "Solo los clientes pueden usar esta opción.")
-        return redirect("accounts:profile")
+        return redirect("accounts:dashboard")
 
     timestamp = timezone.now().strftime("%Y%m%d%H%M%S")
     original_id = user.id
@@ -204,7 +204,9 @@ def public_store_detail(request, pk):
 
     products = Product.objects.filter(
         store=store,
-        status="published"
+        status="published",
+        available=True,
+        stock__gt=0
     ).select_related("category")
 
     context = {
@@ -246,6 +248,11 @@ def edit_store(request):
 
 @login_required
 def toggle_store_status(request):
+    
+    if request.method != "POST":
+        messages.error(request, "Método no permitido.")
+        return redirect("accounts:seller_dashboard")
+
     seller_profile = SellerProfile.objects.filter(user=request.user).first()
 
     if not seller_profile:

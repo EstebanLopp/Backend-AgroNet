@@ -6,6 +6,7 @@
 
 from django import forms
 from .models import Order
+import re
 
 #Está conectado directamente al modelo Order, permite crear pedidos desde el formulario
 class CheckoutForm(forms.ModelForm):
@@ -36,6 +37,9 @@ class CheckoutForm(forms.ModelForm):
         if len(address) < 5:
             raise forms.ValidationError("La dirección debe tener al menos 5 caracteres.")
 
+        if not any(char.isalpha() for char in address):
+            raise forms.ValidationError("La dirección debe incluir texto válido.")
+
         return address
 
     # Validacion de la ciudad
@@ -45,9 +49,25 @@ class CheckoutForm(forms.ModelForm):
         if len(city) < 2:
             raise forms.ValidationError("La ciudad debe tener al menos 2 caracteres.")
 
-        return city
+        if re.search(r'\d', city):
+            raise forms.ValidationError("La ciudad no puede contener números.")
+
+        return city.title()
 
     # Limpieza de notas (Elimina espacios innecesarios, No aplica validación estricta)
     def clean_notes(self):
         notes = self.cleaned_data.get("notes", "").strip()
+
+        if len(notes) > 300:
+            raise forms.ValidationError("Las notas no pueden superar los 300 caracteres.")
+
         return notes
+
+
+class OrderStatusUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ["status"]
+        widgets = {
+            "status": forms.Select(attrs={"class": "seller-notification-detail__status-select"}),
+        }

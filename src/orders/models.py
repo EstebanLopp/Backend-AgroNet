@@ -16,6 +16,7 @@ class Order(models.Model):
         #Estados del pedido
         ("pending", "Pendiente"),
         ("confirmed", "Confirmado"),
+        ("prepared", "Preparado"),
         ("shipped", "Enviado"),
         ("delivered", "Entregado"),
         ("cancelled", "Cancelado"),
@@ -85,6 +86,19 @@ class Order(models.Model):
     #Representación del pedido
     def __str__(self):
         return f"Order {self.id} - {self.user.username}"
+
+    #Estados del pedido con clases CSS para el frontend
+    @property
+    def status_badge_class(self):
+        return {
+            "pending": "pending",
+            "confirmed": "confirmed",
+            "prepared": "prepared",
+            "shipped": "shipped",
+            "delivered": "delivered",
+            "cancelled": "cancelled",
+        }.get(self.status, "pending")
+
     #Cálculo del total del pedido
     def get_total_price(self):
         return sum(item.get_cost() for item in self.items.all())

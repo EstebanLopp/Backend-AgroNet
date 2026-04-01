@@ -17,7 +17,7 @@ class Inicio(TemplateView):
 
         #Solo productos:disponibles, publicados, de tiendas activas,Ordenados por más recientes, Limita a 8 productos        
         context["home_products"] = (
-            Product.objects.filter(available=True, status="published", store__is_active=True)
+            Product.objects.filter(available=True, status="published", store__is_active=True, stock__gt=0)
             .order_by("-created_at")[:8]
         )
 

@@ -3,7 +3,7 @@
 {% block title %}Detalle del pedido recibido{% endblock %}
 
 {% block content %}
-<div class="container" style="padding: 40px 20px;">
+<div class="container seller-notification-detail">
     <div class="account-header">
         <h2>Detalle del pedido recibido</h2>
         <p>
@@ -12,58 +12,103 @@
         </p>
     </div>
 
-    <div class="account-order-row" style="display:block; margin-bottom: 24px; padding: 20px; border: 1px solid #ddd; border-radius: 12px;">
-        <h4>Información del comprador</h4>
-        <p><strong>Usuario:</strong> {{ customer.username }}</p>
-        <p><strong>Ciudad:</strong> {{ order.city }}</p>
-        <p><strong>Dirección:</strong> {{ order.address }}</p>
-        <p><strong>Método de pago:</strong> {{ order.get_payment_method_display }}</p>
-        <p><strong>Método de envío:</strong> {{ order.get_shipping_method_display }}</p>
-        <p><strong>Estado general:</strong> {{ order.get_status_display }}</p>
-        <p><strong>Notas:</strong> {{ order.notes|default:"Sin notas." }}</p>
-    </div>
+    <div class="seller-notification-detail__layout">
+        <section class="seller-notification-detail__card seller-notification-detail__card--buyer">
+            <h4 class="seller-notification-detail__title">Información del comprador</h4>
+            <div class="seller-notification-detail__facts">
+                <div class="seller-notification-detail__fact">
+                    <span class="seller-notification-detail__fact-label">Usuario</span>
+                    <strong class="seller-notification-detail__fact-value">{{ customer.username }}</strong>
+                </div>
+                <div class="seller-notification-detail__fact">
+                    <span class="seller-notification-detail__fact-label">Ciudad</span>
+                    <strong class="seller-notification-detail__fact-value">{{ order.city }}</strong>
+                </div>
+                <div class="seller-notification-detail__fact seller-notification-detail__fact--full">
+                    <span class="seller-notification-detail__fact-label">Dirección</span>
+                    <strong class="seller-notification-detail__fact-value">{{ order.address }}</strong>
+                </div>
+                <div class="seller-notification-detail__fact">
+                    <span class="seller-notification-detail__fact-label">Método de pago</span>
+                    <strong class="seller-notification-detail__fact-value">{{ order.get_payment_method_display }}</strong>
+                </div>
+                <div class="seller-notification-detail__fact">
+                    <span class="seller-notification-detail__fact-label">Método de envío</span>
+                    <strong class="seller-notification-detail__fact-value">{{ order.get_shipping_method_display }}</strong>
+                </div>
+                <div class="seller-notification-detail__fact">
+                    <span class="seller-notification-detail__fact-label">Estado general</span>
+                    <span class="order-status-badge order-status-badge--{{ order.status_badge_class }}">{{ order.get_status_display }}</span>
+                </div>
+                <div class="seller-notification-detail__fact seller-notification-detail__fact--full">
+                    <span class="seller-notification-detail__fact-label">Notas</span>
+                    <strong class="seller-notification-detail__fact-value">{{ order.notes|default:"Sin notas." }}</strong>
+                </div>
+                <div class="seller-notification-detail__fact seller-notification-detail__fact--full seller-notification-detail__fact--status-form">
+                    <span class="seller-notification-detail__fact-label">Actualizar estado del pedido</span>
+                    <form method="post" class="seller-notification-detail__status-form">
+                        {% csrf_token %}
+                        {{ status_form.status }}
+                        <button type="submit" class="account-btn account-btn--primary account-btn--small seller-notification-detail__status-submit">
+                            Guardar estado
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-    <div class="account-order-row" style="display:block; margin-bottom: 24px; padding: 20px; border: 1px solid #ddd; border-radius: 12px;">
-        <h4>Productos de tu tienda en este pedido</h4>
+        <section class="seller-notification-detail__card seller-notification-detail__card--items">
+            <h4 class="seller-notification-detail__title">Productos de tu tienda en este pedido</h4>
 
-        {% if items %}
-            <ul>
-                {% for item in items %}
-                    <li style="margin-bottom: 10px;">
-                        <strong>{{ item.product.name }}</strong><br>
-                        Precio unitario: ${{ item.price }}<br>
-                        Cantidad: {{ item.quantity }}<br>
-                        Subtotal: ${{ item.get_cost }}
-                    </li>
-                {% endfor %}
-            </ul>
+            {% if items %}
+                <ul class="seller-notification-detail__items">
+                    {% for item in items %}
+                        <li class="seller-notification-detail__item">
+                            <strong class="seller-notification-detail__item-name">{{ item.product.name }}</strong>
+                            <div class="seller-notification-detail__item-meta">
+                                <span>Precio unitario: ${{ item.price }}</span>
+                                <span>Cantidad: {{ item.quantity }}</span>
+                                <span>Subtotal: ${{ item.get_cost }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
 
-            <hr>
-            <p><strong>Total de productos:</strong> {{ total_products }}</p>
-            <p><strong>Total para tu tienda:</strong> ${{ subtotal }}</p>
-        {% else %}
-            <p>No hay productos de tu tienda en este pedido.</p>
+                <div class="seller-notification-detail__summary">
+                    <div class="seller-notification-detail__summary-item">
+                        <span class="seller-notification-detail__summary-label">Total de productos</span>
+                        <strong class="seller-notification-detail__summary-value">{{ total_products }}</strong>
+                    </div>
+                    <div class="seller-notification-detail__summary-item">
+                        <span class="seller-notification-detail__summary-label">Total para tu tienda</span>
+                        <strong class="seller-notification-detail__summary-value">${{ subtotal }}</strong>
+                    </div>
+                </div>
+            {% else %}
+                <p class="seller-notification-detail__empty">No hay productos de tu tienda en este pedido.</p>
+            {% endif %}
+        </section>
+
+        {% if other_notifications %}
+            <section class="seller-notification-detail__card seller-notification-detail__card--related">
+                <h4 class="seller-notification-detail__title">Otros pedidos recibidos</h4>
+
+                <ul class="seller-notification-detail__related-list">
+                    {% for item in other_notifications %}
+                        <li class="seller-notification-detail__related-item">
+                            <a href="{% url 'orders:seller_notification_detail' item.id %}" class="seller-notification-detail__related-link">
+                                <span>Pedido #{{ item.order.id }}</span>
+                                <span>{{ item.order.user.username }}</span>
+                            </a>
+                            {% if not item.is_read %}
+                                <span class="account-badge seller-notifications__badge seller-notifications__badge--new">Nuevo</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
         {% endif %}
     </div>
-
-    {% if other_notifications %}
-        <div class="account-order-row" style="display:block; margin-bottom: 24px; padding: 20px; border: 1px solid #ddd; border-radius: 12px;">
-            <h4>Otros pedidos recibidos</h4>
-
-            <ul>
-                {% for item in other_notifications %}
-                    <li>
-                        <a href="{% url 'orders:seller_notification_detail' item.id %}">
-                            Pedido #{{ item.order.id }} - {{ item.order.user.username }}
-                        </a>
-                        {% if not item.is_read %}
-                            <strong>(Nuevo)</strong>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
 
     <div class="account-actions">
         <a href="{% url 'orders:seller_notifications' %}" class="account-btn account-btn--primary">
