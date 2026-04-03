@@ -12,7 +12,6 @@ import re
 class CheckoutForm(forms.ModelForm):
     class Meta:
         model = Order
-        #campos
         fields = [
             "address",
             "city",
@@ -20,15 +19,36 @@ class CheckoutForm(forms.ModelForm):
             "shipping_method",
             "notes",
         ]
-
-        #Aplica clases CSS, Integra el formulario con el diseño del frontend
         widgets = {
-            "address": forms.TextInput(attrs={"class": "form-control"}),
-            "city": forms.TextInput(attrs={"class": "form-control"}),
-            "payment_method": forms.Select(attrs={"class": "form-control"}),
-            "shipping_method": forms.Select(attrs={"class": "form-control"}),
-            "notes": forms.Textarea(attrs={"class": "form-control", "rows": 4}),
+            "address": forms.TextInput(attrs={
+                "class": "form-control",
+                "required": "required"
+            }),
+            "city": forms.TextInput(attrs={
+                "class": "form-control",
+                "required": "required"
+            }),
+            "payment_method": forms.Select(attrs={
+                "class": "form-control",
+                "required": "required"
+            }),
+            "shipping_method": forms.Select(attrs={
+                "class": "form-control",
+                "required": "required"
+            }),
+            "notes": forms.Textarea(attrs={
+                "class": "form-control",
+                "rows": 4
+            }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["address"].required = True
+        self.fields["city"].required = True
+        self.fields["payment_method"].required = True
+        self.fields["shipping_method"].required = True
+        self.fields["notes"].required = False
 
     # Validacion de la dirección
     def clean_address(self):
