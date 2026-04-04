@@ -5,6 +5,7 @@
 {% block content %}
 <div class="container seller-notification-detail">
     <div class="account-header">
+        
         <h2>Detalle del pedido recibido</h2>
         <p>
             Pedido <strong>#{{ order.id }}</strong> —
@@ -111,6 +112,9 @@
     </div>
 
     <div class="account-actions">
+        <a href="{% url 'orders:download_seller_notification_pdf' notification.id %}" class="account-btn account-btn--secondary">
+            Descargar PDF del pedido
+        </a>
         <a href="{% url 'orders:seller_notifications' %}" class="account-btn account-btn--primary">
             Volver al centro de notificaciones
         </a>
