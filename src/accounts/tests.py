@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import CustomerProfile
+from .models import CustomerProfile, SellerProfile, Store
 
 
 class AccountViewTests(TestCase):
@@ -32,6 +32,16 @@ class AccountViewTests(TestCase):
 		profile.address = "Calle 1 # 2-3"
 		profile.city = "Tunja"
 		profile.save()
+		seller_profile = SellerProfile.objects.create(user=user)
+		store = Store.objects.create(
+			seller=seller_profile,
+			name="Tienda del cliente",
+			description="Descripcion valida de la tienda",
+			phone="3001234567",
+			address="Calle 1 # 2-3",
+			city="Tunja",
+			is_active=True,
+		)
 		self.client.login(username="cliente_borrar", password="test12345")
 
 		response = self.client.post(reverse("accounts:delete_account"))
@@ -47,3 +57,5 @@ class AccountViewTests(TestCase):
 		self.assertEqual(profile.phone, "")
 		self.assertEqual(profile.document_number, "")
 		self.assertEqual(profile.address, "")
+		self.assertFalse(Store.objects.filter(pk=store.pk).exists())
+		self.assertFalse(SellerProfile.objects.filter(pk=seller_profile.pk).exists())

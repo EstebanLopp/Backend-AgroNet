@@ -21,6 +21,7 @@ from django.contrib.auth.decorators import login_required
 from orders.models import Order, SellerNotification
 from .models import CustomerProfile, SellerProfile
 from django.contrib import messages
+from django.db import transaction
 from django.utils import timezone
 
 from .forms import SignUpForm, UserProfileForm, CustomerProfileForm, StoreForm
@@ -120,24 +121,32 @@ def delete_account(request):
     timestamp = timezone.now().strftime("%Y%m%d%H%M%S")
     original_id = user.id
 
-    user.username = f"deleted_user_{original_id}_{timestamp}"
+    with transaction.atomic():
+        seller_profile = SellerProfile.objects.filter(user=user).first()
 
-    if user.email:
-        user.email = f"deleted_{original_id}_{timestamp}@deleted.local"
+        if seller_profile:
+            if hasattr(seller_profile, "store"):
+                seller_profile.store.delete()
+            seller_profile.delete()
 
-    user.first_name = ""
-    user.last_name = ""
-    user.is_active = False
-    user.save()
+        user.username = f"deleted_user_{original_id}_{timestamp}"
 
-    CustomerProfile.objects.filter(user=user).update(
-        phone="",
-        document_type="",
-        document_number="",
-        birth_date=None,
-        address="",
-        city="",
-    )
+        if user.email:
+            user.email = f"deleted_{original_id}_{timestamp}@deleted.local"
+
+        user.first_name = ""
+        user.last_name = ""
+        user.is_active = False
+        user.save()
+
+        CustomerProfile.objects.filter(user=user).update(
+            phone="",
+            document_type="",
+            document_number="",
+            birth_date=None,
+            address="",
+            city="",
+        )
 
     logout(request)
     messages.success(request, "Tu cuenta fue eliminada correctamente.")
