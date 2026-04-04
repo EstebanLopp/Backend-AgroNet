@@ -2,13 +2,90 @@
 {% load static %}
 
 {% block content %}
+<section class="seller-dashboard">
+    <div class="seller-dashboard__wrapper">
 
-<div class="container account-page">
+        <div class="seller-dashboard__hero">
+            <img
+                src="{% static 'assets/valle-cocora.jpg' %}"
+                alt="Portada de la cuenta"
+                class="seller-dashboard__cover"
+            >
+
+            <div class="seller-dashboard__hero-overlay"></div>
+
+            <div class="seller-dashboard__profile">
+                <img
+                    src="{% static 'assets/logo_Admin.png' %}"
+                    alt="Logo de AgroNet"
+                    class="seller-dashboard__avatar"
+                >
+
+                <div class="seller-dashboard__identity">
+                    <span class="seller-dashboard__eyebrow">Panel del cliente</span>
+                    <h1 class="seller-dashboard__store-title">
+                        {{ user.first_name|default:user.username }} {{ user.last_name }}
+                    </h1>
+                    <span class="seller-dashboard__meta-chip">@{{ user.username }}</span>
+                </div>
+            </div>
+        </div>
+
+    <div class="container account-page">
 
     <div class="account-header">
         <h2>Mi cuenta</h2>
         <p>Bienvenido <strong>{{ user.username }}</strong></p>
     </div>
+
+    <section class="account-data-strip" aria-labelledby="account-data-strip-title">
+        <div class="account-data-strip__header">
+            <h3 id="account-data-strip-title" class="account-data-strip__title">Mis datos</h3>
+        </div>
+
+        <div class="account-data-strip__row">
+            <div class="account-data-strip__item">
+                <span class="account-data-strip__label">Tipo de documento</span>
+                <strong class="account-data-strip__value">{{ profile.get_document_type_display|default:"No registrado" }}</strong>
+            </div>
+
+            <div class="account-data-strip__item">
+                <span class="account-data-strip__label">Número de documento</span>
+                <strong class="account-data-strip__value">{{ profile.document_number|default:"No registrado" }}</strong>
+            </div>
+
+            <div class="account-data-strip__item">
+                <span class="account-data-strip__label">Email</span>
+                <strong class="account-data-strip__value">{{ user.email|default:"No registrado" }}</strong>
+            </div>
+
+            <div class="account-data-strip__item">
+                <span class="account-data-strip__label">Teléfono</span>
+                <strong class="account-data-strip__value">{{ profile.phone|default:"No registrado" }}</strong>
+            </div>
+
+            <div class="account-data-strip__item">
+                <span class="account-data-strip__label">Fecha de nacimiento</span>
+                <strong class="account-data-strip__value">
+                    {% if profile.birth_date %}
+                        {{ profile.birth_date|date:"d/m/Y" }}
+                    {% else %}
+                        No registrada
+                    {% endif %}
+                </strong>
+            </div>
+
+            <div class="account-data-strip__item">
+                <span class="account-data-strip__label">Dirección</span>
+                <strong class="account-data-strip__value">{{ profile.address|default:"No registrada" }}</strong>
+            </div>
+
+            <div class="account-data-strip__item">
+                <span class="account-data-strip__label">Ciudad</span>
+                <strong class="account-data-strip__value">{{ profile.city|default:"No registrada" }}</strong>
+            </div>
+        </div>
+    </section>
 
     <div class="account-summary">
         <div class="account-card">
@@ -130,7 +207,9 @@
                     </div>
                 </div>
 
-</div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
 

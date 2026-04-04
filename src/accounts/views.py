@@ -47,6 +47,7 @@ def signup(request):
 
 @login_required
 def customer_dashboard(request):
+    profile, _ = CustomerProfile.objects.get_or_create(user=request.user)
     orders = Order.objects.filter(user=request.user).order_by("-created")
 
     total_orders = orders.count()
@@ -61,6 +62,7 @@ def customer_dashboard(request):
         has_store = True
 
     context = {
+        "profile": profile,
         "total_orders": total_orders,
         "total_spent": total_spent,
         "last_order": last_order,
