@@ -23,6 +23,11 @@ urlpatterns = [
         name="seller_notification_detail"
     ),
     path(
+        "ventas/notificaciones/<int:notification_id>/detalle-pdf/",
+        views.download_seller_notification_pdf,
+        name="download_seller_notification_pdf"
+    ),
+    path(
         "ventas/notificaciones/<int:notification_id>/leer/",
         views.mark_notification_as_read,
         name="mark_notification_as_read"
