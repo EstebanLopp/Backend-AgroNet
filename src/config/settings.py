@@ -151,6 +151,23 @@ STATICFILES_DIRS = [
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+SUPABASE_URL = config("SUPABASE_URL", default="")
+SUPABASE_KEY = config("SUPABASE_KEY", default="")
+SUPABASE_STORAGE_BUCKET = config("SUPABASE_STORAGE_BUCKET", default="media")
+
+STORAGES = {
+    "default": {
+        "BACKEND": "core.storage_backends.SupabaseStorage",
+        "OPTIONS": {
+            "bucket_name": SUPABASE_STORAGE_BUCKET,
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = config("EMAIL_HOST", default="smtp.gmail.com")
 EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
