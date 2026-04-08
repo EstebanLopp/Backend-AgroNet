@@ -7,6 +7,9 @@
 from django.db import models
 from django.utils.text import slugify
 from accounts.models import Store
+from core.storage_backends import SupabaseStorage
+
+supabase_storage = SupabaseStorage()
 
 #representa una categoría del catálogo
 class Category(models.Model):
@@ -82,7 +85,12 @@ class Product(models.Model):
         default="kg"
     )
 
-    image = models.ImageField(upload_to="products/", blank=False, null=True)
+    image = models.ImageField(
+        upload_to="products/",
+        storage=supabase_storage,
+        blank=False,
+        null=True
+    )
     stock = models.PositiveIntegerField(default=0)
 
     status = models.CharField(
