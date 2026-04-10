@@ -11,7 +11,7 @@
 
 
 <section class="products">
-  {% for p in related_products %}
+  {% for p in page_obj %}
     <a href="{% url 'products:product_detail' p.slug %}" class="product1">
       {% if p.image %}
         <img src="{{ p.image.url }}" class="product1__image" alt="{{ p.name }}">
@@ -32,13 +32,31 @@
           {% if product.stock == 0 %}Agotado{% else %}Añadir{% endif %}
         </button>
       </form>
-    </div>
-
   </div>
   </a>
   {% empty %}
     <p>No hay productos disponibles.</p>
   {% endfor %}
 </section>
+
+<div class="catalog-pagination">
+    {% if page_obj.has_previous %}
+        <a class="catalog-pagination__btn" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% endif %}
+
+    <div class="catalog-pagination__pages">
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <span class="catalog-pagination__number catalog-pagination__number--active">{{ num }}</span>
+            {% else %}
+                <a class="catalog-pagination__number" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% if page_obj.has_next %}
+        <a class="catalog-pagination__btn" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    {% endif %}
+</div>
 
 {% endblock %}

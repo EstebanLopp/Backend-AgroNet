@@ -18,6 +18,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from orders.models import Order, SellerNotification
 from .models import CustomerProfile, SellerProfile
 from django.contrib import messages
@@ -220,9 +221,13 @@ def public_store_detail(request, pk):
         stock__gt=0
     ).select_related("category")
 
+    paginator = Paginator(products, 6)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
         "store": store,
-        "products": products,
+        "page_obj": page_obj,
     }
     return render(request, "accounts/public_store_detail.html", context)
 

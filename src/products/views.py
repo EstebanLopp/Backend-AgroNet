@@ -68,18 +68,22 @@ def product_detail(request, slug):
     stock__gt=0
 )
 
-    #muestra productos de la misma categoría, excluye el actual y limita a 6
+    #muestra productos de la misma categoría, excluye el actual y los pagina
     related_products = Product.objects.filter(
         category=product.category,
         available=True,
         status="published",
         store__is_active=True,
         stock__gt=0
-    ).exclude(id=product.id)[:6]
+    ).exclude(id=product.id)
+
+    paginator = Paginator(related_products, 6)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
     context = {
         "product": product,
-        "related_products": related_products,
+        "page_obj": page_obj,
     }
     return render(request, "products/product_detail.html", context)
 

@@ -8,26 +8,94 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required #->protege las vistas
 from django.db import transaction #->asegura integridad en el checkout
 from django.contrib import messages #->informa al usuario lo que ocurrio
+from django.conf import settings
 
 from accounts.models import SellerProfile
 from cart.cart import Cart #->conecta carrito con el pedido
 from .forms import CheckoutForm, OrderStatusUpdateForm
 from .models import Order, OrderItem, SellerNotification
 
+import os
+
 from django.http import HttpResponse
+from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
+from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import mm
 
 
-def _draw_wrapped_text(pdf, text, x, y, max_width, line_height, font_name="Helvetica", font_size=10):
+PDF_MARGIN_X = 16 * mm
+PDF_RIGHT_X = 194 * mm
+PDF_CONTENT_WIDTH = PDF_RIGHT_X - PDF_MARGIN_X
+PDF_PAGE_BG = colors.white
+PDF_BRAND_GREEN = colors.HexColor("#22C55E")
+PDF_LOGO_BG = colors.HexColor("#22C55E")
+PDF_SOFT_GREEN = colors.HexColor("#EAF1EC")
+PDF_SOFT_PINK = colors.HexColor("#ECD6EF")
+PDF_LINE = colors.HexColor("#D7DED9")
+PDF_TEXT_DARK = colors.HexColor("#2E3135")
+PDF_TEXT_MUTED = colors.HexColor("#6F757C")
+PDF_ROW_ALT = colors.HexColor("#FAFBFA")
+
+
+def _format_currency(value):
+    return f"${float(value):,.2f}"
+
+
+def _get_pdf_logo_path():
+    return os.path.join(settings.BASE_DIR, "static", "assets", "logo-light-transparent.png")
+
+
+def _normalize_info_line(line):
+    text = str(line or "").strip()
+    if ":" not in text:
+        return ("Detalle", text or "-")
+
+    label, value = text.split(":", 1)
+    return (label.strip() or "Detalle", value.strip() or "-")
+
+
+def _draw_label_chip(pdf, x, y, text, fill_color=PDF_SOFT_GREEN, text_color=PDF_BRAND_GREEN):
+    chip_width = max(28 * mm, (len(text) * 2.8 * mm))
+    chip_height = 8.5 * mm
+    pdf.setFillColor(fill_color)
+    pdf.roundRect(x, y - chip_height, chip_width, chip_height, 4 * mm, fill=1, stroke=0)
+    pdf.setFillColor(text_color)
+    pdf.setFont("Helvetica-Bold", 8.5)
+    pdf.drawCentredString(x + (chip_width / 2), y - 5.7 * mm, text.upper())
+    return chip_width
+
+
+def _draw_info_entry(pdf, x, y, width, label, value):
+    pdf.setFillColor(PDF_TEXT_MUTED)
+    pdf.setFont("Helvetica-Bold", 8)
+    pdf.drawString(x, y, label.upper())
+    y -= 5 * mm
+
+    pdf.setFillColor(PDF_TEXT_DARK)
+    pdf.setFont("Helvetica", 10)
+    for line in _split_text_lines(pdf, value, width, "Helvetica", 10):
+        pdf.drawString(x, y, line)
+        y -= 4.8 * mm
+
+    return y - 2 * mm
+
+
+def _split_info_columns(lines):
+    entries = [_normalize_info_line(line) for line in lines]
+    midpoint = (len(entries) + 1) // 2
+    return entries[:midpoint], entries[midpoint:]
+
+
+def _split_text_lines(pdf, text, max_width, font_name="Helvetica", font_size=10):
     pdf.setFont(font_name, font_size)
     words = str(text or "").split()
 
     if not words:
-        pdf.drawString(x, y, "-")
-        return y - line_height
+        return ["-"]
 
+    lines = []
     current_line = words[0]
 
     for word in words[1:]:
@@ -36,70 +104,216 @@ def _draw_wrapped_text(pdf, text, x, y, max_width, line_height, font_name="Helve
             current_line = candidate
             continue
 
-        pdf.drawString(x, y, current_line)
-        y -= line_height
+        lines.append(current_line)
         current_line = word
 
-    pdf.drawString(x, y, current_line)
-    return y - line_height
+    lines.append(current_line)
+    return lines
+
+
+def _draw_wrapped_text(pdf, text, x, y, max_width, line_height, font_name="Helvetica", font_size=10):
+    pdf.setFont(font_name, font_size)
+
+    for line in _split_text_lines(pdf, text, max_width, font_name, font_size):
+        pdf.drawString(x, y, line)
+        y -= line_height
+
+    return y
+
+
+def _draw_pdf_page_header(pdf, page_number, document_title, heading):
+    _, height = A4
+
+    pdf.setFillColor(PDF_PAGE_BG)
+    pdf.rect(0, 0, A4[0], A4[1], fill=1, stroke=0)
+
+    navbar_height = 18 * mm
+    navbar_y = height - navbar_height
+    pdf.setFillColor(PDF_BRAND_GREEN)
+    pdf.rect(0, navbar_y, A4[0], navbar_height, fill=1, stroke=0)
+
+    logo_box_y = height - 35 * mm
+    pdf.setFillColor(PDF_LOGO_BG)
+    pdf.rect(PDF_MARGIN_X, navbar_y + 1 * mm, 50 * mm, 16 * mm, fill=1, stroke=0)
+
+    logo_path = _get_pdf_logo_path()
+    if os.path.exists(logo_path):
+        pdf.drawImage(
+            ImageReader(logo_path),
+            PDF_MARGIN_X + 4 * mm,
+            navbar_y + 2.4 * mm,
+            width=42 * mm,
+            height=13 * mm,
+            mask="auto",
+            preserveAspectRatio=True,
+            anchor="w",
+        )
+
+    title_y = height - 46 * mm
+    pdf.setFillColor(PDF_TEXT_DARK)
+    pdf.setFont("Helvetica-Bold", 24)
+    pdf.drawString(PDF_MARGIN_X, title_y, "Comprobante")
+
+    pdf.setFillColor(PDF_TEXT_MUTED)
+    pdf.setFont("Helvetica", 9.5)
+    pdf.drawString(PDF_MARGIN_X, title_y - 7 * mm, document_title)
+    pdf.drawString(PDF_MARGIN_X, title_y - 12 * mm, heading)
+
+    pdf.setFillColor(PDF_BRAND_GREEN)
+    pdf.setFont("Helvetica-Bold", 8.5)
+    pdf.drawRightString(PDF_RIGHT_X, title_y - 1 * mm, f"Pagina {page_number}")
+
+    pdf.setFillColor(PDF_TEXT_MUTED)
+    pdf.setFont("Helvetica", 10)
+    pdf.drawRightString(PDF_RIGHT_X, title_y - 9 * mm, "AgroNet")
+
+    pdf.setStrokeColor(PDF_LINE)
+    pdf.line(PDF_MARGIN_X, title_y - 18 * mm, PDF_RIGHT_X, title_y - 18 * mm)
+
+    return title_y - 28 * mm
+
+
+def _draw_pdf_info_card(pdf, y, lines):
+    left_entries, right_entries = _split_info_columns(lines)
+    column_gap = 14 * mm
+    column_width = (PDF_CONTENT_WIDTH - column_gap) / 2
+
+    left_x = PDF_MARGIN_X
+    right_x = PDF_MARGIN_X + column_width + column_gap
+    left_y = y
+    right_y = y
+
+    _draw_label_chip(pdf, left_x, left_y, "Cliente")
+    _draw_label_chip(pdf, right_x, right_y, "Detalle", fill_color=PDF_SOFT_PINK, text_color=PDF_TEXT_DARK)
+    left_y -= 13 * mm
+    right_y -= 13 * mm
+
+    for label, value in left_entries:
+        left_y = _draw_info_entry(pdf, left_x, left_y, column_width, label, value)
+
+    for label, value in right_entries:
+        right_y = _draw_info_entry(pdf, right_x, right_y, column_width, label, value)
+
+    bottom_y = min(left_y, right_y)
+    pdf.setStrokeColor(PDF_LINE)
+    pdf.line(PDF_MARGIN_X, bottom_y, PDF_RIGHT_X, bottom_y)
+    return bottom_y - 8 * mm
 
 
 def _draw_pdf_table_header(pdf, y):
-    pdf.setFont("Helvetica-Bold", 10)
-    pdf.drawString(20 * mm, y, "Producto")
-    pdf.drawString(105 * mm, y, "Cant.")
-    pdf.drawString(125 * mm, y, "Precio")
-    pdf.drawString(160 * mm, y, "Subtotal")
-    y -= 5 * mm
-    pdf.line(20 * mm, y, 190 * mm, y)
-    return y - 8 * mm
+    pdf.setFillColor(PDF_TEXT_DARK)
+    pdf.setFont("Helvetica-Bold", 9.5)
+    pdf.drawString(PDF_MARGIN_X, y, "SERVICIO")
+    pdf.drawRightString(126 * mm, y, "CANTIDAD")
+    pdf.drawRightString(156 * mm, y, "PRECIO")
+    pdf.drawRightString(PDF_RIGHT_X, y, "TOTAL")
+
+    pdf.setStrokeColor(PDF_LINE)
+    pdf.line(PDF_MARGIN_X, y - 4 * mm, PDF_RIGHT_X, y - 4 * mm)
+    return y - 10 * mm
+
+
+def _get_pdf_item_row_height(pdf, item):
+    product_lines = _split_text_lines(pdf, item.product.name, 86 * mm, "Helvetica", 10)
+    return max(10 * mm, (len(product_lines) * 5.2 * mm) + 3 * mm), product_lines
+
+
+def _draw_pdf_item_row(pdf, y, item, row_index):
+    row_height, product_lines = _get_pdf_item_row_height(pdf, item)
+    row_bottom = y - row_height + 2 * mm
+
+    if row_index % 2 == 1:
+        pdf.setFillColor(PDF_ROW_ALT)
+        pdf.rect(PDF_MARGIN_X, row_bottom - 1 * mm, PDF_CONTENT_WIDTH, row_height, fill=1, stroke=0)
+
+    text_y = y - 1.5 * mm
+    pdf.setFillColor(PDF_TEXT_DARK)
+    pdf.setFont("Helvetica", 10)
+    for line in product_lines:
+        pdf.drawString(PDF_MARGIN_X, text_y, line)
+        text_y -= 5 * mm
+
+    center_y = y - (row_height / 2) + 1.5 * mm
+    pdf.setFont("Helvetica", 9)
+    pdf.drawRightString(126 * mm, center_y, str(item.quantity))
+    pdf.drawRightString(156 * mm, center_y, _format_currency(item.price))
+    pdf.drawRightString(PDF_RIGHT_X, center_y, _format_currency(item.get_cost()))
+
+    pdf.setStrokeColor(PDF_LINE)
+    pdf.line(PDF_MARGIN_X, row_bottom - 2 * mm, PDF_RIGHT_X, row_bottom - 2 * mm)
+
+    return row_bottom - 5 * mm
+
+
+def _draw_pdf_total_box(pdf, y, total_text):
+    left_x = PDF_MARGIN_X
+    right_x = 138 * mm
+    total_value = total_text.split(":", 1)[-1].strip() if ":" in total_text else total_text
+
+    _draw_label_chip(pdf, left_x, y, "Datos de pago", fill_color=PDF_SOFT_PINK, text_color=PDF_TEXT_DARK)
+
+    pdf.setFillColor(PDF_TEXT_MUTED)
+    pdf.setFont("Helvetica", 8.5)
+    pdf.drawString(left_x, y - 14 * mm, "Pago registrado en la plataforma")
+    pdf.drawString(left_x, y - 18.8 * mm, "Consulta el estado del pedido para")
+    pdf.drawString(left_x, y - 23.6 * mm, "hacer seguimiento al envio.")
+
+    pdf.setFillColor(PDF_TEXT_MUTED)
+    pdf.setFont("Helvetica", 10)
+    pdf.drawString(right_x, y - 8 * mm, "Subtotal")
+    pdf.drawRightString(PDF_RIGHT_X, y - 8 * mm, total_value)
+
+    pdf.setStrokeColor(PDF_LINE)
+    pdf.line(right_x, y - 12 * mm, PDF_RIGHT_X, y - 12 * mm)
+
+    pdf.setFillColor(PDF_TEXT_DARK)
+    pdf.setFont("Helvetica-Bold", 11)
+    pdf.drawString(right_x, y - 19 * mm, "Total")
+    pdf.drawRightString(PDF_RIGHT_X, y - 19 * mm, total_value)
+
+    return y - 30 * mm
+
+
+def _draw_pdf_footer(pdf, footer_text):
+    pdf.setStrokeColor(PDF_LINE)
+    pdf.line(PDF_MARGIN_X, 20 * mm, PDF_RIGHT_X, 20 * mm)
+
+    pdf.setFillColor(PDF_TEXT_MUTED)
+    pdf.setFont("Helvetica", 8)
+    _draw_wrapped_text(pdf, footer_text, PDF_MARGIN_X, 15.5 * mm, 132 * mm, 4 * mm, font_size=8)
+
+    pdf.setFillColor(PDF_BRAND_GREEN)
+    pdf.setFont("Helvetica-Bold", 8)
+    pdf.drawRightString(PDF_RIGHT_X, 15.5 * mm, "Sistema de pedidos")
+
+
+def _start_pdf_page(pdf, document_title, heading):
+    page_number = pdf.getPageNumber()
+    return _draw_pdf_page_header(pdf, page_number, document_title, heading)
 
 
 def _build_order_pdf(response, *, document_title, heading, lines, items, total_text, footer_text):
     pdf = canvas.Canvas(response, pagesize=A4)
     _, height = A4
-    y = height - 30 * mm
 
     pdf.setTitle(document_title)
-    pdf.setFont("Helvetica-Bold", 16)
-    pdf.drawString(20 * mm, y, "AgroNet")
-    y -= 10 * mm
-
-    pdf.setFont("Helvetica", 10)
-    pdf.drawString(20 * mm, y, heading)
-    y -= 8 * mm
-
-    for line in lines:
-        y = _draw_wrapped_text(pdf, line, 20 * mm, y, 165 * mm, 6 * mm)
-
-    y -= 4 * mm
+    y = _start_pdf_page(pdf, document_title, heading)
+    y = _draw_pdf_info_card(pdf, y, lines)
     y = _draw_pdf_table_header(pdf, y)
-    pdf.setFont("Helvetica", 10)
 
-    for item in items:
-        if y < 25 * mm:
+    for row_index, item in enumerate(items):
+        row_height, _ = _get_pdf_item_row_height(pdf, item)
+        if y - row_height < 28 * mm:
+            _draw_pdf_footer(pdf, footer_text)
             pdf.showPage()
-            y = height - 30 * mm
+            y = _start_pdf_page(pdf, document_title, heading)
+            y = _draw_pdf_info_card(pdf, y, lines)
             y = _draw_pdf_table_header(pdf, y)
-            pdf.setFont("Helvetica", 10)
 
-        product_name = item.product.name[:40]
-        pdf.drawString(20 * mm, y, product_name)
-        pdf.drawString(105 * mm, y, str(item.quantity))
-        pdf.drawString(125 * mm, y, f"${item.price}")
-        pdf.drawString(160 * mm, y, f"${item.get_cost()}")
-        y -= 7 * mm
+        y = _draw_pdf_item_row(pdf, y, item, row_index)
 
-    y -= 5 * mm
-    pdf.line(20 * mm, y, 190 * mm, y)
-    y -= 10 * mm
-
-    pdf.setFont("Helvetica-Bold", 11)
-    pdf.drawString(120 * mm, y, total_text)
-    y -= 12 * mm
-
-    pdf.setFont("Helvetica", 9)
-    _draw_wrapped_text(pdf, footer_text, 20 * mm, y, 170 * mm, 5 * mm, font_size=9)
+    y = _draw_pdf_total_box(pdf, y, total_text)
+    _draw_pdf_footer(pdf, footer_text)
 
     pdf.save()
     return response
@@ -276,8 +490,8 @@ def download_order_receipt_pdf(request, order_id):
             f"Dirección: {address}",
         ],
         items=order.items.all(),
-        total_text=f"Total: ${order.get_total_price()}",
-        footer_text="Documento generado por AgroNet como comprobante interno de compra."
+        total_text=f"Total: {_format_currency(order.get_total_price())}",
+        footer_text="Comprobante generado automaticamente para consulta del cliente."
     )
 
 #verifica si el usuario tiene perfil de vendedor y tienda, obtiene notificaciones de esa tienda, construye tarjetas informativas para mostrar en la interfaz
@@ -461,8 +675,8 @@ def download_seller_notification_pdf(request, notification_id):
             f"Notas: {notes}",
         ],
         items=store_items,
-        total_text=f"Total tienda: ${subtotal}",
-        footer_text="Documento generado por AgroNet con el detalle del pedido para la tienda receptora."
+        total_text=f"Total tienda: {_format_currency(subtotal)}",
+        footer_text="Detalle generado automaticamente para la tienda receptora del pedido."
     )
 
 

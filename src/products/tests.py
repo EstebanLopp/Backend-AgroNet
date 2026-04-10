@@ -68,3 +68,52 @@ class ProductViewTests(TestCase):
 
 		self.assertEqual(response.status_code, 302)
 		self.assertEqual(response.url, reverse("accounts:create_store"))
+
+	def test_product_detail_paginates_related_products(self):
+		main_product = Product.objects.create(
+			store=self.store,
+			category=self.category,
+			name="Producto principal",
+			description="Producto base del detalle publico",
+			price="5000.00",
+			stock=5,
+			status="published",
+			shipping_type="domicilio",
+			weight_unit="kg",
+			weight="1.00",
+			payment_type="transferencia",
+			available=True,
+			image="products/principal.jpg",
+		)
+
+		for number in range(7):
+			Product.objects.create(
+				store=self.store,
+				category=self.category,
+				name=f"Relacionado {number}",
+				description="Producto relacionado visible",
+				price="4500.00",
+				stock=5,
+				status="published",
+				shipping_type="domicilio",
+				weight_unit="kg",
+				weight="1.00",
+				payment_type="transferencia",
+				available=True,
+				image=f"products/relacionado-{number}.jpg",
+			)
+
+		response = self.client.get(reverse("products:product_detail", args=[main_product.slug]))
+
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.context["page_obj"].paginator.count, 7)
+		self.assertEqual(len(response.context["page_obj"].object_list), 6)
+
+		second_page_response = self.client.get(
+			reverse("products:product_detail", args=[main_product.slug]),
+			{"page": 2},
+		)
+
+		self.assertEqual(second_page_response.status_code, 200)
+		self.assertEqual(second_page_response.context["page_obj"].number, 2)
+		self.assertEqual(len(second_page_response.context["page_obj"].object_list), 1)
