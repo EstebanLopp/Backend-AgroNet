@@ -95,6 +95,18 @@ class SellerNotificationPdfTests(TestCase):
 
 		self.notification = SellerNotification.objects.create(store=self.store, order=self.order)
 
+	def test_customer_can_download_order_receipt_pdf(self):
+		self.client.login(username="cliente", password="test12345")
+
+		response = self.client.get(
+			reverse("orders:download_order_receipt_pdf", args=[self.order.id])
+		)
+
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response["Content-Type"], "application/pdf")
+		self.assertIn("attachment; filename=", response["Content-Disposition"])
+		self.assertTrue(response.content.startswith(b"%PDF"))
+
 	def test_seller_can_download_pdf_for_own_notification(self):
 		self.client.login(username="vendedor", password="test12345")
 
