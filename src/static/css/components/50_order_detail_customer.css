@@ -5,10 +5,22 @@
 }
 
 .order-detail__title {
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
-  color: var(--primary-500);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: fit-content;
+  background-color: var(--primary-500);
+  padding: 0.65rem 1rem;
+  border-radius: 14px;
   margin-bottom: 1.5rem;
+  line-height: 0;
+}
+
+.order-detail__title-image {
+  display: block;
+  width: min(220px, 100%);
+  height: auto;
 }
 
 .order-detail__card {
@@ -108,15 +120,18 @@
 
 .order-detail__invoice-actions {
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-end;
+  gap: 16px;
   flex-wrap: nowrap;
   width: 100%;
 }
 
 .order-detail__invoice-button,
 .order-detail__invoice-button--download {
+  position: static;
+  inset: auto;
   background-color: var(--primary-500);
   color: var(--white);
   padding: 1.6rem;
