@@ -1,9 +1,17 @@
+{% load static %}
+
 <section class="order-detail">
   <div class="order-detail__content">
 
     <div class="order-detail__main">
       <div class="order-detail__header">
-        <h2 class="order-detail__title">AgroNet</h2>
+        <h2 class="order-detail__title">
+          <img
+            src="{% static 'assets/logo-light-transparent.png' %}"
+            alt="AgroNet"
+            class="order-detail__title-image"
+          >
+        </h2>
 
         <p class="order-detail__date">
           Compra realizada el {{ order.created|date:"d/m/Y" }} a las {{ order.created|date:"H:i" }}
